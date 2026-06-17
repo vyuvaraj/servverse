@@ -78,6 +78,7 @@
         <h3>Developer Layer</h3>
         <div class="component-pill">Serv-lang Compiler</div>
         <div class="component-pill">VS Code Extension</div>
+        <div class="component-pill">ServRegistry</div>
         <div class="component-pill">ServTunnel</div>
         <p>Write clean services using a language where backend infrastructure concerns are syntax primitives.</p>
       </div>
@@ -128,6 +129,7 @@
         <button class="tab-btn" data-target="servqueue">ServQueue</button>
         <button class="tab-btn" data-target="servstore">ServStore</button>
         <button class="tab-btn" data-target="servconsole">ServConsole</button>
+        <button class="tab-btn" data-target="servregistry">ServRegistry</button>
       </div>
 
       <div class="tab-content glass-card" id="tab-panels">
@@ -184,6 +186,16 @@
             <li><strong>Ring Visualizer:</strong> Live Canvas-based consistent hash ring illustrating node distribution.</li>
             <li><strong>Audit Logging:</strong> Monitor administrative changes, route additions, and rebalances in an immutable dashboard console.</li>
             <li><strong>SSO Ready:</strong> Integrated user OIDC login workflow supporting secure token authentication.</li>
+          </ul>
+        </div>
+        <!-- Panel 6 -->
+        <div class="tab-panel" id="panel-servregistry">
+          <h3>ServRegistry — Package Hub</h3>
+          <p class="panel-desc">A lightweight, S3-backed community package registry. It enables developers to share and install third-party modules without central friction.</p>
+          <ul class="feature-list">
+            <li><strong>ServStore Backend:</strong> Securely stores and serves package tarballs via a dedicated S3 bucket.</li>
+            <li><strong>Zero-Config CLI:</strong> Publish and install modules seamlessly using <code>serv publish</code> and <code>serv install</code>.</li>
+            <li><strong>Premium Dashboard:</strong> Browse available modules, inspect versions, and view installation guides via a glassmorphic dashboard interface.</li>
           </ul>
         </div>
       </div>
