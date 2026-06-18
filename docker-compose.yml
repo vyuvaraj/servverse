@@ -1,0 +1,136 @@
+version: '3.8'
+
+services:
+  # 1. Observability Stack: Jaeger (for Distributed OTel Traces)
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - "16686:16686" # Web UI
+      - "4317:4317"   # OTLP gRPC receiver
+      - "4318:4318"   # OTLP HTTP receiver
+    networks:
+      - servverse-net
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:16686/"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # 2. Infrastructure: ServStore (Object Storage)
+  servstore:
+    build:
+      context: ./ServStore
+    ports:
+      - "8081:8081"
+    environment:
+      - SERV_OTLP_ENDPOINT=http://jaeger:4318
+      - SERV_JWT_SECRET=shared-demo-signing-key
+    networks:
+      - servverse-net
+    depends_on:
+      jaeger:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8081/healthz"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # 3. Infrastructure: ServQueue (Message Broker)
+  servqueue:
+    build:
+      context: ./ServQueue
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"   # HTTP Admin API
+      - "61613:61613" # STOMP TCP
+    environment:
+      - SERV_OTLP_ENDPOINT=http://jaeger:4318
+      - SERV_JWT_SECRET=shared-demo-signing-key
+    networks:
+      - servverse-net
+    depends_on:
+      jaeger:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8082/healthz"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # 4. Platform: ServGate (API Gateway)
+  servgate:
+    build:
+      context: ./ServGate
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SERV_OTLP_ENDPOINT=http://jaeger:4318
+      - SERV_JWT_SECRET=shared-demo-signing-key
+      - SERV_CONFIG_S3_BUCKET=servgate-config
+      - SERV_CONFIG_S3_ENDPOINT=http://servstore:8081
+    networks:
+      - servverse-net
+    depends_on:
+      jaeger:
+        condition: service_healthy
+      servstore:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/healthz"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # 5. Management: ServConsole (Observability Dashboard)
+  servconsole:
+    build:
+      context: ./ServConsole
+    ports:
+      - "8083:8083"
+    environment:
+      - SERV_JWT_SECRET=shared-demo-signing-key
+      - SERV_OTLP_ENDPOINT=http://jaeger:4318
+      - SERVVERSE_DISCOVERY={"gate":"http://servgate:8080","store":"http://servstore:8081","queue":"http://servqueue:8082","otlp_endpoint":"http://jaeger:4318","jwt_secret":"shared-demo-signing-key"}
+    networks:
+      - servverse-net
+    depends_on:
+      jaeger:
+        condition: service_healthy
+      servstore:
+        condition: service_healthy
+      servqueue:
+        condition: service_healthy
+      servgate:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8083/healthz"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # 6. Ecosystem: ServRegistry (Package Registry)
+  servregistry:
+    build:
+      context: ./ServRegistry
+    ports:
+      - "8088:8088"
+    environment:
+      - SERV_STORE_ENDPOINT=http://servstore:8081
+      - SERV_STORE_ACCESS_KEY=admin
+      - SERV_STORE_SECRET_KEY=admin123
+    networks:
+      - servverse-net
+    depends_on:
+      servstore:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8088/healthz"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+networks:
+  servverse-net:
+    driver: bridge
