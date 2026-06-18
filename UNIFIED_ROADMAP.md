@@ -16,7 +16,7 @@
 | **ServGate** | Phases 1–7 + proposed 8–10 | 27 | 18 | **60%** | ████████████░░░░░░░░░ |
 | **ServQueue** | Phases 1–7 + proposed 8–10 | 27 | 20 | **57%** | ███████████░░░░░░░░░░ |
 | **ServConsole** | Phases 1–5 + proposed 6–8 | 11 | 30 | **27%** | █████░░░░░░░░░░░░░░░░ |
-| **ServRegistry** | Core + hardening | 5 | 1 | **83%** | █████████████████░░░░ |
+| **ServRegistry** | Core + hardening | 6 | 0 | **100%** | █████████████████████ |
 | **Unified Roadmap** (cross-cutting) | Sections 8–9 | 35 | 36 | **49%** | ██████████░░░░░░░░░░░ |
 | | | | | | |
 | **TOTAL ECOSYSTEM** | | **247** | **147** | **63%** | █████████████░░░░░░░░ |
@@ -30,7 +30,7 @@
 | **ServGate** | 21/24 | **88%** | 6/21 | 29% |
 | **ServQueue** | 22/24 | **92%** | 5/23 | 22% |
 | **ServConsole** | 10/18 | **56%** | 1/23 | 4% |
-| **ServRegistry** | 5/6 | **83%** | — | — |
+| **ServRegistry** | 6/6 | **100%** ✅ | — | — |
 
 ### Phase Completion by Project
 
@@ -42,7 +42,7 @@
 | 10 | Next Level (Generics, Actors, WASM, Workflows) | ✅ 100% |
 | 11 | Project System & Developer Tooling | ✅ 100% |
 | 12 | Servverse Native Integration | ✅ 100% |
-| 13 | Adapter Expansion & DX (proposed) | 🟡 63% (3 open) |
+| 13 | Adapter Expansion & DX (proposed) | 🟡 50% (6 open) |
 | 14 | Next-Level Language Evolution (proposed) | 🟡 20% (8 open) |
 | 15 | Differentiating Factors (proposed) | ⬜ 0% |
 
@@ -82,7 +82,7 @@
 | 3 | Cluster Consensus & Distributed Replication | ✅ 100% |
 | 4 | ServStore Tiered Storage | ✅ 100% |
 | 5 | Deep Ecosystem Integration | ✅ 100% |
-| 6 | Enterprise Features | 🟡 67% (1 open: delayed messages) |
+| 6 | Enterprise Features | ✅ 100% |
 | 7 | Serv-verse Infrastructure Integrations | 🟡 67% (1 open: console control plane) |
 | 8 | Operational Hardening (proposed) | ⬜ 0% |
 | 9 | Next-Level Message Broker (proposed) | ⬜ 0% |
@@ -95,7 +95,7 @@
 | 2 | SQL & DB Schema Inspector | 🟡 67% (1 open: migration auditing) |
 | 3 | Cluster Operations & Repair Panel | ✅ 100% |
 | 4 | Enterprise Access Control & Audit Logs | 🟡 67% (1 open: RBAC editor) |
-| 5 | Ecosystem Integration Depth | 🟡 40% (3 open) |
+| 5 | Ecosystem Integration Depth | 🟡 60% (2 open) |
 | 6 | Operational Hardening (proposed) | ⬜ 0% |
 | 7 | Next-Level Observability (proposed) | ⬜ 0% |
 | 8 | Differentiating Factors (proposed) | ⬜ 0% |
@@ -444,7 +444,7 @@ The following items address quality, consistency, and adoption gaps that span mu
 | R-3 | **Version listing API** (`GET /api/packages/{name}/versions`) | Required for `serv install pkg@1.2.0` to work. | [x] |
 | R-4 | **Publish authentication** | Anyone can publish today. Require valid JWT from `SERV_JWT_SECRET`. | [x] |
 | R-5 | **Search index** | Currently only lists all objects. Add in-memory trie or prefix search loaded from S3 listing at startup. | [x] |
-| R-6 | **Dependency resolution** | Parse `serv.toml` dependencies and resolve transitive requirements on install. | [ ] |
+| R-6 | **Dependency resolution** | Parse `serv.toml` dependencies and resolve transitive requirements on install. | [x] |
 
 ### 🧪 Integration & Quality
 
@@ -453,7 +453,7 @@ The following items address quality, consistency, and adoption gaps that span mu
 | Q-1 | **End-to-end integration test suite** | All | No test exercises the full stack (Gate → Queue → Store → Console). Add `e2e/` directory with Go tests against Docker Compose. | [x] |
 | Q-2 | **Shared JWT/OTel init package** | All | Each service reimplements JWT validation, OTel tracer init, and health checks. Extract shared `servverse/pkg/shared`. | [ ] |
 | Q-3 | **WebSocket push for real-time dashboards** | ServConsole | Console polls data. Real-time push (WebSocket/SSE) for traces, queue flow, and route hit counters. | [x] |
-| Q-4 | **Canonical `serv.toml` example** | Serv-lang | No documented example of a multi-file project manifest. New users confused about what goes in it. | [ ] |
+| Q-4 | **Canonical `serv.toml` example** | Serv-lang | No documented example of a multi-file project manifest. New users confused about what goes in it. | [x] |
 | Q-5 | **ServStore bucket event notifications** | ServStore | Emit `s3:ObjectCreated`/`s3:ObjectRemoved` events to a webhook or ServQueue topic — enables event-driven patterns. | [x] |
 | Q-6 | **ServQueue consumer group support** | ServQueue | Multiple subscribers in a group with partition assignment. Required for horizontal scaling of consumers. | [ ] |
 | Q-7 | **ServGate config hot-reload** | ServGate | Watch config source (file or ServStore bucket) for changes and apply route updates without process restart. | [x] |
