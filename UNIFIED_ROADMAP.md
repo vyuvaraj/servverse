@@ -339,6 +339,8 @@ Build adapter connectors and developer tooling before building competing managed
 - [x] **ServQueue** — WASM-enabled STOMP & HTTP message broker with compute-in-queue transforms.
 - [x] **ServGate** — Programmable API Gateway with AI-native middleware and circuit breaking.
 - [x] **ServConsole** — Unified web dashboard with cluster ops panel, OTel trace waterfall, and WASM hot-swap UI.
+- [x] **ServTunnel** — Secure local tunnel relay and client for exposing webhooks.
+- [x] **ServCloud** — Managed PaaS deployment platform & orchestrator for dynamic background services.
 
 ### Ecosystem Flywheel Items (Future)
 - [ ] **ServRegistry** — Running registry server backed by ServStore for `serv install` packages.
@@ -346,7 +348,7 @@ Build adapter connectors and developer tooling before building competing managed
 - [ ] **ServCron** — Distributed scheduler for `every` / `cron` declarations (exactly-once, leader election).
 - [ ] **serv-ai** — AI adapter: OpenAI, Anthropic, Ollama connection strings.
 - [ ] **ServCI** — Serv-native build + test pipeline service.
-- [ ] **ServTunnel** — Secure local tunnel service for exposing endpoints to internet webhooks.
+
 
 ---
 

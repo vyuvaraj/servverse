@@ -250,6 +250,8 @@
         <button class="tab-btn" data-target="servstore">ServStore</button>
         <button class="tab-btn" data-target="servconsole">ServConsole</button>
         <button class="tab-btn" data-target="servregistry">ServRegistry</button>
+        <button class="tab-btn" data-target="servtunnel">ServTunnel</button>
+        <button class="tab-btn" data-target="servcloud">ServCloud</button>
       </div>
       <div class="tab-content glass-card" id="tab-panels">
         <div class="tab-panel active" id="panel-serv-lang">
@@ -316,6 +318,26 @@
             <li><strong>Zero-Config CLI:</strong> <code>serv publish</code> and <code>serv install</code> — done.</li>
             <li><strong>Version Management:</strong> Semver resolution with lockfile support.</li>
             <li><strong>Premium Dashboard:</strong> Browse modules and view guides in glassmorphic UI.</li>
+          </ul>
+        </div>
+        <div class="tab-panel" id="panel-servtunnel">
+          <h3>ServTunnel — Secure Dev Tunneling</h3>
+          <p class="panel-desc">Secure local tunnel relay and client for exposing local services to the internet natively.</p>
+          <ul class="feature-list">
+            <li><strong>Subdomain Routing:</strong> Dynamically routes traffic based on the public Host header.</li>
+            <li><strong>Multiplexed WebSockets:</strong> Stream concurrent requests and responses over a single tunnel connection.</li>
+            <li><strong>OTel Tracing:</strong> Integrates automatically with the shared OpenTelemetry collector.</li>
+            <li><strong>Request Inspector:</strong> View and replay requests from the embedded inspector API.</li>
+          </ul>
+        </div>
+        <div class="tab-panel" id="panel-servcloud">
+          <h3>ServCloud — Managed PaaS Platform</h3>
+          <p class="panel-desc">Lightweight process orchestrator and application deployment backend for the Serv ecosystem.</p>
+          <ul class="feature-list">
+            <li><strong>PaaS Deployment API:</strong> Deploy, build, and run code packages dynamically via HTTP POST.</li>
+            <li><strong>Dynamic Gateway Routing:</strong> Registers newly deployed services with ServGate routes instantly.</li>
+            <li><strong>Console Log Capture:</strong> Redirects standard output/error pipes to a memory-backed ring buffer.</li>
+            <li><strong>Process Isolation:</strong> Automatically allocates free ports and isolates process limits.</li>
           </ul>
         </div>
       </div>
