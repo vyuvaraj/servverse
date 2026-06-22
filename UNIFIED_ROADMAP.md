@@ -434,8 +434,8 @@ The following items address quality, consistency, and adoption gaps that span mu
 | A-6 | **Redis Streams broker adapter** (`broker "redis-stream://..."`) | Lightweight alternative to Kafka/NATS for teams already running Redis. | [ ] |
 | A-7 | **Graceful shutdown in generated code** | Generated `main.go` should use `signal.NotifyContext` to drain connections and flush spans on SIGTERM. | [x] |
 | A-8 | **Standardized error response contract** | Generated HTTP handlers return `{"error": "msg", "code": "...", "trace_id": "..."}` on failure by default. | [x] |
-| A-9 | **Full OIDC discovery & JWKS validation** | `auth "oidc://issuer"` currently only validates issuer claim. Add `.well-known` discovery, JWKS key caching, RS256/ES256 signature verification, and key rotation support. | [ ] |
-| A-10 | **Auth role/scope guards** | `route ... use [auth.role("admin")]` — compile-time syntax for role/scope-based route access using JWT claims. | [ ] |
+| A-9 | **Full OIDC discovery & JWKS validation** | `auth "oidc://issuer"` currently only validates issuer claim. Add `.well-known` discovery, JWKS key caching, RS256/ES256 signature verification, and key rotation support. | [x] |
+| A-10 | **Auth role/scope guards** | `route ... use [auth.role("admin")]` — compile-time syntax for role/scope-based route access using JWT claims. | [x] |
 
 ### 📦 ServRegistry Hardening
 
