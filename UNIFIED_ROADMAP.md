@@ -11,25 +11,25 @@
 
 | Component | Core Phases | Done | Open | Completion | Status Bar |
 |-----------|-------------|------|------|------------|------------|
-| **Serv-lang** | Phases 1–12 + proposed 13–15 | 88 | 21 | **81%** | ████████████████░░░░░ |
+| **Serv-lang** | Phases 1–12 + proposed 13–15 | 95 | 14 | **87%** | ██████████████████░░░ |
 | **ServStore** | Phases 1–7 + proposed 8–10 | 54 | 21 | **72%** | ██████████████░░░░░░░ |
 | **ServGate** | Phases 1–7 + proposed 8–10 | 27 | 18 | **60%** | ████████████░░░░░░░░░ |
-| **ServQueue** | Phases 1–7 + proposed 8–10 | 27 | 20 | **57%** | ███████████░░░░░░░░░░ |
-| **ServConsole** | Phases 1–5 + proposed 6–8 | 11 | 30 | **27%** | █████░░░░░░░░░░░░░░░░ |
+| **ServQueue** | Phases 1–7 + proposed 8–10 | 28 | 19 | **60%** | ████████████░░░░░░░░░ |
+| **ServConsole** | Phases 1–5 + proposed 6–8 | 17 | 24 | **41%** | ████████░░░░░░░░░░░░░ |
 | **ServRegistry** | Core + hardening | 6 | 0 | **100%** | █████████████████████ |
-| **Unified Roadmap** (cross-cutting) | Sections 8–9 | 35 | 36 | **49%** | ██████████░░░░░░░░░░░ |
+| **Unified Roadmap** (cross-cutting) | Sections 8–9 | 39 | 32 | **55%** | ███████████░░░░░░░░░░ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **247** | **147** | **63%** | █████████████░░░░░░░░ |
+| **TOTAL ECOSYSTEM** | | **266** | **128** | **67%** | █████████████░░░░░░░░ |
 
 ### Core vs Proposed Breakdown
 
 | Component | Core (Shipped) | Core % | Proposed (Future) | Proposed % |
 |-----------|---------------|--------|-------------------|------------|
-| **Serv-lang** | 82/82 | **100%** ✅ | 6/27 | 22% |
+| **Serv-lang** | 82/82 | **100%** ✅ | 13/27 | 48% |
 | **ServStore** | 49/53 | **92%** | 5/22 | 23% |
 | **ServGate** | 21/24 | **88%** | 6/21 | 29% |
-| **ServQueue** | 22/24 | **92%** | 5/23 | 22% |
-| **ServConsole** | 10/18 | **56%** | 1/23 | 4% |
+| **ServQueue** | 22/24 | **92%** | 6/23 | 26% |
+| **ServConsole** | 13/18 | **72%** | 4/23 | 17% |
 | **ServRegistry** | 6/6 | **100%** ✅ | — | — |
 
 ### Phase Completion by Project
@@ -418,7 +418,7 @@ The following items address quality, consistency, and adoption gaps that span mu
 | X-2 | **Graceful shutdown on SIGTERM** | All | No service handles SIGTERM gracefully. Causes connection drops during k8s rolling updates and Docker stop. | [x] |
 | X-3 | **Standardized error response contract** | All | Each service returns different error JSON shapes. Standardize: `{"error": "msg", "code": "ERR_CODE", "trace_id": "..."}`. | [x] |
 | X-4 | **API versioning (`/v1/` prefixes)** | ServGate, ServQueue, ServStore, ServConsole, ServRegistry | No admin API is versioned. Breaking changes will be costly once external consumers exist. | [x] |
-| X-5 | **Shared `pkg/health` Go package** | All | Extract a reusable health/readiness module that every service imports. Reduces duplication and enforces consistency. | [ ] |
+| X-5 | **Shared `pkg/health` Go package** | All | Extract a reusable health/readiness module that every service imports. Reduces duplication and enforces consistency. | [x] |
 | X-6 | **Docker Compose healthchecks** | All | `depends_on` without `condition: service_healthy` means services start before dependencies are ready. | [x] |
 | X-7 | **CI/CD pipelines (GitHub Actions)** | ServStore, ServGate, ServQueue, ServConsole, ServRegistry | Only Serv-lang has CI. All other projects lack automated build/test/lint on PR. | [x] |
 
@@ -431,7 +431,7 @@ The following items address quality, consistency, and adoption gaps that span mu
 | A-3 | **`mail` keyword & adapter** (`mail "smtp://..."`, `mail "ses://..."`, `mail "sendgrid://..."`) | Transactional email is needed in almost every web service. | [x] |
 | A-4 | **MySQL database adapter** (`database "mysql://..."`) | Second most popular RDBMS globally — major adoption blocker to not support it. | [x] |
 | A-5 | **`store` keyword (multi-backend)** (`store "s3://..."`, `store "gcs://..."`, `store "r2://..."`) | The existing `s3.srv` stdlib only targets ServStore. A unified `store` keyword unlocks any object storage. | [x] |
-| A-6 | **Redis Streams broker adapter** (`broker "redis-stream://..."`) | Lightweight alternative to Kafka/NATS for teams already running Redis. | [ ] |
+| A-6 | **Redis Streams broker adapter** (`broker "redis-stream://..."`) | Lightweight alternative to Kafka/NATS for teams already running Redis. | [x] |
 | A-7 | **Graceful shutdown in generated code** | Generated `main.go` should use `signal.NotifyContext` to drain connections and flush spans on SIGTERM. | [x] |
 | A-8 | **Standardized error response contract** | Generated HTTP handlers return `{"error": "msg", "code": "...", "trace_id": "..."}` on failure by default. | [x] |
 | A-9 | **Full OIDC discovery & JWKS validation** | `auth "oidc://issuer"` currently only validates issuer claim. Add `.well-known` discovery, JWKS key caching, RS256/ES256 signature verification, and key rotation support. | [x] |
@@ -453,11 +453,11 @@ The following items address quality, consistency, and adoption gaps that span mu
 | # | Task | Project(s) | Rationale | Status |
 |---|---|---|---|---|
 | Q-1 | **End-to-end integration test suite** | All | No test exercises the full stack (Gate → Queue → Store → Console). Add `e2e/` directory with Go tests against Docker Compose. | [x] |
-| Q-2 | **Shared JWT/OTel init package** | All | Each service reimplements JWT validation, OTel tracer init, and health checks. Extract shared `servverse/pkg/shared`. | [ ] |
+| Q-2 | **Shared JWT/OTel init package** | All | Each service reimplements JWT validation, OTel tracer init, and health checks. Extract shared `servverse/pkg/shared`. | [x] |
 | Q-3 | **WebSocket push for real-time dashboards** | ServConsole | Console polls data. Real-time push (WebSocket/SSE) for traces, queue flow, and route hit counters. | [x] |
 | Q-4 | **Canonical `serv.toml` example** | Serv-lang | No documented example of a multi-file project manifest. New users confused about what goes in it. | [x] |
 | Q-5 | **ServStore bucket event notifications** | ServStore | Emit `s3:ObjectCreated`/`s3:ObjectRemoved` events to a webhook or ServQueue topic — enables event-driven patterns. | [x] |
-| Q-6 | **ServQueue consumer group support** | ServQueue | Multiple subscribers in a group with partition assignment. Required for horizontal scaling of consumers. | [ ] |
+| Q-6 | **ServQueue consumer group support** | ServQueue | Multiple subscribers in a group with partition assignment. Required for horizontal scaling of consumers. | [x] |
 | Q-7 | **ServGate config hot-reload** | ServGate | Watch config source (file or ServStore bucket) for changes and apply route updates without process restart. | [x] |
 
 ---
