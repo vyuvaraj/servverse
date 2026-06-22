@@ -427,9 +427,9 @@ The following items address quality, consistency, and adoption gaps that span mu
 | # | Task | Rationale | Status |
 |---|---|---|---|
 | A-1 | **`auth` keyword & adapter** (`auth "oidc://..."`, `auth "keycloak://..."`, `auth "auth0://..."`) | Most requested feature category for backend services. Middleware auto-validates tokens. | [x] |
-| A-2 | **`search` keyword & adapter** (`search "meilisearch://..."`, `search "elastic://..."`) | Full-text search is table-stakes for many services. | [ ] |
+| A-2 | **`search` keyword & adapter** (`search "meilisearch://..."`, `search "elastic://..."`) | Full-text search is table-stakes for many services. | [x] |
 | A-3 | **`mail` keyword & adapter** (`mail "smtp://..."`, `mail "ses://..."`, `mail "sendgrid://..."`) | Transactional email is needed in almost every web service. | [x] |
-| A-4 | **MySQL database adapter** (`database "mysql://..."`) | Second most popular RDBMS globally — major adoption blocker to not support it. | [ ] |
+| A-4 | **MySQL database adapter** (`database "mysql://..."`) | Second most popular RDBMS globally — major adoption blocker to not support it. | [x] |
 | A-5 | **`store` keyword (multi-backend)** (`store "s3://..."`, `store "gcs://..."`, `store "r2://..."`) | The existing `s3.srv` stdlib only targets ServStore. A unified `store` keyword unlocks any object storage. | [x] |
 | A-6 | **Redis Streams broker adapter** (`broker "redis-stream://..."`) | Lightweight alternative to Kafka/NATS for teams already running Redis. | [ ] |
 | A-7 | **Graceful shutdown in generated code** | Generated `main.go` should use `signal.NotifyContext` to drain connections and flush spans on SIGTERM. | [x] |
