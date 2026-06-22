@@ -12,7 +12,7 @@
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <!-- Marked Markdown Parser -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js"></script>
 </head>
 
 <body>
@@ -34,7 +34,6 @@
       <a href="index.html#components">Components</a>
       <a href="index.html#quickstart">Quickstart</a>
       <a href="index.html#blog">Blog</a>
-      <a href="UNIFIED_ROADMAP.md">Roadmap</a>
       <a href="https://github.com/vyuvaraj/Serv-lang" class="github-btn">GitHub ↗</a>
       <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
         <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
@@ -99,13 +98,12 @@
       try {
         const response = await fetch(`blog/${safePostName}.md`);
         if (!response.ok) {
-          throw new Error("Article not found.");
+          throw new Error(`HTTP ${response.status}: Article not found.`);
         }
 
         const markdownText = await response.text();
         
-        // Use marked to compile markdown to HTML
-        // Replace H1 tag from title so that we can render the document nicely
+        // marked UMD exposes window.marked with .parse()
         const htmlContent = marked.parse(markdownText);
         
         articleBody.innerHTML = htmlContent;
@@ -118,7 +116,13 @@
           document.title = `${h1.textContent} — Servverse Blog`;
         }
       } catch (err) {
-        showError("We couldn't load this article. Please check the URL or try again later.");
+        console.error('Blog load error:', err);
+        // If running from file:// protocol, fetch won't work
+        if (window.location.protocol === 'file:') {
+          showError("Cannot load articles when opening directly from disk. Please serve via HTTP (e.g. <code>npx serve .</code> or use GitHub Pages).");
+        } else {
+          showError("We couldn't load this article. Please check the URL or try again later.");
+        }
       }
     }
 
