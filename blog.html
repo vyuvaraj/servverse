@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servverse — Blog Reader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Marked Markdown Parser -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+  <!-- Aurora Background Effects -->
+  <div class="aurora-bg"></div>
+
+  <!-- Header / Nav -->
+  <header class="navbar">
+    <div class="logo-area" onclick="window.location.href='index.html'" style="cursor: pointer;">
+      <div class="logo-icon">▲</div>
+      <div class="logo-text">
+        <h1>Servverse</h1>
+        <span>AI-Native Backend Infrastructure</span>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#architecture">Architecture</a>
+      <a href="index.html#components">Components</a>
+      <a href="index.html#quickstart">Quickstart</a>
+      <a href="index.html#blog">Blog</a>
+      <a href="UNIFIED_ROADMAP.md">Roadmap</a>
+      <a href="https://github.com/vyuvaraj/Serv-lang" class="github-btn">GitHub ↗</a>
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Blog Content Section -->
+  <main class="section">
+    <div class="blog-actions">
+      <a href="index.html#blog" class="btn btn-secondary btn-back">← Back to Blog</a>
+    </div>
+
+    <article id="blog-content-card" class="glass-card blog-post-container" style="margin-top: 2rem;">
+      <div id="loader" class="blog-loader">
+        <div class="spinner"></div>
+        <p>Loading article...</p>
+      </div>
+      <div id="article-body" class="blog-content" style="display: none;"></div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Servverse. Open source under Apache 2.0. Built by Yuvaraj.</p>
+  </footer>
+
+  <script>
+    // Theme Toggle Logic
+    const themeToggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme === 'light') {
+      document.documentElement.classList.add('light-theme');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('light-theme');
+      let theme = 'dark';
+      if (document.documentElement.classList.contains('light-theme')) {
+        theme = 'light';
+      }
+      localStorage.setItem('theme', theme);
+    });
+
+    // Dynamic Markdown Fetcher and Renderer
+    async function loadArticle() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const postName = urlParams.get('post');
+      const loader = document.getElementById('loader');
+      const articleBody = document.getElementById('article-body');
+
+      if (!postName) {
+        showError("No article selected. Please return to the homepage.");
+        return;
+      }
+
+      // Sanitize the file name to prevent directory traversal
+      const safePostName = postName.replace(/[^a-zA-Z0-9_-]/g, '');
+
+      try {
+        const response = await fetch(`blog/${safePostName}.md`);
+        if (!response.ok) {
+          throw new Error("Article not found.");
+        }
+
+        const markdownText = await response.text();
+        
+        // Use marked to compile markdown to HTML
+        // Replace H1 tag from title so that we can render the document nicely
+        const htmlContent = marked.parse(markdownText);
+        
+        articleBody.innerHTML = htmlContent;
+        loader.style.display = 'none';
+        articleBody.style.display = 'block';
+
+        // Extract first H1 to set document title
+        const h1 = articleBody.querySelector('h1');
+        if (h1) {
+          document.title = `${h1.textContent} — Servverse Blog`;
+        }
+      } catch (err) {
+        showError("We couldn't load this article. Please check the URL or try again later.");
+      }
+    }
+
+    function showError(message) {
+      const loader = document.getElementById('loader');
+      loader.innerHTML = `
+        <div style="font-size: 3rem; margin-bottom: 1rem;">⚠️</div>
+        <p style="color: var(--danger); font-weight: 600; font-size: 1.2rem;">Error</p>
+        <p style="margin-top: 0.5rem; color: var(--text-secondary);">${message}</p>
+        <a href="index.html#blog" class="btn btn-primary" style="margin-top: 1.5rem;">Return to Blog</a>
+      `;
+    }
+
+    // Run on page load
+    window.addEventListener('DOMContentLoaded', loadArticle);
+  </script>
+</body>
+
+</html>
