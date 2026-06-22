@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Servverse — The AI-Native Microservice Platform</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <!-- Aurora Background Effects -->
   <div class="aurora-bg"></div>
@@ -29,6 +33,10 @@
       <a href="UNIFIED_ROADMAP.md">Roadmap</a>
       <a href="showcase_guide.md">Showcase</a>
       <a href="https://github.com/vyuvaraj/Serv-lang" class="github-btn">GitHub ↗</a>
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </button>
     </nav>
   </header>
 
@@ -36,8 +44,17 @@
   <section class="hero">
     <div class="hero-content">
       <div class="badge-pill">✦ Production-Ready Ecosystem</div>
-      <h1>Rethinking Microservices from the <span class="gradient-text">Compiler Up</span></h1>
-      <p>Servverse is an integrated, self-hostable backend platform where the programming language, S3 storage, STOMP message queues, and API gateways are designed to work together out of the box.</p>
+      <h1>A Unified Platform for <span class="gradient-text">Distributed Systems</span></h1>
+      <p>Build APIs, event-driven systems, storage services, and observability workflows without assembling dozens of
+        disconnected tools. Servverse brings language, gateway, messaging, storage, and operations into a single open
+        platform.</p>
+      <div class="stats-row">
+        <div class="stat">Apache 2.0</div>
+        <div class="stat">Native Binaries</div>
+        <div class="stat">S3 Compatible</div>
+        <div class="stat">STOMP Messaging</div>
+        <div class="stat">WASM Powered</div>
+      </div>
       <div class="hero-actions">
         <a href="#quickstart" class="btn btn-primary">Get Started</a>
         <a href="#architecture" class="btn btn-secondary">Explore Architecture</a>
@@ -63,6 +80,36 @@
     <span class="keyword">publish</span> <span class="string">"orders"</span> order
     <span class="keyword">return</span> { <span class="string">"status"</span>: <span class="string">"queued"</span> }
 }</code></pre>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="section-header">
+      <h2>Why Servverse</h2>
+      <p>Most teams assemble a distributed platform. Servverse ships one.</p>
+    </div>
+    <div class="why-grid glass-card">
+      <div>
+        <h3>Traditional Stack</h3>
+        <ul>
+          <li>Spring Boot</li>
+          <li>Kong</li>
+          <li>RabbitMQ</li>
+          <li>MinIO</li>
+          <li>Grafana + Admin Tools</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Servverse</h3>
+        <ul>
+          <li>Serv-lang</li>
+          <li>ServGate</li>
+          <li>ServQueue</li>
+          <li>ServStore</li>
+          <li>ServConsole</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -112,13 +159,15 @@
         <div class="component-pill">ServConsole</div>
         <div class="component-pill">OTel Spans</div>
         <div class="component-pill">Waterfall Traces</div>
-        <p>Inspect, audit, and debug your entire distributed trace cascading flow inside a premium glassmorphic dashboard.</p>
+        <p>Inspect, audit, and debug your entire distributed trace cascading flow inside a premium glassmorphic
+          dashboard.</p>
       </div>
     </div>
 
     <!-- Interactive Architecture Flow Diagram -->
     <div class="arch-diagram-container glass-card">
-      <h3 style="text-align: center; margin-bottom: 2rem; font-size: 1.5rem; font-weight: 700;">Ecosystem Traffic & Control Flow</h3>
+      <h3 style="text-align: center; margin-bottom: 2rem; font-size: 1.5rem; font-weight: 700;">Ecosystem Traffic &
+        Control Flow</h3>
       <svg viewBox="0 0 900 480" fill="none" xmlns="http://www.w3.org/2000/svg">
         <!-- Glow Filters -->
         <defs>
@@ -169,8 +218,10 @@
         </defs>
 
         <!-- Connection Lines / Flow Arrows -->
-        <path d="M 90 240 L 208 240" stroke="hsl(190, 100%, 65%)" stroke-width="2.5" marker-end="url(#arrow-blue)" stroke-dasharray="6,4" />
-        <path d="M 350 240 L 468 240" stroke="hsl(250, 100%, 75%)" stroke-width="2.5" marker-end="url(#arrow-purple)" stroke-dasharray="6,4" />
+        <path d="M 90 240 L 208 240" stroke="hsl(190, 100%, 65%)" stroke-width="2.5" marker-end="url(#arrow-blue)"
+          stroke-dasharray="6,4" />
+        <path d="M 350 240 L 468 240" stroke="hsl(250, 100%, 75%)" stroke-width="2.5" marker-end="url(#arrow-purple)"
+          stroke-dasharray="6,4" />
         <path d="M 590 220 L 706 156" stroke="hsl(145, 90%, 60%)" stroke-width="2" marker-end="url(#arrow-green)" />
         <path d="M 590 260 L 706 324" stroke="hsl(40, 95%, 60%)" stroke-width="2" marker-end="url(#arrow-orange)" />
 
@@ -181,59 +232,90 @@
         <path d="M 450 390 L 710 320" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1.5" stroke-dasharray="3,3" />
 
         <!-- Arrow Markers -->
-        <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6"
+          orient="auto-start-reverse">
           <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="hsl(190, 100%, 65%)" />
         </marker>
-        <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6"
+          orient="auto-start-reverse">
           <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="hsl(250, 100%, 75%)" />
         </marker>
-        <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6"
+          orient="auto-start-reverse">
           <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="hsl(145, 90%, 60%)" />
         </marker>
-        <marker id="arrow-orange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <marker id="arrow-orange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6"
+          orient="auto-start-reverse">
           <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="hsl(40, 95%, 60%)" />
         </marker>
 
         <!-- Node 1: Client (External) -->
-        <rect x="10" y="195" width="80" height="90" rx="12" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
-        <text x="50" y="235" fill="#fff" font-size="13" font-family="Outfit" font-weight="700" text-anchor="middle">Client</text>
-        <text x="50" y="252" fill="hsl(220, 15%, 50%)" font-size="10" font-family="Outfit" text-anchor="middle">Browser / SDK</text>
+        <rect x="10" y="195" width="80" height="90" rx="12" fill="rgba(255,255,255,0.02)"
+          stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+        <text x="50" y="235" fill="#fff" font-size="13" font-family="Outfit" font-weight="700"
+          text-anchor="middle">Client</text>
+        <text x="50" y="252" fill="hsl(220, 15%, 50%)" font-size="10" font-family="Outfit" text-anchor="middle">Browser
+          / SDK</text>
 
         <!-- Node 2: ServGate (Gateway) -->
-        <rect x="210" y="170" width="140" height="140" rx="16" fill="rgba(6, 182, 212, 0.04)" stroke="url(#grad-gate)" stroke-width="2" filter="url(#glow-blue)" />
-        <text x="280" y="202" fill="#fff" font-size="15" font-family="Outfit" font-weight="700" text-anchor="middle">ServGate</text>
-        <text x="280" y="218" fill="hsl(220, 15%, 50%)" font-size="10" font-family="Outfit" text-anchor="middle">API Proxy Gateway</text>
+        <rect x="210" y="170" width="140" height="140" rx="16" fill="rgba(6, 182, 212, 0.04)" stroke="url(#grad-gate)"
+          stroke-width="2" filter="url(#glow-blue)" />
+        <text x="280" y="202" fill="#fff" font-size="15" font-family="Outfit" font-weight="700"
+          text-anchor="middle">ServGate</text>
+        <text x="280" y="218" fill="hsl(220, 15%, 50%)" font-size="10" font-family="Outfit" text-anchor="middle">API
+          Proxy Gateway</text>
         <!-- Inner modules -->
-        <rect x="225" y="238" width="110" height="22" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" />
-        <text x="280" y="252" fill="hsl(190, 100%, 65%)" font-size="9" font-family="JetBrains Mono" font-weight="500" text-anchor="middle">WASM Middleware</text>
-        <rect x="225" y="268" width="110" height="22" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" />
-        <text x="280" y="282" fill="hsl(190, 100%, 65%)" font-size="9" font-family="JetBrains Mono" font-weight="500" text-anchor="middle">AI Prompt Guard</text>
+        <rect x="225" y="238" width="110" height="22" rx="4" fill="rgba(255,255,255,0.04)"
+          stroke="rgba(255,255,255,0.08)" />
+        <text x="280" y="252" fill="hsl(190, 100%, 65%)" font-size="9" font-family="JetBrains Mono" font-weight="500"
+          text-anchor="middle">WASM Middleware</text>
+        <rect x="225" y="268" width="110" height="22" rx="4" fill="rgba(255,255,255,0.04)"
+          stroke="rgba(255,255,255,0.08)" />
+        <text x="280" y="282" fill="hsl(190, 100%, 65%)" font-size="9" font-family="JetBrains Mono" font-weight="500"
+          text-anchor="middle">AI Prompt Guard</text>
 
         <!-- Node 3: Serv-lang Services -->
-        <rect x="470" y="170" width="120" height="140" rx="16" fill="rgba(168, 85, 247, 0.04)" stroke="url(#grad-lang)" stroke-width="2" filter="url(#glow-purple)" />
-        <text x="530" y="202" fill="#fff" font-size="15" font-family="Outfit" font-weight="700" text-anchor="middle">Serv-lang</text>
-        <text x="530" y="218" fill="hsl(220, 15%, 50%)" font-size="10" font-family="Outfit" text-anchor="middle">Compiled Services</text>
+        <rect x="470" y="170" width="120" height="140" rx="16" fill="rgba(168, 85, 247, 0.04)" stroke="url(#grad-lang)"
+          stroke-width="2" filter="url(#glow-purple)" />
+        <text x="530" y="202" fill="#fff" font-size="15" font-family="Outfit" font-weight="700"
+          text-anchor="middle">Serv-lang</text>
+        <text x="530" y="218" fill="hsl(220, 15%, 50%)" font-size="10" font-family="Outfit"
+          text-anchor="middle">Compiled Services</text>
         <circle cx="530" cy="262" r="18" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)" />
-        <text x="530" y="266" fill="hsl(250, 100%, 75%)" font-size="11" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">AOT</text>
+        <text x="530" y="266" fill="hsl(250, 100%, 75%)" font-size="11" font-family="JetBrains Mono" font-weight="700"
+          text-anchor="middle">AOT</text>
 
         <!-- Node 4: ServStore (Storage) -->
-        <rect x="710" y="70" width="170" height="110" rx="16" fill="rgba(16, 185, 129, 0.04)" stroke="url(#grad-store)" stroke-width="2" filter="url(#glow-green)" />
-        <text x="795" y="105" fill="#fff" font-size="15" font-family="Outfit" font-weight="700" text-anchor="middle">ServStore</text>
-        <text x="795" y="122" fill="hsl(220, 15%, 50%)" font-size="10" font-family="Outfit" text-anchor="middle">S3 Object Storage</text>
-        <rect x="730" y="140" width="130" height="22" rx="4" fill="rgba(16, 185, 129, 0.08)" stroke="rgba(16, 185, 129, 0.15)" />
-        <text x="795" y="154" fill="hsl(145, 90%, 60%)" font-size="9" font-family="JetBrains Mono" font-weight="600" text-anchor="middle">Consistent Hash Ring</text>
+        <rect x="710" y="70" width="170" height="110" rx="16" fill="rgba(16, 185, 129, 0.04)" stroke="url(#grad-store)"
+          stroke-width="2" filter="url(#glow-green)" />
+        <text x="795" y="105" fill="#fff" font-size="15" font-family="Outfit" font-weight="700"
+          text-anchor="middle">ServStore</text>
+        <text x="795" y="122" fill="hsl(220, 15%, 50%)" font-size="10" font-family="Outfit" text-anchor="middle">S3
+          Object Storage</text>
+        <rect x="730" y="140" width="130" height="22" rx="4" fill="rgba(16, 185, 129, 0.08)"
+          stroke="rgba(16, 185, 129, 0.15)" />
+        <text x="795" y="154" fill="hsl(145, 90%, 60%)" font-size="9" font-family="JetBrains Mono" font-weight="600"
+          text-anchor="middle">Consistent Hash Ring</text>
 
         <!-- Node 5: ServQueue (Queue) -->
-        <rect x="710" y="290" width="170" height="110" rx="16" fill="rgba(245, 158, 11, 0.04)" stroke="url(#grad-queue)" stroke-width="2" filter="url(#glow-orange)" />
-        <text x="795" y="325" fill="#fff" font-size="15" font-family="Outfit" font-weight="700" text-anchor="middle">ServQueue</text>
-        <text x="795" y="342" fill="hsl(220, 15%, 50%)" font-size="10" font-family="Outfit" text-anchor="middle">STOMP Message Broker</text>
-        <rect x="730" y="360" width="130" height="22" rx="4" fill="rgba(245, 158, 11, 0.08)" stroke="rgba(245, 158, 11, 0.15)" />
-        <text x="795" y="374" fill="hsl(40, 95%, 60%)" font-size="9" font-family="JetBrains Mono" font-weight="600" text-anchor="middle">WASM Transform Filters</text>
+        <rect x="710" y="290" width="170" height="110" rx="16" fill="rgba(245, 158, 11, 0.04)" stroke="url(#grad-queue)"
+          stroke-width="2" filter="url(#glow-orange)" />
+        <text x="795" y="325" fill="#fff" font-size="15" font-family="Outfit" font-weight="700"
+          text-anchor="middle">ServQueue</text>
+        <text x="795" y="342" fill="hsl(220, 15%, 50%)" font-size="10" font-family="Outfit" text-anchor="middle">STOMP
+          Message Broker</text>
+        <rect x="730" y="360" width="130" height="22" rx="4" fill="rgba(245, 158, 11, 0.08)"
+          stroke="rgba(245, 158, 11, 0.15)" />
+        <text x="795" y="374" fill="hsl(40, 95%, 60%)" font-size="9" font-family="JetBrains Mono" font-weight="600"
+          text-anchor="middle">WASM Transform Filters</text>
 
         <!-- Node 6: ServConsole (Observability Panel) -->
-        <rect x="340" y="390" width="220" height="60" rx="12" fill="rgba(255, 255, 255, 0.02)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.5" />
-        <text x="450" y="418" fill="#fff" font-size="13" font-family="Outfit" font-weight="700" text-anchor="middle">▲ ServConsole</text>
-        <text x="450" y="433" fill="hsl(220, 15%, 50%)" font-size="9" font-family="Outfit" text-anchor="middle">Unified Management & OTel Tracing</text>
+        <rect x="340" y="390" width="220" height="60" rx="12" fill="rgba(255, 255, 255, 0.02)"
+          stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.5" />
+        <text x="450" y="418" fill="#fff" font-size="13" font-family="Outfit" font-weight="700" text-anchor="middle">▲
+          ServConsole</text>
+        <text x="450" y="433" fill="hsl(220, 15%, 50%)" font-size="9" font-family="Outfit" text-anchor="middle">Unified
+          Management & OTel Tracing</text>
       </svg>
     </div>
   </section>
@@ -259,36 +341,54 @@
         <!-- Panel 1 -->
         <div class="tab-panel active" id="panel-serv-lang">
           <h3>Serv-lang — Compiler & Syntax</h3>
-          <p class="panel-desc">A domain-specific programming language that compiles directly to native binaries via Go code generation. It turns infrastructure into syntax.</p>
+          <p class="panel-desc">A domain-specific programming language that compiles directly to native binaries via Go
+            code generation. It turns infrastructure into syntax.</p>
           <ul class="feature-list">
-            <li><strong>Infrastructure Primitives:</strong> Route HTTP requests via <code>route</code>, subscribe/publish via <code>broker</code>, handle files via <code>store</code>, and send messages via <code>mail</code>.</li>
-            <li><strong>OIDC Auth & Role Guards:</strong> Declarative OpenID Connect token verification with compile-time role/scope filters (e.g. <code>use [auth.role("admin")]</code>).</li>
-            <li><strong>Client SDK Generation:</strong> Compile <code>.srv</code> definitions directly to clean, typed client libraries for TypeScript, Python, and Go.</li>
-            <li><strong>Streaming Responses:</strong> Native SSE/chunked streaming support using the <code>stream</code> and <code>yield</code> keywords.</li>
-            <li><strong>OpenAPI & Docs:</strong> Generate standard OpenAPI 3.1.0 specifications automatically with <code>serv docs generate</code>.</li>
-            <li><strong>Actor Model Concurrency:</strong> Fire background routines safely with the <code>spawn</code> keyword.</li>
+            <li><strong>Infrastructure Primitives:</strong> Route HTTP requests via <code>route</code>,
+              subscribe/publish via <code>broker</code>, handle files via <code>store</code>, and send messages via
+              <code>mail</code>.</li>
+            <li><strong>OIDC Auth & Role Guards:</strong> Declarative OpenID Connect token verification with
+              compile-time role/scope filters (e.g. <code>use [auth.role("admin")]</code>).</li>
+            <li><strong>Client SDK Generation:</strong> Compile <code>.srv</code> definitions directly to clean, typed
+              client libraries for TypeScript, Python, and Go.</li>
+            <li><strong>Streaming Responses:</strong> Native SSE/chunked streaming support using the <code>stream</code>
+              and <code>yield</code> keywords.</li>
+            <li><strong>OpenAPI & Docs:</strong> Generate standard OpenAPI 3.1.0 specifications automatically with
+              <code>serv docs generate</code>.</li>
+            <li><strong>Actor Model Concurrency:</strong> Fire background routines safely with the <code>spawn</code>
+              keyword.</li>
           </ul>
         </div>
         <!-- Panel 2 -->
         <div class="tab-panel" id="panel-servgate">
           <h3>ServGate — Programmable API Gateway</h3>
-          <p class="panel-desc">A WebAssembly-powered API Gateway reverse proxy designed to inspect, redact, and protect microservice routing at the network edge.</p>
+          <p class="panel-desc">A WebAssembly-powered API Gateway reverse proxy designed to inspect, redact, and protect
+            microservice routing at the network edge.</p>
           <ul class="feature-list">
-            <li><strong>WASM Hot-Swapping:</strong> Register and load compiled WASI request/response modifiers dynamically.</li>
-            <li><strong>AI Prompt Guard:</strong> Intercept and block jailbreak attempts and malicious prompt injections at the gateway.</li>
-            <li><strong>Semantic Caching:</strong> Cache LLM responses by prompt similarity to reduce inference latency and API costs.</li>
-            <li><strong>PII Redaction:</strong> Automatically scan and redact credit card, email, and SSN formats from response streams.</li>
+            <li><strong>WASM Hot-Swapping:</strong> Register and load compiled WASI request/response modifiers
+              dynamically.</li>
+            <li><strong>AI Prompt Guard:</strong> Intercept and block jailbreak attempts and malicious prompt injections
+              at the gateway.</li>
+            <li><strong>Semantic Caching:</strong> Cache LLM responses by prompt similarity to reduce inference latency
+              and API costs.</li>
+            <li><strong>PII Redaction:</strong> Automatically scan and redact credit card, email, and SSN formats from
+              response streams.</li>
           </ul>
         </div>
         <!-- Panel 3 -->
         <div class="tab-panel" id="panel-servqueue">
           <h3>ServQueue — WASM-enabled Broker</h3>
-          <p class="panel-desc">A distributed STOMP-compliant message broker featuring server-side WebAssembly event transforms and guaranteed delivery.</p>
+          <p class="panel-desc">A distributed STOMP-compliant message broker featuring server-side WebAssembly event
+            transforms and guaranteed delivery.</p>
           <ul class="feature-list">
-            <li><strong>Consumer Groups:</strong> Balance message consumption load across multiple subscribers in a partition-assigned group.</li>
-            <li><strong>Delayed & Scheduled Messages:</strong> Deliver events on a delayed timer wheel directly configured via STOMP headers.</li>
-            <li><strong>Compute-in-Queue:</strong> Run lightweight, isolated WASM transform pipelines inline on topic events.</li>
-            <li><strong>Dead Letter Queues (DLQ):</strong> Automatically capture and wrap failed processing events with metadata diagnostics.</li>
+            <li><strong>Consumer Groups:</strong> Balance message consumption load across multiple subscribers in a
+              partition-assigned group.</li>
+            <li><strong>Delayed & Scheduled Messages:</strong> Deliver events on a delayed timer wheel directly
+              configured via STOMP headers.</li>
+            <li><strong>Compute-in-Queue:</strong> Run lightweight, isolated WASM transform pipelines inline on topic
+              events.</li>
+            <li><strong>Dead Letter Queues (DLQ):</strong> Automatically capture and wrap failed processing events with
+              metadata diagnostics.</li>
             <li><strong>Deduplication:</strong> Built-in sliding-window deduplication by message hash.</li>
             <li><strong>Raft-backed Clustering:</strong> High-availability consensus partition management.</li>
           </ul>
@@ -296,35 +396,51 @@
         <!-- Panel 4 -->
         <div class="tab-panel" id="panel-servstore">
           <h3>ServStore — AI-Native S3 Storage</h3>
-          <p class="panel-desc">A distributed S3-compatible object storage engine written in Go featuring consistent hash rings and semantic indexing.</p>
+          <p class="panel-desc">A distributed S3-compatible object storage engine written in Go featuring consistent
+            hash rings and semantic indexing.</p>
           <ul class="feature-list">
-            <li><strong>Semantic Search:</strong> Ingested text files are automatically indexed via TF-IDF for cosine similarity search.</li>
-            <li><strong>Time Travel:</strong> Query bucket objects at any historical timestamp using versioning history.</li>
-            <li><strong>Erasure Coding:</strong> Survive hardware loss with Reed-Solomon data/parity chunk distribution.</li>
-            <li><strong>Compute-near-Data:</strong> Compile transformations to WASM and execute them server-side, avoiding expensive file transfers.</li>
+            <li><strong>Semantic Search:</strong> Ingested text files are automatically indexed via TF-IDF for cosine
+              similarity search.</li>
+            <li><strong>Time Travel:</strong> Query bucket objects at any historical timestamp using versioning history.
+            </li>
+            <li><strong>Erasure Coding:</strong> Survive hardware loss with Reed-Solomon data/parity chunk distribution.
+            </li>
+            <li><strong>Compute-near-Data:</strong> Compile transformations to WASM and execute them server-side,
+              avoiding expensive file transfers.</li>
           </ul>
         </div>
         <!-- Panel 5 -->
         <div class="tab-panel" id="panel-servconsole">
           <h3>ServConsole — Observability Dashboard</h3>
-          <p class="panel-desc">A premium glassmorphic control pane designed to monitor, configure, and trace operations across the Servverse.</p>
+          <p class="panel-desc">A premium glassmorphic control pane designed to monitor, configure, and trace operations
+            across the Servverse.</p>
           <ul class="feature-list">
-            <li><strong>Interactive SQL Workbench:</strong> Run secure queries directly against connected sqlite, postgres, mysql, and oracle adapters.</li>
-            <li><strong>Database ORM Schema Inspector:</strong> Automatically visualize generated DB schemas compiled from Serv-lang source code.</li>
-            <li><strong>Cross-Service Dependency Graph:</strong> Topological dependency map automatically constructed from OpenTelemetry trace waterfalls.</li>
-            <li><strong>RBAC Policy Editor:</strong> Manage user credentials and policies dynamically with S3 bucket and STOMP topic templates.</li>
-            <li><strong>Audit Logging:</strong> Monitor administrative changes, route additions, and rebalances in an immutable dashboard console.</li>
-            <li><strong>SSO Ready:</strong> Integrated user OIDC login workflow supporting secure token authentication.</li>
+            <li><strong>Interactive SQL Workbench:</strong> Run secure queries directly against connected sqlite,
+              postgres, mysql, and oracle adapters.</li>
+            <li><strong>Database ORM Schema Inspector:</strong> Automatically visualize generated DB schemas compiled
+              from Serv-lang source code.</li>
+            <li><strong>Cross-Service Dependency Graph:</strong> Topological dependency map automatically constructed
+              from OpenTelemetry trace waterfalls.</li>
+            <li><strong>RBAC Policy Editor:</strong> Manage user credentials and policies dynamically with S3 bucket and
+              STOMP topic templates.</li>
+            <li><strong>Audit Logging:</strong> Monitor administrative changes, route additions, and rebalances in an
+              immutable dashboard console.</li>
+            <li><strong>SSO Ready:</strong> Integrated user OIDC login workflow supporting secure token authentication.
+            </li>
           </ul>
         </div>
         <!-- Panel 6 -->
         <div class="tab-panel" id="panel-servregistry">
           <h3>ServRegistry — Package Hub</h3>
-          <p class="panel-desc">A lightweight, S3-backed community package registry. It enables developers to share and install third-party modules without central friction.</p>
+          <p class="panel-desc">A lightweight, S3-backed community package registry. It enables developers to share and
+            install third-party modules without central friction.</p>
           <ul class="feature-list">
-            <li><strong>ServStore Backend:</strong> Securely stores and serves package tarballs via a dedicated S3 bucket.</li>
-            <li><strong>Zero-Config CLI:</strong> Publish and install modules seamlessly using <code>serv publish</code> and <code>serv install</code>.</li>
-            <li><strong>Premium Dashboard:</strong> Browse available modules, inspect versions, and view installation guides via a glassmorphic dashboard interface.</li>
+            <li><strong>ServStore Backend:</strong> Securely stores and serves package tarballs via a dedicated S3
+              bucket.</li>
+            <li><strong>Zero-Config CLI:</strong> Publish and install modules seamlessly using <code>serv publish</code>
+              and <code>serv install</code>.</li>
+            <li><strong>Premium Dashboard:</strong> Browse available modules, inspect versions, and view installation
+              guides via a glassmorphic dashboard interface.</li>
           </ul>
         </div>
       </div>
@@ -358,6 +474,18 @@
     </div>
   </section>
 
+
+  <section class="section">
+    <div class="glass-card cta-section">
+      <h2>Ready to Build?</h2>
+      <p>Launch the complete Servverse stack locally in minutes.</p>
+      <div class="hero-actions">
+        <a href="#quickstart" class="btn btn-primary">Get Started</a>
+        <a href="https://github.com/vyuvaraj/Serv-lang" class="btn btn-secondary">View Source</a>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer>
     <p>© 2026 Servverse. Open source under Apache 2.0. Built by Yuvaraj.</p>
@@ -369,12 +497,30 @@
       btn.addEventListener('click', () => {
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-        
+
         btn.classList.add('active');
         const target = btn.getAttribute('data-target');
         document.getElementById(`panel-${target}`).classList.add('active');
       });
     });
+
+    // Theme Toggle Logic
+    const themeToggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme === 'light') {
+      document.documentElement.classList.add('light-theme');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('light-theme');
+      let theme = 'dark';
+      if (document.documentElement.classList.contains('light-theme')) {
+        theme = 'light';
+      }
+      localStorage.setItem('theme', theme);
+    });
   </script>
 </body>
+
 </html>
