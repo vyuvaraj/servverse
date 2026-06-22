@@ -115,6 +115,127 @@
         <p>Inspect, audit, and debug your entire distributed trace cascading flow inside a premium glassmorphic dashboard.</p>
       </div>
     </div>
+
+    <!-- Interactive Architecture Flow Diagram -->
+    <div class="arch-diagram-container glass-card">
+      <h3 style="text-align: center; margin-bottom: 2rem; font-size: 1.5rem; font-weight: 700;">Ecosystem Traffic & Control Flow</h3>
+      <svg viewBox="0 0 900 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Glow Filters -->
+        <defs>
+          <filter id="glow-purple" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="8" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="glow-blue" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="8" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="glow-green" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="8" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="glow-orange" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="8" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <linearGradient id="grad-gate" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="hsl(190, 100%, 65%)" />
+            <stop offset="100%" stop-color="hsl(210, 100%, 55%)" />
+          </linearGradient>
+          <linearGradient id="grad-lang" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="hsl(250, 100%, 75%)" />
+            <stop offset="100%" stop-color="hsl(280, 100%, 65%)" />
+          </linearGradient>
+          <linearGradient id="grad-store" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="hsl(145, 90%, 60%)" />
+            <stop offset="100%" stop-color="hsl(170, 90%, 50%)" />
+          </linearGradient>
+          <linearGradient id="grad-queue" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="hsl(40, 95%, 60%)" />
+            <stop offset="100%" stop-color="hsl(20, 95%, 50%)" />
+          </linearGradient>
+        </defs>
+
+        <!-- Connection Lines / Flow Arrows -->
+        <path d="M 90 240 L 200 240" stroke="url(#grad-gate)" stroke-width="2.5" marker-end="url(#arrow-blue)" stroke-dasharray="6,4" />
+        <path d="M 350 240 L 460 240" stroke="url(#grad-lang)" stroke-width="2.5" marker-end="url(#arrow-purple)" stroke-dasharray="6,4" />
+        <path d="M 590 220 L 700 160" stroke="url(#grad-store)" stroke-width="2" marker-end="url(#arrow-green)" />
+        <path d="M 590 260 L 700 320" stroke="url(#grad-queue)" stroke-width="2" marker-end="url(#arrow-orange)" />
+
+        <!-- Console Supervision Lines -->
+        <path d="M 450 390 L 280 315" stroke="hsla(40, 95%, 60%, 0.3)" stroke-width="1.5" stroke-dasharray="3,3" />
+        <path d="M 450 390 L 530 315" stroke="hsla(40, 95%, 60%, 0.3)" stroke-width="1.5" stroke-dasharray="3,3" />
+        <path d="M 450 390 L 710 160" stroke="hsla(40, 95%, 60%, 0.3)" stroke-width="1.5" stroke-dasharray="3,3" />
+        <path d="M 450 390 L 710 320" stroke="hsla(40, 95%, 60%, 0.3)" stroke-width="1.5" stroke-dasharray="3,3" />
+
+        <!-- Arrow Markers -->
+        <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="hsl(190, 100%, 65%)" />
+        </marker>
+        <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="hsl(250, 100%, 75%)" />
+        </marker>
+        <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="hsl(145, 90%, 60%)" />
+        </marker>
+        <marker id="arrow-orange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="hsl(40, 95%, 60%)" />
+        </marker>
+
+        <!-- Node 1: Client (External) -->
+        <rect x="10" y="195" width="80" height="90" rx="12" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+        <text x="50" y="235" fill="#fff" font-size="13" font-family="Outfit" font-weight="700" text-anchor="middle">Client</text>
+        <text x="50" y="252" fill="hsl(220, 15%, 50%)" font-size="10" font-family="Outfit" text-anchor="middle">Browser / SDK</text>
+
+        <!-- Node 2: ServGate (Gateway) -->
+        <rect x="210" y="170" width="140" height="140" rx="16" fill="rgba(6, 182, 212, 0.04)" stroke="url(#grad-gate)" stroke-width="2" filter="url(#glow-blue)" />
+        <text x="280" y="202" fill="#fff" font-size="15" font-family="Outfit" font-weight="700" text-anchor="middle">ServGate</text>
+        <text x="280" y="218" fill="hsl(220, 15%, 50%)" font-size="10" font-family="Outfit" text-anchor="middle">API Proxy Gateway</text>
+        <!-- Inner modules -->
+        <rect x="225" y="238" width="110" height="22" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" />
+        <text x="280" y="252" fill="hsl(190, 100%, 65%)" font-size="9" font-family="JetBrains Mono" font-weight="500" text-anchor="middle">WASM Middleware</text>
+        <rect x="225" y="268" width="110" height="22" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" />
+        <text x="280" y="282" fill="hsl(190, 100%, 65%)" font-size="9" font-family="JetBrains Mono" font-weight="500" text-anchor="middle">AI Prompt Guard</text>
+
+        <!-- Node 3: Serv-lang Services -->
+        <rect x="470" y="170" width="120" height="140" rx="16" fill="rgba(168, 85, 247, 0.04)" stroke="url(#grad-lang)" stroke-width="2" filter="url(#glow-purple)" />
+        <text x="530" y="202" fill="#fff" font-size="15" font-family="Outfit" font-weight="700" text-anchor="middle">Serv-lang</text>
+        <text x="530" y="218" fill="hsl(220, 15%, 50%)" font-size="10" font-family="Outfit" text-anchor="middle">Compiled Services</text>
+        <circle cx="530" cy="262" r="18" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)" />
+        <text x="530" y="266" fill="hsl(250, 100%, 75%)" font-size="11" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">AOT</text>
+
+        <!-- Node 4: ServStore (Storage) -->
+        <rect x="710" y="70" width="170" height="110" rx="16" fill="rgba(16, 185, 129, 0.04)" stroke="url(#grad-store)" stroke-width="2" filter="url(#glow-green)" />
+        <text x="795" y="105" fill="#fff" font-size="15" font-family="Outfit" font-weight="700" text-anchor="middle">ServStore</text>
+        <text x="795" y="122" fill="hsl(220, 15%, 50%)" font-size="10" font-family="Outfit" text-anchor="middle">S3 Object Storage</text>
+        <rect x="730" y="140" width="130" height="22" rx="4" fill="rgba(16, 185, 129, 0.08)" stroke="rgba(16, 185, 129, 0.15)" />
+        <text x="795" y="154" fill="hsl(145, 90%, 60%)" font-size="9" font-family="JetBrains Mono" font-weight="600" text-anchor="middle">Consistent Hash Ring</text>
+
+        <!-- Node 5: ServQueue (Queue) -->
+        <rect x="710" y="290" width="170" height="110" rx="16" fill="rgba(245, 158, 11, 0.04)" stroke="url(#grad-queue)" stroke-width="2" filter="url(#glow-orange)" />
+        <text x="795" y="325" fill="#fff" font-size="15" font-family="Outfit" font-weight="700" text-anchor="middle">ServQueue</text>
+        <text x="795" y="342" fill="hsl(220, 15%, 50%)" font-size="10" font-family="Outfit" text-anchor="middle">STOMP Message Broker</text>
+        <rect x="730" y="360" width="130" height="22" rx="4" fill="rgba(245, 158, 11, 0.08)" stroke="rgba(245, 158, 11, 0.15)" />
+        <text x="795" y="374" fill="hsl(40, 95%, 60%)" font-size="9" font-family="JetBrains Mono" font-weight="600" text-anchor="middle">WASM Transform Filters</text>
+
+        <!-- Node 6: ServConsole (Observability Panel) -->
+        <rect x="340" y="390" width="220" height="60" rx="12" fill="rgba(255, 255, 255, 0.02)" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.5" />
+        <text x="450" y="418" fill="#fff" font-size="13" font-family="Outfit" font-weight="700" text-anchor="middle">▲ ServConsole</text>
+        <text x="450" y="433" fill="hsl(220, 15%, 50%)" font-size="9" font-family="Outfit" text-anchor="middle">Unified Management & OTel Tracing</text>
+      </svg>
+    </div>
   </section>
 
   <!-- Interactive Component Tab Section -->
