@@ -147,8 +147,9 @@ body {
   font-size: 1.35rem;
   font-weight: 800;
   letter-spacing: -0.5px;
-  background: linear-gradient(90deg, #fff, var(--text-secondary));
+  background: linear-gradient(90deg, var(--text-primary), var(--text-secondary));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -746,6 +747,45 @@ html {
 .light-theme .arch-card:hover,
 .light-theme .glass-card:hover {
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+}
+
+/* Fix logo & hero text visibility in light mode */
+.light-theme .logo-text h1 {
+  background: linear-gradient(90deg, hsl(220, 35%, 12%), hsl(250, 85%, 50%)) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.light-theme .logo-text span {
+  color: hsl(220, 25%, 40%);
+}
+
+.light-theme .hero-content h1 {
+  color: hsl(220, 35%, 12%);
+}
+
+.light-theme .stat {
+  border-color: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.light-theme .btn-secondary {
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--text-primary);
+}
+
+.light-theme .btn-secondary:hover {
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.light-theme .component-pill {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.light-theme .section.alt-bg {
+  background: rgba(0, 0, 0, 0.015);
 }
 
 /* SVG adjustments for Light Theme */
