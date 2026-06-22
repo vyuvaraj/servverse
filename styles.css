@@ -275,3 +275,63 @@ footer { text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--bor
 .footer-copy { color: var(--text-muted); font-size: 0.82rem; }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ========= Responsive ========= */
+@media (max-width: 968px) {
+  .hero { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+  .hero-content h1 { font-size: 2.5rem; }
+  .hero-content p { max-width: 100%; }
+  .hero-actions, .stats-row { justify-content: center; }
+  .navbar { margin: 0.75rem; padding: 0.75rem 1.25rem; }
+  .nav-links {
+    display: none; position: absolute; top: calc(100% + 0.5rem); left: 0; right: 0;
+    flex-direction: column; background: rgba(14,16,28,0.95); backdrop-filter: blur(20px);
+    border: 1px solid var(--border-glass); border-radius: 20px; padding: 1.5rem; gap: 1rem;
+  }
+  .light-theme .nav-links { background: rgba(255,255,255,0.95); }
+  .nav-links.open { display: flex; }
+  .mobile-toggle { display: flex; }
+  .arch-diagram-container { display: none; }
+  .showcase-grid { grid-template-columns: 1fr; }
+  .quickstart-grid { grid-template-columns: 1fr; }
+  .section-header h2 { font-size: 2rem; }
+  .cta-section { padding: 2.5rem 1.5rem; }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 { font-size: 1.9rem; }
+  .stats-row { gap: 0.4rem; }
+  .stat-pill { font-size: 0.72rem; padding: 0.35rem 0.65rem; }
+  .tab-buttons { gap: 0.4rem; }
+  .tab-btn { padding: 0.5rem 0.9rem; font-size: 0.78rem; }
+  .feature-list { grid-template-columns: 1fr; }
+  .blog-grid { grid-template-columns: 1fr; }
+  .ports-grid { flex-direction: column; }
+}
+
+/* ========= Blog Post Reader (blog.html) ========= */
+.blog-post-container { max-width: 900px; margin: 0 auto; padding: 3rem 4rem; }
+@media (max-width: 768px) { .blog-post-container { padding: 2rem 1.5rem; } }
+.blog-actions { max-width: 900px; margin: 0 auto; }
+.btn-back { padding: 0.6rem 1.2rem; font-size: 0.9rem; border-radius: 8px; }
+.blog-content { font-size: 1.1rem; line-height: 1.8; color: var(--text-primary); }
+.blog-content h1 { font-size: 2.4rem; font-weight: 800; line-height: 1.2; margin-bottom: 1.5rem; letter-spacing: -1px; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.blog-content h2 { font-size: 1.7rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-glass); padding-bottom: 0.4rem; }
+.blog-content h3 { font-size: 1.3rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.75rem; }
+.blog-content p { margin-bottom: 1.5rem; color: var(--text-secondary); }
+.blog-content hr { border: none; border-top: 1px solid var(--border-glass); margin: 2.5rem 0; }
+.blog-content strong { color: var(--text-primary); }
+.blog-content ul, .blog-content ol { margin-bottom: 1.5rem; padding-left: 2rem; color: var(--text-secondary); }
+.blog-content li { margin-bottom: 0.5rem; }
+.blog-content code { font-family: var(--font-mono); font-size: 0.9em; background: rgba(255,255,255,0.06); padding: 0.2rem 0.4rem; border-radius: 4px; color: var(--secondary); }
+.light-theme .blog-content code { background: rgba(0,0,0,0.05); color: hsl(190,85%,35%); }
+.blog-content pre { background: hsl(230,25%,4%); border: 1px solid var(--border-glass); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; overflow-x: auto; }
+.light-theme .blog-content pre { background: hsl(220,30%,94%); }
+.blog-content pre code { background: transparent; padding: 0; border-radius: 0; color: var(--text-primary); font-size: 0.9rem; }
+.blog-content table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.95rem; }
+.blog-content th, .blog-content td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border-glass); text-align: left; }
+.blog-content th { font-weight: 700; background: rgba(255,255,255,0.02); }
+.light-theme .blog-content th { background: rgba(0,0,0,0.02); }
+.blog-loader { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4rem 0; color: var(--text-secondary); }
+.spinner { width: 40px; height: 40px; border: 3px solid var(--border-glass); border-top-color: var(--primary); border-radius: 50%; animation: spin 1s infinite linear; margin-bottom: 1rem; }
+@keyframes spin { to { transform: rotate(360deg); } }
