@@ -339,8 +339,10 @@ Build adapter connectors and developer tooling before building competing managed
 - [x] **ServQueue** — WASM-enabled STOMP & HTTP message broker with compute-in-queue transforms.
 - [x] **ServGate** — Programmable API Gateway with AI-native middleware and circuit breaking.
 - [x] **ServConsole** — Unified web dashboard with cluster ops panel, OTel trace waterfall, and WASM hot-swap UI.
-- [x] **ServTunnel** — Secure local tunnel relay and client for exposing webhooks.
-- [x] **ServCloud** — Managed PaaS deployment platform & orchestrator for dynamic background services.
+- [x] **ServTunnel** — Secure local tunnel relay and client for exposing webhooks. (See [ServTunnel Roadmap](file:///c:/Mine/try/serv/ServTunnel/ROADMAP.md))
+- [x] **ServCloud** — Managed PaaS deployment platform & orchestrator for dynamic background services. (See [ServCloud Roadmap](file:///c:/Mine/try/serv/ServCloud/ROADMAP.md))
+- [x] **ServMesh** — Library-level service discovery, load balancing, retries, and circuit breaking. (See [ServMesh Roadmap](file:///c:/Mine/try/serv/ServMesh/ROADMAP.md))
+
 
 ### Ecosystem Flywheel Items (Future)
 - [ ] **ServRegistry** — Running registry server backed by ServStore for `serv install` packages.
