@@ -293,13 +293,13 @@ ServStore is a cloud-native, distributed, S3-compatible object storage engine.
 
 ### Phase 4: Enterprise Access Control & Audit Logs (Q1 2027)
 - [x] **Console SSO** — Integrated OIDC/OAuth2 and LDAP user sign-ins.
-- [ ] **RBAC Policy Editor** — Create and apply granular user security policies for S3 buckets and STOMP topics.
+- [x] **RBAC Policy Editor** — Create and apply granular user security policies for S3 buckets and STOMP topics.
 - [x] **Audit Logs Dashboard** — Immutable log of administrative operations (WASM hot-swaps, route creations).
 
 ### Phase 5: Ecosystem Integration Depth (Q2 2027) [New]
 - [x] **Service Discovery Config** — Replace hardcoded localhost ports with a `services.json` or `SERVVERSE_DISCOVERY` env-var registry.
 - [x] **Shared OTel Collector Config** — Surface a single OTLP endpoint setting that propagates to all connected services; unified trace correlation.
-- [ ] **ServQueue Topic Admin** — Full WAL inspection, delayed message queue view, and WASM debug panels.
+- [x] **ServQueue Topic Admin** — Full WAL inspection, delayed message queue view, and WASM debug panels.
 - [ ] **ServGate Multi-Replica Config Sync** — Write route configs to ServStore-backed distributed storage.
 - [ ] **Cross-Service Dependency Graph** — Visual map of which Serv services talk to which infrastructure components.
 
@@ -389,9 +389,9 @@ Build adapter connectors and developer tooling before building competing managed
 |---|---|---|---|---|
 | P4-1 | **VS Code Extension marketplace publish** | Serv-lang | Deferred too long. Every day = lost discoverability. | [ ] |
 | P4-2 | **ServRegistry server (backed by ServStore)** | Ecosystem | `serv install` hits a dead URL. Unblocks third-party module ecosystem. | [x] |
-| P4-3 | **`serv deploy --target k8s`** | Serv-lang | Kubernetes YAML generation. High adoption leverage, low build cost. | [ ] |
-| P4-4 | **`serv new <template>`** | Serv-lang | Starter scaffolding. Dramatically lowers new-project friction. | [ ] |
-| P4-5 | **ServConsole RBAC Policy Editor** | ServConsole | UI to create/edit S3 bucket and STOMP topic access rules. | [ ] |
+| P4-3 | **`serv deploy --target k8s`** | Serv-lang | Kubernetes YAML generation. High adoption leverage, low build cost. | [x] |
+| P4-4 | **`serv new <template>`** | Serv-lang | Starter scaffolding. Dramatically lowers new-project friction. | [x] |
+| P4-5 | **ServConsole RBAC Policy Editor** | ServConsole | UI to create/edit S3 bucket and STOMP topic access rules. | [x] |
 | P4-6 | **Medium articles — ServStore + ServConsole** | Marketing | Articles on Serv-lang, ServStore, ServGate, ServConsole, and Servverse completed in `/articles`. | [x] |
 
 ### 🔵 P5 — Strategic Bets
