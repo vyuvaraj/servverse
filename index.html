@@ -140,10 +140,12 @@
           <h3>Serv-lang — Compiler & Syntax</h3>
           <p class="panel-desc">A domain-specific programming language that compiles directly to native binaries via Go code generation. It turns infrastructure into syntax.</p>
           <ul class="feature-list">
-            <li><strong>Built-in Schedulers:</strong> Define loops and timed execution with simple <code>every 5s</code> or <code>cron "* * * * *"</code> blocks.</li>
-            <li><strong>HTTP Primitives:</strong> Spin up REST endpoints using the <code>route</code> keyword.</li>
-            <li><strong>Actor Model Concurrency:</strong> Fire background routines safely with <code>spawn</code>.</li>
-            <li><strong>Static Analysis:</strong> Escape analysis, dead-code detection, and union type verification.</li>
+            <li><strong>Infrastructure Primitives:</strong> Route HTTP requests via <code>route</code>, subscribe/publish via <code>broker</code>, handle files via <code>store</code>, and send messages via <code>mail</code>.</li>
+            <li><strong>OIDC Auth & Role Guards:</strong> Declarative OpenID Connect token verification with compile-time role/scope filters (e.g. <code>use [auth.role("admin")]</code>).</li>
+            <li><strong>Client SDK Generation:</strong> Compile <code>.srv</code> definitions directly to clean, typed client libraries for TypeScript, Python, and Go.</li>
+            <li><strong>Streaming Responses:</strong> Native SSE/chunked streaming support using the <code>stream</code> and <code>yield</code> keywords.</li>
+            <li><strong>OpenAPI & Docs:</strong> Generate standard OpenAPI 3.1.0 specifications automatically with <code>serv docs generate</code>.</li>
+            <li><strong>Actor Model Concurrency:</strong> Fire background routines safely with the <code>spawn</code> keyword.</li>
           </ul>
         </div>
         <!-- Panel 2 -->
@@ -162,6 +164,8 @@
           <h3>ServQueue — WASM-enabled Broker</h3>
           <p class="panel-desc">A distributed STOMP-compliant message broker featuring server-side WebAssembly event transforms and guaranteed delivery.</p>
           <ul class="feature-list">
+            <li><strong>Consumer Groups:</strong> Balance message consumption load across multiple subscribers in a partition-assigned group.</li>
+            <li><strong>Delayed & Scheduled Messages:</strong> Deliver events on a delayed timer wheel directly configured via STOMP headers.</li>
             <li><strong>Compute-in-Queue:</strong> Run lightweight, isolated WASM transform pipelines inline on topic events.</li>
             <li><strong>Dead Letter Queues (DLQ):</strong> Automatically capture and wrap failed processing events with metadata diagnostics.</li>
             <li><strong>Deduplication:</strong> Built-in sliding-window deduplication by message hash.</li>
@@ -184,8 +188,10 @@
           <h3>ServConsole — Observability Dashboard</h3>
           <p class="panel-desc">A premium glassmorphic control pane designed to monitor, configure, and trace operations across the Servverse.</p>
           <ul class="feature-list">
-            <li><strong>Span Waterfalls:</strong> View nested, distributed OpenTelemetry trace cascades traversing Gateways, Brokers, and Storage.</li>
-            <li><strong>Ring Visualizer:</strong> Live Canvas-based consistent hash ring illustrating node distribution.</li>
+            <li><strong>Interactive SQL Workbench:</strong> Run secure queries directly against connected sqlite, postgres, mysql, and oracle adapters.</li>
+            <li><strong>Database ORM Schema Inspector:</strong> Automatically visualize generated DB schemas compiled from Serv-lang source code.</li>
+            <li><strong>Cross-Service Dependency Graph:</strong> Topological dependency map automatically constructed from OpenTelemetry trace waterfalls.</li>
+            <li><strong>RBAC Policy Editor:</strong> Manage user credentials and policies dynamically with S3 bucket and STOMP topic templates.</li>
             <li><strong>Audit Logging:</strong> Monitor administrative changes, route additions, and rebalances in an immutable dashboard console.</li>
             <li><strong>SSO Ready:</strong> Integrated user OIDC login workflow supporting secure token authentication.</li>
           </ul>
