@@ -343,10 +343,10 @@ Build adapter connectors and developer tooling before building competing managed
 - [x] **ServCloud** — Managed PaaS deployment platform & orchestrator for dynamic background services. (See [ServCloud Roadmap](file:///c:/Mine/try/serv/ServCloud/ROADMAP.md))
 - [x] **ServMesh** — Library-level service discovery, load balancing, retries, and circuit breaking. (See [ServMesh Roadmap](file:///c:/Mine/try/serv/ServMesh/ROADMAP.md))
 - [x] **ServCache** — Distributed caching service with in-memory + Redis engines, TTL evictions, and OpenTelemetry instrumentation. (See [ServCache Roadmap](file:///c:/Mine/try/serv/ServCache/ROADMAP.md))
+- [x] **ServRegistry** — Running registry server backed by ServStore for `serv install` packages. (See [ServRegistry Roadmap](file:///c:/Mine/try/serv/ServRegistry/ROADMAP.md))
 
 
 ### Ecosystem Flywheel Items (Future)
-- [ ] **ServRegistry** — Running registry server backed by ServStore for `serv install` packages.
 - [ ] **ServPlayground** — WASM-hosted browser sandbox (zero-install try-it experience).
 - [ ] **ServCron** — Distributed scheduler for `every` / `cron` declarations (exactly-once, leader election).
 - [ ] **serv-ai** — AI adapter: OpenAI, Anthropic, Ollama connection strings.
