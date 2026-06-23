@@ -73,8 +73,6 @@
 - [ ] **ServConsole Unified Management** — Full dashboard link for cluster metrics, replication lag, and OTel traces.
 
 ### ServGate Open Items
-- [ ] **Phase 5 — ServConsole Administration**: Route management, active connection view, WASM swap via console.
-- [ ] **Phase 5 — ServConsole OIDC-aware config sync**: Sign config writes with JWT before persisting.
 - [ ] **Distributed Span Mapping**: Trace request lifecycles starting at the gateway, through queues (`ServQueue`), and into storage (`ServStore`) in a unified trace view using a shared OTLP collector.
 
 ### ServQueue Open Items

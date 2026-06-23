@@ -97,6 +97,8 @@ This document serves as an archive of all successfully completed items, features
 * **ServQueue Topic Admin & ServGate Multi-replica config sync (Phase 5)**
 * **Cross-Service Dependency Graph (Phase 5)**: Visual dependency mapping.
 * **Unified Health Aggregation Dashboard (Phase 6)**: Poll standardized `/healthz` endpoints and display a ternary traffic-light status panel.
+* **Phase 5 — ServConsole Administration**: Expose API Gateways' live active connections metrics on `ServGate` and aggregate them in the `ServConsole` dashboard, plus dynamic route deletion (`DELETE /api/routes?prefix=...`) on both components.
+* **Phase 5 — ServConsole OIDC-aware config sync**: Config writes are signed with JWT using the shared `SERV_JWT_SECRET` and validated by both `ServGate` and `ServConsole` before reloading.
 
 ---
 
