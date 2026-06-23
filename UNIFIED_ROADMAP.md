@@ -12,25 +12,25 @@
 
 | Component | Core Phases | Done | Open | Completion | Status Bar |
 |-----------|-------------|------|------|------------|------------|
-| **Serv-lang** | Phases 1–12 + proposed 13–15 | 96 | 13 | **88%** | ██████████████████░░░ |
+| **Serv-lang** | Phases 1–12 + proposed 13–15 | 97 | 12 | **89%** | ██████████████████░░░ |
 | **ServStore** | Phases 1–7 + proposed 8–10 | 54 | 21 | **72%** | ██████████████░░░ |
-| **ServGate** | Phases 1–7 + proposed 8–10 | 29 | 16 | **64%** | █████████████░░░░░░░░ |
-| **ServQueue** | Phases 1–7 + proposed 8–10 | 30 | 17 | **64%** | █████████████░░░░░░░░ |
+| **ServGate** | Phases 1–7 + proposed 8–10 | 32 | 13 | **71%** | ██████████████░░░░░░░ |
+| **ServQueue** | Phases 1–7 + proposed 8–10 | 33 | 14 | **70%** | ██████████████░░░░░░░ |
 | **ServConsole** | Phases 1–5 + proposed 6–8 | 21 | 20 | **51%** | ███████████░░░░░░░░░░ |
 | **ServRegistry** | Core + hardening | 6 | 0 | **100%** | █████████████████████ |
 | **ServTunnel** | Phase 1–2 | 16 | 7 | **70%** | ██████████████░░░░░░░ |
 | **Unified Roadmap** (cross-cutting) | Sections 8–9 | 39 | 32 | **55%** | ███████████░░░░░░░░░░ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **291** | **126** | **70%** | ██████████████░░░░░░░ |
+| **TOTAL ECOSYSTEM** | | **298** | **119** | **71%** | ██████████████░░░░░░░ |
 
 ### Core vs Proposed Breakdown
 
 | Component | Core (Shipped) | Core % | Proposed (Future) | Proposed % |
 |-----------|---------------|--------|-------------------|------------|
-| **Serv-lang** | 82/82 | **100%** ✅ | 14/27 | 52% |
+| **Serv-lang** | 82/82 | **100%** ✅ | 15/27 | 56% |
 | **ServStore** | 49/53 | **92%** | 5/22 | 23% |
-| **ServGate** | 21/24 | **88%** | 8/21 | 38% |
-| **ServQueue** | 22/24 | **92%** | 8/23 | 35% |
+| **ServGate** | 21/24 | **88%** | 11/21 | 52% |
+| **ServQueue** | 22/24 | **92%** | 11/23 | **48%** |
 | **ServConsole** | 16/18 | **89%** | 5/23 | 22% |
 | **ServRegistry** | 6/6 | **100%** ✅ | — | — |
 | **ServTunnel** | 14/17 | **82%** | 2/6 | 33% |
@@ -89,7 +89,7 @@ These items represent the features that would make each Servverse component a **
 | # | Feature | Why It Matters | Status |
 |---|---------|----------------|--------|
 | 14.1 | **Compile-time dependency injection** | Testable architectures without runtime reflection — Dagger.io-style but at compile time | [ ] |
-| 14.2 | **Hot-reload without restart** | Zero-downtime local dev. Currently need full recompile + restart. `serv run --hot` with socket handoff. | [ ] |
+| 14.2 | **Hot-reload without restart** | ✅ Done — Zero-downtime local dev via TCP proxy + process replacement. `serv run --hot` recompiles and swaps with no dropped connections. | [x] |
 | 14.5 | **Incremental compilation** | Cache per-file artifacts. Only recompile changed files. Critical at scale (>50 files). | [ ] |
 | 14.6 | **`pipe` operator** | `data |> transform() |> validate() |> save()` — readable data pipelines. Low cost, high readability. | [ ] |
 | 14.8 | **GraphQL endpoint declaration** | Native GraphQL schema + resolver syntax. Compiles to performant Go handler. | [ ] |
@@ -101,10 +101,10 @@ These items represent the features that would make each Servverse component a **
 | # | Feature | Why It Matters | Status |
 |---|---------|----------------|--------|
 | 9.4 | **Multi-tenant API key management** | Issue/rotate/revoke keys per tenant with per-key rate limits and analytics. | [ ] |
-| 9.5 | **Canary/blue-green traffic splitting** | Route % of traffic to new version. Gradual rollouts without service mesh. | [ ] |
-| 9.7 | **Response caching (HTTP cache layer)** | HTTP cache layer to reduce backend loads. | [ ] |
+| 9.5 | **Canary/blue-green traffic splitting** | ✅ Done — Weighted random traffic distribution via `targets_weighted` config. Gradual rollouts with `X-Canary-Target` header. | [x] |
+| 9.7 | **Response caching (HTTP cache layer)** | ✅ Done — TTL-based in-memory cache with SHA256 keys, background eviction, `X-Cache` HIT/MISS headers, admin invalidation API. | [x] |
 | 9.8 | **GraphQL federation proxy** | Route GraphQL queries to multiple backends, merge schemas. Supergraph router. | [ ] |
-| 9.9 | **Request logging & audit trail** | Structured JSON logs of proxy requests. | [ ] |
+| 9.9 | **Request logging & audit trail** | ✅ Done — Structured JSONL access logs with per-route toggle. Captures method, path, latency, status, trace_id, client IP. | [x] |
 | 9.10 | **Plugin SDK (Go interface)** | Direct Go interface for compiling middleware plugins. | [ ] |
 | 9.12 | **Mutual TLS (mTLS)** | Client cert auth to backends. Zero-trust service-to-service. | [ ] |
 | 9.13 | **Request queuing & backpressure** | Queue when overloaded, apply 429/503 with Retry-After. Prevents cascades. | [ ] |

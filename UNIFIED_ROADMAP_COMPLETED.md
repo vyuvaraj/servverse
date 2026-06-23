@@ -24,6 +24,7 @@ This document serves as an archive of all successfully completed items, features
 * **12.7 `serv monitor`**: Terminal htop-style runtime inspector.
 * **14.3 OpenAPI auto-generation**: Generates OpenAPI specs.
 * **14.4 Client SDK generation**: Multi-language typed client SDK generation.
+* **14.2 Hot-reload without restart (`serv run --hot`)**: TCP proxy-based zero-downtime binary swap on `.srv` file save. Recompiles and replaces the running process with no dropped connections. Ephemeral port allocation + traffic forwarding ensures seamless local development.
 * **14.7 Streaming response support**: Native SSE/chunked streams.
 
 ---
@@ -67,6 +68,9 @@ This document serves as an archive of all successfully completed items, features
 * **Standardized health probes & Graceful shutdown (Phase 8)**
 * **OpenAPI auto-discovery & JSON Schema validation (Phase 9)**
 * **IP Allowlisting & Blocklisting (Phase 9)**
+* **Canary/Blue-Green Traffic Splitting (Phase 9)**: Weighted random traffic distribution via `targets_weighted` config. `X-Canary-Target` header for observability.
+* **Response Caching — HTTP Cache Layer (Phase 9)**: TTL-based in-memory response cache with SHA256 cache keys, background eviction, `X-Cache` HIT/MISS headers, and admin invalidation API (`DELETE /api/v1/admin/cache`).
+* **Request Logging & Audit Trail (Phase 9)**: Structured JSONL access logs with per-route toggle. Captures method, path, latency, status, trace_id, client IP, and target via `AccessLogger`.
 
 ---
 
@@ -82,6 +86,9 @@ This document serves as an archive of all successfully completed items, features
 * **Exactly-once delivery (Phase 9)**: Idempotent producer sequences + STOMP transaction buffering.
 * **Schema Registry & Validation (Phase 9)**: Enforce JSON Schema on published messages.
 * **Message Replay with Offset Management (Phase 9)**: Seek and play back from WAL sequence offset.
+* **Fan-out patterns (broadcast + routing keys) (Phase 9)**: Support wildcard routing patterns like `orders.*` and `orders.#` to enable flexible pub/sub topologies.
+* **Backpressure & Flow Control (Phase 9)**: Apply configurable queue threshold limit per topic (`SERVQUEUE_BACKPRESSURE_LIMIT`) and reject publishes when exceeded to prevent unbounded memory growth.
+* **Message TTL & Expiration (Phase 9)**: Set TTL expiration on messages (via context or settings) and automatically route expired messages to a dead-letter queue (DLQ) or purge them.
 
 ---
 
