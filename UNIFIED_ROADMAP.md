@@ -344,11 +344,11 @@ Build adapter connectors and developer tooling before building competing managed
 - [x] **ServMesh** — Library-level service discovery, load balancing, retries, and circuit breaking. (See [ServMesh Roadmap](file:///c:/Mine/try/serv/ServMesh/ROADMAP.md))
 - [x] **ServCache** — Distributed caching service with in-memory + Redis engines, TTL evictions, and OpenTelemetry instrumentation. (See [ServCache Roadmap](file:///c:/Mine/try/serv/ServCache/ROADMAP.md))
 - [x] **ServRegistry** — Running registry server backed by ServStore for `serv install` packages. (See [ServRegistry Roadmap](file:///c:/Mine/try/serv/ServRegistry/ROADMAP.md))
+- [x] **ServCron** — Distributed scheduler for `every` / `cron` declarations with leader election and OTel tracing. (See [ServCron Roadmap](file:///c:/Mine/try/serv/ServCron/ROADMAP.md))
 
 
 ### Ecosystem Flywheel Items (Future)
 - [ ] **ServPlayground** — WASM-hosted browser sandbox (zero-install try-it experience).
-- [ ] **ServCron** — Distributed scheduler for `every` / `cron` declarations (exactly-once, leader election).
 - [ ] **serv-ai** — AI adapter: OpenAI, Anthropic, Ollama connection strings.
 - [ ] **ServCI** — Serv-native build + test pipeline service.
 
