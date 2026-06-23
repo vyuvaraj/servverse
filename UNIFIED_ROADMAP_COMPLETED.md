@@ -85,7 +85,7 @@ This document serves as an archive of all successfully completed items, features
 
 ---
 
-## 5. ServConsole Completed Phases (Phases 1–5)
+## 5. ServConsole Completed Phases (Phases 1–6)
 * **Unified Console Portal (Phase 1)**: Glassmorphic dashboard, gateway editor, WASM swap UI, hash ring visualizer, OTel trace waterfall.
 * **DB Schema ORM Viewer & SQL query workbench (Phase 2)**
 * **Migration Auditing (Phase 2)**: Track database schema revisions from UI.
@@ -96,6 +96,7 @@ This document serves as an archive of all successfully completed items, features
 * **Service Discovery Config & Shared OTel (Phase 5)**: dynamic discovery and trace correlation.
 * **ServQueue Topic Admin & ServGate Multi-replica config sync (Phase 5)**
 * **Cross-Service Dependency Graph (Phase 5)**: Visual dependency mapping.
+* **Unified Health Aggregation Dashboard (Phase 6)**: Poll standardized `/healthz` endpoints and display a ternary traffic-light status panel.
 
 ---
 
