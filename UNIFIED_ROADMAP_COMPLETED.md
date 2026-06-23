@@ -48,6 +48,8 @@ This document serves as an archive of all successfully completed items, features
 * **Vector similarity + metadata hybrid queries (Phase 9)**: Support combining semantic search queries with metadata filters (tags and date ranges `before`/`after`).
 * **WASM trigger on object events (Phase 9)**: Declare WASM functions that execute automatically on `PutObject` or `DeleteObject` (Lambda@S3 triggers inside the storage engine) matching prefix/suffix criteria asynchronously.
 * **S3 event notifications (CloudEvents) (Phase 9)**: Emit CloudEvents-spec compliant notifications on object lifecycle actions (`s3:ObjectCreated`, `s3:ObjectRemoved`, etc.) to HTTP webhooks.
+* **Multi-modal embedding engine (Phase 9)**: Auto-generate embeddings for images (CLIP), PDFs, and audio on ingest to enable semantic search across any content type.
+* **Object-level access logging (Phase 9)**: Write S3 access logs automatically to an immutable system bucket `system-access-logs` to support security audit logging.
 
 ---
 
