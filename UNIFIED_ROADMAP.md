@@ -13,7 +13,7 @@
 | Component | Core Phases | Done | Open | Completion | Status Bar |
 |-----------|-------------|------|------|------------|------------|
 | **Serv-lang** | Phases 1–12 + proposed 13–15 | 97 | 12 | **89%** | ██████████████████░░░ |
-| **ServStore** | Phases 1–7 + proposed 8–10 | 61 | 14 | **81%** | ██████████████████░░░ |
+| **ServStore** | Phases 1–7 + proposed 8–10 | 62 | 13 | **82%** | ██████████████████░░░ |
 | **ServGate** | Phases 1–7 + proposed 8–10 | 32 | 13 | **71%** | ██████████████░░░░░░░ |
 | **ServQueue** | Phases 1–7 + proposed 8–10 | 33 | 14 | **70%** | ██████████████░░░░░░░ |
 | **ServConsole** | Phases 1–5 + proposed 6–8 | 21 | 20 | **51%** | ███████████░░░░░░░░░░ |
@@ -21,14 +21,14 @@
 | **ServTunnel** | Phase 1–2 | 16 | 7 | **70%** | ██████████████░░░░░░░ |
 | **Unified Roadmap** (cross-cutting) | Sections 8–9 | 39 | 32 | **55%** | ███████████░░░░░░░░░░ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **305** | **112** | **73%** | ███████████████░░░░░░ |
+| **TOTAL ECOSYSTEM** | | **306** | **111** | **73%** | ███████████████░░░░░░ |
 
 ### Core vs Proposed Breakdown
 
 | Component | Core (Shipped) | Core % | Proposed (Future) | Proposed % |
 |-----------|---------------|--------|-------------------|------------|
 | **Serv-lang** | 82/82 | **100%** ✅ | 15/27 | 56% |
-| **ServStore** | 50/53 | **94%** | 11/22 | **50%** |
+| **ServStore** | 51/53 | **96%** | 11/22 | **50%** |
 | **ServGate** | 21/24 | **88%** | 11/21 | 52% |
 | **ServQueue** | 22/24 | **92%** | 11/23 | **48%** |
 | **ServConsole** | 16/18 | **89%** | 5/23 | 22% |
@@ -124,7 +124,7 @@ These items represent the features that would make each Servverse component a **
 |---|---------|----------------|--------|
 | 9.1 | **Multi-modal embedding engine** | Auto-embed images (CLIP), PDFs, audio (Whisper) on ingest. Semantic search across all content types. | [ ] |
 | 9.2 | **Vector + metadata hybrid queries** | Combine semantic search with structured filters in one call. Unique differentiator. | [x] |
-| 9.5 | **S3 event notifications (CloudEvents)** | Emit lifecycle events to webhooks or ServQueue. Enables event-driven architectures. | [ ] |
+| 9.5 | **S3 event notifications (CloudEvents)** | Emit lifecycle events to webhooks or ServQueue. Enables event-driven architectures. | [x] |
 | 9.6 | **Geo-aware data placement** | Region-tagged nodes with policy-driven replication. Reads routed to nearest replica. | [ ] |
 | 9.10 | **WASM trigger on object events** | Lambda@S3-style triggers inside the storage engine. Zero-latency event processing. | [x] |
 | 9.12 | **Content-type aware compression** | Auto-compress text/JSON with zstd on write. Transparent decompress on read. | [x] |
