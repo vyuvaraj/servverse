@@ -43,6 +43,9 @@ This document serves as an archive of all successfully completed items, features
 * **Batch Delete API (Phase 8)**: Bulk object deletion with XML request/response payload parsing and quiet support.
 * **Object Tagging (Phase 9)**: Add tag metadata to object versions, GET/PUT/DELETE tagging APIs, and tag-filter support during ListObjects queries.
 * **Server-Side Copy (Phase 9)**: Enable direct object duplication between keys/buckets using `x-amz-copy-source` headers without client downloads.
+* **Bucket Metrics & Quota (Phase 9)**: Per-bucket storage quota enforcement.
+* **Content-Type Aware Compression (Phase 9)**: Automatically compress text, JSON, and log objects with zstd on write; decompress transparently on read.
+* **Vector similarity + metadata hybrid queries (Phase 9)**: Support combining semantic search queries with metadata filters (tags and date ranges `before`/`after`).
 
 ---
 
