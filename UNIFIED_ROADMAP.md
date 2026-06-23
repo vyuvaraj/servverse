@@ -92,7 +92,7 @@
 | Phase | Description | Status |
 |-------|-------------|--------|
 | 1 | Unified Console Portal | ✅ 100% |
-| 2 | SQL & DB Schema Inspector | 🟡 67% (1 open: migration auditing) |
+| 2 | SQL & DB Schema Inspector | ✅ 100% |
 | 3 | Cluster Operations & Repair Panel | ✅ 100% |
 | 4 | Enterprise Access Control & Audit Logs | 🟡 67% (1 open: RBAC editor) |
 | 5 | Ecosystem Integration Depth | 🟡 60% (2 open) |
@@ -289,7 +289,7 @@ ServStore is a cloud-native, distributed, S3-compatible object storage engine.
 ### Phase 2: SQL & DB Schema Inspector (Q3 2026)
 - [x] **DB Schema ORM Viewer** — Visual diagram of Serv-lang ORM-generated database schemas.
 - [x] **SQL Query Workbench** — Secure web console to run queries against connected database adapters.
-- [ ] **Migration Auditing** — Track schema revisions and delta logs from the UI.
+- [x] **Migration Auditing** — Track schema revisions and delta logs from the UI.
 
 ### Phase 4: Enterprise Access Control & Audit Logs (Q1 2027)
 - [x] **Console SSO** — Integrated OIDC/OAuth2 and LDAP user sign-ins.
@@ -471,7 +471,7 @@ The following items address quality, consistency, and adoption gaps that span mu
 
 Based on current ecosystem maturity and adoption leverage, the recommended execution order for remaining items:
 
-1. **Migration Auditing in ServConsole** (Phase 2) — track schema revisions and delta logs from the UI
+1. ~~**Migration Auditing in ServConsole**~~ (Phase 2) — ✅ Done. Track schema revisions and delta logs from the UI.
 2. **ServConsole Unified Control Plane** (Phase 7) — topic administration, WAL inspection, and WASM debug panels in the dashboard
 3. **Category-Defining Depth Enhancements** (e.g. Exactly-once delivery in ServQueue, OpenAPI auto-discovery in ServGate, Compile-time dependency injection in Serv-lang)
 
