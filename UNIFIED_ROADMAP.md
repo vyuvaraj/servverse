@@ -13,7 +13,7 @@
 | Component | Core Phases | Done | Open | Completion | Status Bar |
 |-----------|-------------|------|------|------------|------------|
 | **Serv-lang** | Phases 1–12 + proposed 13–15 | 97 | 12 | **89%** | ██████████████████░░░ |
-| **ServStore** | Phases 1–7 + proposed 8–10 | 64 | 11 | **85%** | ██████████████████░░░ |
+| **ServStore** | Phases 1–7 + proposed 8–10 | 66 | 9 | **88%** | ██████████████████░░░ |
 | **ServGate** | Phases 1–7 + proposed 8–10 | 32 | 13 | **71%** | ██████████████░░░░░░░ |
 | **ServQueue** | Phases 1–7 + proposed 8–10 | 33 | 14 | **70%** | ██████████████░░░░░░░ |
 | **ServConsole** | Phases 1–5 + proposed 6–8 | 21 | 20 | **51%** | ███████████░░░░░░░░░░ |
@@ -21,14 +21,14 @@
 | **ServTunnel** | Phase 1–2 | 16 | 7 | **70%** | ██████████████░░░░░░░ |
 | **Unified Roadmap** (cross-cutting) | Sections 8–9 | 39 | 32 | **55%** | ███████████░░░░░░░░░░ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **308** | **109** | **74%** | ███████████████░░░░░░ |
+| **TOTAL ECOSYSTEM** | | **310** | **107** | **74%** | ███████████████░░░░░░ |
 
 ### Core vs Proposed Breakdown
 
 | Component | Core (Shipped) | Core % | Proposed (Future) | Proposed % |
 |-----------|---------------|--------|-------------------|------------|
 | **Serv-lang** | 82/82 | **100%** ✅ | 15/27 | 56% |
-| **ServStore** | 53/53 | **100%** ✅ | 11/22 | **50%** |
+| **ServStore** | 53/53 | **100%** ✅ | 13/22 | **59%** |
 | **ServGate** | 21/24 | **88%** | 11/21 | 52% |
 | **ServQueue** | 22/24 | **92%** | 11/23 | **48%** |
 | **ServConsole** | 16/18 | **89%** | 5/23 | 22% |
@@ -126,7 +126,7 @@ These items represent the features that would make each Servverse component a **
 | 9.2 | **Vector + metadata hybrid queries** | Combine semantic search with structured filters in one call. Unique differentiator. | [x] |
 | 9.4 | **Object-level access logging** | Per-object access audit trail: who read/wrote/deleted, when, from which IP, with which identity. Immutable append-only log stored in a system bucket. | [x] |
 | 9.5 | **S3 event notifications (CloudEvents)** | Emit lifecycle events to webhooks or ServQueue. Enables event-driven architectures. | [x] |
-| 9.6 | **Geo-aware data placement** | Region-tagged nodes with policy-driven replication. Reads routed to nearest replica. | [ ] |
+| 9.6 | **Geo-aware data placement** | Region-tagged nodes with policy-driven replication. Reads routed to nearest replica. | [x] |
 | 9.10 | **WASM trigger on object events** | Lambda@S3-style triggers inside the storage engine. Zero-latency event processing. | [x] |
 | 9.12 | **Content-type aware compression** | Auto-compress text/JSON with zstd on write. Transparent decompress on read. | [x] |
 | 9.14 | **Federation (cross-cluster namespace)** | Global bucket names resolve to owning cluster. Like DNS for objects. | [ ] |

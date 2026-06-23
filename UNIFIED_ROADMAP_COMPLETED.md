@@ -50,8 +50,11 @@ This document serves as an archive of all successfully completed items, features
 * **S3 event notifications (CloudEvents) (Phase 9)**: Emit CloudEvents-spec compliant notifications on object lifecycle actions (`s3:ObjectCreated`, `s3:ObjectRemoved`, etc.) to HTTP webhooks.
 * **Multi-modal embedding engine (Phase 9)**: Auto-generate embeddings for images (CLIP), PDFs, and audio on ingest to enable semantic search across any content type.
 * **Object-level access logging (Phase 9)**: Write S3 access logs automatically to an immutable system bucket `system-access-logs` to support security audit logging.
+* **Geo-aware data placement (Phase 9)**: Allow configuring region/zone constraints for object replica placement policies on a bucket.
+* **Multi-user web console sessions (Phase 9)**: Support multiple console user accounts with independent active login sessions, authentication controls, and session validation maps.
 
 ---
+
 
 ## 3. ServGate Completed Phases (Phases 1–4, 6, partial 5/7/8/9/10/11)
 * **Path Routing & Forwarding**: HTTP reverse proxying with route prefix stripping logic.
