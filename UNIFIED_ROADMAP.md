@@ -472,15 +472,9 @@ The following items address quality, consistency, and adoption gaps that span mu
 Based on current ecosystem maturity and adoption leverage, the recommended execution order for remaining items:
 
 1. **VS Code Extension marketplace publish** — hours of work, permanent discoverability gain (P4-1)
-2. **Health probes + Docker Compose healthchecks** (X-1, X-5, X-6) — blocks real k8s/compose adoption
-3. **ServRegistry v2** (R-1 through R-5) — `serv install` is the ecosystem flywheel
-4. **E2E integration test suite** (Q-1) — regression safety net as cross-service features grow
-5. **`auth` adapter** (A-1) — most requested backend feature, high adoption signal
-6. **Graceful shutdown everywhere** (X-2, A-7) — production requirement
-7. **Standardized error contracts** (X-3, A-8) — consistency before breaking changes
-8. **CI/CD for all projects** (X-7) — quality gate
-9. **WebSocket push in ServConsole** (Q-3) — makes the dashboard feel production-grade
-10. **Remaining adapters** (A-2 through A-6) — widen addressable audience
+2. **Migration Auditing in ServConsole** (Phase 2) — track schema revisions and delta logs from the UI
+3. **ServConsole Unified Control Plane** (Phase 7) — topic administration, WAL inspection, and WASM debug panels in the dashboard
+4. **Category-Defining Depth Enhancements** (e.g. Exactly-once delivery in ServQueue, OpenAPI auto-discovery in ServGate, Compile-time dependency injection in Serv-lang)
 
 ---
 
