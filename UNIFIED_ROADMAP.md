@@ -70,10 +70,10 @@
   - [ ] Cross-link between the articles and link the VS Code extension.
 
 ### ServStore Open Items
-- [ ] **ServConsole Unified Management** — Full dashboard link for cluster metrics, replication lag, and OTel traces.
+- [x] **ServConsole Unified Management** — Full dashboard link for cluster metrics, replication lag, and OTel traces. [Completed June 2026]
 
 ### ServGate Open Items
-- [ ] **Distributed Span Mapping**: Trace request lifecycles starting at the gateway, through queues (`ServQueue`), and into storage (`ServStore`) in a unified trace view using a shared OTLP collector.
+- [x] **Distributed Span Mapping**: Trace request lifecycles starting at the gateway, through queues (`ServQueue`), and into storage (`ServStore`) in a unified trace view using a shared OTLP collector. [Completed June 2026]
 
 ### ServQueue Open Items
 - [ ] **ServConsole Unified Control Plane** — Topic administration, WAL inspection, WASM debug panels in the dashboard.

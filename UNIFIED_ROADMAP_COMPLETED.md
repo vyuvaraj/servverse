@@ -99,6 +99,8 @@ This document serves as an archive of all successfully completed items, features
 * **Unified Health Aggregation Dashboard (Phase 6)**: Poll standardized `/healthz` endpoints and display a ternary traffic-light status panel.
 * **Phase 5 — ServConsole Administration**: Expose API Gateways' live active connections metrics on `ServGate` and aggregate them in the `ServConsole` dashboard, plus dynamic route deletion (`DELETE /api/routes?prefix=...`) on both components.
 * **Phase 5 — ServConsole OIDC-aware config sync**: Config writes are signed with JWT using the shared `SERV_JWT_SECRET` and validated by both `ServGate` and `ServConsole` before reloading.
+* **ServStore Unified Management**: Fully integrated OTel tracing timeline waterfall view and trace logs in `ServConsole`, with quick links to traces from storage nodes and replication status dashboards.
+* **Distributed Span Mapping**: Linked end-to-end tracing lifecycles starting from request ingress at `ServGate`, through `ServQueue` partitions/WASM execution, down to S3 cold storage offloader uploads in `ServStore` with context propagation (`traceparent`).
 
 ---
 
