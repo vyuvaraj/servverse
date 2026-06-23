@@ -17,9 +17,10 @@
 | **ServQueue** | Phases 1–7 + proposed 8–10 | 30 | 17 | **64%** | █████████████░░░░░░░░ |
 | **ServConsole** | Phases 1–5 + proposed 6–8 | 20 | 21 | **49%** | ██████████░░░░░░░░░░░ |
 | **ServRegistry** | Core + hardening | 6 | 0 | **100%** | █████████████████████ |
+| **ServTunnel** | Phase 1–2 | 16 | 7 | **70%** | ██████████████░░░░░░░ |
 | **Unified Roadmap** (cross-cutting) | Sections 8–9 | 39 | 32 | **55%** | ███████████░░░░░░░░░░ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **274** | **120** | **70%** | ██████████████░░░░░░░ |
+| **TOTAL ECOSYSTEM** | | **290** | **127** | **70%** | ██████████████░░░░░░░ |
 
 ### Core vs Proposed Breakdown
 
@@ -31,6 +32,7 @@
 | **ServQueue** | 22/24 | **92%** | 8/23 | 35% |
 | **ServConsole** | 16/18 | **89%** | 4/23 | 17% |
 | **ServRegistry** | 6/6 | **100%** ✅ | — | — |
+| **ServTunnel** | 14/17 | **82%** | 2/6 | 33% |
 
 ### Phase Completion by Project
 
