@@ -301,7 +301,7 @@ ServStore is a cloud-native, distributed, S3-compatible object storage engine.
 - [x] **Shared OTel Collector Config** — Surface a single OTLP endpoint setting that propagates to all connected services; unified trace correlation.
 - [x] **ServQueue Topic Admin** — Full WAL inspection, delayed message queue view, and WASM debug panels.
 - [ ] **ServGate Multi-Replica Config Sync** — Write route configs to ServStore-backed distributed storage.
-- [ ] **Cross-Service Dependency Graph** — Visual map of which Serv services talk to which infrastructure components.
+- [x] **Cross-Service Dependency Graph** — Visual map of which Serv services talk to which infrastructure components.
 
 ---
 
