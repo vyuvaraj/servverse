@@ -392,7 +392,7 @@ Build adapter connectors and developer tooling before building competing managed
 
 | # | Task | Project(s) | Rationale | Status |
 |---|---|---|---|---|
-| P4-1 | **VS Code Extension marketplace publish** | Serv-lang | Deferred too long. Every day = lost discoverability. | [ ] |
+| P4-1 | **VS Code Extension marketplace publish** | Serv-lang | Deferred too long. Every day = lost discoverability. | [x] |
 | P4-2 | **ServRegistry server (backed by ServStore)** | Ecosystem | `serv install` hits a dead URL. Unblocks third-party module ecosystem. | [x] |
 | P4-3 | **`serv deploy --target k8s`** | Serv-lang | Kubernetes YAML generation. High adoption leverage, low build cost. | [x] |
 | P4-4 | **`serv new <template>`** | Serv-lang | Starter scaffolding. Dramatically lowers new-project friction. | [x] |
@@ -471,10 +471,9 @@ The following items address quality, consistency, and adoption gaps that span mu
 
 Based on current ecosystem maturity and adoption leverage, the recommended execution order for remaining items:
 
-1. **VS Code Extension marketplace publish** — hours of work, permanent discoverability gain (P4-1)
-2. **Migration Auditing in ServConsole** (Phase 2) — track schema revisions and delta logs from the UI
-3. **ServConsole Unified Control Plane** (Phase 7) — topic administration, WAL inspection, and WASM debug panels in the dashboard
-4. **Category-Defining Depth Enhancements** (e.g. Exactly-once delivery in ServQueue, OpenAPI auto-discovery in ServGate, Compile-time dependency injection in Serv-lang)
+1. **Migration Auditing in ServConsole** (Phase 2) — track schema revisions and delta logs from the UI
+2. **ServConsole Unified Control Plane** (Phase 7) — topic administration, WAL inspection, and WASM debug panels in the dashboard
+3. **Category-Defining Depth Enhancements** (e.g. Exactly-once delivery in ServQueue, OpenAPI auto-discovery in ServGate, Compile-time dependency injection in Serv-lang)
 
 ---
 
