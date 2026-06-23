@@ -11,25 +11,25 @@
 
 | Component | Core Phases | Done | Open | Completion | Status Bar |
 |-----------|-------------|------|------|------------|------------|
-| **Serv-lang** | Phases 1–12 + proposed 13–15 | 95 | 14 | **87%** | ██████████████████░░░ |
+| **Serv-lang** | Phases 1–12 + proposed 13–15 | 96 | 13 | **88%** | ██████████████████░░░ |
 | **ServStore** | Phases 1–7 + proposed 8–10 | 54 | 21 | **72%** | ██████████████░░░░░░░ |
-| **ServGate** | Phases 1–7 + proposed 8–10 | 27 | 18 | **60%** | ████████████░░░░░░░░░ |
-| **ServQueue** | Phases 1–7 + proposed 8–10 | 28 | 19 | **60%** | ████████████░░░░░░░░░ |
-| **ServConsole** | Phases 1–5 + proposed 6–8 | 17 | 24 | **41%** | ████████░░░░░░░░░░░░░ |
+| **ServGate** | Phases 1–7 + proposed 8–10 | 29 | 16 | **64%** | █████████████░░░░░░░░ |
+| **ServQueue** | Phases 1–7 + proposed 8–10 | 30 | 17 | **64%** | █████████████░░░░░░░░ |
+| **ServConsole** | Phases 1–5 + proposed 6–8 | 20 | 21 | **49%** | ██████████░░░░░░░░░░░ |
 | **ServRegistry** | Core + hardening | 6 | 0 | **100%** | █████████████████████ |
 | **Unified Roadmap** (cross-cutting) | Sections 8–9 | 39 | 32 | **55%** | ███████████░░░░░░░░░░ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **266** | **128** | **67%** | █████████████░░░░░░░░ |
+| **TOTAL ECOSYSTEM** | | **274** | **120** | **70%** | ██████████████░░░░░░░ |
 
 ### Core vs Proposed Breakdown
 
 | Component | Core (Shipped) | Core % | Proposed (Future) | Proposed % |
 |-----------|---------------|--------|-------------------|------------|
-| **Serv-lang** | 82/82 | **100%** ✅ | 13/27 | 48% |
+| **Serv-lang** | 82/82 | **100%** ✅ | 14/27 | 52% |
 | **ServStore** | 49/53 | **92%** | 5/22 | 23% |
-| **ServGate** | 21/24 | **88%** | 6/21 | 29% |
-| **ServQueue** | 22/24 | **92%** | 6/23 | 26% |
-| **ServConsole** | 13/18 | **72%** | 4/23 | 17% |
+| **ServGate** | 21/24 | **88%** | 8/21 | 38% |
+| **ServQueue** | 22/24 | **92%** | 8/23 | 35% |
+| **ServConsole** | 16/18 | **89%** | 4/23 | 17% |
 | **ServRegistry** | 6/6 | **100%** ✅ | — | — |
 
 ### Phase Completion by Project
@@ -401,13 +401,13 @@ Build adapter connectors and developer tooling before building competing managed
 
 ### 🔵 P5 — Strategic Bets
 
-| # | Task | Project(s) | Rationale |
-|---|---|---|---|
-| P5-1 | **ServPlayground — WASM browser sandbox** | Ecosystem | Highest adoption lever for Serv-lang. Zero-install experience. |
-| P5-2 | **`serv-ai` adapter** | Serv-lang | High-demand. Synergizes with ServStore's AI-native positioning. |
-| P5-3 | **`serv monitor` CLI** | Serv-lang | Terminal htop for a running service. Fills gap before ServMetrics. |
-| P5-4 | **ServCron — distributed scheduler** | Ecosystem | `every 5m {}` needs exactly-once distributed execution at scale. |
-| P5-5 | **ServConsole cross-service dependency graph** | ServConsole | Visual map of service→infra dependencies. Strategic differentiator. |
+| # | Task | Project(s) | Rationale | Status |
+|---|---|---|---|---|
+| P5-1 | **ServPlayground — WASM browser sandbox** | Ecosystem | Highest adoption lever for Serv-lang. Zero-install experience. | [x] |
+| P5-2 | **`serv-ai` adapter** | Serv-lang | High-demand. Synergizes with ServStore's AI-native positioning. | [x] |
+| P5-3 | **`serv monitor` CLI** | Serv-lang | Terminal htop for a running service. Fills gap before ServMetrics. | [x] |
+| P5-4 | **ServCron — distributed scheduler** | Ecosystem | `every 5m {}` needs exactly-once distributed execution at scale. | [x] |
+| P5-5 | **ServConsole cross-service dependency graph** | ServConsole | Visual map of service→infra dependencies. Strategic differentiator. | [x] |
 
 ---
 
@@ -472,8 +472,9 @@ The following items address quality, consistency, and adoption gaps that span mu
 Based on current ecosystem maturity and adoption leverage, the recommended execution order for remaining items:
 
 1. ~~**Migration Auditing in ServConsole**~~ (Phase 2) — ✅ Done. Track schema revisions and delta logs from the UI.
-2. **ServConsole Unified Control Plane** (Phase 7) — topic administration, WAL inspection, and WASM debug panels in the dashboard
-3. **Category-Defining Depth Enhancements** (e.g. Exactly-once delivery in ServQueue, OpenAPI auto-discovery in ServGate, Compile-time dependency injection in Serv-lang)
+2. ~~**ServConsole Unified Control Plane**~~ (Phase 7) — ✅ Done. Topic administration, WAL inspection, and WASM debug panels in the dashboard.
+3. ~~**Exactly-once delivery in ServQueue**~~ — ✅ Done. Idempotent producer sequences and STOMP transaction buffering.
+4. ~~**OpenAPI auto-discovery in ServGate**~~ — ✅ Done. Dynamically serve OpenAPI 3.1 specs at `/api/docs` with schema validation.
 
 ---
 
@@ -483,67 +484,67 @@ The items below go beyond operational hardening. They represent the features tha
 
 ### 🚀 Serv-lang → Category-Defining Service Language
 
-| # | Feature | Why It Matters |
-|---|---------|----------------|
-| 14.1 | **Compile-time dependency injection** | Testable architectures without runtime reflection — Dagger.io-style but at compile time |
-| 14.2 | **Hot-reload without restart** | Zero-downtime local dev. Currently need full recompile + restart. `serv run --hot` with socket handoff. |
-| 14.3 | **OpenAPI auto-generation** | `serv docs generate` → complete OpenAPI 3.1 from route declarations. Instant API documentation. |
-| 14.4 | **Client SDK generation** | `serv generate client --lang typescript` — typed API clients from route types. No OpenAPI intermediary. |
-| 14.5 | **Incremental compilation** | Cache per-file artifacts. Only recompile changed files. Critical at scale (>50 files). |
-| 14.6 | **`pipe` operator** | `data |> transform() |> validate() |> save()` — readable data pipelines. Low cost, high readability. |
-| 14.7 | **Streaming response support** | `route ... stream { yield ... }` — SSE/chunked as first-class route type. Enables real-time UIs. |
-| 14.8 | **GraphQL endpoint declaration** | Native GraphQL schema + resolver syntax. Compiles to performant Go handler. |
-| 14.9 | **Language server code actions** | Quick-fix: "Extract function", "Add error handling", "Generate test stub". Active refactoring assistance. |
-| 14.10 | **Compile-time macros** | `@derive(Serialize, Validate)` — generate boilerplate at compile time. Reduces repetitive code. |
+| # | Feature | Why It Matters | Status |
+|---|---------|----------------|--------|
+| 14.1 | **Compile-time dependency injection** | Testable architectures without runtime reflection — Dagger.io-style but at compile time | [ ] |
+| 14.2 | **Hot-reload without restart** | Zero-downtime local dev. Currently need full recompile + restart. `serv run --hot` with socket handoff. | [ ] |
+| 14.3 | **OpenAPI auto-generation** | `serv docs generate` → complete OpenAPI 3.1 from route declarations. Instant API documentation. | [x] |
+| 14.4 | **Client SDK generation** | `serv generate client --lang typescript` — typed API clients from route types. No OpenAPI intermediary. | [x] |
+| 14.5 | **Incremental compilation** | Cache per-file artifacts. Only recompile changed files. Critical at scale (>50 files). | [ ] |
+| 14.6 | **`pipe` operator** | `data |> transform() |> validate() |> save()` — readable data pipelines. Low cost, high readability. | [ ] |
+| 14.7 | **Streaming response support** | `route ... stream { yield ... }` — SSE/chunked as first-class route type. Enables real-time UIs. | [x] |
+| 14.8 | **GraphQL endpoint declaration** | Native GraphQL schema + resolver syntax. Compiles to performant Go handler. | [ ] |
+| 14.9 | **Language server code actions** | Quick-fix: "Extract function", "Add error handling", "Generate test stub". Active refactoring assistance. | [ ] |
+| 14.10 | **Compile-time macros** | `@derive(Serialize, Validate)` — generate boilerplate at compile time. Reduces repetitive code. | [ ] |
 
 ### 🛡️ ServGate → Category-Defining API Gateway
 
-| # | Feature | Why It Matters |
-|---|---------|----------------|
-| 9.1 | **OpenAPI auto-discovery** | Serve auto-generated API docs from registered routes at `/api/docs`. |
-| 9.2 | **Developer portal** | Embedded interactive API explorer. Try endpoints directly with auth injection. |
-| 9.4 | **Multi-tenant API key management** | Issue/rotate/revoke keys per tenant with per-key rate limits and analytics. |
-| 9.5 | **Canary/blue-green traffic splitting** | Route % of traffic to new version. Gradual rollouts without service mesh. |
-| 9.6 | **Request validation (JSON Schema)** | Reject malformed requests at gateway. Never hits backend. |
-| 9.8 | **GraphQL federation proxy** | Route GraphQL queries to multiple backends, merge schemas. Supergraph router. |
-| 9.12 | **Mutual TLS (mTLS)** | Client cert auth to backends. Zero-trust service-to-service. |
-| 9.13 | **Request queuing & backpressure** | Queue when overloaded, apply 429/503 with Retry-After. Prevents cascades. |
+| # | Feature | Why It Matters | Status |
+|---|---------|----------------|--------|
+| 9.1 | **OpenAPI auto-discovery** | Serve auto-generated API docs from registered routes at `/api/docs`. | [x] |
+| 9.2 | **Developer portal** | Embedded interactive API explorer. Try endpoints directly with auth injection. | [x] |
+| 9.4 | **Multi-tenant API key management** | Issue/rotate/revoke keys per tenant with per-key rate limits and analytics. | [ ] |
+| 9.5 | **Canary/blue-green traffic splitting** | Route % of traffic to new version. Gradual rollouts without service mesh. | [ ] |
+| 9.6 | **Request validation (JSON Schema)** | Reject malformed requests at gateway. Never hits backend. | [x] |
+| 9.8 | **GraphQL federation proxy** | Route GraphQL queries to multiple backends, merge schemas. Supergraph router. | [ ] |
+| 9.12 | **Mutual TLS (mTLS)** | Client cert auth to backends. Zero-trust service-to-service. | [ ] |
+| 9.13 | **Request queuing & backpressure** | Queue when overloaded, apply 429/503 with Retry-After. Prevents cascades. | [ ] |
 
 ### 📨 ServQueue → Category-Defining Event Streaming Platform
 
-| # | Feature | Why It Matters |
-|---|---------|----------------|
-| 9.1 | **Exactly-once delivery** | Idempotent producers + transactional batches. Gold standard for financial systems. |
-| 9.2 | **Schema registry & validation** | Reject non-conforming publishes. Auto-evolve schemas with compatibility checks. |
-| 9.5 | **Stream processing DSL** | Windowed aggregations in `.srv` syntax. Compete with Kafka Streams/Flink without external infra. |
-| 9.6 | **Message replay with offset management** | Named consumer offsets with commit/seek. Replay from any WAL point. |
-| 9.9 | **Cross-cluster mirroring** | Replicate topics between geo-separate clusters. DR and active-active. |
-| 9.10 | **Message tracing (end-to-end journey)** | Track a message from publish through transforms, DLQ, and consumer ack. Visualize in ServConsole. |
-| 9.11 | **WASM transform marketplace** | Install transforms from ServRegistry. Pre-built: JSON→Protobuf, PII masking. |
+| # | Feature | Why It Matters | Status |
+|---|---------|----------------|--------|
+| 9.1 | **Exactly-once delivery** | Idempotent producers + transactional batches. Gold standard for financial systems. | [x] |
+| 9.2 | **Schema registry & validation** | Reject non-conforming publishes. Auto-evolve schemas with compatibility checks. | [x] |
+| 9.5 | **Stream processing DSL** | Windowed aggregations in `.srv` syntax. Compete with Kafka Streams/Flink without external infra. | [ ] |
+| 9.6 | **Message replay with offset management** | Named consumer offsets with commit/seek. Replay from any WAL point. | [x] |
+| 9.9 | **Cross-cluster mirroring** | Replicate topics between geo-separate clusters. DR and active-active. | [ ] |
+| 9.10 | **Message tracing (end-to-end journey)** | Track a message from publish through transforms, DLQ, and consumer ack. Visualize in ServConsole. | [ ] |
+| 9.11 | **WASM transform marketplace** | Install transforms from ServRegistry. Pre-built: JSON→Protobuf, PII masking. | [ ] |
 
 ### 💾 ServStore → Category-Defining Intelligent Storage
 
-| # | Feature | Why It Matters |
-|---|---------|----------------|
-| 9.1 | **Multi-modal embedding engine** | Auto-embed images (CLIP), PDFs, audio (Whisper) on ingest. Semantic search across all content types. |
-| 9.2 | **Vector + metadata hybrid queries** | Combine semantic search with structured filters in one call. Unique differentiator. |
-| 9.5 | **S3 event notifications (CloudEvents)** | Emit lifecycle events to webhooks or ServQueue. Enables event-driven architectures. |
-| 9.6 | **Geo-aware data placement** | Region-tagged nodes with policy-driven replication. Reads routed to nearest replica. |
-| 9.10 | **WASM trigger on object events** | Lambda@S3-style triggers inside the storage engine. Zero-latency event processing. |
-| 9.12 | **Content-type aware compression** | Auto-compress text/JSON with zstd on write. Transparent decompress on read. |
-| 9.14 | **Federation (cross-cluster namespace)** | Global bucket names resolve to owning cluster. Like DNS for objects. |
+| # | Feature | Why It Matters | Status |
+|---|---------|----------------|--------|
+| 9.1 | **Multi-modal embedding engine** | Auto-embed images (CLIP), PDFs, audio (Whisper) on ingest. Semantic search across all content types. | [ ] |
+| 9.2 | **Vector + metadata hybrid queries** | Combine semantic search with structured filters in one call. Unique differentiator. | [ ] |
+| 9.5 | **S3 event notifications (CloudEvents)** | Emit lifecycle events to webhooks or ServQueue. Enables event-driven architectures. | [ ] |
+| 9.6 | **Geo-aware data placement** | Region-tagged nodes with policy-driven replication. Reads routed to nearest replica. | [ ] |
+| 9.10 | **WASM trigger on object events** | Lambda@S3-style triggers inside the storage engine. Zero-latency event processing. | [ ] |
+| 9.12 | **Content-type aware compression** | Auto-compress text/JSON with zstd on write. Transparent decompress on read. | [ ] |
+| 9.14 | **Federation (cross-cluster namespace)** | Global bucket names resolve to owning cluster. Like DNS for objects. | [ ] |
 
 ### 🖥️ ServConsole → Category-Defining Observability Platform
 
-| # | Feature | Why It Matters |
-|---|---------|----------------|
-| 7.1 | **Alerting engine & notifications** | Alert rules with Slack/PagerDuty/webhook channels. Snooze/ack workflow. |
-| 7.2 | **Incident timeline auto-generation** | Auto-build timeline on alert: deploys, metric spikes, error traces. One-page summary. |
-| 7.3 | **Service topology auto-discovery** | Parse OTel spans → dependency graph. Show latency and error rates on edges. |
-| 7.4 | **Log aggregation & search** | Collect JSON logs, full-text search, filter by service/level/trace_id. Live tail. |
-| 7.5 | **Custom dashboard builder** | Drag-and-drop: pick metrics, choose chart type, save and share per team. |
-| 7.7 | **SLO/SLI tracking & error budgets** | Define SLOs, track remaining budget, alert when burning too fast. |
-| 7.12 | **Runbook automation** | Attach remediation steps to alerts. Auto-execute: restart, scale, clear cache. |
+| # | Feature | Why It Matters | Status |
+|---|---------|----------------|--------|
+| 7.1 | **Alerting engine & notifications** | Alert rules with Slack/PagerDuty/webhook channels. Snooze/ack workflow. | [ ] |
+| 7.2 | **Incident timeline auto-generation** | Auto-build timeline on alert: deploys, metric spikes, error traces. One-page summary. | [ ] |
+| 7.3 | **Service topology auto-discovery** | Parse OTel spans → dependency graph. Show latency and error rates on edges. | [x] |
+| 7.4 | **Log aggregation & search** | Collect JSON logs, full-text search, filter by service/level/trace_id. Live tail. | [ ] |
+| 7.5 | **Custom dashboard builder** | Drag-and-drop: pick metrics, choose chart type, save and share per team. | [ ] |
+| 7.7 | **SLO/SLI tracking & error budgets** | Define SLOs, track remaining budget, alert when burning too fast. | [ ] |
+| 7.12 | **Runbook automation** | Attach remediation steps to alerts. Auto-execute: restart, scale, clear cache. | [ ] |
 
 ---
 

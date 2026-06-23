@@ -246,6 +246,7 @@
       <div class="tab-buttons">
         <button class="tab-btn active" data-target="serv-lang">Serv-lang</button>
         <button class="tab-btn" data-target="servgate">ServGate</button>
+        <button class="tab-btn" data-target="servmesh">ServMesh</button>
         <button class="tab-btn" data-target="servqueue">ServQueue</button>
         <button class="tab-btn" data-target="servstore">ServStore</button>
         <button class="tab-btn" data-target="servcache">ServCache</button>
@@ -276,6 +277,16 @@
             <li><strong>AI Prompt Guard:</strong> Block jailbreak attempts and prompt injections at the gateway.</li>
             <li><strong>Semantic Caching:</strong> Cache LLM responses by prompt similarity to cut inference costs.</li>
             <li><strong>PII Redaction:</strong> Auto-scan and redact credit card, email, SSN from response streams.</li>
+          </ul>
+        </div>
+        <div class="tab-panel" id="panel-servmesh">
+          <h3>ServMesh — Library Service Discovery</h3>
+          <p class="panel-desc">Lightweight library-level service discovery, client-side load balancing, retries, and circuit breaking.</p>
+          <ul class="feature-list">
+            <li><strong>Registry Control Plane:</strong> Automatic instance registration, heartbeat status, and TTL eviction.</li>
+            <li><strong>Client Resolver:</strong> Local endpoint caching, round-robin load balancing, and active backoff retries.</li>
+            <li><strong>Circuit Breaker:</strong> Sandboxed breaker tracking failure rates with state switching (Closed/Open/Half-Open).</li>
+            <li><strong>Context propagation:</strong> Built-in telemetry tracking trace paths and latency.</li>
           </ul>
         </div>
         <div class="tab-panel" id="panel-servqueue">
@@ -478,7 +489,12 @@
         <div class="port-item"><span class="port-name">ServStore</span><code>:8081</code></div>
         <div class="port-item"><span class="port-name">ServQueue</span><code>:8082</code></div>
         <div class="port-item"><span class="port-name">ServConsole</span><code>:8083</code></div>
+        <div class="port-item"><span class="port-name">ServTunnel</span><code>:8443</code></div>
+        <div class="port-item"><span class="port-name">ServCloud</span><code>:8085</code></div>
+        <div class="port-item"><span class="port-name">ServCache</span><code>:8086</code></div>
+        <div class="port-item"><span class="port-name">ServCron</span><code>:8087</code></div>
         <div class="port-item"><span class="port-name">ServRegistry</span><code>:8088</code></div>
+        <div class="port-item"><span class="port-name">ServMesh</span><code>:8089</code></div>
         <div class="port-item"><span class="port-name">Jaeger UI</span><code>:16686</code></div>
       </div>
     </div>
