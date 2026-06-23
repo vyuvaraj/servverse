@@ -46,6 +46,7 @@ This document serves as an archive of all successfully completed items, features
 * **Bucket Metrics & Quota (Phase 9)**: Per-bucket storage quota enforcement.
 * **Content-Type Aware Compression (Phase 9)**: Automatically compress text, JSON, and log objects with zstd on write; decompress transparently on read.
 * **Vector similarity + metadata hybrid queries (Phase 9)**: Support combining semantic search queries with metadata filters (tags and date ranges `before`/`after`).
+* **WASM trigger on object events (Phase 9)**: Declare WASM functions that execute automatically on `PutObject` or `DeleteObject` (Lambda@S3 triggers inside the storage engine) matching prefix/suffix criteria asynchronously.
 
 ---
 
