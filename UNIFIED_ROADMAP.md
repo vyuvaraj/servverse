@@ -12,7 +12,7 @@
 
 | Component | Core Phases | Done | Open | Completion | Status Bar |
 |-----------|-------------|------|------|------------|------------|
-| **Serv-lang** | Phases 1–12 + proposed 13–15 | 97 | 12 | **89%** | ██████████████████░░░ |
+| **Serv-lang** | Phases 1–12 + proposed 13–15 | 98 | 11 | **90%** | ███████████████████░░ |
 | **ServStore** | Phases 1–7 + proposed 8–10 | 67 | 8 | **89%** | ██████████████████░░░ |
 | **ServGate** | Phases 1–7 + proposed 8–10 | 33 | 12 | **73%** | ███████████████░░░░░░ |
 | **ServQueue** | Phases 1–7 + proposed 8–10 | 33 | 14 | **70%** | ██████████████░░░░░░░ |
@@ -21,13 +21,13 @@
 | **ServTunnel** | Phase 1–2 | 16 | 7 | **70%** | ██████████████░░░░░░░ |
 | **Unified Roadmap** (cross-cutting) | Sections 8–9 | 39 | 32 | **55%** | ███████████░░░░░░░░░░ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **314** | **103** | **75%** | ███████████████░░░░░░ |
+| **TOTAL ECOSYSTEM** | | **315** | **102** | **76%** | ████████████████░░░░░ |
 
 ### Core vs Proposed Breakdown
 
 | Component | Core (Shipped) | Core % | Proposed (Future) | Proposed % |
 |-----------|---------------|--------|-------------------|------------|
-| **Serv-lang** | 82/82 | **100%** ✅ | 15/27 | 56% |
+| **Serv-lang** | 82/82 | **100%** ✅ | 16/27 | 59% |
 | **ServStore** | 53/53 | **100%** ✅ | 14/22 | **64%** |
 | **ServGate** | 21/24 | **88%** | 12/21 | **57%** |
 | **ServQueue** | 22/24 | **92%** | 11/23 | **48%** |
@@ -91,7 +91,7 @@ These items represent the features that would make each Servverse component a **
 | 14.1 | **Compile-time dependency injection** | Testable architectures without runtime reflection — Dagger.io-style but at compile time | [ ] |
 | 14.2 | **Hot-reload without restart** | ✅ Done — Zero-downtime local dev via TCP proxy + process replacement. `serv run --hot` recompiles and swaps with no dropped connections. | [x] |
 | 14.5 | **Incremental compilation** | Cache per-file artifacts. Only recompile changed files. Critical at scale (>50 files). | [ ] |
-| 14.6 | **`pipe` operator** | `data |> transform() |> validate() |> save()` — readable data pipelines. Low cost, high readability. | [ ] |
+| 14.6 | **`pipe` operator** | ✅ Done — `data |> transform() |> validate() |> save()` — readable data pipelines. Low cost, high readability. | [x] |
 | 14.8 | **GraphQL endpoint declaration** | Native GraphQL schema + resolver syntax. Compiles to performant Go handler. | [ ] |
 | 14.9 | **Language server code actions** | Quick-fix: "Extract function", "Add error handling", "Generate test stub". Active refactoring assistance. | [ ] |
 | 14.10 | **Compile-time macros** | `@derive(Serialize, Validate)` — generate boilerplate at compile time. Reduces repetitive code. | [ ] |
