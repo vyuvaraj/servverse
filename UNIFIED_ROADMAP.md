@@ -13,7 +13,7 @@
 | Component | Core Phases | Done | Open | Completion | Status Bar |
 |-----------|-------------|------|------|------------|------------|
 | **Serv-lang** | Phases 1–12 + proposed 13–15 | 103 | 6 | **94%** | ████████████████████░ |
-| **ServStore** | Phases 1–7 + proposed 8–10 | 70 | 5 | **93%** | ███████████████████░ |
+| **ServStore** | Phases 1–7 + proposed 8–10 | 71 | 4 | **95%** | ████████████████████░ |
 | **ServGate** | Phases 1–7 + proposed 8–10 | 45 | 0 | **100%** ✅ | █████████████████████ |
 | **ServQueue** | Phases 1–7 + proposed 8–10 | 35 | 12 | **74%** | ███████████████░░░░░░ |
 | **ServConsole** | Phases 1–5 + proposed 6–8 | 23 | 18 | **56%** | ████████████░░░░░░░░░ |
@@ -21,14 +21,14 @@
 | **ServTunnel** | Phase 1–2 | 29 | 0 | **100%** ✅ | █████████████████████ |
 | **Unified Roadmap** (cross-cutting) | Sections 8–9 | 39 | 32 | **55%** | ███████████░░░░░░░░░░ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **351** | **72** | **83%** | ████████████████░░░░░ |
+| **TOTAL ECOSYSTEM** | | **352** | **71** | **83%** | ████████████████░░░░░ |
 
 ### Core vs Proposed Breakdown
 
 | Component | Core (Shipped) | Core % | Proposed (Future) | Proposed % |
 |-----------|---------------|--------|-------------------|------------|
 | **Serv-lang** | 82/82 | **100%** ✅ | 21/27 | **78%** |
-| **ServStore** | 53/53 | **100%** ✅ | 17/22 | **77%** |
+| **ServStore** | 53/53 | **100%** ✅ | 18/22 | **82%** |
 | **ServGate** | 24/24 | **100%** ✅ | 22/22 | **100%** ✅ |
 | **ServQueue** | 22/24 | **92%** | 13/23 | **56%** |
 | **ServConsole** | 16/18 | **89%** | 7/23 | **30%** |
@@ -135,6 +135,7 @@ These items represent the features that would make each Servverse component a **
 |---|---------|----------------|--------|
 | 9.1 | **Multi-modal embedding engine** | Auto-embed images (CLIP), PDFs, audio (Whisper) on ingest. Semantic search across all content types. | [x] |
 | 9.2 | **Vector + metadata hybrid queries** | Combine semantic search with structured filters in one call. Unique differentiator. | [x] |
+| 9.3 | **Incremental backup & point-in-time recovery** | Continuous WAL-based backup to remote target. Restore any bucket to any second in time. | [x] |
 | 9.4 | **Object-level access logging** | Per-object access audit trail: who read/wrote/deleted, when, from which IP, with which identity. Immutable append-only log stored in a system bucket. | [x] |
 | 9.5 | **S3 event notifications (CloudEvents)** | Emit lifecycle events to webhooks or ServQueue. Enables event-driven architectures. | [x] |
 | 9.6 | **Geo-aware data placement** | Region-tagged nodes with policy-driven replication. Reads routed to nearest replica. | [x] |
