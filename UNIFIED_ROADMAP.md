@@ -13,7 +13,7 @@
 | Component | Core Phases | Done | Open | Completion | Status Bar |
 |-----------|-------------|------|------|------------|------------|
 | **Serv-lang** | Phases 1–12 + proposed 13–15 | 103 | 6 | **94%** | ████████████████████░ |
-| **ServStore** | Phases 1–7 + proposed 8–10 | 72 | 3 | **96%** | ████████████████████░ |
+| **ServStore** | Phases 1–7 + proposed 8–10 | 73 | 2 | **97%** | ████████████████████░ |
 | **ServGate** | Phases 1–7 + proposed 8–10 | 45 | 0 | **100%** ✅ | █████████████████████ |
 | **ServQueue** | Phases 1–7 + proposed 8–10 | 35 | 12 | **74%** | ███████████████░░░░░░ |
 | **ServConsole** | Phases 1–5 + proposed 6–8 | 23 | 18 | **56%** | ████████████░░░░░░░░░ |
@@ -21,14 +21,14 @@
 | **ServTunnel** | Phase 1–2 | 29 | 0 | **100%** ✅ | █████████████████████ |
 | **Unified Roadmap** (cross-cutting) | Sections 8–9 | 39 | 32 | **55%** | ███████████░░░░░░░░░░ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **353** | **70** | **83%** | ████████████████░░░░░ |
+| **TOTAL ECOSYSTEM** | | **354** | **69** | **84%** | █████████████████░░░░ |
 
 ### Core vs Proposed Breakdown
 
 | Component | Core (Shipped) | Core % | Proposed (Future) | Proposed % |
 |-----------|---------------|--------|-------------------|------------|
 | **Serv-lang** | 82/82 | **100%** ✅ | 21/27 | **78%** |
-| **ServStore** | 53/53 | **100%** ✅ | 19/22 | **86%** |
+| **ServStore** | 53/53 | **100%** ✅ | 20/22 | **91%** |
 | **ServGate** | 24/24 | **100%** ✅ | 22/22 | **100%** ✅ |
 | **ServQueue** | 22/24 | **92%** | 13/23 | **56%** |
 | **ServConsole** | 16/18 | **89%** | 7/23 | **30%** |
@@ -140,6 +140,7 @@ These items represent the features that would make each Servverse component a **
 | 9.5 | **S3 event notifications (CloudEvents)** | Emit lifecycle events to webhooks or ServQueue. Enables event-driven architectures. | [x] |
 | 9.6 | **Geo-aware data placement** | Region-tagged nodes with policy-driven replication. Reads routed to nearest replica. | [x] |
 | 9.10 | **WASM trigger on object events** | Lambda@S3-style triggers inside the storage engine. Zero-latency event processing. | [x] |
+| 9.11 | **S3 batch operations** | Bulk copy, delete, tagging, and metadata updates across objects. Job-based with progress tracking. | [x] |
 | 9.12 | **Content-type aware compression** | Auto-compress text/JSON with zstd on write. Transparent decompress on read. | [x] |
 | 9.14 | **Federation (cross-cluster namespace)** | Global bucket names resolve to owning cluster. Like DNS for objects. | [x] |
 
