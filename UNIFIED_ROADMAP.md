@@ -14,14 +14,14 @@
 |-----------|-------------|------|------|------------|------------|
 | **Serv-lang** | Phases 1–12 + proposed 13–15 | 103 | 6 | **94%** | ████████████████████░ |
 | **ServStore** | Phases 1–7 + proposed 8–10 | 67 | 8 | **89%** | ██████████████████░░░ |
-| **ServGate** | Phases 1–7 + proposed 8–10 | 33 | 12 | **73%** | ███████████████░░░░░░ |
+| **ServGate** | Phases 1–7 + proposed 8–10 | 36 | 9 | **80%** | ████████████████░░░░░ |
 | **ServQueue** | Phases 1–7 + proposed 8–10 | 33 | 14 | **70%** | ██████████████░░░░░░░ |
 | **ServConsole** | Phases 1–5 + proposed 6–8 | 23 | 18 | **56%** | ████████████░░░░░░░░░ |
 | **ServRegistry** | Core + hardening | 6 | 0 | **100%** | █████████████████████ |
 | **ServTunnel** | Phase 1–2 | 29 | 0 | **100%** ✅ | █████████████████████ |
 | **Unified Roadmap** (cross-cutting) | Sections 8–9 | 39 | 32 | **55%** | ███████████░░░░░░░░░░ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **333** | **90** | **79%** | ████████████████░░░░░ |
+| **TOTAL ECOSYSTEM** | | **336** | **87** | **79%** | ████████████████░░░░░ |
 
 ### Core vs Proposed Breakdown
 
@@ -29,7 +29,7 @@
 |-----------|---------------|--------|-------------------|------------|
 | **Serv-lang** | 82/82 | **100%** ✅ | 21/27 | **78%** |
 | **ServStore** | 53/53 | **100%** ✅ | 14/22 | **64%** |
-| **ServGate** | 21/24 | **88%** | 12/21 | **57%** |
+| **ServGate** | 21/24 | **88%** | 15/21 | **71%** |
 | **ServQueue** | 22/24 | **92%** | 11/23 | **48%** |
 | **ServConsole** | 16/18 | **89%** | 7/23 | **30%** |
 | **ServRegistry** | 6/6 | **100%** ✅ | — | — |
@@ -105,9 +105,9 @@ These items represent the features that would make each Servverse component a **
 | 9.7 | **Response caching (HTTP cache layer)** | ✅ Done — TTL-based in-memory cache with SHA256 keys, background eviction, `X-Cache` HIT/MISS headers, admin invalidation API. | [x] |
 | 9.8 | **GraphQL federation proxy** | Route GraphQL queries to multiple backends, merge schemas. Supergraph router. | [ ] |
 | 9.9 | **Request logging & audit trail** | ✅ Done — Structured JSONL access logs with per-route toggle. Captures method, path, latency, status, trace_id, client IP. | [x] |
-| 9.10 | **Plugin SDK (Go interface)** | Direct Go interface for compiling middleware plugins. | [ ] |
-| 9.12 | **Mutual TLS (mTLS)** | Client cert auth to backends. Zero-trust service-to-service. | [ ] |
-| 9.13 | **Request queuing & backpressure** | Queue when overloaded, apply 429/503 with Retry-After. Prevents cascades. | [ ] |
+| 9.10 | **Plugin SDK (Go interface)** | ✅ Done — Define native GoPlugin interface and registry to load plugins without WASM. | [x] |
+| 9.12 | **Mutual TLS (mTLS)** | ✅ Done — Support client cert auth to backends with custom route transports. | [x] |
+| 9.13 | **Request queuing & backpressure** | ✅ Done — Concurrency limiting and buffered request queueing with Retry-After headers. | [x] |
 
 ### 📨 ServQueue → Category-Defining Event Streaming Platform
 
