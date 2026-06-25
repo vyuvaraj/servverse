@@ -109,14 +109,25 @@ These items represent the features that would make each Servverse component a **
 | 9.12 | **Mutual TLS (mTLS)** | ✅ Done — Support client cert auth to backends with custom route transports. | [x] |
 | 9.13 | **Request queuing & backpressure** | ✅ Done — Concurrency limiting and buffered request queueing with Retry-After headers. | [x] |
 
-### 📨 ServQueue → Category-Defining Event Streaming Platform
+### 📨 ServQueue → Category-Defining Message Queue
 
 | # | Feature | Why It Matters | Status |
 |---|---------|----------------|--------|
-| 9.5 | **Stream processing DSL** | Windowed aggregations in `.srv` syntax. Compete with Kafka Streams/Flink without external infra. | [ ] |
-| 9.9 | **Cross-cluster mirroring** | Replicate topics between geo-separate clusters. DR and active-active. | [ ] |
-| 9.10 | **Message tracing (end-to-end journey)** | Track a message from publish through transforms, DLQ, and consumer ack. Visualize in ServConsole. | [ ] |
-| 9.11 | **WASM transform marketplace** | Install transforms from ServRegistry. Pre-built: JSON→Protobuf, PII masking. | [ ] |
+| 9.2 | **Schema validation** | Strict payload schema validation on topic level to prevent bad data in queues | [x] |
+| 9.3 | **Topic Compaction** | Retain only the latest message per key in a topic to support changelog topics | [x] |
+| 9.4 | **Multi-tenant isolation** | Namespace-scoped topics with tenant-level constraints over STOMP and HTTP APIs | [x] |
+| 9.5 | **Dead Letter Queue (DLQ)** | Automated message redirection to DLQ topics on processing or transformation failures | [x] |
+| 9.6 | **Message TTL & Expiry** | Automatic message eviction/DLQ routing after defined lifespan (Time-to-Live) | [x] |
+| 9.7 | **Broker-side WASM Transforms** | Perform low-latency inline message mapping and filtering directly inside the broker | [x] |
+| 9.8 | **Consumer Groups** | Shared subscription support with round-robin load distribution and active balancing | [x] |
+| 9.9 | **At-Least-Once Delivery** | Support manual offsets commitment (`offset commit`) and message acknowledgement | [x] |
+| 9.10 | **Distributed WAL Replay** | Ability to replay messages from a given offset using local log storage | [x] |
+| 9.11 | **Token Bucket Rate Limiting** | Prevent publisher floods using sliding token window configs on client/IP level | [x] |
+| 9.12 | **STOMP Transactions** | Group publishes/acknowledgements into atomic unit frames (`BEGIN`, `COMMIT`, `ABORT`) | [x] |
+| 9.13 | **Admin CLI (`servqueue`)** | Native command-line interface tool to inspect topics, publish/consume, check status | [x] |
+| 9.14 | **Distributed Coordinated Consensus** | Embedded Raft library integration for leader election and state synchronization | [ ] |
+| 9.15 | **Storage Tiering (Cold Storage)** | Automated archiving of WAL segments to MinIO/S3 after rotation thresholds | [ ] |
+| 9.16 | **Idempotent Producer** | Prevent message duplicates by matching sequence numbering from authenticated producers | [x] |
 
 ### 💾 ServStore → Category-Defining Intelligent Storage
 
