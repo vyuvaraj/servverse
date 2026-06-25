@@ -18,15 +18,17 @@ This is why I built ServGate.
 
 ## Meet ServGate
 
-ServGate is a high-performance, programmable API Gateway and reverse proxy tailored for the **Servverse** ecosystem. Written in Go, it features a pluggable, sandboxed WebAssembly (WASI) runtime (`wazero`) that lets you execute inline middleware filters on request and response lifecycles.
+ServGate is a high-performance, programmable API Gateway and reverse proxy tailored for the **Servverse** ecosystem. Written in Go, it features a pluggable, sandboxed WebAssembly (WASI) runtime (`wazero`) that lets you execute inline middleware filters on request and response lifecycles. Now 100% complete core.
 
 Here is what makes ServGate different:
 
-- **WASM Hot-Swapping**: Compile filters to `.wasm` and register them via REST API. They run in sandboxed environments with memory/timeout boundaries, hot-swapping instantly without dropping connection pools.
-- **AI Prompt Guard**: Inspect incoming LLM prompts to detect jailbreaks, injection attacks, or abusive content before they reach expensive GPU endpoints.
-- **Semantic Caching**: Cache responses based on prompt similarity, not just exact string matches, significantly reducing LLM inference costs.
-- **PII Redaction**: Parse responses automatically and scrub sensitive personal identifiers (SSNs, credit cards, emails) on the fly.
-- **Distributed Config Sync**: Connects to ServStore to sync configuration buckets across multiple gateway nodes without a separate database.
+- **WASM Hot-Swapping & A/B Splits**: Register filters to `.wasm` and run weighted traffic splits between WASM middleware versions dynamically at runtime.
+- **GraphQL Federation**: Route queries to multiple downstream backends, delegate selection sets, and merge JSON responses natively at the edge.
+- **MCP (Model Context Protocol) Native**: Direct support for AI agent tool calls with token usage tracking and agent-level rate limiting.
+- **Cost-Aware LLM Routing**: Primary vs fallback model selection (e.g. GPT-4o-mini to GPT-4) based on response confidence.
+- **Developer Portal (Playground)**: Interactive Swagger UI console with auth-token injection and OpenAPI auto-discovery at `/api/docs`.
+- **AI Prompt Guard & PII Redaction**: Built-in safety vector jailbreak detection and automatic credit card/SSN masking.
+- **Distributed Config Sync**: Connects to ServStore to sync configuration buckets across multiple gateway nodes with secure OIDC token sync validation.
 
 ---
 
@@ -129,6 +131,9 @@ graph LR
 | **Core Proxying** | High Performance | High Performance | High Performance |
 | **Custom Middleware** | Lua / C++ | C++ / WASM | WASM (WASI) |
 | **Hot-Swapping** | Requires reload | Control Plane sync | Instant via REST |
+| **GraphQL Federation** | ❌ (Apollo Router needed) | ❌ (WASM plugin required) | ✅ (Built-in Supergraph) |
+| **MCP AI Agent Sync** | ❌ | ❌ | ✅ (Dynamic JSON-RPC tool check) |
+| **LLM Fallback Routing**| ❌ (Heavy custom code) | ❌ | ✅ (Cost-Aware confidence check) |
 | **AI Prompt Guard** | ❌ (Custom plugin) | ❌ | ✅ (Built-in) |
 | **Semantic Cache** | ❌ | ❌ | ✅ (Built-in) |
 | **PII Redaction** | ❌ (Heavy script) | ❌ | ✅ (Stream filter) |

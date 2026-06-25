@@ -271,12 +271,14 @@
         </div>
         <div class="tab-panel" id="panel-servgate">
           <h3>ServGate — Programmable API Gateway</h3>
-          <p class="panel-desc">WebAssembly-powered reverse proxy that inspects, redacts, and protects at the network edge.</p>
+          <p class="panel-desc">WebAssembly-powered reverse proxy that inspects, redacts, and protects at the network edge. Now 100% complete core.</p>
           <ul class="feature-list">
-            <li><strong>WASM Hot-Swapping:</strong> Load WASI request/response modifiers dynamically without restarts.</li>
-            <li><strong>AI Prompt Guard:</strong> Block jailbreak attempts and prompt injections at the gateway.</li>
-            <li><strong>Semantic Caching:</strong> Cache LLM responses by prompt similarity to cut inference costs.</li>
-            <li><strong>PII Redaction:</strong> Auto-scan and redact credit card, email, SSN from response streams.</li>
+            <li><strong>WASM Hot-Swapping & A/B Splits:</strong> Load filters dynamically without restarts. Run weighted traffic splits between WASM versions.</li>
+            <li><strong>GraphQL Federation Proxy:</strong> Route queries to multiple backends, delegate selection sets, and merge JSON responses.</li>
+            <li><strong>MCP Native Gateway:</strong> Inspect JSON-RPC tool calls, track token counts, and apply agent-specific rate limiting.</li>
+            <li><strong>Cost-Aware LLM Routing:</strong> Dynamic fallback routing from cheaper models (GPT-4o-mini) to premium models (GPT-4).</li>
+            <li><strong>Developer Portal (Playground):</strong> Expose interactive Swagger UI explorers and OpenAPI specs natively at <code>/api/docs</code>.</li>
+            <li><strong>AI Prompt Guard & PII Redactor:</strong> Safety vector checks for injections and automatic credit card/SSN masking.</li>
           </ul>
         </div>
         <div class="tab-panel" id="panel-servmesh">
