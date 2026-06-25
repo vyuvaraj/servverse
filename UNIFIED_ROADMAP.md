@@ -15,13 +15,13 @@
 | **Serv-lang** | Phases 1–12 + proposed 13–15 | 103 | 6 | **94%** | ████████████████████░ |
 | **ServStore** | Phases 1–7 + proposed 8–10 | 70 | 5 | **93%** | ███████████████████░ |
 | **ServGate** | Phases 1–7 + proposed 8–10 | 45 | 0 | **100%** ✅ | █████████████████████ |
-| **ServQueue** | Phases 1–7 + proposed 8–10 | 33 | 14 | **70%** | ██████████████░░░░░░░ |
+| **ServQueue** | Phases 1–7 + proposed 8–10 | 35 | 12 | **74%** | ███████████████░░░░░░ |
 | **ServConsole** | Phases 1–5 + proposed 6–8 | 23 | 18 | **56%** | ████████████░░░░░░░░░ |
 | **ServRegistry** | Core + hardening | 6 | 0 | **100%** | █████████████████████ |
 | **ServTunnel** | Phase 1–2 | 29 | 0 | **100%** ✅ | █████████████████████ |
 | **Unified Roadmap** (cross-cutting) | Sections 8–9 | 39 | 32 | **55%** | ███████████░░░░░░░░░░ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **349** | **74** | **83%** | ████████████████░░░░░ |
+| **TOTAL ECOSYSTEM** | | **351** | **72** | **83%** | ████████████████░░░░░ |
 
 ### Core vs Proposed Breakdown
 
@@ -30,7 +30,7 @@
 | **Serv-lang** | 82/82 | **100%** ✅ | 21/27 | **78%** |
 | **ServStore** | 53/53 | **100%** ✅ | 17/22 | **77%** |
 | **ServGate** | 24/24 | **100%** ✅ | 22/22 | **100%** ✅ |
-| **ServQueue** | 22/24 | **92%** | 11/23 | **48%** |
+| **ServQueue** | 22/24 | **92%** | 13/23 | **56%** |
 | **ServConsole** | 16/18 | **89%** | 7/23 | **30%** |
 | **ServRegistry** | 6/6 | **100%** ✅ | — | — |
 | **ServTunnel** | 17/17 | **100%** ✅ | 13/13 | **100%** ✅ |
@@ -125,8 +125,8 @@ These items represent the features that would make each Servverse component a **
 | 9.11 | **Token Bucket Rate Limiting** | Prevent publisher floods using sliding token window configs on client/IP level | [x] |
 | 9.12 | **STOMP Transactions** | Group publishes/acknowledgements into atomic unit frames (`BEGIN`, `COMMIT`, `ABORT`) | [x] |
 | 9.13 | **Admin CLI (`servqueue`)** | Native command-line interface tool to inspect topics, publish/consume, check status | [x] |
-| 9.14 | **Distributed Coordinated Consensus** | Embedded Raft library integration for leader election and state synchronization | [ ] |
-| 9.15 | **Storage Tiering (Cold Storage)** | Automated archiving of WAL segments to MinIO/S3 after rotation thresholds | [ ] |
+| 9.14 | **Distributed Coordinated Consensus** | Embedded Raft library integration for leader election and state synchronization | [x] |
+| 9.15 | **Storage Tiering (Cold Storage)** | Automated archiving of WAL segments to MinIO/S3 after rotation thresholds | [x] |
 | 9.16 | **Idempotent Producer** | Prevent message duplicates by matching sequence numbering from authenticated producers | [x] |
 
 ### 💾 ServStore → Category-Defining Intelligent Storage
