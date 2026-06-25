@@ -72,6 +72,8 @@ This document serves as an archive of all successfully completed items, features
 * **Rate Limiting**: Limit client requests using sliding-window rate limit counters.
 * **Circuit Breakers & Retries**: Fail fast or retry backend connections.
 * **Distributed config backend (Phase 5)**: Store routes in a ServStore bucket (`serv-config`).
+* **ServConsole Administration (Phase 5)**: Optional dashboard sync to manage routes, view active connections, and swap WASM middleware modules dynamically.
+* **Distributed Span Mapping (Phase 5)**: Trace request lifecycles starting at the gateway, through queues (`ServQueue`), and into storage (`ServStore`) in a unified trace view.
 * **Traffic Replay & Validation (Phase 6)**: Dry-run utility (`servgate replay`) for production traffic logs.
 * **One-Command Middleware Marketplace (Phase 6)**: Install WASM modules via `servgate install`.
 * **Native Serv Language Compilation (Phase 6)**: Compiler toolchain support (`serv build --target wasm`).
