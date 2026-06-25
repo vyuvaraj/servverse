@@ -84,6 +84,11 @@ This document serves as an archive of all successfully completed items, features
 * **Canary/Blue-Green Traffic Splitting (Phase 9)**: Weighted random traffic distribution via `targets_weighted` config. `X-Canary-Target` header for observability.
 * **Response Caching — HTTP Cache Layer (Phase 9)**: TTL-based in-memory response cache with SHA256 cache keys, background eviction, `X-Cache` HIT/MISS headers, and admin invalidation API (`DELETE /api/v1/admin/cache`).
 * **Request Logging & Audit Trail (Phase 9)**: Structured JSONL access logs with per-route toggle. Captures method, path, latency, status, trace_id, client IP, and target via `AccessLogger`.
+* **MCP (Model Context Protocol) Native Gateway (Phase 10)**: Dynamic JSON-RPC tool call routing, metrics, and agent-level rate limiting.
+* **Compiler-Aware Route Registration (Phase 10)**: Dynamic route announcement API `/api/v1/routes/register`.
+* **Cost-Aware LLM Routing (Phase 10)**: Multi-model cost-performance fallback escalation.
+* **Per-Route WASM A/B Testing (Phase 10)**: Traffic-split routing to different WASM middlewares.
+
 
 ---
 
