@@ -16,12 +16,12 @@
 | **ServStore** | Phases 1–7 + proposed 8–10 | 75 | 0 | **100%** ✅ | █████████████████████ |
 | **ServGate** | Phases 1–7 + proposed 8–10 | 45 | 0 | **100%** ✅ | █████████████████████ |
 | **ServQueue** | Phases 1–7 + proposed 8–10 | 35 | 12 | **74%** | ███████████████░░░░░░ |
-| **ServConsole** | Phases 1–5 + proposed 6–8 | 32 | 9 | **78%** | ████████████████░░░░░ |
+| **ServConsole** | Phases 1–5 + proposed 6–8 | 33 | 8 | **80%** | █████████████████░░░ |
 | **ServRegistry** | Core + hardening | 6 | 0 | **100%** | █████████████████████ |
 | **ServTunnel** | Phase 1–2 | 29 | 0 | **100%** ✅ | █████████████████████ |
 | **Unified Roadmap** (cross-cutting) | Sections 8–9 | 39 | 32 | **55%** | ███████████░░░░░░░░░░ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **365** | **58** | **86%** | ██████████████████░░░ |
+| **TOTAL ECOSYSTEM** | | **366** | **57** | **87%** | ██████████████████░░░ |
 
 ### Core vs Proposed Breakdown
 
@@ -31,7 +31,7 @@
 | **ServStore** | 53/53 | **100%** ✅ | 22/22 | **100%** ✅ |
 | **ServGate** | 24/24 | **100%** ✅ | 22/22 | **100%** ✅ |
 | **ServQueue** | 22/24 | **92%** | 13/23 | **56%** |
-| **ServConsole** | 16/18 | **89%** | 16/23 | **70%** |
+| **ServConsole** | 16/18 | **89%** | 17/23 | **74%** |
 | **ServRegistry** | 6/6 | **100%** ✅ | — | — |
 | **ServTunnel** | 17/17 | **100%** ✅ | 13/13 | **100%** ✅ |
 
@@ -153,7 +153,7 @@ These items represent the features that would make each Servverse component a **
 | 7.4 | **Log aggregation & search** | Collect JSON logs, full-text search, filter by service/level/trace_id. Live tail. | [x] |
 | 7.5 | **Custom dashboard builder** | Drag-and-drop: pick metrics, choose chart type, save and share per team. | [ ] |
 | 7.7 | **SLO/SLI tracking & error budgets** | Define SLOs, track remaining budget, alert when burning too fast. | [x] |
-| 7.12 | **Runbook automation** | Attach remediation steps to alerts. Auto-execute: restart, scale, clear cache. | [ ] |
+| 7.12 | **Runbook automation** | ✅ Done — Attach suggested remediations to incident timeline UI. Auto-execute runbook script with spinner states & auto-resolve alert. | [x] |
 
 ---
 
