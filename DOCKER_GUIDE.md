@@ -1,0 +1,449 @@
+# ServVerse Docker Compose Guide
+
+## Prerequisites
+
+- **Podman Desktop** (with `podman compose` or `docker-compose` plugin) or **Docker Desktop**
+- At least **8 GB RAM** allocated to the container runtime
+- All component repos cloned as siblings to `servverse-repo/`:
+  ```
+  serv/
+  ├── ServCache/
+  ├── ServCloud/
+  ├── ServConsole/
+  ├── ServCron/
+  ├── ServGate/
+  ├── ServMesh/
+  ├── ServQueue/
+  ├── ServRegistry/
+  ├── ServStore/
+  ├── ServTrace/
+  ├── ServTunnel/
+  └── servverse-repo/   ← you are here
+  ```
+
+---
+
+## Running the Stack
+
+### Build and start all services
+
+```bash
+cd servverse-repo
+podman compose up --build
+```
+
+### Run in detached (background) mode
+
+```bash
+podman compose up --build -d
+```
+
+### Rebuild a single service after code changes
+
+```bash
+podman compose build servstore --no-cache
+podman compose up -d servstore
+```
+
+### Stop everything
+
+```bash
+podman compose down
+```
+
+### Full clean restart (remove images + volumes)
+
+```bash
+podman compose down --rmi local --volumes
+podman compose up --build
+```
+
+---
+
+## Service Port Map
+
+| # | Service | Port | Description |
+|---|---------|------|-------------|
+| 1 | Jaeger | 16686 | Trace UI |
+| 2 | ServTrace | 8090 | OTLP/HTTP collector & trace API |
+| 3 | ServStore | 8081 | S3-compatible object storage |
+| 4 | ServQueue | 8082 (HTTP), 61613 (STOMP) | Message broker |
+| 5 | ServCache | 8086 | Distributed cache |
+| 6 | ServGate | 8080 | API gateway / reverse proxy |
+| 7 | ServMesh | 8089 | Service mesh registry |
+| 8 | ServCron | 8087 | Distributed scheduler |
+| 9 | ServCloud | 8085 | Deployment orchestrator |
+| 10 | ServTunnel | 8443 | Tunnel relay server |
+| 11 | ServConsole | 8083 | Observability dashboard (Web UI) |
+| 12 | ServRegistry | 8088 | Package registry |
+
+---
+
+## Health Check (All Services)
+
+After `podman compose up`, wait ~30 seconds then verify all containers are healthy:
+
+```bash
+podman compose ps
+```
+
+All services should show `healthy` status. Quick curl check:
+
+```bash
+curl http://localhost:8080/healthz   # ServGate
+curl http://localhost:8081/healthz   # ServStore
+curl http://localhost:8082/healthz   # ServQueue
+curl http://localhost:8083/healthz   # ServConsole
+curl http://localhost:8085/healthz   # ServCloud
+curl http://localhost:8086/healthz   # ServCache
+curl http://localhost:8087/healthz   # ServCron
+curl http://localhost:8088/healthz   # ServRegistry
+curl http://localhost:8089/healthz   # ServMesh
+curl http://localhost:8090/healthz   # ServTrace
+curl http://localhost:8443/healthz   # ServTunnel
+curl http://localhost:16686/         # Jaeger UI
+```
+
+---
+
+## Testing Each Component
+
+### 1. Jaeger (Trace UI)
+
+Open http://localhost:16686 in a browser. After other services have processed requests, traces will appear searchable by service name.
+
+---
+
+### 2. ServTrace (OTLP Collector)
+
+```bash
+# Send a test trace span via OTLP/HTTP
+curl -X POST http://localhost:8090/v1/traces \
+  -H "Content-Type: application/json" \
+  -d '{"resourceSpans":[{"resource":{"attributes":[{"key":"service.name","value":{"stringValue":"test"}}]},"scopeSpans":[{"spans":[{"traceId":"01020304050607080102030405060708","spanId":"0102030405060708","name":"test-span","startTimeUnixNano":"1700000000000000000","endTimeUnixNano":"1700000001000000000"}]}]}]}'
+
+# Query stored traces
+curl http://localhost:8090/api/traces
+```
+
+---
+
+### 3. ServStore (Object Storage)
+
+```bash
+# Create a bucket
+curl -X PUT http://localhost:8081/test-bucket
+
+# Upload an object
+curl -X PUT http://localhost:8081/test-bucket/hello.json \
+  -H "Content-Type: application/json" \
+  -d '{"message": "hello from ServStore"}'
+
+# Download the object
+curl http://localhost:8081/test-bucket/hello.json
+
+# List buckets
+curl http://localhost:8081/
+
+# Delete the object
+curl -X DELETE http://localhost:8081/test-bucket/hello.json
+```
+
+---
+
+### 4. ServQueue (Message Broker)
+
+```bash
+# Publish a message to a topic
+curl -X POST http://localhost:8082/api/v1/publish \
+  -H "Content-Type: application/json" \
+  -d '{"topic": "orders", "payload": {"order_id": "12345", "amount": 99.99}}'
+
+# List topics
+curl http://localhost:8082/api/v1/topics
+
+# Subscribe (poll) for messages
+curl http://localhost:8082/api/v1/subscribe?topic=orders
+
+# Check broker stats
+curl http://localhost:8082/api/v1/stats
+```
+
+---
+
+### 5. ServCache (Distributed Cache)
+
+```bash
+# Set a cache entry
+curl -X PUT http://localhost:8086/api/v1/cache/mykey \
+  -H "Content-Type: application/json" \
+  -d '{"value": "hello-world", "ttl": 60}'
+
+# Get a cache entry
+curl http://localhost:8086/api/v1/cache/mykey
+
+# Delete a cache entry
+curl -X DELETE http://localhost:8086/api/v1/cache/mykey
+
+# Get cache stats
+curl http://localhost:8086/api/v1/stats
+```
+
+---
+
+### 6. ServGate (API Gateway)
+
+```bash
+# Check gateway health
+curl http://localhost:8080/healthz
+
+# View current routes
+curl http://localhost:8080/api/v1/admin/routes
+
+# Test proxying (routes configured in config.json)
+curl http://localhost:8080/api/v1/orders
+
+# Gateway metrics
+curl http://localhost:8080/api/v1/admin/metrics
+```
+
+---
+
+### 7. ServMesh (Service Mesh Registry)
+
+```bash
+# Register a service instance
+curl -X POST http://localhost:8089/api/v1/register \
+  -H "Content-Type: application/json" \
+  -d '{"service": "my-service", "address": "10.0.0.1:8080", "tags": ["v1"]}'
+
+# Discover service instances
+curl http://localhost:8089/api/v1/services/my-service
+
+# List all registered services
+curl http://localhost:8089/api/v1/services
+
+# Deregister
+curl -X DELETE http://localhost:8089/api/v1/deregister \
+  -H "Content-Type: application/json" \
+  -d '{"service": "my-service", "address": "10.0.0.1:8080"}'
+```
+
+---
+
+### 8. ServCron (Distributed Scheduler)
+
+```bash
+# Schedule a job
+curl -X POST http://localhost:8087/api/v1/jobs \
+  -H "Content-Type: application/json" \
+  -d '{"name": "cleanup", "schedule": "*/5 * * * *", "endpoint": "http://servstore:8081/healthz", "method": "GET"}'
+
+# List all jobs
+curl http://localhost:8087/api/v1/jobs
+
+# Get job execution history
+curl http://localhost:8087/api/v1/jobs/cleanup/history
+
+# Delete a job
+curl -X DELETE http://localhost:8087/api/v1/jobs/cleanup
+```
+
+---
+
+### 9. ServCloud (Deployment Orchestrator)
+
+```bash
+# Check available runtimes
+curl http://localhost:8085/api/v1/runtimes
+
+# Deploy a service (requires .srv file or config)
+curl -X POST http://localhost:8085/api/v1/deploy \
+  -H "Content-Type: application/json" \
+  -d '{"name": "my-app", "source": "main.srv", "runtime": "go"}'
+
+# List deployments
+curl http://localhost:8085/api/v1/deployments
+
+# Get deployment status
+curl http://localhost:8085/api/v1/deployments/my-app
+```
+
+---
+
+### 10. ServTunnel (Tunnel Relay Server)
+
+```bash
+# Check relay server status
+curl http://localhost:8443/healthz
+
+# The tunnel relay accepts WebSocket connections at:
+# ws://localhost:8443/ws/connect
+# Use the servtunnel CLI client to establish a tunnel:
+# servtunnel client 3000 --relay ws://localhost:8443/ws/connect --subdomain myapp
+```
+
+---
+
+### 11. ServConsole (Observability Dashboard)
+
+Open http://localhost:8083 in a browser. The dashboard provides:
+
+- Real-time service health monitoring
+- Log aggregation viewer
+- Trace visualization
+- Gateway route management
+- Cluster node overview
+- Database query console
+
+```bash
+# API: Get service discovery info
+curl http://localhost:8083/api/v1/discovery
+
+# API: Get aggregated logs
+curl http://localhost:8083/api/v1/logs
+
+# API: Get system metrics
+curl http://localhost:8083/api/v1/metrics
+```
+
+---
+
+### 12. ServRegistry (Package Registry)
+
+```bash
+# Publish a package (multipart form with tarball)
+curl -X POST http://localhost:8088/api/v1/publish \
+  -F "name=my-package" \
+  -F "version=1.0.0" \
+  -F "tarball=@my-package-1.0.0.tar.gz"
+
+# Search packages
+curl http://localhost:8088/api/packages/search?q=my-package
+
+# Get package info
+curl http://localhost:8088/api/v1/packages/my-package
+
+# List all packages
+curl http://localhost:8088/api/packages/
+
+# Web dashboard
+# Open http://localhost:8088 in browser
+```
+
+---
+
+## End-to-End Integration Test
+
+Run the existing e2e test suite (uses mock servers by default):
+
+```bash
+cd servverse-repo/tests/e2e
+go test -v ./...
+```
+
+### Manual integration flow (against live stack)
+
+```bash
+# 1. Upload config to ServStore
+curl -X PUT http://localhost:8081/demo-bucket/config.json \
+  -H "Content-Type: application/json" \
+  -d '{"app": "servverse-demo", "version": "1.0"}'
+
+# 2. Publish event to ServQueue
+curl -X POST http://localhost:8082/api/v1/publish \
+  -H "Content-Type: application/json" \
+  -d '{"topic": "deployments", "payload": {"service": "demo", "action": "deploy"}}'
+
+# 3. Cache the result
+curl -X PUT http://localhost:8086/api/v1/cache/last-deploy \
+  -H "Content-Type: application/json" \
+  -d '{"value": "demo-service-v1.0", "ttl": 300}'
+
+# 4. Verify via Gateway proxy (if route configured)
+curl http://localhost:8080/healthz
+
+# 5. Check traces in Jaeger
+# Open http://localhost:16686, search for service "servstore" or "servqueue"
+
+# 6. View everything in ServConsole
+# Open http://localhost:8083
+```
+
+---
+
+## Troubleshooting
+
+### View logs for a specific service
+
+```bash
+podman compose logs servstore
+podman compose logs -f servgate     # follow mode
+```
+
+### Restart a single service
+
+```bash
+podman compose restart servcache
+```
+
+### Service won't start — check dependencies
+
+```bash
+# See which services depend on what
+podman compose config --services
+
+# Check if a dependency is healthy
+podman compose ps
+```
+
+### Port already in use
+
+```bash
+# Find what's using the port (Windows)
+netstat -ano | findstr :8080
+
+# Kill the process or change the port mapping in docker-compose.yml
+```
+
+### Build fails with Go version errors
+
+All Dockerfiles patch `go 1.26.x` → `go 1.24` at build time via `sed`. If a new dependency adds a higher Go version constraint, re-vendor locally:
+
+```bash
+cd ../ServStore   # or whichever service
+set GOWORK=off
+go mod vendor
+# Then rebuild
+podman compose build servstore --no-cache
+```
+
+---
+
+## Architecture Overview
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    ServConsole :8083                         │
+│                 (Observability Dashboard)                    │
+└────────────┬───────────────┬────────────────────────────────┘
+             │               │
+     ┌───────▼───────┐ ┌────▼─────────┐
+     │ ServGate :8080│ │ Jaeger:16686 │
+     │ (API Gateway) │ │ (Trace UI)   │
+     └───────┬───────┘ └──────────────┘
+             │
+    ┌────────┼────────────────────────────┐
+    │        │        │        │          │
+┌───▼──┐ ┌──▼───┐ ┌──▼───┐ ┌──▼──┐ ┌────▼────┐
+│Store │ │Queue │ │Cache │ │Cron │ │Registry │
+│:8081 │ │:8082 │ │:8086 │ │:8087│ │  :8088  │
+└──────┘ └──────┘ └──────┘ └─────┘ └─────────┘
+
+    ┌────────┐  ┌────────┐  ┌────────┐  ┌───────┐
+    │ Mesh   │  │ Cloud  │  │Tunnel  │  │ Trace │
+    │ :8089  │  │ :8085  │  │ :8443  │  │ :8090 │
+    └────────┘  └────────┘  └────────┘  └───────┘
+```
+
+All services communicate over the `servverse-net` Docker bridge network and export OpenTelemetry traces to Jaeger via the OTLP endpoint.
