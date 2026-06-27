@@ -8,7 +8,29 @@
   <meta property="og:title" content="Servverse — AI-Native Microservice Platform">
   <meta property="og:description" content="Rethinking microservices from the compiler up. One coherent platform instead of dozens of tools.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vyuvaraj.github.io/servverse/">
+  <meta property="og:image" content="https://vyuvaraj.github.io/servverse/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Servverse — AI-Native Microservice Platform">
+  <meta name="twitter:description" content="Language + Gateway + Queues + Storage + Observability in one open ecosystem.">
+  <meta name="twitter:image" content="https://vyuvaraj.github.io/servverse/og-image.png">
+  <meta name="keywords" content="microservices, backend platform, API gateway, message broker, object storage, WebAssembly, WASM, observability, DSL, compiler, Go, self-hosted">
+  <meta name="author" content="Yuvaraj">
+  <link rel="canonical" href="https://vyuvaraj.github.io/servverse/">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Servverse",
+    "description": "An integrated, self-hostable backend platform with a custom language, API gateway, message broker, object storage, and observability dashboard.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "url": "https://vyuvaraj.github.io/servverse/",
+    "author": { "@type": "Person", "name": "Yuvaraj" },
+    "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▲</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,19 +38,20 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <a href="#architecture" class="skip-link">Skip to content</a>
   <div class="aurora-bg"></div>
   <div class="particles" id="particles"></div>
 
   <!-- Navbar -->
   <header class="navbar" id="navbar">
-    <div class="logo-area">
+    <a href="index.html" class="logo-area" aria-label="Servverse home">
       <div class="logo-icon">▲</div>
       <div class="logo-text">
         <h1>Servverse</h1>
         <span>AI-Native Backend Infrastructure</span>
       </div>
-    </div>
-    <nav class="nav-links" id="nav-links">
+    </a>
+    <nav class="nav-links" id="nav-links" role="navigation" aria-label="Main navigation">
       <a href="#architecture">Architecture</a>
       <a href="#components">Components</a>
       <a href="#showcase">Showcase</a>
@@ -179,7 +202,7 @@
     <!-- Architecture Flow Diagram -->
     <div class="arch-diagram-container glass-card reveal">
       <h3 style="text-align:center;margin-bottom:2rem;font-size:1.4rem;font-weight:700;">Traffic & Control Flow</h3>
-      <svg viewBox="0 0 900 480" fill="none" xmlns="http://www.w3.org/2000/svg" class="arch-svg">
+      <svg viewBox="0 0 900 480" fill="none" xmlns="http://www.w3.org/2000/svg" class="arch-svg" role="img" aria-label="Architecture diagram showing traffic flow from Client through ServGate API Gateway to Serv-lang compiled services, then to ServStore object storage and ServQueue message broker, with ServConsole providing unified observability">
         <defs>
           <filter id="glow-purple" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="8" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
           <filter id="glow-blue" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="8" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
@@ -255,7 +278,7 @@
       <p>Select a component to inspect its features and rationale.</p>
     </div>
     <div class="tab-system reveal">
-      <div class="tab-buttons">
+      <div class="tab-buttons" role="tablist" aria-label="Component details">
         <button class="tab-btn active" data-target="serv-lang">Serv-lang</button>
         <button class="tab-btn" data-target="servgate">ServGate</button>
         <button class="tab-btn" data-target="servmesh">ServMesh</button>
@@ -464,15 +487,14 @@
           <span class="window-title">Full Stack (Docker Compose)</span>
         </div>
         <div class="terminal-body">
-          <p class="cmd-line"><span class="prompt">$</span> git clone https://github.com/vyuvaraj/Servverse-Demo.git</p>
-          <p class="cmd-line"><span class="prompt">$</span> cd Servverse-Demo</p>
-          <p class="cmd-line"><span class="prompt">$</span> docker compose up --build</p>
+          <p class="cmd-line"><span class="prompt">$</span> git clone https://github.com/vyuvaraj/servverse.git</p>
+          <p class="cmd-line"><span class="prompt">$</span> cd servverse</p>
+          <p class="cmd-line"><span class="prompt">$</span> podman compose up --build</p>
           <p class="output-line">&nbsp;</p>
-          <p class="output-line">Compiling ServStore...</p>
-          <p class="output-line">Compiling ServQueue...</p>
-          <p class="output-line">Compiling ServGate...</p>
-          <p class="output-line">Compiling ServConsole...</p>
-          <p class="output-line success">✓ All services running</p>
+          <p class="output-line">Building ServStore, ServQueue, ServGate...</p>
+          <p class="output-line">Building ServCache, ServCron, ServMesh...</p>
+          <p class="output-line">Building ServConsole, ServRegistry, ServTunnel...</p>
+          <p class="output-line success">✓ All 12 services running (ports 8080-8090, 8443)</p>
         </div>
       </div>
       <div class="terminal glass-card reveal">
@@ -509,6 +531,7 @@
         <div class="port-item"><span class="port-name">ServCron</span><code>:8087</code></div>
         <div class="port-item"><span class="port-name">ServRegistry</span><code>:8088</code></div>
         <div class="port-item"><span class="port-name">ServMesh</span><code>:8089</code></div>
+        <div class="port-item"><span class="port-name">ServTrace</span><code>:8090</code></div>
         <div class="port-item"><span class="port-name">Jaeger UI</span><code>:16686</code></div>
       </div>
     </div>
@@ -596,8 +619,10 @@
       <div class="footer-brand"><div class="logo-icon small">▲</div><span>Servverse</span></div>
       <div class="footer-links">
         <a href="https://github.com/vyuvaraj/Serv-lang" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://github.com/vyuvaraj/Serv-lang/blob/main/docs/language-reference.md" target="_blank" rel="noopener">Docs</a>
+        <a href="https://github.com/vyuvaraj/Serv-lang/blob/main/docs/language-reference.md" target="_blank" rel="noopener">Language Docs</a>
         <a href="https://github.com/vyuvaraj/Serv-lang/tree/main/examples" target="_blank" rel="noopener">Examples</a>
+        <a href="https://github.com/vyuvaraj/servverse/blob/main/DOCKER_GUIDE.md" target="_blank" rel="noopener">Docker Guide</a>
+        <a href="#blog">Blog</a>
       </div>
       <p class="footer-copy">© 2026 Servverse. Open source under Apache 2.0. Built by Yuvaraj.</p>
     </div>
