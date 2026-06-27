@@ -157,20 +157,16 @@ curl -X DELETE http://localhost:8081/test-bucket/hello.json
 # Publish a message to a topic
 curl -X POST http://localhost:8082/api/v1/publish \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer secret-token" \
   -d '{"topic": "orders", "payload": {"order_id": "12345", "amount": 99.99}}'
 
 # List topics
-curl http://localhost:8082/api/v1/topics \
-  -H "Authorization: Bearer secret-token"
+curl http://localhost:8082/api/v1/topics
 
 # Subscribe (poll) for messages
-curl http://localhost:8082/api/v1/subscribe?topic=orders \
-  -H "Authorization: Bearer secret-token"
+curl http://localhost:8082/api/v1/subscribe?topic=orders
 
 # Check broker stats
-curl http://localhost:8082/api/v1/stats \
-  -H "Authorization: Bearer secret-token"
+curl http://localhost:8082/api/v1/stats
 ```
 
 ---
@@ -354,10 +350,9 @@ curl -X PUT http://localhost:8081/demo-bucket/config.json \
   -H "Content-Type: application/json" \
   -d '{"app": "servverse-demo", "version": "1.0"}'
 
-# 2. Publish event to ServQueue (requires Bearer token)
+# 2. Publish event to ServQueue (no auth in dev mode)
 curl -X POST http://localhost:8082/api/v1/publish \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer secret-token" \
   -d '{"topic": "deployments", "payload": {"service": "demo", "action": "deploy"}}'
 
 # 3. Cache the result (no auth)
@@ -379,42 +374,54 @@ curl http://localhost:8080/healthz
 
 ## Authentication
 
-In local dev mode (docker-compose), most services run **without authentication** for ease of testing. The exception is **ServQueue**, which has a hardcoded API token.
+All services use the standardized `ServShared.AuthMiddleware` for JWT authentication. The behavior is controlled by a single environment variable:
 
-### Auth requirements per service
+### How it works
 
-| Service | Auth Required? | Token |
-|---------|---------------|-------|
-| ServGate | No | — |
-| ServStore | No (auth disabled by default) | — |
-| **ServQueue** | **Yes** | `Authorization: Bearer secret-token` |
-| ServCache | No | — |
-| ServCron | No | — |
-| ServCloud | No | — |
-| ServMesh | No (JWT disabled when `SERV_JWT_SECRET` is unset) | — |
-| ServTunnel | No | — |
-| ServTrace | No | — |
-| ServConsole | No | — |
-| ServRegistry | No | — |
+- **`SERV_JWT_SECRET` not set (default in docker-compose)** → All requests pass through. No auth required.
+- **`SERV_JWT_SECRET` set to any value** → All API routes require a valid `Authorization: Bearer <jwt>` header.
+- **`/healthz` and `/readyz`** → Always accessible without auth regardless of configuration.
 
-### Using the ServQueue token
+### Auth requirements per service (local dev mode)
 
-All API calls to ServQueue (`localhost:8082`) require the auth header:
-
-```bash
-curl -H "Authorization: Bearer secret-token" http://localhost:8082/api/v1/topics
-```
+| Service | Auth Required? |
+|---------|---------------|
+| All services | **No** — `SERV_JWT_SECRET` is unset in docker-compose |
 
 ### Enabling JWT auth (production)
 
-To enable JWT across all services, set `SERV_JWT_SECRET` to a shared secret in docker-compose:
+Set the shared secret in docker-compose or as an environment variable:
 
 ```yaml
+# docker-compose.yml — add to each service:
 environment:
-  - SERV_JWT_SECRET=your-production-secret-key
+  - SERV_JWT_SECRET=your-strong-production-secret
 ```
 
-Then generate a valid JWT signed with HMAC-SHA256 using that secret. All services that import `ServShared` will validate the token automatically.
+Or run with an environment variable:
+
+```bash
+SERV_JWT_SECRET=my-secret podman compose up
+```
+
+### Generating a token
+
+Use any JWT library to sign a token with HMAC-SHA256 and the shared secret:
+
+```json
+{
+  "username": "admin",
+  "roles": ["admin"],
+  "iss": "servverse",
+  "exp": 1750000000
+}
+```
+
+Then use it in requests:
+
+```bash
+curl -H "Authorization: Bearer <your-jwt-token>" http://localhost:8082/api/v1/topics
+```
 
 ---
 
