@@ -24,7 +24,6 @@ services:
       - "8090:8090"
     environment:
       - SERV_OTLP_ENDPOINT=http://jaeger:4318
-      - SERV_JWT_SECRET=shared-demo-signing-key
     networks:
       - servverse-net
     depends_on:
@@ -47,7 +46,6 @@ services:
     command: ["--port", "8081", "--data-dir", "/data"]
     environment:
       - SERV_OTLP_ENDPOINT=http://jaeger:4318
-      - SERV_JWT_SECRET=shared-demo-signing-key
     networks:
       - servverse-net
     depends_on:
@@ -68,7 +66,6 @@ services:
       - "61613:61613" # STOMP TCP
     environment:
       - SERV_OTLP_ENDPOINT=http://jaeger:4318
-      - SERV_JWT_SECRET=shared-demo-signing-key
     networks:
       - servverse-net
     depends_on:
@@ -88,7 +85,6 @@ services:
       - "8086:8086"
     environment:
       - SERV_OTLP_ENDPOINT=http://jaeger:4318
-      - SERV_JWT_SECRET=shared-demo-signing-key
     networks:
       - servverse-net
     depends_on:
@@ -129,7 +125,6 @@ services:
       - "8089:8089"
     environment:
       - SERV_OTLP_ENDPOINT=http://jaeger:4318
-      - SERV_JWT_SECRET=shared-demo-signing-key
     networks:
       - servverse-net
     depends_on:
@@ -150,7 +145,6 @@ services:
     environment:
       - PORT=8087
       - SERV_OTLP_ENDPOINT=http://jaeger:4318
-      - SERV_JWT_SECRET=shared-demo-signing-key
     networks:
       - servverse-net
     depends_on:
@@ -170,7 +164,6 @@ services:
       - "8085:8085"
     environment:
       - SERV_OTLP_ENDPOINT=http://jaeger:4318
-      - SERV_JWT_SECRET=shared-demo-signing-key
     networks:
       - servverse-net
     depends_on:
@@ -192,7 +185,6 @@ services:
       - "8443:8443"
     environment:
       - SERV_OTLP_ENDPOINT=http://jaeger:4318
-      - SERV_JWT_SECRET=shared-demo-signing-key
     networks:
       - servverse-net
     depends_on:

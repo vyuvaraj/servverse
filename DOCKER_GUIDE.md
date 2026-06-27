@@ -157,16 +157,20 @@ curl -X DELETE http://localhost:8081/test-bucket/hello.json
 # Publish a message to a topic
 curl -X POST http://localhost:8082/api/v1/publish \
   -H "Content-Type: application/json" \
+  -H "Authorization: Bearer secret-token" \
   -d '{"topic": "orders", "payload": {"order_id": "12345", "amount": 99.99}}'
 
 # List topics
-curl http://localhost:8082/api/v1/topics
+curl http://localhost:8082/api/v1/topics \
+  -H "Authorization: Bearer secret-token"
 
 # Subscribe (poll) for messages
-curl http://localhost:8082/api/v1/subscribe?topic=orders
+curl http://localhost:8082/api/v1/subscribe?topic=orders \
+  -H "Authorization: Bearer secret-token"
 
 # Check broker stats
-curl http://localhost:8082/api/v1/stats
+curl http://localhost:8082/api/v1/stats \
+  -H "Authorization: Bearer secret-token"
 ```
 
 ---
@@ -345,22 +349,23 @@ go test -v ./...
 ### Manual integration flow (against live stack)
 
 ```bash
-# 1. Upload config to ServStore
+# 1. Upload config to ServStore (no auth in local dev mode)
 curl -X PUT http://localhost:8081/demo-bucket/config.json \
   -H "Content-Type: application/json" \
   -d '{"app": "servverse-demo", "version": "1.0"}'
 
-# 2. Publish event to ServQueue
+# 2. Publish event to ServQueue (requires Bearer token)
 curl -X POST http://localhost:8082/api/v1/publish \
   -H "Content-Type: application/json" \
+  -H "Authorization: Bearer secret-token" \
   -d '{"topic": "deployments", "payload": {"service": "demo", "action": "deploy"}}'
 
-# 3. Cache the result
+# 3. Cache the result (no auth)
 curl -X PUT http://localhost:8086/api/v1/cache/last-deploy \
   -H "Content-Type: application/json" \
   -d '{"value": "demo-service-v1.0", "ttl": 300}'
 
-# 4. Verify via Gateway proxy (if route configured)
+# 4. Verify via Gateway
 curl http://localhost:8080/healthz
 
 # 5. Check traces in Jaeger
@@ -369,6 +374,47 @@ curl http://localhost:8080/healthz
 # 6. View everything in ServConsole
 # Open http://localhost:8083
 ```
+
+---
+
+## Authentication
+
+In local dev mode (docker-compose), most services run **without authentication** for ease of testing. The exception is **ServQueue**, which has a hardcoded API token.
+
+### Auth requirements per service
+
+| Service | Auth Required? | Token |
+|---------|---------------|-------|
+| ServGate | No | — |
+| ServStore | No (auth disabled by default) | — |
+| **ServQueue** | **Yes** | `Authorization: Bearer secret-token` |
+| ServCache | No | — |
+| ServCron | No | — |
+| ServCloud | No | — |
+| ServMesh | No (JWT disabled when `SERV_JWT_SECRET` is unset) | — |
+| ServTunnel | No | — |
+| ServTrace | No | — |
+| ServConsole | No | — |
+| ServRegistry | No | — |
+
+### Using the ServQueue token
+
+All API calls to ServQueue (`localhost:8082`) require the auth header:
+
+```bash
+curl -H "Authorization: Bearer secret-token" http://localhost:8082/api/v1/topics
+```
+
+### Enabling JWT auth (production)
+
+To enable JWT across all services, set `SERV_JWT_SECRET` to a shared secret in docker-compose:
+
+```yaml
+environment:
+  - SERV_JWT_SECRET=your-production-secret-key
+```
+
+Then generate a valid JWT signed with HMAC-SHA256 using that secret. All services that import `ServShared` will validate the token automatically.
 
 ---
 
