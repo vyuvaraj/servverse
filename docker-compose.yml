@@ -213,9 +213,8 @@ services:
     ports:
       - "8083:8083"
     environment:
-      - SERV_JWT_SECRET=shared-demo-signing-key
       - SERV_OTLP_ENDPOINT=http://jaeger:4318
-      - SERVVERSE_DISCOVERY={"gate":"http://servgate:8080","store":"http://servstore:8081","queue":"http://servqueue:8082","cache":"http://servcache:8086","cron":"http://servcron:8087","mesh":"http://servmesh:8089","cloud":"http://servcloud:8085","tunnel":"http://servtunnel:8443","trace":"http://servtrace:8090","registry":"http://servregistry:8088","otlp_endpoint":"http://jaeger:4318","jwt_secret":"shared-demo-signing-key"}
+      - SERVVERSE_DISCOVERY={"gate":"http://servgate:8080","store":"http://servstore:8081","queue":"http://servqueue:8082","cache":"http://servcache:8086","cron":"http://servcron:8087","mesh":"http://servmesh:8089","cloud":"http://servcloud:8085","tunnel":"http://servtunnel:8443","trace":"http://servtrace:8090","registry":"http://servregistry:8088","otlp_endpoint":"http://jaeger:4318"}
     networks:
       - servverse-net
     depends_on:
