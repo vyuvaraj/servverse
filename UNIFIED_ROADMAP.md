@@ -26,12 +26,12 @@
 | **ServTrace** | Phase 1 | 8 | 0 | **100%** ✅ | █████████████████████ |
 | **ServShared** | Auth middleware | 4 | 0 | **100%** ✅ | █████████████████████ |
 | | | | | | |
-| **ServAuth** | Proposed — Phase 1 | 3 | 7 | **30%** | ███░░░░░░░░░░░░░░░░░ |
-| **ServDB** | Proposed — Phase 1 | 3 | 6 | **33%** | ███░░░░░░░░░░░░░░░░░ |
-| **ServMail** | Proposed — Phase 1 | 2 | 8 | **20%** | ██░░░░░░░░░░░░░░░░░░ |
-| **ServFlow** | Proposed — Phase 1 | 3 | 7 | **30%** | ███░░░░░░░░░░░░░░░░░ |
+| **ServAuth** | Proposed — Phase 1 | 4 | 6 | **40%** | ████░░░░░░░░░░░░░░░░ |
+| **ServDB** | Proposed — Phase 1 | 4 | 5 | **44%** | ████░░░░░░░░░░░░░░░░ |
+| **ServMail** | Proposed — Phase 1 | 3 | 7 | **30%** | ███░░░░░░░░░░░░░░░░░ |
+| **ServFlow** | Proposed — Phase 1 | 5 | 5 | **50%** | █████░░░░░░░░░░░░░░░ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **408** | **33** | **93%** | ███████████████████░░ |
+| **TOTAL ECOSYSTEM** | | **413** | **28** | **94%** | ███████████████████░░ |
 
 ---
 
@@ -175,7 +175,7 @@ These are genuinely missing architectural pieces that justify standalone service
 | SA.5 | **MFA support** — TOTP, WebAuthn/passkey second factors | Medium | [ ] |
 | SA.6 | **Password reset & account lockout** — Self-service recovery flows | High | [x] |
 | SA.7 | **User management UI in ServConsole** — CRUD, role assignment, session view | Medium | [ ] |
-| SA.8 | **Serv-lang integration** — `auth.register()`, `auth.login()`, `auth.currentUser()` builtins | High | [ ] |
+| SA.8 | **Serv-lang integration** — `auth.register()`, `auth.login()`, `auth.currentUser()` builtins | High | [x] |
 | SA.9 | **API key issuance** — Scoped long-lived tokens for service accounts | Medium | [ ] |
 | SA.10 | **Session management** — Token refresh, revocation, device tracking | Medium | [ ] |
 
@@ -197,7 +197,7 @@ These are genuinely missing architectural pieces that justify standalone service
 | SDB.6 | **Database health in ServConsole** — Connection pool stats, active queries, deadlock detection | Medium | [ ] |
 | SDB.7 | **Multi-database support** — PostgreSQL, MySQL, SQLite proxying in one process | High | [x] |
 | SDB.8 | **Query caching** — Configurable result caching with invalidation via ServCache | Low | [ ] |
-| SDB.9 | **Serv-lang integration** — `database "servdb://pool-name/dbname"` connection string | High | [ ] |
+| SDB.9 | **Serv-lang integration** — `database "servdb://pool-name/dbname"` connection string | High | [x] |
 
 **Architecture:** Sits between services and databases as a TCP proxy. Single binary, connects upstream to real databases, downstream services connect to ServDB. Emits OTel spans per query.
 
@@ -217,7 +217,7 @@ These are genuinely missing architectural pieces that justify standalone service
 | SM.6 | **Notification preferences** — Per-user channel preferences (opt-in/out per category) | Low | [ ] |
 | SM.7 | **Rate limiting** — Per-recipient throttling to prevent spam/abuse | Medium | [ ] |
 | SM.8 | **ServConsole integration** — Delivery dashboard, template editor, bounce management | Medium | [ ] |
-| SM.9 | **Serv-lang integration** — `mail.send(to, template, data)` and `notify(channel, message)` builtins | High | [ ] |
+| SM.9 | **Serv-lang integration** — `mail.send(to, template, data)` and `notify(channel, message)` builtins | High | [x] |
 
 **Architecture:** HTTP API + ServQueue consumer. Receives send requests, renders templates, delivers via configured provider. Uses ServStore for template storage and delivery logs.
 
@@ -236,8 +236,8 @@ These are genuinely missing architectural pieces that justify standalone service
 | SF.5 | **Retry policies** — Per-step configurable retry with exponential backoff | Medium | [ ] |
 | SF.6 | **Timeout & deadline enforcement** — Kill or escalate steps exceeding time limits | Medium | [ ] |
 | SF.7 | **Visual workflow editor in ServConsole** — Drag-and-drop DAG builder | Low | [ ] |
-| SF.8 | **Event-triggered workflows** — Start workflows from ServQueue messages or ServGate webhooks | High | [ ] |
-| SF.9 | **Serv-lang integration** — `workflow "onboarding" { step(...) -> step(...) -> step(...) }` syntax | High | [ ] |
+| SF.8 | **Event-triggered workflows** — Start workflows from ServQueue messages or ServGate webhooks | High | [x] |
+| SF.9 | **Serv-lang integration** — `workflow "onboarding" { step(...) -> step(...) -> step(...) }` syntax | High | [x] |
 | SF.10 | **Execution history & replay** — Full audit trail, ability to re-run failed workflows | Medium | [ ] |
 
 **Architecture:** Stateful orchestrator backed by ServStore for checkpoints. Triggers steps via ServQueue messages. ServCron handles scheduled workflow triggers. Differs from ServCron's DAG pipelines by supporting long-running (hours/days), stateful, and human-in-the-loop processes.
