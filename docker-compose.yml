@@ -22,13 +22,8 @@ services:
       context: ../ServTrace
     ports:
       - "8090:8090"
-    environment:
-      - SERV_OTLP_ENDPOINT=http://jaeger:4318
     networks:
       - servverse-net
-    depends_on:
-      jaeger:
-        condition: service_healthy
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8090/healthz"]
       interval: 5s
@@ -45,11 +40,11 @@ services:
       - "8081:8081"
     command: ["--port", "8081", "--data-dir", "/data"]
     environment:
-      - SERV_OTLP_ENDPOINT=http://jaeger:4318
+      - SERV_OTLP_ENDPOINT=http://servtrace:8090
     networks:
       - servverse-net
     depends_on:
-      jaeger:
+      servtrace:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8081/healthz"]
@@ -65,11 +60,11 @@ services:
       - "8082:8082"   # HTTP Admin API
       - "61613:61613" # STOMP TCP
     environment:
-      - SERV_OTLP_ENDPOINT=http://jaeger:4318
+      - SERV_OTLP_ENDPOINT=http://servtrace:8090
     networks:
       - servverse-net
     depends_on:
-      jaeger:
+      servtrace:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8082/healthz"]
@@ -84,11 +79,11 @@ services:
     ports:
       - "8086:8086"
     environment:
-      - SERV_OTLP_ENDPOINT=http://jaeger:4318
+      - SERV_OTLP_ENDPOINT=http://servtrace:8090
     networks:
       - servverse-net
     depends_on:
-      jaeger:
+      servtrace:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8086/healthz"]
@@ -105,11 +100,11 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - SERV_OTLP_ENDPOINT=http://jaeger:4318
+      - SERV_OTLP_ENDPOINT=http://servtrace:8090
     networks:
       - servverse-net
     depends_on:
-      jaeger:
+      servtrace:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/healthz"]
@@ -124,11 +119,11 @@ services:
     ports:
       - "8089:8089"
     environment:
-      - SERV_OTLP_ENDPOINT=http://jaeger:4318
+      - SERV_OTLP_ENDPOINT=http://servtrace:8090
     networks:
       - servverse-net
     depends_on:
-      jaeger:
+      servtrace:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8089/healthz"]
@@ -144,11 +139,11 @@ services:
       - "8087:8087"
     environment:
       - PORT=8087
-      - SERV_OTLP_ENDPOINT=http://jaeger:4318
+      - SERV_OTLP_ENDPOINT=http://servtrace:8090
     networks:
       - servverse-net
     depends_on:
-      jaeger:
+      servtrace:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8087/healthz"]
@@ -163,11 +158,11 @@ services:
     ports:
       - "8085:8085"
     environment:
-      - SERV_OTLP_ENDPOINT=http://jaeger:4318
+      - SERV_OTLP_ENDPOINT=http://servtrace:8090
     networks:
       - servverse-net
     depends_on:
-      jaeger:
+      servtrace:
         condition: service_healthy
       servgate:
         condition: service_healthy
@@ -184,11 +179,11 @@ services:
     ports:
       - "8443:8443"
     environment:
-      - SERV_OTLP_ENDPOINT=http://jaeger:4318
+      - SERV_OTLP_ENDPOINT=http://servtrace:8090
     networks:
       - servverse-net
     depends_on:
-      jaeger:
+      servtrace:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8443/healthz"]
@@ -205,12 +200,12 @@ services:
     ports:
       - "8083:8083"
     environment:
-      - SERV_OTLP_ENDPOINT=http://jaeger:4318
+      - SERV_OTLP_ENDPOINT=http://servtrace:8090
       - SERVVERSE_DISCOVERY={"gate":"http://servgate:8080","store":"http://servstore:8081","queue":"http://servqueue:8082","cache":"http://servcache:8086","cron":"http://servcron:8087","mesh":"http://servmesh:8089","cloud":"http://servcloud:8085","tunnel":"http://servtunnel:8443","trace":"http://servtrace:8090","registry":"http://servregistry:8088","otlp_endpoint":"http://jaeger:4318"}
     networks:
       - servverse-net
     depends_on:
-      jaeger:
+      servtrace:
         condition: service_healthy
       servstore:
         condition: service_healthy
@@ -242,7 +237,7 @@ services:
       - SERV_STORE_ENDPOINT=http://servstore:8081
       - SERV_STORE_ACCESS_KEY=admin
       - SERV_STORE_SECRET_KEY=admin123
-      - SERV_OTLP_ENDPOINT=http://jaeger:4318
+      - SERV_OTLP_ENDPOINT=http://servtrace:8090
     networks:
       - servverse-net
     depends_on:
