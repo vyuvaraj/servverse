@@ -26,12 +26,12 @@
 | **ServTrace** | Phase 1 | 8 | 0 | **100%** ✅ | █████████████████████ |
 | **ServShared** | Auth middleware | 4 | 0 | **100%** ✅ | █████████████████████ |
 | | | | | | |
-| **ServAuth** | Proposed — Phase 1 | 8 | 2 | **80%** | ████████████████░░░░ |
-| **ServDB** | Proposed — Phase 1 | 7 | 2 | **78%** | ████████████████░░░░ |
-| **ServMail** | Proposed — Phase 1 | 6 | 4 | **60%** | ████████████░░░░░░░░ |
-| **ServFlow** | Proposed — Phase 1 | 9 | 1 | **90%** | ██████████████████░░ |
+| **ServAuth** | Proposed — Phase 1 | 9 | 1 | **90%** | ██████████████████░░ |
+| **ServDB** | Proposed — Phase 1 | 8 | 1 | **89%** | ██████████████████░░ |
+| **ServMail** | Proposed — Phase 1 | 8 | 2 | **80%** | ████████████████░░░░ |
+| **ServFlow** | Proposed — Phase 1 | 10 | 0 | **100%** ✅ | █████████████████████ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **427** | **14** | **97%** | ████████████████████░ |
+| **TOTAL ECOSYSTEM** | | **432** | **9** | **98%** | ████████████████████░ |
 
 ---
 
@@ -171,7 +171,7 @@ These are genuinely missing architectural pieces that justify standalone service
 | SA.1 | **User registration & login** — Email/password + magic link authentication | High | [x] |
 | SA.2 | **OAuth2/OIDC provider** — Issue tokens to third-party applications | High | [x] |
 | SA.3 | **Multi-tenant user directories** — Isolated user pools per tenant/org | Medium | [x] |
-| SA.4 | **Social login** — Google, GitHub, GitLab OAuth2 federation | Medium | [ ] |
+| SA.4 | **Social login** — Google, GitHub, GitLab OAuth2 federation | Medium | [x] |
 | SA.5 | **MFA support** — TOTP, WebAuthn/passkey second factors | Medium | [x] |
 | SA.6 | **Password reset & account lockout** — Self-service recovery flows | High | [x] |
 | SA.7 | **User management UI in ServConsole** — CRUD, role assignment, session view | Medium | [ ] |
@@ -196,7 +196,7 @@ These are genuinely missing architectural pieces that justify standalone service
 | SDB.5 | **Schema migration orchestration** — Versioned migrations with rollback, coordinated across services | Medium | [x] |
 | SDB.6 | **Database health in ServConsole** — Connection pool stats, active queries, deadlock detection | Medium | [ ] |
 | SDB.7 | **Multi-database support** — PostgreSQL, MySQL, SQLite proxying in one process | High | [x] |
-| SDB.8 | **Query caching** — Configurable result caching with invalidation via ServCache | Low | [ ] |
+| SDB.8 | **Query caching** — Configurable result caching with invalidation via ServCache | Low | [x] |
 | SDB.9 | **Serv-lang integration** — `database "servdb://pool-name/dbname"` connection string | High | [x] |
 
 **Architecture:** Sits between services and databases as a TCP proxy. Single binary, connects upstream to real databases, downstream services connect to ServDB. Emits OTel spans per query.
@@ -212,9 +212,9 @@ These are genuinely missing architectural pieces that justify standalone service
 | SM.1 | **Multi-channel delivery** — Email (SMTP/SES/SendGrid), Slack, webhook, SMS (Twilio) | High | [x] |
 | SM.2 | **Template engine** — Handlebars/Go-template rendering with variable injection | High | [x] |
 | SM.3 | **Template versioning** — Templates stored in ServStore, versioned and A/B testable | Medium | [x] |
-| SM.4 | **Delivery tracking** — Open/click/bounce/complaint tracking per message | Medium | [ ] |
+| SM.4 | **Delivery tracking** — Open/click/bounce/complaint tracking per message | Medium | [x] |
 | SM.5 | **Retry via ServQueue** — Failed deliveries published to DLQ, automatic retry with backoff | Medium | [x] |
-| SM.6 | **Notification preferences** — Per-user channel preferences (opt-in/out per category) | Low | [ ] |
+| SM.6 | **Notification preferences** — Per-user channel preferences (opt-in/out per category) | Low | [x] |
 | SM.7 | **Rate limiting** — Per-recipient throttling to prevent spam/abuse | Medium | [x] |
 | SM.8 | **ServConsole integration** — Delivery dashboard, template editor, bounce management | Medium | [ ] |
 | SM.9 | **Serv-lang integration** — `mail.send(to, template, data)` and `notify(channel, message)` builtins | High | [x] |
@@ -235,7 +235,7 @@ These are genuinely missing architectural pieces that justify standalone service
 | SF.4 | **Human approval gates** — Pause workflow pending manual approval via API/Console | Medium | [x] |
 | SF.5 | **Retry policies** — Per-step configurable retry with exponential backoff | Medium | [x] |
 | SF.6 | **Timeout & deadline enforcement** — Kill or escalate steps exceeding time limits | Medium | [x] |
-| SF.7 | **Visual workflow editor in ServConsole** — Drag-and-drop DAG builder | Low | [ ] |
+| SF.7 | **Visual workflow editor in ServConsole** — Drag-and-drop DAG builder | Low | [x] |
 | SF.8 | **Event-triggered workflows** — Start workflows from ServQueue messages or ServGate webhooks | High | [x] |
 | SF.9 | **Serv-lang integration** — `workflow "onboarding" { step(...) -> step(...) -> step(...) }` syntax | High | [x] |
 | SF.10 | **Execution history & replay** — Full audit trail, ability to re-run failed workflows | Medium | [x] |
