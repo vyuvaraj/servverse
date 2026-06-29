@@ -29,9 +29,9 @@
 | **ServAuth** | Proposed — Phase 1 | 4 | 6 | **40%** | ████░░░░░░░░░░░░░░░░ |
 | **ServDB** | Proposed — Phase 1 | 4 | 5 | **44%** | ████░░░░░░░░░░░░░░░░ |
 | **ServMail** | Proposed — Phase 1 | 4 | 6 | **40%** | ████░░░░░░░░░░░░░░░░ |
-| **ServFlow** | Proposed — Phase 1 | 7 | 3 | **70%** | ███████░░░░░░░░░░░░░ |
+| **ServFlow** | Proposed — Phase 1 | 8 | 2 | **80%** | ████████░░░░░░░░░░░░ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **416** | **25** | **94%** | ███████████████████░░ |
+| **TOTAL ECOSYSTEM** | | **417** | **24** | **95%** | ████████████████████░ |
 
 ---
 
@@ -232,7 +232,7 @@ These are genuinely missing architectural pieces that justify standalone service
 | SF.1 | **DAG-based workflow definitions** — Multi-step processes with fan-out/fan-in support | High | [x] |
 | SF.2 | **Durable execution** — State checkpointing, survives restarts mid-workflow | High | [x] |
 | SF.3 | **Compensation / rollback** — Saga pattern with automatic undo on failure | High | [x] |
-| SF.4 | **Human approval gates** — Pause workflow pending manual approval via API/Console | Medium | [ ] |
+| SF.4 | **Human approval gates** — Pause workflow pending manual approval via API/Console | Medium | [x] |
 | SF.5 | **Retry policies** — Per-step configurable retry with exponential backoff | Medium | [x] |
 | SF.6 | **Timeout & deadline enforcement** — Kill or escalate steps exceeding time limits | Medium | [x] |
 | SF.7 | **Visual workflow editor in ServConsole** — Drag-and-drop DAG builder | Low | [ ] |
