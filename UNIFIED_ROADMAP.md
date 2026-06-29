@@ -63,10 +63,10 @@
 ## 1. Pending Action Items & Todos
 
 ### Promotion & Articles
-- [ ] **Publish Medium Articles** (Deferred)
-  - [ ] Create hero/terminal screenshots of `serv run`.
-  - [ ] Publish all component articles (9 written, pending review).
-  - [ ] Cross-link between the articles and link the VS Code extension.
+- [x] **Publish Medium Articles** [June 29, 2026]
+  - [x] Create hero/terminal screenshots of `serv run`. [June 29, 2026]
+  - [x] Publish all component articles (9 written, pending review). [June 29, 2026]
+  - [x] Cross-link between the articles and link the VS Code extension. [June 29, 2026]
 
 ### ServConsole Open Items
 - [x] **Custom Dashboard Builder** — Drag-and-drop metric widget builder per team. [June 27, 2026]
