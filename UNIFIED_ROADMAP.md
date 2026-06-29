@@ -26,12 +26,12 @@
 | **ServTrace** | Phase 1 | 8 | 0 | **100%** ✅ | █████████████████████ |
 | **ServShared** | Auth middleware | 4 | 0 | **100%** ✅ | █████████████████████ |
 | | | | | | |
-| **ServAuth** | Proposed — Phase 1 | 4 | 6 | **40%** | ████░░░░░░░░░░░░░░░░ |
-| **ServDB** | Proposed — Phase 1 | 4 | 5 | **44%** | ████░░░░░░░░░░░░░░░░ |
-| **ServMail** | Proposed — Phase 1 | 4 | 6 | **40%** | ████░░░░░░░░░░░░░░░░ |
+| **ServAuth** | Proposed — Phase 1 | 6 | 4 | **60%** | ████████████░░░░░░░░ |
+| **ServDB** | Proposed — Phase 1 | 6 | 3 | **67%** | █████████████░░░░░░░ |
+| **ServMail** | Proposed — Phase 1 | 5 | 5 | **50%** | ██████████░░░░░░░░░░ |
 | **ServFlow** | Proposed — Phase 1 | 8 | 2 | **80%** | ████████░░░░░░░░░░░░ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **417** | **24** | **95%** | ████████████████████░ |
+| **TOTAL ECOSYSTEM** | | **422** | **19** | **96%** | ████████████████████░ |
 
 ---
 
@@ -176,8 +176,8 @@ These are genuinely missing architectural pieces that justify standalone service
 | SA.6 | **Password reset & account lockout** — Self-service recovery flows | High | [x] |
 | SA.7 | **User management UI in ServConsole** — CRUD, role assignment, session view | Medium | [ ] |
 | SA.8 | **Serv-lang integration** — `auth.register()`, `auth.login()`, `auth.currentUser()` builtins | High | [x] |
-| SA.9 | **API key issuance** — Scoped long-lived tokens for service accounts | Medium | [ ] |
-| SA.10 | **Session management** — Token refresh, revocation, device tracking | Medium | [ ] |
+| SA.9 | **API key issuance** — Scoped long-lived tokens for service accounts | Medium | [x] |
+| SA.10 | **Session management** — Token refresh, revocation, device tracking | Medium | [x] |
 
 **Architecture:** Single Go binary, uses ServStore for user data persistence, ServShared for JWT signing, integrates with ServConsole for admin UI. Dev mode (no SERV_JWT_SECRET) = open access with mock user.
 
@@ -191,8 +191,8 @@ These are genuinely missing architectural pieces that justify standalone service
 |---|---------|----------|--------|
 | SDB.1 | **Connection pooling** — Shared pool across services (PgBouncer-style, multi-database) | High | [x] |
 | SDB.2 | **Query routing** — Automatic read replica routing, write-to-primary | High | [x] |
-| SDB.3 | **Slow query detection** — Emit spans to ServTrace for queries exceeding threshold | Medium | [ ] |
-| SDB.4 | **Query analytics** — Track query patterns, frequency, and cost per service | Medium | [ ] |
+| SDB.3 | **Slow query detection** — Emit spans to ServTrace for queries exceeding threshold | Medium | [x] |
+| SDB.4 | **Query analytics** — Track query patterns, frequency, and cost per service | Medium | [x] |
 | SDB.5 | **Schema migration orchestration** — Versioned migrations with rollback, coordinated across services | Medium | [ ] |
 | SDB.6 | **Database health in ServConsole** — Connection pool stats, active queries, deadlock detection | Medium | [ ] |
 | SDB.7 | **Multi-database support** — PostgreSQL, MySQL, SQLite proxying in one process | High | [x] |
@@ -215,7 +215,7 @@ These are genuinely missing architectural pieces that justify standalone service
 | SM.4 | **Delivery tracking** — Open/click/bounce/complaint tracking per message | Medium | [ ] |
 | SM.5 | **Retry via ServQueue** — Failed deliveries published to DLQ, automatic retry with backoff | Medium | [x] |
 | SM.6 | **Notification preferences** — Per-user channel preferences (opt-in/out per category) | Low | [ ] |
-| SM.7 | **Rate limiting** — Per-recipient throttling to prevent spam/abuse | Medium | [ ] |
+| SM.7 | **Rate limiting** — Per-recipient throttling to prevent spam/abuse | Medium | [x] |
 | SM.8 | **ServConsole integration** — Delivery dashboard, template editor, bounce management | Medium | [ ] |
 | SM.9 | **Serv-lang integration** — `mail.send(to, template, data)` and `notify(channel, message)` builtins | High | [x] |
 
