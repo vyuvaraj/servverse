@@ -28,10 +28,10 @@
 | | | | | | |
 | **ServAuth** | Proposed — Phase 1 | 4 | 6 | **40%** | ████░░░░░░░░░░░░░░░░ |
 | **ServDB** | Proposed — Phase 1 | 4 | 5 | **44%** | ████░░░░░░░░░░░░░░░░ |
-| **ServMail** | Proposed — Phase 1 | 3 | 7 | **30%** | ███░░░░░░░░░░░░░░░░░ |
-| **ServFlow** | Proposed — Phase 1 | 5 | 5 | **50%** | █████░░░░░░░░░░░░░░░ |
+| **ServMail** | Proposed — Phase 1 | 4 | 6 | **40%** | ████░░░░░░░░░░░░░░░░ |
+| **ServFlow** | Proposed — Phase 1 | 7 | 3 | **70%** | ███████░░░░░░░░░░░░░ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **413** | **28** | **94%** | ███████████████████░░ |
+| **TOTAL ECOSYSTEM** | | **416** | **25** | **94%** | ███████████████████░░ |
 
 ---
 
@@ -213,7 +213,7 @@ These are genuinely missing architectural pieces that justify standalone service
 | SM.2 | **Template engine** — Handlebars/Go-template rendering with variable injection | High | [x] |
 | SM.3 | **Template versioning** — Templates stored in ServStore, versioned and A/B testable | Medium | [ ] |
 | SM.4 | **Delivery tracking** — Open/click/bounce/complaint tracking per message | Medium | [ ] |
-| SM.5 | **Retry via ServQueue** — Failed deliveries published to DLQ, automatic retry with backoff | Medium | [ ] |
+| SM.5 | **Retry via ServQueue** — Failed deliveries published to DLQ, automatic retry with backoff | Medium | [x] |
 | SM.6 | **Notification preferences** — Per-user channel preferences (opt-in/out per category) | Low | [ ] |
 | SM.7 | **Rate limiting** — Per-recipient throttling to prevent spam/abuse | Medium | [ ] |
 | SM.8 | **ServConsole integration** — Delivery dashboard, template editor, bounce management | Medium | [ ] |
@@ -233,8 +233,8 @@ These are genuinely missing architectural pieces that justify standalone service
 | SF.2 | **Durable execution** — State checkpointing, survives restarts mid-workflow | High | [x] |
 | SF.3 | **Compensation / rollback** — Saga pattern with automatic undo on failure | High | [x] |
 | SF.4 | **Human approval gates** — Pause workflow pending manual approval via API/Console | Medium | [ ] |
-| SF.5 | **Retry policies** — Per-step configurable retry with exponential backoff | Medium | [ ] |
-| SF.6 | **Timeout & deadline enforcement** — Kill or escalate steps exceeding time limits | Medium | [ ] |
+| SF.5 | **Retry policies** — Per-step configurable retry with exponential backoff | Medium | [x] |
+| SF.6 | **Timeout & deadline enforcement** — Kill or escalate steps exceeding time limits | Medium | [x] |
 | SF.7 | **Visual workflow editor in ServConsole** — Drag-and-drop DAG builder | Low | [ ] |
 | SF.8 | **Event-triggered workflows** — Start workflows from ServQueue messages or ServGate webhooks | High | [x] |
 | SF.9 | **Serv-lang integration** — `workflow "onboarding" { step(...) -> step(...) -> step(...) }` syntax | High | [x] |
