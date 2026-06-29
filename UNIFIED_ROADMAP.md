@@ -22,11 +22,11 @@
 | **ServCache** | Phases 1–3 | 9 | 0 | **100%** ✅ | █████████████████████ |
 | **ServMesh** | Phases 1–3 | 13 | 0 | **100%** ✅ | █████████████████████ |
 | **ServCron** | Phases 1–3 | 8 | 0 | **100%** ✅ | █████████████████████ |
-| **ServCloud** | Phases 1–3 | 10 | 2 | **83%** | █████████████████░░░░ |
+| **ServCloud** | Phases 1–3 | 12 | 0 | **100%** ✅ | █████████████████████ |
 | **ServTrace** | Phase 1 | 8 | 0 | **100%** ✅ | █████████████████████ |
 | **ServShared** | Auth middleware | 4 | 0 | **100%** ✅ | █████████████████████ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **395** | **8** | **98%** | █████████████████████ |
+| **TOTAL ECOSYSTEM** | | **397** | **6** | **99%** | █████████████████████ |
 
 ---
 
@@ -44,7 +44,7 @@
 | **ServCache** | Phases 1–3 (all complete) | — | ⭐⭐⭐⭐ — Strong |
 | **ServMesh** | Phase 1–4 (all complete) | — | ⭐⭐⭐⭐⭐ — Production-ready |
 | **ServCron** | Phases 1–3 (all complete) | — | ⭐⭐⭐⭐ — Strong |
-| **ServCloud** | Phases 1–3 + OIDC | Phase 4 security isolation | ⭐⭐⭐⭐ — Strong |
+| **ServCloud** | Phase 1–4 (all complete) | — | ⭐⭐⭐⭐⭐ — Production-ready |
 | **ServTrace** | Phase 1–3 (all complete) | — | ⭐⭐⭐⭐⭐ — Production-ready |
 | **ServTunnel** | Phases 1–3 (all complete) | — | ⭐⭐⭐⭐⭐ — Production-ready |
 | **ServShared** | Auth + Health + OTel | — | ⭐⭐⭐⭐⭐ — Foundation library |
@@ -77,8 +77,8 @@
 - [x] **Dynamic Routing Rules** — Update routing and retries via registry config. [June 29, 2026]
 
 ### ServCloud Open Items
-- [ ] **WASM Isolation** — Execute compiled WASM targets in-process for sandbox isolation.
-- [ ] **Docker Engine runner** — Spin up services in isolated Docker containers.
+- [x] **WASM Isolation** — Execute compiled WASM targets in-process for sandbox isolation. [June 29, 2026]
+- [x] **Docker Engine runner** — Spin up services in isolated Docker containers. [June 29, 2026]
 - [x] **Shared OIDC Authentication** — Enforce bearer token validation via ServShared. [June 29, 2026]
 
 ### ServTrace Open Items
