@@ -23,10 +23,10 @@
 | **ServMesh** | Phases 1–3 | 10 | 3 | **77%** | ████████████████░░░░░ |
 | **ServCron** | Phases 1–3 | 8 | 0 | **100%** ✅ | █████████████████████ |
 | **ServCloud** | Phases 1–3 | 9 | 3 | **75%** | ███████████████░░░░░░ |
-| **ServTrace** | Phase 1 | 3 | 5 | **38%** | ████████░░░░░░░░░░░░░ |
+| **ServTrace** | Phase 1 | 4 | 4 | **50%** | ██████████░░░░░░░░░░░ |
 | **ServShared** | Auth middleware | 4 | 0 | **100%** ✅ | █████████████████████ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **386** | **17** | **96%** | ████████████████████░ |
+| **TOTAL ECOSYSTEM** | | **387** | **16** | **96%** | ████████████████████░ |
 
 ---
 
@@ -45,7 +45,7 @@
 | **ServMesh** | Phases 1–3 | Phase 4 console integration | ⭐⭐⭐⭐ — Strong |
 | **ServCron** | Phases 1–3 (all complete) | — | ⭐⭐⭐⭐ — Strong |
 | **ServCloud** | Phases 1–3 | Phase 4 security isolation | ⭐⭐⭐½ — Functional |
-| **ServTrace** | Phase 1 complete | Phases 2–3 UI + retention | ⭐⭐⭐ — MVP |
+| **ServTrace** | Phase 1 + Waterfall UI | Phase 2–3 Graph + retention | ⭐⭐⭐½ — Capable |
 | **ServTunnel** | Phases 1–3 (all complete) | — | ⭐⭐⭐⭐⭐ — Production-ready |
 | **ServShared** | Auth + Health + OTel | — | ⭐⭐⭐⭐⭐ — Foundation library |
 
@@ -82,7 +82,7 @@
 - [ ] **Shared OIDC Authentication** — Enforce bearer token validation via ServShared.
 
 ### ServTrace Open Items
-- [ ] **Interactive Waterfall UI** — Gantt-chart style trace visualization.
+- [x] **Interactive Waterfall UI** — Gantt-chart style trace visualization. [June 29, 2026]
 - [ ] **Dependency Graph Generator** — Visual edge metrics (latency, error count).
 - [ ] **Database Slow Query Alerts** — Highlight queries exceeding threshold.
 - [ ] **ServStore Cold Tier** — Export old traces to S3.
