@@ -26,12 +26,12 @@
 | **ServTrace** | Phase 1 | 8 | 0 | **100%** ✅ | █████████████████████ |
 | **ServShared** | Auth middleware | 4 | 0 | **100%** ✅ | █████████████████████ |
 | | | | | | |
-| **ServAuth** | Proposed — Phase 1 | 9 | 1 | **90%** | ██████████████████░░ |
-| **ServDB** | Proposed — Phase 1 | 8 | 1 | **89%** | ██████████████████░░ |
-| **ServMail** | Proposed — Phase 1 | 8 | 2 | **80%** | ████████████████░░░░ |
+| **ServAuth** | Proposed — Phase 1 | 10 | 0 | **100%** ✅ | █████████████████████ |
+| **ServDB** | Proposed — Phase 1 | 9 | 0 | **100%** ✅ | █████████████████████ |
+| **ServMail** | Proposed — Phase 1 | 9 | 1 | **90%** | ██████████████████░░ |
 | **ServFlow** | Proposed — Phase 1 | 10 | 0 | **100%** ✅ | █████████████████████ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **432** | **9** | **98%** | ████████████████████░ |
+| **TOTAL ECOSYSTEM** | | **436** | **5** | **99%** | ████████████████████░ |
 
 ---
 
@@ -174,7 +174,7 @@ These are genuinely missing architectural pieces that justify standalone service
 | SA.4 | **Social login** — Google, GitHub, GitLab OAuth2 federation | Medium | [x] |
 | SA.5 | **MFA support** — TOTP, WebAuthn/passkey second factors | Medium | [x] |
 | SA.6 | **Password reset & account lockout** — Self-service recovery flows | High | [x] |
-| SA.7 | **User management UI in ServConsole** — CRUD, role assignment, session view | Medium | [ ] |
+| SA.7 | **User management UI in ServConsole** — CRUD, role assignment, session view | Medium | [x] |
 | SA.8 | **Serv-lang integration** — `auth.register()`, `auth.login()`, `auth.currentUser()` builtins | High | [x] |
 | SA.9 | **API key issuance** — Scoped long-lived tokens for service accounts | Medium | [x] |
 | SA.10 | **Session management** — Token refresh, revocation, device tracking | Medium | [x] |
@@ -194,7 +194,7 @@ These are genuinely missing architectural pieces that justify standalone service
 | SDB.3 | **Slow query detection** — Emit spans to ServTrace for queries exceeding threshold | Medium | [x] |
 | SDB.4 | **Query analytics** — Track query patterns, frequency, and cost per service | Medium | [x] |
 | SDB.5 | **Schema migration orchestration** — Versioned migrations with rollback, coordinated across services | Medium | [x] |
-| SDB.6 | **Database health in ServConsole** — Connection pool stats, active queries, deadlock detection | Medium | [ ] |
+| SDB.6 | **Database health in ServConsole** — Connection pool stats, active queries, deadlock detection | Medium | [x] |
 | SDB.7 | **Multi-database support** — PostgreSQL, MySQL, SQLite proxying in one process | High | [x] |
 | SDB.8 | **Query caching** — Configurable result caching with invalidation via ServCache | Low | [x] |
 | SDB.9 | **Serv-lang integration** — `database "servdb://pool-name/dbname"` connection string | High | [x] |
@@ -216,7 +216,7 @@ These are genuinely missing architectural pieces that justify standalone service
 | SM.5 | **Retry via ServQueue** — Failed deliveries published to DLQ, automatic retry with backoff | Medium | [x] |
 | SM.6 | **Notification preferences** — Per-user channel preferences (opt-in/out per category) | Low | [x] |
 | SM.7 | **Rate limiting** — Per-recipient throttling to prevent spam/abuse | Medium | [x] |
-| SM.8 | **ServConsole integration** — Delivery dashboard, template editor, bounce management | Medium | [ ] |
+| SM.8 | **ServConsole integration** — Delivery dashboard, template editor, bounce management | Medium | [x] |
 | SM.9 | **Serv-lang integration** — `mail.send(to, template, data)` and `notify(channel, message)` builtins | High | [x] |
 
 **Architecture:** HTTP API + ServQueue consumer. Receives send requests, renders templates, delivers via configured provider. Uses ServStore for template storage and delivery logs.
@@ -265,7 +265,7 @@ These are ecosystem-wide improvements that span multiple components and represen
 |---|---------|-------------------|----------|
 | S.1 | **Unified RBAC Engine** — Role-based access control evaluated at every service boundary, configured centrally in ServConsole | ServShared, All Services, ServConsole | ✅ Done |
 | S.2 | **Service-to-Service mTLS Mesh** — Automatic cert provisioning via ServMesh CA for all inter-service communication | ServMesh, ServShared, All Services | ✅ Done |
-| S.3 | **Secret Management** — Encrypted at-rest secrets stored in ServStore with envelope encryption, injected at deploy time by ServCloud | ServStore, ServCloud, ServShared | Medium |
+| S.3 | **Secret Management** — Encrypted at-rest secrets stored in ServStore with envelope encryption, injected at deploy time by ServCloud | ServStore, ServCloud, ServShared | ✅ Done |
 | S.4 | **Audit Trail Unification** — Every write operation across all services emits immutable audit events to a shared ServStore bucket | ServShared, ServStore, ServConsole | Medium |
 | S.5 | **API Key Federation** — Issue scoped API keys via ServConsole that work across all services (not just ServGate) | ServConsole, ServShared, ServAuth | Low |
 | S.6 | **ServAuth — Identity Provider** — User registration, login, OAuth2/OIDC provider, social login, MFA. Replaces external IdP dependency. | ServAuth (new), ServShared, ServConsole | High |
