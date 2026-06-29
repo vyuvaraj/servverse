@@ -193,7 +193,7 @@ These are ecosystem-wide improvements that span multiple components and represen
 
 | # | Feature | Components Affected | Priority |
 |---|---------|-------------------|----------|
-| A.1 | **AI Gateway Billing** — Track token usage per route/tenant with cost caps and alerts | ServGate, ServConsole | High |
+| A.1 | **AI Gateway Billing** — Track token usage per route/tenant with cost caps and alerts | ServGate, ServConsole | ✅ Done |
 | A.2 | **Prompt Versioning** — Version and A/B test prompts via ServStore, select at gateway level | ServGate, ServStore | Medium |
 | A.3 | **RAG Pipeline Integration** — ServStore semantic search + ServQueue event pipeline = native RAG without LangChain | ServStore, ServQueue, Serv-lang | Medium |
 | A.4 | **AI-Assisted Incident Response** — Feed alert context to LLM, suggest runbook steps, auto-execute with approval | ServConsole, ServCron | Low |
