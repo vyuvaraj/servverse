@@ -164,9 +164,11 @@ Open `http://localhost:8083` in your browser. You are now running a fully integr
 
 ## What's Next
 
-The Servverse is designed to grow. The future roadmap includes:
-- **ServDB**: A database component designed to run schema migrations written in Serv-lang directly.
-- **ServCloud**: A managed hosting environment that compiles and deploys the entire ecosystem config to cloud containers with one command.
+The Servverse is designed to grow. The platform has expanded to include major new core components:
+- **ServAuth**: An OIDC identity and token validation provider with lockout and recovery reset flows.
+- **ServDB**: A high-efficiency connection pooler and read/write splitting proxy database driver.
+- **ServMail**: A transactional message delivery hub supporting SMTP, Slack, and SMS channels with DLQ retries.
+- **ServFlow**: A stateful DAG-based workflow orchestrator and Saga compensation engine.
 
 ---
 
@@ -177,6 +179,10 @@ The Servverse is designed to grow. The future roadmap includes:
 - **ServQueue**: [github.com/vyuvaraj/ServQueue](https://github.com/vyuvaraj/ServQueue)
 - **ServGate**: [github.com/vyuvaraj/ServGate](https://github.com/vyuvaraj/ServGate)
 - **ServConsole**: [github.com/vyuvaraj/ServConsole](https://github.com/vyuvaraj/ServConsole)
+- **ServAuth**: [github.com/vyuvaraj/ServAuth](https://github.com/vyuvaraj/ServAuth)
+- **ServDB**: [github.com/vyuvaraj/ServDB](https://github.com/vyuvaraj/ServDB)
+- **ServMail**: [github.com/vyuvaraj/ServMail](https://github.com/vyuvaraj/ServMail)
+- **ServFlow**: [github.com/vyuvaraj/ServFlow](https://github.com/vyuvaraj/ServFlow)
 
 ---
 
