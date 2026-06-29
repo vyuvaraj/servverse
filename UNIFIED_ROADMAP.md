@@ -26,12 +26,12 @@
 | **ServTrace** | Phase 1 | 8 | 0 | **100%** ✅ | █████████████████████ |
 | **ServShared** | Auth middleware | 4 | 0 | **100%** ✅ | █████████████████████ |
 | | | | | | |
-| **ServAuth** | Proposed — Phase 1 | 2 | 8 | **20%** | ██░░░░░░░░░░░░░░░░░░ |
-| **ServDB** | Proposed — Phase 1 | 2 | 7 | **22%** | ██░░░░░░░░░░░░░░░░░░ |
-| **ServMail** | Proposed — Phase 1 | 0 | 9 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
-| **ServFlow** | Proposed — Phase 1 | 2 | 8 | **20%** | ██░░░░░░░░░░░░░░░░░░ |
+| **ServAuth** | Proposed — Phase 1 | 3 | 7 | **30%** | ███░░░░░░░░░░░░░░░░░ |
+| **ServDB** | Proposed — Phase 1 | 3 | 6 | **33%** | ███░░░░░░░░░░░░░░░░░ |
+| **ServMail** | Proposed — Phase 1 | 2 | 8 | **20%** | ██░░░░░░░░░░░░░░░░░░ |
+| **ServFlow** | Proposed — Phase 1 | 3 | 7 | **30%** | ███░░░░░░░░░░░░░░░░░ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **403** | **38** | **91%** | ███████████████████░░ |
+| **TOTAL ECOSYSTEM** | | **408** | **33** | **93%** | ███████████████████░░ |
 
 ---
 
@@ -173,7 +173,7 @@ These are genuinely missing architectural pieces that justify standalone service
 | SA.3 | **Multi-tenant user directories** — Isolated user pools per tenant/org | Medium | [ ] |
 | SA.4 | **Social login** — Google, GitHub, GitLab OAuth2 federation | Medium | [ ] |
 | SA.5 | **MFA support** — TOTP, WebAuthn/passkey second factors | Medium | [ ] |
-| SA.6 | **Password reset & account lockout** — Self-service recovery flows | High | [ ] |
+| SA.6 | **Password reset & account lockout** — Self-service recovery flows | High | [x] |
 | SA.7 | **User management UI in ServConsole** — CRUD, role assignment, session view | Medium | [ ] |
 | SA.8 | **Serv-lang integration** — `auth.register()`, `auth.login()`, `auth.currentUser()` builtins | High | [ ] |
 | SA.9 | **API key issuance** — Scoped long-lived tokens for service accounts | Medium | [ ] |
@@ -195,7 +195,7 @@ These are genuinely missing architectural pieces that justify standalone service
 | SDB.4 | **Query analytics** — Track query patterns, frequency, and cost per service | Medium | [ ] |
 | SDB.5 | **Schema migration orchestration** — Versioned migrations with rollback, coordinated across services | Medium | [ ] |
 | SDB.6 | **Database health in ServConsole** — Connection pool stats, active queries, deadlock detection | Medium | [ ] |
-| SDB.7 | **Multi-database support** — PostgreSQL, MySQL, SQLite proxying in one process | High | [ ] |
+| SDB.7 | **Multi-database support** — PostgreSQL, MySQL, SQLite proxying in one process | High | [x] |
 | SDB.8 | **Query caching** — Configurable result caching with invalidation via ServCache | Low | [ ] |
 | SDB.9 | **Serv-lang integration** — `database "servdb://pool-name/dbname"` connection string | High | [ ] |
 
@@ -209,8 +209,8 @@ These are genuinely missing architectural pieces that justify standalone service
 
 | # | Feature | Priority | Status |
 |---|---------|----------|--------|
-| SM.1 | **Multi-channel delivery** — Email (SMTP/SES/SendGrid), Slack, webhook, SMS (Twilio) | High | [ ] |
-| SM.2 | **Template engine** — Handlebars/Go-template rendering with variable injection | High | [ ] |
+| SM.1 | **Multi-channel delivery** — Email (SMTP/SES/SendGrid), Slack, webhook, SMS (Twilio) | High | [x] |
+| SM.2 | **Template engine** — Handlebars/Go-template rendering with variable injection | High | [x] |
 | SM.3 | **Template versioning** — Templates stored in ServStore, versioned and A/B testable | Medium | [ ] |
 | SM.4 | **Delivery tracking** — Open/click/bounce/complaint tracking per message | Medium | [ ] |
 | SM.5 | **Retry via ServQueue** — Failed deliveries published to DLQ, automatic retry with backoff | Medium | [ ] |
@@ -231,7 +231,7 @@ These are genuinely missing architectural pieces that justify standalone service
 |---|---------|----------|--------|
 | SF.1 | **DAG-based workflow definitions** — Multi-step processes with fan-out/fan-in support | High | [x] |
 | SF.2 | **Durable execution** — State checkpointing, survives restarts mid-workflow | High | [x] |
-| SF.3 | **Compensation / rollback** — Saga pattern with automatic undo on failure | High | [ ] |
+| SF.3 | **Compensation / rollback** — Saga pattern with automatic undo on failure | High | [x] |
 | SF.4 | **Human approval gates** — Pause workflow pending manual approval via API/Console | Medium | [ ] |
 | SF.5 | **Retry policies** — Per-step configurable retry with exponential backoff | Medium | [ ] |
 | SF.6 | **Timeout & deadline enforcement** — Kill or escalate steps exceeding time limits | Medium | [ ] |
