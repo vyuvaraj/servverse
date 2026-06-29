@@ -186,7 +186,7 @@ These are ecosystem-wide improvements that span multiple components and represen
 | SC.1 | **Multi-Region Control Plane** — Federated ServMesh registry with geo-aware routing across data centers | ServMesh, ServGate, ServStore | High |
 | SC.2 | **Global ServStore Namespace** — Cross-cluster bucket resolution (bucket@region syntax) | ServStore | Medium |
 | SC.3 | **Event Bus Federation** — ServQueue topic mirroring across clusters for geo-distributed pub/sub | ServQueue | Medium |
-| SC.4 | **Kubernetes Operator** — Deploy and manage the entire Servverse stack via CRDs | All Services | Medium |
+| SC.4 | **Kubernetes Operator** — Deploy and manage the entire Servverse stack via CRDs | All Services | ✅ Done |
 | SC.5 | **Edge Deployment** — Compile .srv files to WASM for execution at CDN edge (Cloudflare Workers-style) | Serv-lang, ServGate | Low |
 
 ### 🤖 AI-Native Capabilities (Cross-Cutting)
