@@ -23,10 +23,10 @@
 | **ServMesh** | Phases 1–3 | 13 | 0 | **100%** ✅ | █████████████████████ |
 | **ServCron** | Phases 1–3 | 8 | 0 | **100%** ✅ | █████████████████████ |
 | **ServCloud** | Phases 1–3 | 9 | 3 | **75%** | ███████████████░░░░░░ |
-| **ServTrace** | Phase 1 | 5 | 3 | **63%** | █████████████░░░░░░░░ |
+| **ServTrace** | Phase 1 | 7 | 1 | **88%** | ██████████████████░░░ |
 | **ServShared** | Auth middleware | 4 | 0 | **100%** ✅ | █████████████████████ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **391** | **12** | **97%** | ████████████████████░ |
+| **TOTAL ECOSYSTEM** | | **393** | **10** | **98%** | █████████████████████ |
 
 ---
 
@@ -45,7 +45,7 @@
 | **ServMesh** | Phase 1–4 (all complete) | — | ⭐⭐⭐⭐⭐ — Production-ready |
 | **ServCron** | Phases 1–3 (all complete) | — | ⭐⭐⭐⭐ — Strong |
 | **ServCloud** | Phases 1–3 | Phase 4 security isolation | ⭐⭐⭐½ — Functional |
-| **ServTrace** | Phase 1–2 + Waterfall + Slow Query | Phase 2–3 Graph + retention | ⭐⭐⭐⭐ — Strong |
+| **ServTrace** | Phase 1–3 + Graph + Cold Tier | Phase 3 sampling policies | ⭐⭐⭐⭐½ — Very Strong |
 | **ServTunnel** | Phases 1–3 (all complete) | — | ⭐⭐⭐⭐⭐ — Production-ready |
 | **ServShared** | Auth + Health + OTel | — | ⭐⭐⭐⭐⭐ — Foundation library |
 
@@ -83,9 +83,9 @@
 
 ### ServTrace Open Items
 - [x] **Interactive Waterfall UI** — Gantt-chart style trace visualization. [June 29, 2026]
-- [ ] **Dependency Graph Generator** — Visual edge metrics (latency, error count).
+- [x] **Dependency Graph Generator** — Visual edge metrics (latency, error count). [June 29, 2026]
 - [x] **Database Slow Query Alerts** — Highlight queries exceeding threshold. [June 29, 2026]
-- [ ] **ServStore Cold Tier** — Export old traces to S3.
+- [x] **ServStore Cold Tier** — Export old traces to S3. [June 29, 2026]
 - [ ] **Sampling Policies** — Head/tail-based rules to filter noise.
 
 ### Recently Completed (June 2026)
