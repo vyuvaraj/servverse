@@ -141,3 +141,74 @@ This document serves as an archive of all successfully completed items, features
 * **A-1 to A-10 (All Completed)**: `auth`, `search`, `mail` keywords/adapters, MySQL DB adapter, `store` keyword, Redis Streams adapter, generated code graceful shutdown, full OIDC discovery, auth role/scope guards.
 * **R-1 to R-6 (All Completed)**: Package versioning, metadata, listing APIs, publish auth, S3 search index, dependency resolution.
 * **Q-1 to Q-7 (All Completed)**: E2E tests, shared init pkg, WS dashboard push, `serv.toml` example, S3 event notifications, consumer group partitions, gateway config hot-reload.
+
+---
+
+## 8. Cross-Cutting Infrastructure (June 27, 2026)
+
+### Standardized Authentication
+* **ServShared.AuthMiddleware**: Wraps any http.Handler. Enforces JWT when `SERV_JWT_SECRET` is set, passes through when empty (dev mode). Health probes always bypass.
+* **ServShared.GenerateServiceToken**: Creates long-lived inter-service JWT with "service" role.
+* **ServShared.GenerateUserToken**: Creates user JWT with configurable roles and TTL.
+* **All 11 services** migrated to use AuthMiddleware (ServQueue, ServMesh, ServCache, ServCloud, ServCron, ServTrace, ServTunnel, ServGate, ServRegistry, ServConsole, ServStore).
+
+### Unified RBAC Engine
+* **ServShared.RequireRole**: Middleware that checks JWT roles against required roles (admin/operator/viewer/service).
+* **ServShared.RequireScope**: Middleware that checks JWT scopes with wildcard support (e.g., `store:*`).
+* **ServShared.EvaluatePolicy**: Evaluates IAM policy documents with allow/deny statements and resource patterns.
+* **DefaultRBACConfig**: Built-in role definitions — admin (full), operator (read+write), viewer (read-only), service (internal).
+
+### Docker Compose Full Stack
+* **12 services** running via single `podman compose up --build`.
+* Standardized `/healthz` endpoint across all components.
+* Fixed Dockerfile Go version compatibility (sed + vendor pattern).
+* ServStore port override (`--port 8081`), ServGate local config mode.
+* ServConsole `SERVVERSE_DISCOVERY` JSON with all service URLs.
+
+### `serv dev` — One-Command Local Stack
+* New CLI command: `serv dev [file.srv] [--services store,queue,cache,gate]`
+* Starts infrastructure services in background, runs user code with hot-reload.
+* Automatic environment variable injection for service discovery.
+* Graceful shutdown on Ctrl+C.
+
+### ServConsole Fixes
+* Added missing `<script src="app.js"></script>` tag (JS was never loading).
+* Added null guards to `initForms()` preventing crash on missing DOM elements.
+* Closed unclosed `</div>` tags for tab-cost and tab-slo panes.
+* Removed dead `fetchTraces` function hitting wrong endpoint.
+* Replaced dummy/mock data with real S3 XML API calls (DOMParser).
+* Removed `SERV_JWT_SECRET` to allow unauthenticated local dev access.
+* Fixed `latency_ms` display (removed `omitempty`, added `|| 0` fallback).
+
+### GitHub Pages Site Improvements
+* SEO: og:image, og:url, canonical, JSON-LD structured data, sitemap.xml, robots.txt.
+* Accessibility: skip-to-content link, ARIA roles, logo as `<a>`, SVG aria-label.
+* Content: 404 page, blog TOC/reading time, mobile nav on blog.html.
+* Architecture diagram: rebuilt with all 12 components in 4 layers + legend.
+* Quickstart: references actual servverse repo, shows all ports including ServTrace.
+
+### ServGate Completed (Category-Defining)
+* Multi-tenant API key management
+* Canary/blue-green traffic splitting
+* Response caching (HTTP cache layer)
+* GraphQL federation proxy
+* Request logging & audit trail
+* Plugin SDK (Go interface)
+* Mutual TLS (mTLS)
+* Request queuing & backpressure
+
+### ServQueue Completed (Category-Defining)
+* Schema validation, Topic Compaction, Multi-tenant isolation
+* Dead Letter Queue (DLQ), Message TTL & Expiry
+* Broker-side WASM Transforms, Consumer Groups
+* At-Least-Once Delivery, Distributed WAL Replay
+* Token Bucket Rate Limiting, STOMP Transactions
+* Admin CLI, Distributed Consensus (Raft)
+* Storage Tiering, Idempotent Producer
+
+### ServStore Completed (Category-Defining)
+* Multi-modal embedding engine, Vector + metadata hybrid queries
+* Incremental backup & PITR, Object-level access logging
+* S3 event notifications (CloudEvents), Geo-aware data placement
+* WASM trigger on object events, S3 batch operations
+* Content-type aware compression, Federation (cross-cluster namespace)

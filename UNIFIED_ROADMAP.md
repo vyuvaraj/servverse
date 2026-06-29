@@ -89,6 +89,9 @@
 - [ ] **Sampling Policies** — Head/tail-based rules to filter noise.
 
 ### Recently Completed (June 2026)
+- [x] **`serv dev` — One-Command Local Stack** — Start all infra services + hot-reload user code in one command. [June 27, 2026]
+- [x] **Unified RBAC Engine** — `RequireRole`, `RequireScope`, `EvaluatePolicy` in ServShared. [June 27, 2026]
+- [x] **ServTrace Waterfall Fix** — Removed dead code, trace UI now fetches from ServTrace correctly. [June 27, 2026]
 - [x] **Standardized Auth Middleware** — `ServShared.AuthMiddleware` across all services. Dev mode (no secret) = open access. [June 27, 2026]
 - [x] **Docker Compose Full Stack** — All 12 services running via `podman compose up`. [June 27, 2026]
 - [x] **ServConsole JS Fix** — Added missing `<script>` tag, fixed null guards, closed unclosed tabs. [June 27, 2026]
@@ -149,7 +152,7 @@ These are ecosystem-wide improvements that span multiple components and represen
 
 | # | Feature | Components Affected | Priority |
 |---|---------|-------------------|----------|
-| S.1 | **Unified RBAC Engine** — Role-based access control evaluated at every service boundary, configured centrally in ServConsole | ServShared, All Services, ServConsole | High |
+| S.1 | **Unified RBAC Engine** — Role-based access control evaluated at every service boundary, configured centrally in ServConsole | ServShared, All Services, ServConsole | ✅ Done |
 | S.2 | **Service-to-Service mTLS Mesh** — Automatic cert provisioning via ServMesh CA for all inter-service communication | ServMesh, ServShared, All Services | High |
 | S.3 | **Secret Management (ServVault)** — Encrypted at-rest secrets stored in ServStore, injected at deploy time by ServCloud | ServStore, ServCloud, ServShared | Medium |
 | S.4 | **Audit Trail Unification** — Every write operation across all services emits immutable audit events to a shared ServStore bucket | ServShared, ServStore, ServConsole | Medium |
@@ -169,7 +172,7 @@ These are ecosystem-wide improvements that span multiple components and represen
 
 | # | Feature | Components Affected | Priority |
 |---|---------|-------------------|----------|
-| D.1 | **`serv dev` — One-Command Local Stack** — Single CLI command that starts all required services (like docker-compose but native) | Serv-lang CLI, ServCloud | High |
+| D.1 | **`serv dev` — One-Command Local Stack** — Single CLI command that starts all required services (like docker-compose but native) | Serv-lang CLI, ServCloud | ✅ Done |
 | D.2 | **Live Reload Across Stack** — File watcher that rebuilds and restarts only affected services (not entire compose) | Serv-lang, ServCloud | High |
 | D.3 | **Integrated Test Environment** — `serv test --integration` spins up ServQueue + ServStore + ServCache in-process for testing | Serv-lang, ServQueue, ServStore, ServCache | Medium |
 | D.4 | **OpenAPI → Serv-lang Codegen** — Import OpenAPI spec and generate `.srv` route stubs automatically | Serv-lang CLI | Medium |
