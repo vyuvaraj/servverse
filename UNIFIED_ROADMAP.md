@@ -80,6 +80,7 @@
 - [x] **WASM Isolation** — Execute compiled WASM targets in-process for sandbox isolation. [June 29, 2026]
 - [x] **Docker Engine runner** — Spin up services in isolated Docker containers. [June 29, 2026]
 - [x] **Shared OIDC Authentication** — Enforce bearer token validation via ServShared. [June 29, 2026]
+- [x] **Rolling Deployments** — Zero-downtime rolling deploys with auto-rollback. [June 29, 2026]
 
 ### ServTrace Open Items
 - [x] **Interactive Waterfall UI** — Gantt-chart style trace visualization. [June 29, 2026]
@@ -87,6 +88,8 @@
 - [x] **Database Slow Query Alerts** — Highlight queries exceeding threshold. [June 29, 2026]
 - [x] **ServStore Cold Tier** — Export old traces to S3. [June 29, 2026]
 - [x] **Sampling Policies** — Head/tail-based rules to filter noise. [June 29, 2026]
+- [x] **Span Metrics Generation** — rolling latency percentiles and throughput on ingest. [June 29, 2026]
+- [x] **Span Anomaly Detection** — auto-detect latency spikes and error rate bursts. [June 29, 2026]
 
 ### Recently Completed (June 2026)
 - [x] **`serv dev` — One-Command Local Stack** — Start all infra services + hot-reload user code in one command. [June 27, 2026]
