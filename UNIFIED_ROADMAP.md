@@ -16,7 +16,7 @@
 | **ServStore** | Phases 1–10 | 75 | 0 | **100%** ✅ | █████████████████████ |
 | **ServGate** | Phases 1–10 | 45 | 0 | **100%** ✅ | █████████████████████ |
 | **ServQueue** | Phases 1–9 | 47 | 0 | **100%** ✅ | █████████████████████ |
-| **ServConsole** | Phases 1–5 + proposed 6–8 | 38 | 1 | **97%** | ████████████████████░ |
+| **ServConsole** | Phases 1–8 | 39 | 0 | **100%** ✅ | █████████████████████ |
 | **ServRegistry** | Core complete | 6 | 0 | **100%** ✅ | █████████████████████ |
 | **ServTunnel** | Phases 1–3 | 29 | 0 | **100%** ✅ | █████████████████████ |
 | **ServCache** | Phases 1–3 | 9 | 0 | **100%** ✅ | █████████████████████ |
@@ -69,7 +69,7 @@
   - [ ] Cross-link between the articles and link the VS Code extension.
 
 ### ServConsole Open Items
-- [ ] **Custom Dashboard Builder** — Drag-and-drop metric widget builder per team.
+- [x] **Custom Dashboard Builder** — Drag-and-drop metric widget builder per team. [June 27, 2026]
 
 ### ServMesh Open Items
 - [ ] **Topology Map** — Real-time dependency graph visualization in ServConsole.
@@ -113,7 +113,7 @@ These items represent the features that would make each Servverse component a **
 |---|---------|----------------|--------|
 | 14.1 | **Compile-time dependency injection** | Testable architectures without runtime reflection — Dagger.io-style but at compile time | [ ] |
 | 14.2 | **Hot-reload without restart** | ✅ Done — Zero-downtime local dev via TCP proxy + process replacement. `serv run --hot` recompiles and swaps with no dropped connections. | [x] |
-| 14.5 | **Incremental compilation** | Cache per-file artifacts. Only recompile changed files. Critical at scale (>50 files). | [ ] |
+| 14.5 | **Incremental compilation** | Cache per-file artifacts. Only recompile changed files. Critical at scale (>50 files). | [x] |
 | 14.6 | **`pipe` operator** | ✅ Done — `data |> transform() |> validate() |> save()` — readable data pipelines. Low cost, high readability. | [x] |
 | 14.8 | **GraphQL endpoint declaration** | Native GraphQL schema + resolver syntax. Compiles to performant Go handler. | [ ] |
 | 14.9 | **Language server code actions** | Quick-fix: "Extract function", "Add error handling", "Generate test stub". Active refactoring assistance. | [ ] |
@@ -138,7 +138,7 @@ All 10 category-defining features shipped. Archived to [UNIFIED_ROADMAP_COMPLETE
 | 7.1 | **Alerting engine & notifications** | Alert rules with Slack/PagerDuty/webhook channels. Snooze/ack workflow. | [x] |
 | 7.2 | **Incident timeline auto-generation** | Auto-build timeline on alert: deploys, metric spikes, error traces. One-page summary. | [x] |
 | 7.4 | **Log aggregation & search** | Collect JSON logs, full-text search, filter by service/level/trace_id. Live tail. | [x] |
-| 7.5 | **Custom dashboard builder** | Drag-and-drop: pick metrics, choose chart type, save and share per team. | [ ] |
+| 7.5 | **Custom dashboard builder** | Drag-and-drop: pick metrics, choose chart type, save and share per team. | [x] |
 | 7.7 | **SLO/SLI tracking & error budgets** | Define SLOs, track remaining budget, alert when burning too fast. | [x] |
 | 7.12 | **Runbook automation** | ✅ Done — Attach suggested remediations to incident timeline UI. Auto-execute runbook script with spinner states & auto-resolve alert. | [x] |
 
