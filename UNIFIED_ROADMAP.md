@@ -175,7 +175,7 @@ These are ecosystem-wide improvements that span multiple components and represen
 | D.1 | **`serv dev` — One-Command Local Stack** — Single CLI command that starts all required services (like docker-compose but native) | Serv-lang CLI, ServCloud | ✅ Done |
 | D.2 | **Live Reload Across Stack** — File watcher that rebuilds and restarts only affected services (not entire compose) | Serv-lang, ServCloud | High |
 | D.3 | **Integrated Test Environment** — `serv test --integration` spins up ServQueue + ServStore + ServCache in-process for testing | Serv-lang, ServQueue, ServStore, ServCache | ✅ Done |
-| D.4 | **OpenAPI → Serv-lang Codegen** — Import OpenAPI spec and generate `.srv` route stubs automatically | Serv-lang CLI | Medium |
+| D.4 | **OpenAPI → Serv-lang Codegen** — Import OpenAPI spec and generate `.srv` route stubs automatically | Serv-lang CLI | ✅ Done |
 | D.5 | **ServConsole Dev Mode** — Local dashboard shows all services, live logs, and one-click restart per service | ServConsole, ServCloud | Medium |
 | D.6 | **Playground (Web-based IDE)** — Browser-based Serv-lang editor with instant compilation and preview | Serv-lang, ServCloud | Low |
 
