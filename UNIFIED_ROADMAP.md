@@ -81,6 +81,7 @@
 - [x] **Docker Engine runner** — Spin up services in isolated Docker containers. [June 29, 2026]
 - [x] **Shared OIDC Authentication** — Enforce bearer token validation via ServShared. [June 29, 2026]
 - [x] **Rolling Deployments** — Zero-downtime rolling deploys with auto-rollback. [June 29, 2026]
+- [x] **Environment Variables Management** — Inject and reload dynamic configurations. [June 29, 2026]
 
 ### ServTrace Open Items
 - [x] **Interactive Waterfall UI** — Gantt-chart style trace visualization. [June 29, 2026]
