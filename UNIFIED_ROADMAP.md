@@ -26,12 +26,12 @@
 | **ServTrace** | Phase 1 | 8 | 0 | **100%** ✅ | █████████████████████ |
 | **ServShared** | Auth middleware | 4 | 0 | **100%** ✅ | █████████████████████ |
 | | | | | | |
-| **ServAuth** | Proposed — Phase 1 | 0 | 10 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
-| **ServDB** | Proposed — Phase 1 | 0 | 9 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
+| **ServAuth** | Proposed — Phase 1 | 1 | 9 | **10%** | █░░░░░░░░░░░░░░░░░░░░ |
+| **ServDB** | Proposed — Phase 1 | 1 | 8 | **11%** | █░░░░░░░░░░░░░░░░░░░░ |
 | **ServMail** | Proposed — Phase 1 | 0 | 9 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
-| **ServFlow** | Proposed — Phase 1 | 0 | 10 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
+| **ServFlow** | Proposed — Phase 1 | 1 | 9 | **10%** | █░░░░░░░░░░░░░░░░░░░░ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **397** | **44** | **90%** | ███████████████████░░ |
+| **TOTAL ECOSYSTEM** | | **400** | **41** | **91%** | ███████████████████░░ |
 
 ---
 
@@ -168,7 +168,7 @@ These are genuinely missing architectural pieces that justify standalone service
 
 | # | Feature | Priority | Status |
 |---|---------|----------|--------|
-| SA.1 | **User registration & login** — Email/password + magic link authentication | High | [ ] |
+| SA.1 | **User registration & login** — Email/password + magic link authentication | High | [x] |
 | SA.2 | **OAuth2/OIDC provider** — Issue tokens to third-party applications | High | [ ] |
 | SA.3 | **Multi-tenant user directories** — Isolated user pools per tenant/org | Medium | [ ] |
 | SA.4 | **Social login** — Google, GitHub, GitLab OAuth2 federation | Medium | [ ] |
@@ -189,7 +189,7 @@ These are genuinely missing architectural pieces that justify standalone service
 
 | # | Feature | Priority | Status |
 |---|---------|----------|--------|
-| SDB.1 | **Connection pooling** — Shared pool across services (PgBouncer-style, multi-database) | High | [ ] |
+| SDB.1 | **Connection pooling** — Shared pool across services (PgBouncer-style, multi-database) | High | [x] |
 | SDB.2 | **Query routing** — Automatic read replica routing, write-to-primary | High | [ ] |
 | SDB.3 | **Slow query detection** — Emit spans to ServTrace for queries exceeding threshold | Medium | [ ] |
 | SDB.4 | **Query analytics** — Track query patterns, frequency, and cost per service | Medium | [ ] |
@@ -229,7 +229,7 @@ These are genuinely missing architectural pieces that justify standalone service
 
 | # | Feature | Priority | Status |
 |---|---------|----------|--------|
-| SF.1 | **DAG-based workflow definitions** — Multi-step processes with fan-out/fan-in support | High | [ ] |
+| SF.1 | **DAG-based workflow definitions** — Multi-step processes with fan-out/fan-in support | High | [x] |
 | SF.2 | **Durable execution** — State checkpointing, survives restarts mid-workflow | High | [ ] |
 | SF.3 | **Compensation / rollback** — Saga pattern with automatic undo on failure | High | [ ] |
 | SF.4 | **Human approval gates** — Pause workflow pending manual approval via API/Console | Medium | [ ] |
