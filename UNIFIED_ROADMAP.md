@@ -1,7 +1,7 @@
 # Serv Unified Ecosystem Roadmap & Architect Analysis
 
-> Single source of truth for the **Serv** ecosystem: Serv-lang, ServGate, ServStore, ServQueue, ServConsole, ServCache, ServMesh, ServCron, ServCloud, ServTrace, ServTunnel, and the Servverse vision.  
-> Last updated: June 27, 2026 — Auth standardization, Docker Compose full stack, and Next-Level roadmap added.
+> Single source of truth for the **Serv** ecosystem: Serv-lang, ServGate, ServStore, ServQueue, ServConsole, ServCache, ServMesh, ServCron, ServCloud, ServTrace, ServTunnel, ServAuth, ServDB, ServMail, ServFlow, and the Servverse vision.  
+> Last updated: June 29, 2026 — Added proposed new components (ServAuth, ServDB, ServMail, ServFlow) and updated cross-cutting initiatives.
 > Note: Historical completed items have been archived in [UNIFIED_ROADMAP_COMPLETED.md](UNIFIED_ROADMAP_COMPLETED.md).
 
 ---
@@ -26,7 +26,12 @@
 | **ServTrace** | Phase 1 | 8 | 0 | **100%** ✅ | █████████████████████ |
 | **ServShared** | Auth middleware | 4 | 0 | **100%** ✅ | █████████████████████ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **397** | **6** | **99%** | █████████████████████ |
+| **ServAuth** | Proposed — Phase 1 | 0 | 10 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
+| **ServDB** | Proposed — Phase 1 | 0 | 9 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
+| **ServMail** | Proposed — Phase 1 | 0 | 9 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
+| **ServFlow** | Proposed — Phase 1 | 0 | 10 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
+| | | | | | |
+| **TOTAL ECOSYSTEM** | | **397** | **44** | **90%** | ███████████████████░░ |
 
 ---
 
@@ -48,6 +53,10 @@
 | **ServTrace** | Phase 1–3 (all complete) | — | ⭐⭐⭐⭐⭐ — Production-ready |
 | **ServTunnel** | Phases 1–3 (all complete) | — | ⭐⭐⭐⭐⭐ — Production-ready |
 | **ServShared** | Auth + Health + OTel | — | ⭐⭐⭐⭐⭐ — Foundation library |
+| **ServAuth** | Proposed | 10 items planned | 🆕 Proposed — Q3 2026 |
+| **ServFlow** | Proposed | 10 items planned | 🆕 Proposed — Q4 2026 |
+| **ServMail** | Proposed | 9 items planned | 🆕 Proposed — Q4 2026 |
+| **ServDB** | Proposed | 9 items planned | 🆕 Proposed — 2027 |
 
 ---
 
@@ -91,6 +100,7 @@
 - [x] **Sampling Policies** — Head/tail-based rules to filter noise. [June 29, 2026]
 - [x] **Span Metrics Generation** — rolling latency percentiles and throughput on ingest. [June 29, 2026]
 - [x] **Span Anomaly Detection** — auto-detect latency spikes and error rate bursts. [June 29, 2026]
+- [x] **Trace-to-Log Correlation** — Link trace spans directly to structured log entries. [June 29, 2026]
 
 ### Recently Completed (June 2026)
 - [x] **`serv dev` — One-Command Local Stack** — Start all infra services + hot-reload user code in one command. [June 27, 2026]
@@ -148,7 +158,104 @@ All 10 category-defining features shipped. Archived to [UNIFIED_ROADMAP_COMPLETE
 
 ---
 
-## 3. Next-Level Cross-Cutting Initiatives (2026 H2 → 2027)
+## 3. Proposed New Components (2026 H2 → 2027)
+
+These are genuinely missing architectural pieces that justify standalone services — each fills a gap that cannot be covered by extending existing components.
+
+### 🔑 ServAuth — Identity Provider & User Management
+
+**Gap:** ServShared handles JWT validation and RBAC enforcement, but there's no user management plane. No signup/login flows, no session management, no OAuth2 provider capability. Every deployment currently depends on external IdPs.
+
+| # | Feature | Priority | Status |
+|---|---------|----------|--------|
+| SA.1 | **User registration & login** — Email/password + magic link authentication | High | [ ] |
+| SA.2 | **OAuth2/OIDC provider** — Issue tokens to third-party applications | High | [ ] |
+| SA.3 | **Multi-tenant user directories** — Isolated user pools per tenant/org | Medium | [ ] |
+| SA.4 | **Social login** — Google, GitHub, GitLab OAuth2 federation | Medium | [ ] |
+| SA.5 | **MFA support** — TOTP, WebAuthn/passkey second factors | Medium | [ ] |
+| SA.6 | **Password reset & account lockout** — Self-service recovery flows | High | [ ] |
+| SA.7 | **User management UI in ServConsole** — CRUD, role assignment, session view | Medium | [ ] |
+| SA.8 | **Serv-lang integration** — `auth.register()`, `auth.login()`, `auth.currentUser()` builtins | High | [ ] |
+| SA.9 | **API key issuance** — Scoped long-lived tokens for service accounts | Medium | [ ] |
+| SA.10 | **Session management** — Token refresh, revocation, device tracking | Medium | [ ] |
+
+**Architecture:** Single Go binary, uses ServStore for user data persistence, ServShared for JWT signing, integrates with ServConsole for admin UI. Dev mode (no SERV_JWT_SECRET) = open access with mock user.
+
+---
+
+### 🗄️ ServDB — Database Proxy & Connection Pooler
+
+**Gap:** Every `.srv` service manages its own DB connection pool. No cross-service connection pooling, no query-level observability, no automatic read/write splitting, no centralized migration orchestration.
+
+| # | Feature | Priority | Status |
+|---|---------|----------|--------|
+| SDB.1 | **Connection pooling** — Shared pool across services (PgBouncer-style, multi-database) | High | [ ] |
+| SDB.2 | **Query routing** — Automatic read replica routing, write-to-primary | High | [ ] |
+| SDB.3 | **Slow query detection** — Emit spans to ServTrace for queries exceeding threshold | Medium | [ ] |
+| SDB.4 | **Query analytics** — Track query patterns, frequency, and cost per service | Medium | [ ] |
+| SDB.5 | **Schema migration orchestration** — Versioned migrations with rollback, coordinated across services | Medium | [ ] |
+| SDB.6 | **Database health in ServConsole** — Connection pool stats, active queries, deadlock detection | Medium | [ ] |
+| SDB.7 | **Multi-database support** — PostgreSQL, MySQL, SQLite proxying in one process | High | [ ] |
+| SDB.8 | **Query caching** — Configurable result caching with invalidation via ServCache | Low | [ ] |
+| SDB.9 | **Serv-lang integration** — `database "servdb://pool-name/dbname"` connection string | High | [ ] |
+
+**Architecture:** Sits between services and databases as a TCP proxy. Single binary, connects upstream to real databases, downstream services connect to ServDB. Emits OTel spans per query.
+
+---
+
+### 📬 ServMail — Transactional Notification Hub
+
+**Gap:** No way to send emails, SMS, or push notifications from within the ecosystem without external service SDKs scattered across every service.
+
+| # | Feature | Priority | Status |
+|---|---------|----------|--------|
+| SM.1 | **Multi-channel delivery** — Email (SMTP/SES/SendGrid), Slack, webhook, SMS (Twilio) | High | [ ] |
+| SM.2 | **Template engine** — Handlebars/Go-template rendering with variable injection | High | [ ] |
+| SM.3 | **Template versioning** — Templates stored in ServStore, versioned and A/B testable | Medium | [ ] |
+| SM.4 | **Delivery tracking** — Open/click/bounce/complaint tracking per message | Medium | [ ] |
+| SM.5 | **Retry via ServQueue** — Failed deliveries published to DLQ, automatic retry with backoff | Medium | [ ] |
+| SM.6 | **Notification preferences** — Per-user channel preferences (opt-in/out per category) | Low | [ ] |
+| SM.7 | **Rate limiting** — Per-recipient throttling to prevent spam/abuse | Medium | [ ] |
+| SM.8 | **ServConsole integration** — Delivery dashboard, template editor, bounce management | Medium | [ ] |
+| SM.9 | **Serv-lang integration** — `mail.send(to, template, data)` and `notify(channel, message)` builtins | High | [ ] |
+
+**Architecture:** HTTP API + ServQueue consumer. Receives send requests, renders templates, delivers via configured provider. Uses ServStore for template storage and delivery logs.
+
+---
+
+### 🔀 ServFlow — Workflow & Saga Orchestrator
+
+**Gap:** ServCron handles time-based jobs. ServQueue handles event-driven pub/sub. Neither supports long-running multi-step workflows with state checkpointing, compensation logic, or human approval gates.
+
+| # | Feature | Priority | Status |
+|---|---------|----------|--------|
+| SF.1 | **DAG-based workflow definitions** — Multi-step processes with fan-out/fan-in support | High | [ ] |
+| SF.2 | **Durable execution** — State checkpointing, survives restarts mid-workflow | High | [ ] |
+| SF.3 | **Compensation / rollback** — Saga pattern with automatic undo on failure | High | [ ] |
+| SF.4 | **Human approval gates** — Pause workflow pending manual approval via API/Console | Medium | [ ] |
+| SF.5 | **Retry policies** — Per-step configurable retry with exponential backoff | Medium | [ ] |
+| SF.6 | **Timeout & deadline enforcement** — Kill or escalate steps exceeding time limits | Medium | [ ] |
+| SF.7 | **Visual workflow editor in ServConsole** — Drag-and-drop DAG builder | Low | [ ] |
+| SF.8 | **Event-triggered workflows** — Start workflows from ServQueue messages or ServGate webhooks | High | [ ] |
+| SF.9 | **Serv-lang integration** — `workflow "onboarding" { step(...) -> step(...) -> step(...) }` syntax | High | [ ] |
+| SF.10 | **Execution history & replay** — Full audit trail, ability to re-run failed workflows | Medium | [ ] |
+
+**Architecture:** Stateful orchestrator backed by ServStore for checkpoints. Triggers steps via ServQueue messages. ServCron handles scheduled workflow triggers. Differs from ServCron's DAG pipelines by supporting long-running (hours/days), stateful, and human-in-the-loop processes.
+
+---
+
+### Priority & Sequencing
+
+| Component | Value | Complexity | Recommended Phase |
+|-----------|-------|-----------|-------------------|
+| **ServAuth** | ⭐⭐⭐⭐⭐ | Medium | Q3 2026 — Every deployment needs user identity |
+| **ServFlow** | ⭐⭐⭐⭐ | High | Q4 2026 — Business process orchestration |
+| **ServMail** | ⭐⭐⭐ | Low | Q4 2026 — Can start as thin adapter in ServShared |
+| **ServDB** | ⭐⭐⭐ | Medium | 2027 — Only needed at scale (5+ services, shared DB) |
+
+---
+
+## 4. Next-Level Cross-Cutting Initiatives (2026 H2 → 2027)
 
 These are ecosystem-wide improvements that span multiple components and represent the next evolution of the Servverse platform.
 
@@ -158,9 +265,10 @@ These are ecosystem-wide improvements that span multiple components and represen
 |---|---------|-------------------|----------|
 | S.1 | **Unified RBAC Engine** — Role-based access control evaluated at every service boundary, configured centrally in ServConsole | ServShared, All Services, ServConsole | ✅ Done |
 | S.2 | **Service-to-Service mTLS Mesh** — Automatic cert provisioning via ServMesh CA for all inter-service communication | ServMesh, ServShared, All Services | ✅ Done |
-| S.3 | **Secret Management (ServVault)** — Encrypted at-rest secrets stored in ServStore, injected at deploy time by ServCloud | ServStore, ServCloud, ServShared | Medium |
+| S.3 | **Secret Management** — Encrypted at-rest secrets stored in ServStore with envelope encryption, injected at deploy time by ServCloud | ServStore, ServCloud, ServShared | Medium |
 | S.4 | **Audit Trail Unification** — Every write operation across all services emits immutable audit events to a shared ServStore bucket | ServShared, ServStore, ServConsole | Medium |
-| S.5 | **API Key Federation** — Issue scoped API keys via ServConsole that work across all services (not just ServGate) | ServConsole, ServShared | Low |
+| S.5 | **API Key Federation** — Issue scoped API keys via ServConsole that work across all services (not just ServGate) | ServConsole, ServShared, ServAuth | Low |
+| S.6 | **ServAuth — Identity Provider** — User registration, login, OAuth2/OIDC provider, social login, MFA. Replaces external IdP dependency. | ServAuth (new), ServShared, ServConsole | High |
 
 ### 📊 Observability & Intelligence (Cross-Cutting)
 
@@ -182,6 +290,7 @@ These are ecosystem-wide improvements that span multiple components and represen
 | D.4 | **OpenAPI → Serv-lang Codegen** — Import OpenAPI spec and generate `.srv` route stubs automatically | Serv-lang CLI | ✅ Done |
 | D.5 | **ServConsole Dev Mode** — Local dashboard shows all services, live logs, and one-click restart per service | ServConsole, ServCloud | Medium |
 | D.6 | **Playground (Web-based IDE)** — Browser-based Serv-lang editor with instant compilation and preview | Serv-lang, ServCloud | Low |
+| D.7 | **Transactional Notifications** — `mail.send()` / `notify()` for email, Slack, SMS via ServMail unified hub | ServMail (new), ServQueue, ServStore | Medium |
 
 ### 🌐 Scale & Distribution (Cross-Cutting)
 
@@ -192,6 +301,7 @@ These are ecosystem-wide improvements that span multiple components and represen
 | SC.3 | **Event Bus Federation** — ServQueue topic mirroring across clusters for geo-distributed pub/sub | ServQueue | Medium |
 | SC.4 | **Kubernetes Operator** — Deploy and manage the entire Servverse stack via CRDs | All Services | ✅ Done |
 | SC.5 | **Edge Deployment** — Compile .srv files to WASM for execution at CDN edge (Cloudflare Workers-style) | Serv-lang, ServGate | Low |
+| SC.6 | **Workflow Orchestration (ServFlow)** — Long-running sagas, human approval gates, durable execution with state checkpointing | ServFlow (new), ServQueue, ServCron, ServStore | High |
 
 ### 🤖 AI-Native Capabilities (Cross-Cutting)
 
@@ -205,10 +315,14 @@ These are ecosystem-wide improvements that span multiple components and represen
 
 ---
 
-## 4. Component-Level Next-Level Tracker
+## 5. Component-Level Next-Level Tracker
 
 | Component | Next Phase | Items | Key Feature |
 |-----------|-----------|-------|-------------|
+| **ServAuth** | Phase 1: Core Identity (NEW) | 10 | User registration, login, OAuth2 provider, MFA |
+| **ServFlow** | Phase 1: Workflow Engine (NEW) | 10 | DAG workflows, durable execution, saga compensation |
+| **ServMail** | Phase 1: Notification Hub (NEW) | 9 | Multi-channel delivery, templates, retry via ServQueue |
+| **ServDB** | Phase 1: Connection Proxy (NEW) | 9 | Pooling, read/write split, query observability |
 | **ServCache** | Phase 4: Intelligent Caching | 7 | Predictive pre-warming, tag invalidation, tiered storage |
 | **ServMesh** | Phase 5: Advanced Traffic Mgmt | 7 | Fault injection, health-aware LB, gRPC support |
 | **ServCron** | Phase 4: Workflow Orchestration | 7 | DAG pipelines, job chaining via ServQueue, timezone-aware |
@@ -222,6 +336,6 @@ These are ecosystem-wide improvements that span multiple components and represen
 
 ---
 
-## 5. Differentiating Factors & Moat
+## 6. Differentiating Factors & Moat
 
 Refer to the archived [UNIFIED_ROADMAP_COMPLETED.md](file:///c:/Mine/try/serv/servverse-repo/UNIFIED_ROADMAP_COMPLETED.md) for ecosystem architecture diagrams, detailed feature differentiators, and completed system design moats.
