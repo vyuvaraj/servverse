@@ -78,11 +78,12 @@
       <h1>A Unified Platform for <span class="gradient-text">Distributed Systems</span></h1>
       <p>Build APIs, event-driven systems, storage services, and observability workflows without assembling dozens of disconnected tools. Servverse brings language, gateway, messaging, storage, and operations into a single open platform.</p>
       <div class="stats-row">
+        <div class="stat-pill">12 Microservices</div>
         <div class="stat-pill">Apache 2.0</div>
         <div class="stat-pill">Native Binaries</div>
         <div class="stat-pill">S3 Compatible</div>
-        <div class="stat-pill">STOMP Messaging</div>
         <div class="stat-pill">WASM Powered</div>
+        <div class="stat-pill">Unified RBAC</div>
       </div>
       <div class="hero-actions">
         <a href="#quickstart" class="btn btn-primary">Get Started</a>
@@ -140,6 +141,9 @@
           <tr><td>API Gateway</td><td>Kong / Nginx + Lua scripts</td><td class="hl-col">ServGate — WASM middleware + AI guard</td></tr>
           <tr><td>Observability</td><td>Grafana + Jaeger + Prometheus</td><td class="hl-col">ServConsole — unified dashboard</td></tr>
           <tr><td>Deploy</td><td>Dockerfile + CI/CD + Terraform</td><td class="hl-col"><code>serv deploy --target docker</code></td></tr>
+          <tr><td>Caching</td><td>Redis + client SDK + config</td><td class="hl-col">ServCache — pluggable memory/Redis with TTL</td></tr>
+          <tr><td>Auth & RBAC</td><td>Auth0 / Keycloak + custom JWT</td><td class="hl-col">ServShared — unified JWT + role-based access</td></tr>
+          <tr><td>Dev Environment</td><td>Docker Compose + .env + docs</td><td class="hl-col"><code>serv dev main.srv</code> — one command</td></tr>
         </tbody>
       </table>
     </div>
@@ -230,18 +234,19 @@
         <button class="tab-btn" data-target="servtunnel">ServTunnel</button>
         <button class="tab-btn" data-target="servcloud">ServCloud</button>
         <button class="tab-btn" data-target="servcron">ServCron</button>
+        <button class="tab-btn" data-target="servtrace">ServTrace</button>
       </div>
       <div class="tab-content glass-card" id="tab-panels">
         <div class="tab-panel active" id="panel-serv-lang">
           <h3>Serv-lang — Compiler & Syntax</h3>
           <p class="panel-desc">A domain-specific language that compiles to native binaries via Go codegen. Infrastructure becomes syntax.</p>
           <ul class="feature-list">
-            <li><strong>Infrastructure Primitives:</strong> <code>route</code>, <code>broker</code>, <code>store</code>, <code>mail</code> — declare what you need.</li>
-            <li><strong>OIDC Auth & Role Guards:</strong> Declarative token verification with compile-time role filters.</li>
+            <li><strong>Infrastructure Primitives:</strong> <code>route</code>, <code>broker</code>, <code>store</code>, <code>cache</code>, <code>ai</code> — declare what you need.</li>
+            <li><strong>Incremental Compilation:</strong> Hash-based caching skips codegen when source is unchanged. Instant rebuilds.</li>
+            <li><strong>`serv dev` — One Command:</strong> Start the full local stack (Store, Queue, Cache, Gate) + hot-reload in a single command.</li>
             <li><strong>Client SDK Generation:</strong> Compile <code>.srv</code> files to typed TypeScript, Python, Go clients.</li>
-            <li><strong>Streaming Responses:</strong> Native SSE/chunked streaming with <code>stream</code> and <code>yield</code>.</li>
-            <li><strong>OpenAPI 3.1:</strong> Auto-generate specs with <code>serv docs generate</code>.</li>
-            <li><strong>Actor Concurrency:</strong> Fire-and-forget <code>spawn</code> with worker pool limits.</li>
+            <li><strong>OpenAPI 3.1:</strong> Auto-generate specs with <code>serv docs generate</code>. Streaming via <code>stream</code>/<code>yield</code>.</li>
+            <li><strong>Actor Concurrency:</strong> Fire-and-forget <code>spawn</code> with worker pool limits. Pipe operator <code>|></code> for data flows.</li>
           </ul>
         </div>
         <div class="tab-panel" id="panel-servgate">
@@ -300,14 +305,14 @@
         </div>
         <div class="tab-panel" id="panel-servconsole">
           <h3>ServConsole — Observability Dashboard</h3>
-          <p class="panel-desc">Premium glassmorphic control pane for monitoring, configuring, and tracing the Servverse.</p>
+          <p class="panel-desc">Premium glassmorphic control pane for monitoring, configuring, and tracing the Servverse. All features 100% complete.</p>
           <ul class="feature-list">
-            <li><strong>AI Agent Observatory:</strong> Real-time Model Context Protocol (MCP) tool call metrics, token cost calculators, and safety/PII guard alerts.</li>
-            <li><strong>Diagnostics Terminal:</strong> Interactive in-browser troubleshooting CLI execution environment for direct service command execution.</li>
-            <li><strong>One-Click Infrastructure Provisioning:</strong> Instant creation and configuration of storage buckets, database tables, and message queues.</li>
-            <li><strong>Runbook Automation:</strong> Suggest, view, and auto-execute remediation scripts directly from incident alert timelines.</li>
-            <li><strong>SQL Workbench &amp; Schema Inspector:</strong> Run queries and visualize DB schemas compiled directly from Serv-lang source.</li>
-            <li><strong>Dependency Graph:</strong> Auto-constructed from OTel trace waterfalls to visualize service topology.</li>
+            <li><strong>Custom Dashboard Builder:</strong> Drag-and-drop metric widgets (numbers, charts, tables, status). Save and share per team.</li>
+            <li><strong>AI Agent Observatory:</strong> Real-time MCP tool call metrics, token cost calculators, and safety/PII guard alerts.</li>
+            <li><strong>Diagnostics Terminal:</strong> Interactive in-browser CLI for direct service command execution.</li>
+            <li><strong>Runbook Automation:</strong> Auto-execute remediation scripts from incident alert timelines.</li>
+            <li><strong>SQL Workbench &amp; Schema Inspector:</strong> Run queries and visualize DB schemas across SQLite, PostgreSQL, MySQL, Oracle.</li>
+            <li><strong>SLO Tracker &amp; Cost Optimizer:</strong> Error budget burn rates, compliance percentages, and infrastructure cost projections.</li>
           </ul>
         </div>
         <div class="tab-panel" id="panel-servregistry">
@@ -348,6 +353,16 @@
             <li><strong>JSON/REST API:</strong> Dynamically add, list, delete, or trigger jobs on demand.</li>
             <li><strong>OTel Context Propagation:</strong> Automatically link scheduled triggers to target request trace flows.</li>
             <li><strong>Standalone Fallback:</strong> Automatically runs in single-instance leader mode if Redis is absent.</li>
+          </ul>
+        </div>
+        <div class="tab-panel" id="panel-servtrace">
+          <h3>ServTrace — Distributed Tracing Backend</h3>
+          <p class="panel-desc">Lightweight OTLP/HTTP collector with hierarchical trace tree reconstruction and waterfall visualization.</p>
+          <ul class="feature-list">
+            <li><strong>OTLP Ingestion:</strong> Standard <code>/v1/traces</code> POST endpoint. Drop-in replacement for heavy Jaeger/Tempo collectors.</li>
+            <li><strong>Trace Tree Reconstruction:</strong> Automatically builds parent→child span hierarchies with duration and offset calculations.</li>
+            <li><strong>REST Query APIs:</strong> List traces, get trace detail tree, clear traces. Zero-config integration with ServConsole waterfall UI.</li>
+            <li><strong>Single Binary:</strong> No JVM, no Elasticsearch, no Cassandra. One Go binary with an in-memory circular buffer.</li>
           </ul>
         </div>
       </div>
@@ -459,6 +474,12 @@
     </div>
     <!-- Port Reference -->
     <div class="ports-ref glass-card reveal">
+      <h4>One-Command Dev Stack</h4>
+      <div class="terminal-body" style="padding:1rem 1.5rem; margin-bottom:1.5rem;">
+        <p class="cmd-line"><span class="prompt">$</span> serv dev main.srv --services all</p>
+        <p class="output-line success">✓ ServStore :8081 | ServQueue :8082 | ServCache :8086 | ServGate :8080</p>
+        <p class="output-line success">✓ Hot-reload active — editing main.srv rebuilds instantly</p>
+      </div>
       <h4>Service Ports at a Glance</h4>
       <div class="ports-grid">
         <div class="port-item"><span class="port-name">ServGate</span><code>:8080</code></div>
@@ -548,7 +569,8 @@
       <p>Launch the complete Servverse stack locally in minutes. Everything integrates automatically.</p>
       <div class="cta-actions">
         <a href="#quickstart" class="btn btn-primary">Get Started</a>
-        <a href="https://github.com/vyuvaraj/Serv-lang" class="btn btn-secondary" target="_blank" rel="noopener">View Source</a>
+        <a href="https://github.com/vyuvaraj/Serv-lang" class="btn btn-secondary" target="_blank" rel="noopener">Compiler Source</a>
+        <a href="https://github.com/vyuvaraj/servverse/blob/main/DOCKER_GUIDE.md" class="btn btn-secondary" target="_blank" rel="noopener">Docker Guide</a>
       </div>
     </div>
   </section>
