@@ -153,7 +153,7 @@ These are ecosystem-wide improvements that span multiple components and represen
 | # | Feature | Components Affected | Priority |
 |---|---------|-------------------|----------|
 | S.1 | **Unified RBAC Engine** — Role-based access control evaluated at every service boundary, configured centrally in ServConsole | ServShared, All Services, ServConsole | ✅ Done |
-| S.2 | **Service-to-Service mTLS Mesh** — Automatic cert provisioning via ServMesh CA for all inter-service communication | ServMesh, ServShared, All Services | High |
+| S.2 | **Service-to-Service mTLS Mesh** — Automatic cert provisioning via ServMesh CA for all inter-service communication | ServMesh, ServShared, All Services | ✅ Done |
 | S.3 | **Secret Management (ServVault)** — Encrypted at-rest secrets stored in ServStore, injected at deploy time by ServCloud | ServStore, ServCloud, ServShared | Medium |
 | S.4 | **Audit Trail Unification** — Every write operation across all services emits immutable audit events to a shared ServStore bucket | ServShared, ServStore, ServConsole | Medium |
 | S.5 | **API Key Federation** — Issue scoped API keys via ServConsole that work across all services (not just ServGate) | ServConsole, ServShared | Low |
@@ -174,7 +174,7 @@ These are ecosystem-wide improvements that span multiple components and represen
 |---|---------|-------------------|----------|
 | D.1 | **`serv dev` — One-Command Local Stack** — Single CLI command that starts all required services (like docker-compose but native) | Serv-lang CLI, ServCloud | ✅ Done |
 | D.2 | **Live Reload Across Stack** — File watcher that rebuilds and restarts only affected services (not entire compose) | Serv-lang, ServCloud | High |
-| D.3 | **Integrated Test Environment** — `serv test --integration` spins up ServQueue + ServStore + ServCache in-process for testing | Serv-lang, ServQueue, ServStore, ServCache | Medium |
+| D.3 | **Integrated Test Environment** — `serv test --integration` spins up ServQueue + ServStore + ServCache in-process for testing | Serv-lang, ServQueue, ServStore, ServCache | ✅ Done |
 | D.4 | **OpenAPI → Serv-lang Codegen** — Import OpenAPI spec and generate `.srv` route stubs automatically | Serv-lang CLI | Medium |
 | D.5 | **ServConsole Dev Mode** — Local dashboard shows all services, live logs, and one-click restart per service | ServConsole, ServCloud | Medium |
 | D.6 | **Playground (Web-based IDE)** — Browser-based Serv-lang editor with instant compilation and preview | Serv-lang, ServCloud | Low |
