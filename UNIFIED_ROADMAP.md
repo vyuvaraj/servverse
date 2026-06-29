@@ -20,13 +20,13 @@
 | **ServRegistry** | Core complete | 6 | 0 | **100%** ✅ | █████████████████████ |
 | **ServTunnel** | Phases 1–3 | 29 | 0 | **100%** ✅ | █████████████████████ |
 | **ServCache** | Phases 1–3 | 9 | 0 | **100%** ✅ | █████████████████████ |
-| **ServMesh** | Phases 1–3 | 12 | 1 | **92%** | ███████████████████░░ |
+| **ServMesh** | Phases 1–3 | 13 | 0 | **100%** ✅ | █████████████████████ |
 | **ServCron** | Phases 1–3 | 8 | 0 | **100%** ✅ | █████████████████████ |
 | **ServCloud** | Phases 1–3 | 9 | 3 | **75%** | ███████████████░░░░░░ |
 | **ServTrace** | Phase 1 | 4 | 4 | **50%** | ██████████░░░░░░░░░░░ |
 | **ServShared** | Auth middleware | 4 | 0 | **100%** ✅ | █████████████████████ |
 | | | | | | |
-| **TOTAL ECOSYSTEM** | | **389** | **14** | **97%** | ████████████████████░ |
+| **TOTAL ECOSYSTEM** | | **390** | **13** | **97%** | ████████████████████░ |
 
 ---
 
@@ -42,7 +42,7 @@
 | **ServQueue** | Phases 1–9 (all complete) | — | ⭐⭐⭐⭐⭐ — Production-ready |
 | **ServConsole** | Phases 1–5 + 7 | Custom dashboard builder | ⭐⭐⭐⭐½ — Highly capable |
 | **ServCache** | Phases 1–3 (all complete) | — | ⭐⭐⭐⭐ — Strong |
-| **ServMesh** | Phase 1–3 + Topology + Alerts | Phase 4 console integration | ⭐⭐⭐⭐⭐ — Production-ready |
+| **ServMesh** | Phase 1–4 (all complete) | — | ⭐⭐⭐⭐⭐ — Production-ready |
 | **ServCron** | Phases 1–3 (all complete) | — | ⭐⭐⭐⭐ — Strong |
 | **ServCloud** | Phases 1–3 | Phase 4 security isolation | ⭐⭐⭐½ — Functional |
 | **ServTrace** | Phase 1 + Waterfall UI | Phase 2–3 Graph + retention | ⭐⭐⭐½ — Capable |
@@ -74,7 +74,7 @@
 ### ServMesh Open Items
 - [x] **Topology Map** — Real-time dependency graph visualization in ServConsole. [June 29, 2026]
 - [x] **Breaker Alerting** — Telemetry signals on circuit-breaker trips. [June 29, 2026]
-- [ ] **Dynamic Routing Rules** — Update routing and retries via registry config.
+- [x] **Dynamic Routing Rules** — Update routing and retries via registry config. [June 29, 2026]
 
 ### ServCloud Open Items
 - [ ] **WASM Isolation** — Execute compiled WASM targets in-process for sandbox isolation.
