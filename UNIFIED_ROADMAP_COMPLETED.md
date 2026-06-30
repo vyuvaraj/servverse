@@ -317,6 +317,7 @@ This document serves as an archive of all successfully completed items, features
 * **OPS.9 serv status CLI Command**: Created `serv status` subcommand in the compiler CLI to query and present live health, uptime, and latency stats.
 * **DOC.5 Ecosystem CHANGELOG.md**: Published ecosystem-wide release log detailing all migrations and features.
 * **DOC.6 Component Release Tags**: Integrated automatic release tagger GitHub Actions workflow to tag main branch on merges.
+* **ARCH.7 Plugin Panel Architecture**: Designed dynamic plugin loading interface (`/api/plugins` and `/api/plugins/register`) serving hot-swappable WASM console panels.
 
 
 
