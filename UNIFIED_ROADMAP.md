@@ -12,7 +12,7 @@
 
 | Component | Core Phases | Done | Open | Completion | Status Bar |
 |-----------|-------------|------|------|------------|------------|
-| **Serv-lang** | Phases 1–12 + proposed 13–15 | 103 | 5 | **95%** | ████████████████████░ |
+| **Serv-lang** | Phases 1–12 + proposed 13–15 | 108 | 0 | **100%** ✅ | █████████████████████ |
 | **ServStore** | Phases 1–10 | 75 | 0 | **100%** ✅ | █████████████████████ |
 | **ServGate** | Phases 1–10 | 45 | 0 | **100%** ✅ | █████████████████████ |
 | **ServQueue** | Phases 1–9 | 47 | 0 | **100%** ✅ | █████████████████████ |
@@ -139,8 +139,8 @@ These items represent the features that would make each Servverse component a **
 | 14.5 | **Incremental compilation** | Cache per-file artifacts. Only recompile changed files. Critical at scale (>50 files). | [x] |
 | 14.6 | **`pipe` operator** | ✅ Done — `data |> transform() |> validate() |> save()` — readable data pipelines. Low cost, high readability. | [x] |
 | 14.8 | **GraphQL endpoint declaration** | ✅ Done — Native GraphQL schema + resolver syntax compiled to performant Go handler. | [x] |
-| 14.9 | **Language server code actions** | Quick-fix: "Extract function", "Add error handling", "Generate test stub". Active refactoring assistance. | [ ] |
-| 14.10 | **Compile-time macros** | `@derive(Serialize, Validate)` — generate boilerplate at compile time. Reduces repetitive code. | [ ] |
+| 14.9 | **Language server code actions** | ✅ Done — Quick-fix: "Extract function", "Add error handling", "Generate test stub". Active refactoring assistance. | [x] |
+| 14.10 | **Compile-time macros** | ✅ Done — `@derive(Serialize, Validate)` — generate boilerplate at compile time. Reduces repetitive code. | [x] |
 
 ### 🛡️ ServGate → Category-Defining API Gateway (ALL COMPLETE ✅)
 
