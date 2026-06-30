@@ -12,12 +12,12 @@ These tracking items represent architectural depth improvements proposed by the 
 | Initiative Area | Total Items | Completed | Pending | Progress | Status Bar |
 |-----------------|-------------|-----------|---------|----------|------------|
 | **⚡ Performance & Scale** | 2 | 0 | 2 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
-| **🔐 Security & Integrity** | 2 | 0 | 2 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
+| **🔐 Security & Integrity** | 2 | 1 | 1 | **50%** | ██████████░░░░░░░░░░░ |
 | **🛠️ Maintainability & Decomposition** | 1 | 0 | 1 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
 | **🔄 Developer Experience** | 2 | 0 | 2 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
 | **🌐 DevOps & Infrastructure** | 2 | 0 | 2 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
-| **🚀 Next-Level Core Enhancements** | 2 | 0 | 2 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
-| **TOTAL PENDING WORK** | **11** | **0** | **11** | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
+| **🚀 Next-Level Core Enhancements** | 2 | 1 | 1 | **50%** | ██████████░░░░░░░░░░░ |
+| **TOTAL PENDING WORK** | **11** | **2** | **9** | **18%** | ███░░░░░░░░░░░░░░░░░░ |
 
 ---
 
@@ -35,7 +35,7 @@ These tracking items represent architectural depth improvements proposed by the 
 | # | Feature | Components Affected | Priority |
 |---|---------|-------------------|----------|
 | SEC.7 | **Automated mTLS Rotation** — Automated certificate rotation & registry verification | ServMesh | High |
-| SEC.8 | **Secrets Envelope Key Rotation** — Secret KMS rotation schedule & API key hashing | ServAuth, ServDB | High |
+| SEC.8 | ✅ **Secrets Envelope Key Rotation** — Secret KMS rotation schedule & API key hashing | ServAuth, ServDB | High |
 
 ---
 
@@ -69,7 +69,7 @@ These tracking items represent architectural depth improvements proposed by the 
 
 | # | Feature | Components Affected | Priority |
 |---|---------|-------------------|----------|
-| CORE.1 | **HNSW Vector Search Graph** — True HNSW graphs replacing baseline linear scans | ServStore | High |
+| CORE.1 | ✅ **HNSW Vector Search Graph** — True HNSW graphs replacing baseline linear scans | ServStore | High |
 | CORE.2 | **Durable Sagas State Machine** — Durable execution rollback engine backed by ServStore | ServFlow | High |
 
 ---
