@@ -32,7 +32,9 @@ func main() {
 	// Pre-setup steps (e.g. define a workflow, publish stdlib, etc.)
 	setupEcosystem()
 
-	ticker := time.NewTicker(2 * time.Second)
+	// Tick every 15 seconds — aggressive enough to show live traffic
+	// without flooding the terminal output.
+	ticker := time.NewTicker(15 * time.Second)
 	defer ticker.Stop()
 
 	client := &http.Client{Timeout: 3 * time.Second}
@@ -40,12 +42,14 @@ func main() {
 	for {
 		select {
 		case <-ticker.C:
-			go simulateGatewayActivity(client)
-			go simulateCacheActivity(client)
-			go simulateQueueActivity(client)
-			go simulateDBActivity(client)
-			go simulateFlowActivity(client)
-			go simulateVectorSearchActivity(client)
+			// Launch each activity with a small random jitter so they
+			// don't all print at the same moment.
+			go func() { time.Sleep(time.Duration(rand.Intn(2000)) * time.Millisecond); simulateGatewayActivity(client) }()
+			go func() { time.Sleep(time.Duration(rand.Intn(2000)) * time.Millisecond); simulateCacheActivity(client) }()
+			go func() { time.Sleep(time.Duration(rand.Intn(2000)) * time.Millisecond); simulateQueueActivity(client) }()
+			go func() { time.Sleep(time.Duration(rand.Intn(2000)) * time.Millisecond); simulateDBActivity(client) }()
+			go func() { time.Sleep(time.Duration(rand.Intn(2000)) * time.Millisecond); simulateFlowActivity(client) }()
+			go func() { time.Sleep(time.Duration(rand.Intn(2000)) * time.Millisecond); simulateVectorSearchActivity(client) }()
 		}
 	}
 }
