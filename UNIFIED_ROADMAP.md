@@ -82,15 +82,15 @@ These tracking items represent architectural depth improvements proposed by the 
 
 | Initiative Area | Total Items | Completed | Pending | Priority |
 |-----------------|-------------|-----------|---------|----------|
-| **🛡️ API Contract Enforcement** | 3 | 0 | 3 | 🔴 P0 |
-| **🧪 Test Coverage & Contracts** | 4 | 0 | 4 | 🔴 P0 |
-| **🔑 Secrets & Token Security** | 6 | 1 | 5 | 🔴 P0 |
+| **🛡️ API Contract Enforcement** | 3 | 2 | 1 | 🔴 P0 |
+| **🧪 Test Coverage & Contracts** | 4 | 1 | 3 | 🔴 P0 |
+| **🔑 Secrets & Token Security** | 6 | 2 | 4 | 🔴 P0 |
 | **🏗️ Architecture (ServConsole)** | 2 | 0 | 2 | 🟡 P1 |
 | **📋 API Versioning & Stability** | 3 | 0 | 3 | 🟡 P1 |
 | **👥 Multi-Tenancy Enforcement** | 3 | 1 | 2 | 🟡 P1 |
 | **📟 Operational Runbooks & SLO** | 3 | 0 | 3 | 🟡 P1 |
 | **📝 Ecosystem Release Hygiene** | 3 | 0 | 3 | 🟢 P2 |
-| **TOTAL** | **27** | **1** | **26** | |
+| **TOTAL** | **27** | **5** | **22** | |
 
 ---
 
@@ -98,8 +98,6 @@ These tracking items represent architectural depth improvements proposed by the 
 
 | # | Feature | Components Affected | Priority |
 |---|---------|-------------------|----------|
-| API.1 | **Shared Input Validation Middleware** — `ServShared.ValidateJSON()` enforcing schema before every handler | ServShared, All Services | 🔴 P0 |
-| API.2 | **Request Body Size Limits** — `http.MaxBytesReader` per-route in ServGate and ServShared | ServShared, ServGate | 🔴 P0 |
 | API.3 | **API Schema Registry** — OpenAPI 3.0 specs per service stored in ServStore; backward-compat checked at deploy | All Services | 🟡 P1 |
 
 ---
@@ -108,7 +106,6 @@ These tracking items represent architectural depth improvements proposed by the 
 
 | # | Feature | Components Affected | Priority |
 |---|---------|-------------------|----------|
-| TEST.6 | **Cross-Service Contract Test Suite** — Docker Compose integration harness asserting end-to-end flows | All Services | 🔴 P0 |
 | TEST.7 | **Audit Event Coverage** — Enforce `EmitAuditEvent` on every privileged action via CI linter | All Services | 🟡 P1 |
 | TEST.8 | **Fuzz Testing for HTTP Endpoints** — Go 1.18+ fuzz corpus for all public-facing handlers | All Services | 🟢 P2 |
 | TEST.9 | **Chaos Recovery Tests** — Kill a dependency mid-request; verify graceful degradation | All Services | 🟢 P2 |
@@ -119,7 +116,6 @@ These tracking items represent architectural depth improvements proposed by the 
 
 | # | Feature | Components Affected | Priority |
 |---|---------|-------------------|----------|
-| SEC.9 | **JWT Key Rotation via JWKS** — Replace single shared `SERV_JWT_SECRET` with JWKS endpoint; rotate without restarts | ServAuth, ServShared | 🔴 P0 |
 | SEC.10 | **Secret Redaction in Logs** — `ServShared.SanitizeLog()` strips tokens/keys/passwords before emission | ServShared | 🟡 P1 |
 | SEC.11 | **Secret Versioning** — KMS stores key versions; encryption uses latest; decryption accepts any active | ServAuth | 🟡 P1 |
 | SEC.13 | **Tenant Resource Isolation** — ServStore buckets, ServQueue topics, ServDB pools auto-prefixed with verified tenant | ServShared | 🟡 P1 |

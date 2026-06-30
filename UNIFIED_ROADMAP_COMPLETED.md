@@ -296,5 +296,10 @@ This document serves as an archive of all successfully completed items, features
 * **A.4 AI-Assisted Incident Response**: Feed alert context to LLM and map component to runbook steps.
 * **A.5 Code Generation from Natural Language**: Mock code structure generator `serv generate "<prompt>"` in compiler.
 * **SEC.12 Tenant JWT Claim Enforcement**: Standardized middleware in `ServShared` enforces that `X-Tenant-ID` header matches verified JWT `tenant_id` claim, preventing cross-tenant access bypasses.
+* **API.1 Shared Input Validation Middleware**: Generic `DecodeAndValidateJSON` helper in `ServShared` decoding request body up to a limit and enforcing validation schemas.
+* **API.2 Request Body Size Limits**: Dynamic per-route `MaxBodySize` limits in `ServGate` reverse proxy using `http.MaxBytesReader`.
+* **SEC.9 JWT Key Rotation via JWKS**: Dynamic RSA keypair signing with `RS256` and `/api/auth/jwks` public key publishing endpoint on `ServAuth` with dynamic JWKS caching validator in `ServShared`.
+* **TEST.6 Cross-Service Contract Test Suite**: Fully automated Docker Compose E2E testing framework verifying inter-service boundaries.
+
 
 
