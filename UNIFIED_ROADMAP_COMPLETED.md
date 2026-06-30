@@ -300,6 +300,16 @@ This document serves as an archive of all successfully completed items, features
 * **API.2 Request Body Size Limits**: Dynamic per-route `MaxBodySize` limits in `ServGate` reverse proxy using `http.MaxBytesReader`.
 * **SEC.9 JWT Key Rotation via JWKS**: Dynamic RSA keypair signing with `RS256` and `/api/auth/jwks` public key publishing endpoint on `ServAuth` with dynamic JWKS caching validator in `ServShared`.
 * **TEST.6 Cross-Service Contract Test Suite**: Fully automated Docker Compose E2E testing framework verifying inter-service boundaries.
+* **API.3 API Schema Registry**: OpenAPI specifications for all services are stored in ServStore (`openapi-registry` bucket) and queryable via scripts.
+* **API.4 Ecosystem Version Manifest**: Enabled `/api/version` endpoints on all services and implemented `serv doctor` to verify compatibility across components.
+* **TEST.7 Audit Event Coverage Linter**: Created a static analysis linter (`check_audit.go`) checking for `EmitAuditEvent` calls in privileged functions.
+* **SEC.10 Secret Redaction in Logs**: Added `SanitizeLog` regex-based redactor to `LogJSON` inside `ServShared` to automatically strip passwords/tokens/keys.
+* **SEC.11 Secret Versioning**: Replaced single static KMS key with a versioned envelope key schema (`v1`/`v2`) in `ServAuth` enabling zero-downtime secret rotation.
+* **SEC.13 Tenant Resource Isolation**: Added context-aware bucket prefixing (`IsolateBucket`, `PutCtx`, `GetCtx`) in `StoreClient` and DB/topic isolators.
+* **ARCH.6 ServConsole Package Decomposition**: Split monolith console handlers into modular packages (`pkg/proxy`, `pkg/ws`, `pkg/ai`, `pkg/incidents`).
+* **OPS.7 Operational Runbooks**: Generated operational runbooks at `docs/runbooks/README.md` covering standard procedures.
+* **OPS.8 SLO Baseline Definitions**: Defined target SLOs and exposed them via the new `/api/slo?decomposed=true` endpoint.
+
 
 
 

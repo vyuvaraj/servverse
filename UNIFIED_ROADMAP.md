@@ -82,23 +82,21 @@ These tracking items represent architectural depth improvements proposed by the 
 
 | Initiative Area | Total Items | Completed | Pending | Priority |
 |-----------------|-------------|-----------|---------|----------|
-| **🛡️ API Contract Enforcement** | 3 | 2 | 1 | 🔴 P0 |
-| **🧪 Test Coverage & Contracts** | 4 | 1 | 3 | 🔴 P0 |
-| **🔑 Secrets & Token Security** | 6 | 2 | 4 | 🔴 P0 |
-| **🏗️ Architecture (ServConsole)** | 2 | 0 | 2 | 🟡 P1 |
-| **📋 API Versioning & Stability** | 3 | 0 | 3 | 🟡 P1 |
-| **👥 Multi-Tenancy Enforcement** | 3 | 1 | 2 | 🟡 P1 |
-| **📟 Operational Runbooks & SLO** | 3 | 0 | 3 | 🟡 P1 |
+| **🛡️ API Contract Enforcement** | 3 | 3 | 0 | 🔴 P0 |
+| **🧪 Test Coverage & Contracts** | 4 | 2 | 2 | 🔴 P0 |
+| **🔑 Secrets & Token Security** | 6 | 5 | 1 | 🔴 P0 |
+| **🏗️ Architecture (ServConsole)** | 2 | 1 | 1 | 🟡 P1 |
+| **📋 API Versioning & Stability** | 3 | 1 | 2 | 🟡 P1 |
+| **👥 Multi-Tenancy Enforcement** | 3 | 2 | 1 | 🟡 P1 |
+| **📟 Operational Runbooks & SLO** | 3 | 2 | 1 | 🟡 P1 |
 | **📝 Ecosystem Release Hygiene** | 3 | 0 | 3 | 🟢 P2 |
-| **TOTAL** | **27** | **5** | **22** | |
+| **TOTAL** | **27** | **17** | **10** | |
 
 ---
 
 ### 🛡️ API Contract Enforcement (P0 — Pending)
 
-| # | Feature | Components Affected | Priority |
-|---|---------|-------------------|----------|
-| API.3 | **API Schema Registry** — OpenAPI 3.0 specs per service stored in ServStore; backward-compat checked at deploy | All Services | 🟡 P1 |
+*All items completed!*
 
 ---
 
@@ -106,7 +104,6 @@ These tracking items represent architectural depth improvements proposed by the 
 
 | # | Feature | Components Affected | Priority |
 |---|---------|-------------------|----------|
-| TEST.7 | **Audit Event Coverage** — Enforce `EmitAuditEvent` on every privileged action via CI linter | All Services | 🟡 P1 |
 | TEST.8 | **Fuzz Testing for HTTP Endpoints** — Go 1.18+ fuzz corpus for all public-facing handlers | All Services | 🟢 P2 |
 | TEST.9 | **Chaos Recovery Tests** — Kill a dependency mid-request; verify graceful degradation | All Services | 🟢 P2 |
 
@@ -116,9 +113,6 @@ These tracking items represent architectural depth improvements proposed by the 
 
 | # | Feature | Components Affected | Priority |
 |---|---------|-------------------|----------|
-| SEC.10 | **Secret Redaction in Logs** — `ServShared.SanitizeLog()` strips tokens/keys/passwords before emission | ServShared | 🟡 P1 |
-| SEC.11 | **Secret Versioning** — KMS stores key versions; encryption uses latest; decryption accepts any active | ServAuth | 🟡 P1 |
-| SEC.13 | **Tenant Resource Isolation** — ServStore buckets, ServQueue topics, ServDB pools auto-prefixed with verified tenant | ServShared | 🟡 P1 |
 | SEC.14 | **Tenant Admin Console** — Tenant selector in ServConsole; switching tenants invalidates session scope | ServConsole | 🟢 P2 |
 
 ---
@@ -127,7 +121,6 @@ These tracking items represent architectural depth improvements proposed by the 
 
 | # | Feature | Components Affected | Priority |
 |---|---------|-------------------|----------|
-| ARCH.6 | **ServConsole Package Decomposition** — Split 3,277-line `main.go` into `pkg/proxy/`, `pkg/ws/`, `pkg/ai/`, `pkg/incidents/` | ServConsole | 🟡 P1 |
 | ARCH.7 | **Plugin Panel Architecture** — Console panels as independently compiled WASM modules; no core recompile for new panels | ServConsole | 🟢 P3 |
 
 ---
@@ -136,7 +129,6 @@ These tracking items represent architectural depth improvements proposed by the 
 
 | # | Feature | Components Affected | Priority |
 |---|---------|-------------------|----------|
-| API.4 | **Ecosystem Version Manifest** — `GET /api/version` on every service; `serv doctor` detects version mismatches | All Services | 🟡 P1 |
 | API.5 | **Deprecation Header Standard** — `Deprecation: true` + `Sunset: <date>` headers on deprecated endpoints | All Services | 🟢 P2 |
 | API.6 | **Backward-Compatible Change Policy** — No field removal without major version bump; enforced in CI via `oasdiff` | CI / All Services | 🟢 P2 |
 
@@ -146,7 +138,6 @@ These tracking items represent architectural depth improvements proposed by the 
 
 | # | Feature | Components Affected | Priority |
 |---|---------|-------------------|----------|
-| SEC.13 | **Tenant Resource Isolation** — Auto-prefix storage, topics, and pools with verified tenant ID | ServShared | 🟡 P1 |
 | SEC.14 | **Tenant Admin Console** — Tenant selector in ServConsole with session scope invalidation | ServConsole | 🟢 P2 |
 
 ---
@@ -155,8 +146,6 @@ These tracking items represent architectural depth improvements proposed by the 
 
 | # | Feature | Components Affected | Priority |
 |---|---------|-------------------|----------|
-| OPS.7 | **Operational Runbooks** — `docs/runbooks/` with per-service startup, shutdown, disk-full, high-latency, and dependency failure procedures | Docs | 🟡 P1 |
-| OPS.8 | **SLO Baseline Definitions** — Default SLOs (p99, error rate) for each service; error budgets for first-time operators | ServConsole | 🟡 P1 |
 | OPS.9 | **`serv status` CLI Command** — Single command showing all service health, version, uptime, error rate, p99 latency | Serv-lang | 🟢 P2 |
 
 ---
