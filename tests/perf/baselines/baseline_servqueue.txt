@@ -2,7 +2,7 @@ goos: windows
 goarch: amd64
 pkg: servqueue/pkg/broker
 cpu: 13th Gen Intel(R) Core(TM) i7-13850HX
-BenchmarkDeduplicatorAdd-28                	   76702	     16362 ns/op	      26 B/op	       2 allocs/op
-BenchmarkWasmCompilationAndExecution/WithCaching-28         	  126626	     10072 ns/op	    8484 B/op	      51 allocs/op
+BenchmarkDeduplicatorAdd-28                	   70606	     17175 ns/op	      26 B/op	       2 allocs/op
+BenchmarkWasmCompilationAndExecution/WithCaching-28         	  127411	     11617 ns/op	    8484 B/op	      51 allocs/op
 PASS
-ok  	servqueue/pkg/broker	4.385s
+ok  	servqueue/pkg/broker	3.121s

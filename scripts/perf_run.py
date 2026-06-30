@@ -13,7 +13,10 @@ COMPONENTS = {
     "servdb": "ServDB",
     "servmesh": "ServMesh",
     "servgate": "ServGate/pkg/proxy",
-    "servqueue": "ServQueue/pkg/broker"
+    "servqueue": "ServQueue/pkg/broker",
+    "servstore": "ServStore/pkg/storage",
+    "servcache": "ServCache",
+    "servshared": "ServShared"
 }
 
 ROOT_DIR = "c:\\Mine\\try\\serv"

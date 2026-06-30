@@ -1,0 +1,7 @@
+goos: windows
+goarch: amd64
+pkg: servcache
+cpu: 13th Gen Intel(R) Core(TM) i7-13850HX
+BenchmarkInMemoryCacheGetSet-28    	 3705753	       341.8 ns/op	     135 B/op	       2 allocs/op
+PASS
+ok  	servcache	3.245s
