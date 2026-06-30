@@ -212,3 +212,64 @@ This document serves as an archive of all successfully completed items, features
 * S3 event notifications (CloudEvents), Geo-aware data placement
 * WASM trigger on object events, S3 batch operations
 * Content-type aware compression, Federation (cross-cluster namespace)
+
+### Serv-lang Completed (Category-Defining)
+* Compile-time dependency injection
+* GraphQL endpoint declaration
+* Language server code actions
+* Compile-time macros
+
+### ServConsole Completed (Category-Defining)
+* Alerting engine & notifications
+* Incident timeline auto-generation
+* Log aggregation & search
+* Custom dashboard builder
+* SLO/SLI tracking & error budgets
+* Runbook automation
+
+### ServAuth Completed (New Component)
+* User registration & login (Email/password + magic link)
+* OAuth2/OIDC provider
+* Multi-tenant user directories
+* Social login (Google, GitHub, GitLab federation)
+* MFA support (TOTP, WebAuthn/passkey)
+* Password reset & account lockout
+* User management UI in ServConsole
+* Serv-lang integration (`auth.register()`, etc.)
+* API key issuance
+* Session management
+
+### ServDB Completed (New Component)
+* Connection pooling PgBouncer-style proxy
+* Query routing (Read replica, write-to-primary)
+* Slow query detection & telemetry
+* Query analytics
+* Schema migration orchestration
+* Database health in ServConsole
+* Multi-database support (PostgreSQL, MySQL, SQLite)
+* Query caching invalidation
+* Serv-lang integration (`database "servdb://..."`)
+
+### ServMail Completed (New Component)
+* Multi-channel delivery (Email, Slack, webhook, SMS)
+* Template engine variable injection
+* Template versioning in ServStore
+* Delivery tracking (Open/click/bounce)
+* Retry via ServQueue DLQ integration
+* Notification preferences management
+* Rate limiting
+* ServConsole templates dashboard
+* Serv-lang integration (`mail.send()`, `notify()`)
+
+### ServFlow Completed (New Component)
+* DAG-based workflow definitions
+* Durable execution state checkpointing
+* Compensation / Sagas rollback
+* Human approval gates
+* Retry policies
+* Timeout & deadline enforcement
+* Visual workflow editor
+* Event-triggered workflows
+* Serv-lang integration (`workflow "..." { ... }`)
+* Execution history & replay
+
