@@ -2,6 +2,6 @@ goos: windows
 goarch: amd64
 pkg: servmesh
 cpu: 13th Gen Intel(R) Core(TM) i7-13850HX
-BenchmarkCircuitBreakerAllow-28    	26598573	        47.88 ns/op	       0 B/op	       0 allocs/op
+BenchmarkCircuitBreakerAllow-28    	27447454	        46.52 ns/op	       0 B/op	       0 allocs/op
 PASS
-ok  	servmesh	1.461s
+ok  	servmesh	1.469s

@@ -2,8 +2,8 @@ goos: windows
 goarch: amd64
 pkg: servstore/pkg/storage
 cpu: 13th Gen Intel(R) Core(TM) i7-13850HX
-BenchmarkBlake3Hashing-28         	    2446	    454772 ns/op	    4692 B/op	      89 allocs/op
-BenchmarkHNSWvsLinearSearch/HNSW_Search-28         	   36502	     30665 ns/op	   10688 B/op	     206 allocs/op
-BenchmarkHNSWvsLinearSearch/Linear_Search_Scan-28  	   14443	     77675 ns/op	   32200 B/op	      13 allocs/op
+BenchmarkBlake3Hashing-28         	    2202	    521339 ns/op	    4765 B/op	      89 allocs/op
+BenchmarkHNSWvsLinearSearch/HNSW_Search-28         	   34410	     29881 ns/op	   10688 B/op	     206 allocs/op
+BenchmarkHNSWvsLinearSearch/Linear_Search_Scan-28  	   17336	     70919 ns/op	   32200 B/op	      13 allocs/op
 PASS
-ok  	servstore/pkg/storage	8.482s
+ok  	servstore/pkg/storage	4.872s

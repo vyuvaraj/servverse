@@ -2,6 +2,6 @@ goos: windows
 goarch: amd64
 pkg: github.com/vyuvaraj/ServShared
 cpu: 13th Gen Intel(R) Core(TM) i7-13850HX
-BenchmarkTokenGenerationAndVerification-28    	  284785	      4077 ns/op	    3088 B/op	      55 allocs/op
+BenchmarkTokenGenerationAndVerification-28    	  305745	      4006 ns/op	    3088 B/op	      55 allocs/op
 PASS
-ok  	github.com/vyuvaraj/ServShared	2.348s
+ok  	github.com/vyuvaraj/ServShared	1.397s

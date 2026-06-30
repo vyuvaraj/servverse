@@ -2,6 +2,6 @@ goos: windows
 goarch: amd64
 pkg: servgate/pkg/proxy
 cpu: 13th Gen Intel(R) Core(TM) i7-13850HX
-BenchmarkRateLimiterAllow-28    	   82279	    103874 ns/op	     149 B/op	       1 allocs/op
+BenchmarkRateLimiterAllow-28    	   92198	    113569 ns/op	     165 B/op	       1 allocs/op
 PASS
-ok  	servgate/pkg/proxy	8.863s
+ok  	servgate/pkg/proxy	10.767s
