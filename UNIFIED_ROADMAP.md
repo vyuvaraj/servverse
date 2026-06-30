@@ -14,8 +14,10 @@ These tracking items represent architectural depth improvements proposed by the 
 | **⚡ Performance & Scale** | 2 | 0 | 2 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
 | **🔐 Security & Integrity** | 2 | 0 | 2 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
 | **🛠️ Maintainability & Decomposition** | 1 | 0 | 1 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
+| **🔄 Developer Experience** | 2 | 0 | 2 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
+| **🌐 DevOps & Infrastructure** | 2 | 0 | 2 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
 | **🚀 Next-Level Core Enhancements** | 2 | 0 | 2 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
-| **TOTAL PENDING WORK** | **7** | **0** | **7** | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
+| **TOTAL PENDING WORK** | **11** | **0** | **11** | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
 
 ---
 
@@ -42,6 +44,24 @@ These tracking items represent architectural depth improvements proposed by the 
 | # | Feature | Components Affected | Priority |
 |---|---------|-------------------|----------|
 | ARCH.5 | **Ecosystem Modularization** — Shared package extraction and strict DI constructors | ServShared, All Services | Medium |
+
+---
+
+### 🔄 Developer Experience (Pending)
+
+| # | Feature | Components Affected | Priority |
+|---|---------|-------------------|----------|
+| DX.8 | **Web Log Tail Filtering** — Regex and service level filtering in console log streams | ServConsole | Medium |
+| DX.9 | **Local Mock Dev Server** — Offline SMTP & S3 API mock responses for local testing | ServMail, ServStore | Low |
+
+---
+
+### 🌐 DevOps & Infrastructure (Pending)
+
+| # | Feature | Components Affected | Priority |
+|---|---------|-------------------|----------|
+| OPS.5 | **GitOps Config Sync** — Git repository webhooks to automatically re-sync gateway routes | ServGate, ServConsole | Medium |
+| OPS.6 | **Auto TLS Let's Encrypt** — Integrated ACME client for automated certificate provisioning | ServGate | High |
 
 ---
 
