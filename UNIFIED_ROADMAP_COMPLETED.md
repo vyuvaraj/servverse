@@ -295,4 +295,6 @@ This document serves as an archive of all successfully completed items, features
 * **A.3 RAG Pipeline Integration**: Semantic search vector queries routed to ServStore.
 * **A.4 AI-Assisted Incident Response**: Feed alert context to LLM and map component to runbook steps.
 * **A.5 Code Generation from Natural Language**: Mock code structure generator `serv generate "<prompt>"` in compiler.
+* **SEC.12 Tenant JWT Claim Enforcement**: Standardized middleware in `ServShared` enforces that `X-Tenant-ID` header matches verified JWT `tenant_id` claim, preventing cross-tenant access bypasses.
+
 

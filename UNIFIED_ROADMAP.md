@@ -84,13 +84,13 @@ These tracking items represent architectural depth improvements proposed by the 
 |-----------------|-------------|-----------|---------|----------|
 | **🛡️ API Contract Enforcement** | 3 | 0 | 3 | 🔴 P0 |
 | **🧪 Test Coverage & Contracts** | 4 | 0 | 4 | 🔴 P0 |
-| **🔑 Secrets & Token Security** | 6 | 0 | 6 | 🔴 P0 |
+| **🔑 Secrets & Token Security** | 6 | 1 | 5 | 🔴 P0 |
 | **🏗️ Architecture (ServConsole)** | 2 | 0 | 2 | 🟡 P1 |
 | **📋 API Versioning & Stability** | 3 | 0 | 3 | 🟡 P1 |
-| **👥 Multi-Tenancy Enforcement** | 3 | 0 | 3 | 🟡 P1 |
+| **👥 Multi-Tenancy Enforcement** | 3 | 1 | 2 | 🟡 P1 |
 | **📟 Operational Runbooks & SLO** | 3 | 0 | 3 | 🟡 P1 |
 | **📝 Ecosystem Release Hygiene** | 3 | 0 | 3 | 🟢 P2 |
-| **TOTAL** | **27** | **0** | **27** | |
+| **TOTAL** | **27** | **1** | **26** | |
 
 ---
 
@@ -122,7 +122,6 @@ These tracking items represent architectural depth improvements proposed by the 
 | SEC.9 | **JWT Key Rotation via JWKS** — Replace single shared `SERV_JWT_SECRET` with JWKS endpoint; rotate without restarts | ServAuth, ServShared | 🔴 P0 |
 | SEC.10 | **Secret Redaction in Logs** — `ServShared.SanitizeLog()` strips tokens/keys/passwords before emission | ServShared | 🟡 P1 |
 | SEC.11 | **Secret Versioning** — KMS stores key versions; encryption uses latest; decryption accepts any active | ServAuth | 🟡 P1 |
-| SEC.12 | **Tenant JWT Claim Enforcement** — Middleware verifies `X-Tenant-ID` header matches JWT `tenant_id` claim | ServShared, ServAuth | 🔴 P0 |
 | SEC.13 | **Tenant Resource Isolation** — ServStore buckets, ServQueue topics, ServDB pools auto-prefixed with verified tenant | ServShared | 🟡 P1 |
 | SEC.14 | **Tenant Admin Console** — Tenant selector in ServConsole; switching tenants invalidates session scope | ServConsole | 🟢 P2 |
 
@@ -151,7 +150,6 @@ These tracking items represent architectural depth improvements proposed by the 
 
 | # | Feature | Components Affected | Priority |
 |---|---------|-------------------|----------|
-| SEC.12 | **Tenant JWT Claim Enforcement** — Enforce verified tenant_id claim in all cross-tenant requests | ServShared | 🔴 P0 |
 | SEC.13 | **Tenant Resource Isolation** — Auto-prefix storage, topics, and pools with verified tenant ID | ServShared | 🟡 P1 |
 | SEC.14 | **Tenant Admin Console** — Tenant selector in ServConsole with session scope invalidation | ServConsole | 🟢 P2 |
 
