@@ -309,6 +309,14 @@ This document serves as an archive of all successfully completed items, features
 * **ARCH.6 ServConsole Package Decomposition**: Split monolith console handlers into modular packages (`pkg/proxy`, `pkg/ws`, `pkg/ai`, `pkg/incidents`).
 * **OPS.7 Operational Runbooks**: Generated operational runbooks at `docs/runbooks/README.md` covering standard procedures.
 * **OPS.8 SLO Baseline Definitions**: Defined target SLOs and exposed them via the new `/api/slo?decomposed=true` endpoint.
+* **TEST.8 Fuzz Testing for HTTP Endpoints**: Added Go 1.18+ native fuzzing corpus in `ServShared` testing validating inputs and log sanitization.
+* **TEST.9 Chaos Recovery Tests**: Created E2E chaos recovery test asserting service resilience against transient network/dependency dropouts.
+* **SEC.14 Tenant Switch Session Invalidation**: Integrated `/api/tenant/switch` endpoint with automatic session token rotation in `ServConsole`.
+* **API.5 Deprecation Header Standard**: Implemented `DeprecationMiddleware` injecting standard `Deprecation` and `Sunset` headers.
+* **API.6 & DOC.7 Backward-Compatible Change Policy**: Developed backward-compatible spec checker script and registered CI compat verification check.
+* **OPS.9 serv status CLI Command**: Created `serv status` subcommand in the compiler CLI to query and present live health, uptime, and latency stats.
+* **DOC.5 Ecosystem CHANGELOG.md**: Published ecosystem-wide release log detailing all migrations and features.
+* **DOC.6 Component Release Tags**: Integrated automatic release tagger GitHub Actions workflow to tag main branch on merges.
 
 
 

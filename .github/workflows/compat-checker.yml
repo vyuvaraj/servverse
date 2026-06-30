@@ -1,0 +1,21 @@
+name: API Backward Compatibility Checker
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  compat:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Schema Compatibility Check
+        run: |
+          echo "Comparing OpenAPI registry schemas against active specifications..."
+          go run scripts/check_backward_compat.go old-spec.json new-spec.json
