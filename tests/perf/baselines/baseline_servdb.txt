@@ -1,0 +1,8 @@
+goos: windows
+goarch: amd64
+pkg: servdb
+cpu: 13th Gen Intel(R) Core(TM) i7-13850HX
+BenchmarkQueryCacheLookup-28                	86123989	        13.64 ns/op	       0 B/op	       0 allocs/op
+BenchmarkConnectionPoolAcquireRelease-28    	13478042	        82.14 ns/op	       0 B/op	       0 allocs/op
+PASS
+ok  	servdb	3.697s

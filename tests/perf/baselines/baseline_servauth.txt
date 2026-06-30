@@ -1,0 +1,8 @@
+goos: windows
+goarch: amd64
+pkg: servauth
+cpu: 13th Gen Intel(R) Core(TM) i7-13850HX
+BenchmarkAPIKeyHashing-28       	21199765	        59.06 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAPIKeyValidation-28    	 4667580	       266.2 ns/op	     128 B/op	       3 allocs/op
+PASS
+ok  	servauth	4.001s
