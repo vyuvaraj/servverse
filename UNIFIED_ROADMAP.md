@@ -16,8 +16,8 @@
 | **📊 Observability & Intelligence** | 5 | 5 | 0 | **100%** | █████████████████████ |
 | **🔄 Developer Experience** | 7 | 7 | 0 | **100%** | █████████████████████ |
 | **🌐 Scale & Distribution** | 6 | 6 | 0 | **100%** | █████████████████████ |
-| **🤖 AI-Native Capabilities** | 5 | 3 | 2 | **60%** | ████████████░░░░░░░░░ |
-| **TOTAL PENDING WORK** | **29** | **27** | **2** | **93%** | ██████████████████░░░ |
+| **🤖 AI-Native Capabilities** | 5 | 5 | 0 | **100%** | █████████████████████ |
+| **TOTAL PENDING WORK** | **29** | **29** | **0** | **100%** | █████████████████████ |
 
 ---
 
@@ -74,8 +74,8 @@ These represent the remaining open initiatives to take the ecosystem to category
 |---|---------|-------------------|----------|
 | A.2 | **Prompt Versioning** — ✅ Done — Version and A/B test prompts via ServStore, select at gateway level | ServGate, ServStore | Medium |
 | A.3 | **RAG Pipeline Integration** — ✅ Done — ServStore semantic search + ServQueue event pipeline = native RAG without LangChain | ServStore, ServQueue, Serv-lang | Medium |
-| A.4 | **AI-Assisted Incident Response** — Feed alert context to LLM, suggest runbook steps, auto-execute with approval | ServConsole, ServCron | Low |
-| A.5 | **Code Generation from Natural Language** — `serv generate "REST API for user management with auth"` | Serv-lang CLI | Low |
+| A.4 | **AI-Assisted Incident Response** — ✅ Done — Feed alert context to LLM, suggest runbook steps, auto-execute with approval | ServConsole, ServCron | Low |
+| A.5 | **Code Generation from Natural Language** — ✅ Done — `serv generate "REST API for user management with auth"` | Serv-lang CLI | Low |
 
 ---
 
