@@ -134,11 +134,11 @@ These items represent the features that would make each Servverse component a **
 
 | # | Feature | Why It Matters | Status |
 |---|---------|----------------|--------|
-| 14.1 | **Compile-time dependency injection** | Testable architectures without runtime reflection — Dagger.io-style but at compile time | [ ] |
+| 14.1 | **Compile-time dependency injection** | ✅ Done — Testable architectures without runtime reflection resolved during AST parsing. | [x] |
 | 14.2 | **Hot-reload without restart** | ✅ Done — Zero-downtime local dev via TCP proxy + process replacement. `serv run --hot` recompiles and swaps with no dropped connections. | [x] |
 | 14.5 | **Incremental compilation** | Cache per-file artifacts. Only recompile changed files. Critical at scale (>50 files). | [x] |
 | 14.6 | **`pipe` operator** | ✅ Done — `data |> transform() |> validate() |> save()` — readable data pipelines. Low cost, high readability. | [x] |
-| 14.8 | **GraphQL endpoint declaration** | Native GraphQL schema + resolver syntax. Compiles to performant Go handler. | [ ] |
+| 14.8 | **GraphQL endpoint declaration** | ✅ Done — Native GraphQL schema + resolver syntax compiled to performant Go handler. | [x] |
 | 14.9 | **Language server code actions** | Quick-fix: "Extract function", "Add error handling", "Generate test stub". Active refactoring assistance. | [ ] |
 | 14.10 | **Compile-time macros** | `@derive(Serialize, Validate)` — generate boilerplate at compile time. Reduces repetitive code. | [ ] |
 
