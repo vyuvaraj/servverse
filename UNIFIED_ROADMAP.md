@@ -15,9 +15,9 @@ These tracking items represent architectural depth improvements proposed by the 
 | **🔐 Security & Integrity** | 2 | 2 | 0 | **100%** | █████████████████████ |
 | **🛠️ Maintainability & Decomposition** | 1 | 0 | 1 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
 | **🔄 Developer Experience** | 2 | 1 | 1 | **50%** | ██████████░░░░░░░░░░░ |
-| **🌐 DevOps & Infrastructure** | 3 | 1 | 2 | **33%** | ███████░░░░░░░░░░░░░░ |
+| **🌐 DevOps & Infrastructure** | 4 | 1 | 3 | **25%** | █████░░░░░░░░░░░░░░░░ |
 | **🚀 Next-Level Core Enhancements** | 2 | 1 | 1 | **50%** | ██████████░░░░░░░░░░░ |
-| **TOTAL PENDING WORK** | **12** | **7** | **5** | **58%** | ████████████░░░░░░░░░ |
+| **TOTAL PENDING WORK** | **13** | **7** | **6** | **53%** | ███████████░░░░░░░░░░ |
 
 ---
 
@@ -63,6 +63,7 @@ These tracking items represent architectural depth improvements proposed by the 
 | OPS.5 | **GitOps Config Sync** — Git repository webhooks to automatically re-sync gateway routes | ServGate, ServConsole | Medium |
 | OPS.6 | **Auto TLS Let's Encrypt** — Integrated ACME client for automated certificate provisioning | ServGate | High |
 | OPS.7 | ✅ **Ecosystem Performance Suite** — Multi-tiered Go micro-benchmarks, k6 component load tests, and distributed end-to-end telemetry workloads | ServGate, ServQueue, ServDB, ServMesh | Medium |
+| OPS.8 | **Ecosystem-in-a-Box Sandbox** — One-command docker-compose stack and automated load generator script | All Services | High |
 
 ---
 
@@ -140,4 +141,24 @@ These tracking items represent architectural depth improvements proposed by the 
 ### 📝 Ecosystem Release Hygiene (P2 — Pending)
 
 *All items completed!*
+
+---
+
+### 🌐 DevOps & Infrastructure Detailed Task Breakdown (Pending)
+
+#### **OPS.8: Ecosystem-in-a-Box Sandbox**
+* [ ] **Containerization of All Services**
+  * Create/verify `Dockerfile` multi-stage configurations for all 12 services in the ecosystem.
+  * Optimize layer caching for quick rebuilds and small image sizes.
+* [ ] **Orchestrate Stack with Docker Compose**
+  * Define `docker-compose.yml` declaring all services and backend dependencies (e.g. Postgres, Redis, S3).
+  * Configure internal DNS bridge network so services resolve each other dynamically.
+  * Define healthchecks and dependency sequencing (`depends_on` conditions).
+* [ ] **Automated Complex Workload Generator**
+  * Build a Go load generator script (`scripts/load_generator.go`) that simulates continuous system use.
+  * Workload must register routes, issue API keys, execute Sage sagas, write to event topics, and trigger mTLS handshakes.
+* [ ] **Interactive Visual Console Setup**
+  * Pre-configure default settings so `ServConsole` mounts live logs, traces, and metrics feeds out-of-the-box.
+* [ ] **Developer Quickstart CLI Wrapper**
+  * Create simple helper scripts `start_sandbox.sh` / `start_sandbox.bat` to launch, teardown, and check prerequisites.
 
