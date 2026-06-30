@@ -273,3 +273,26 @@ This document serves as an archive of all successfully completed items, features
 * Serv-lang integration (`workflow "..." { ... }`)
 * Execution history & replay
 
+---
+
+## 8. Completed Cross-Cutting Initiatives (June 2026)
+* **S.4 Audit Trail Unification**: Every write operation across all services emits immutable audit events to a shared ServStore bucket.
+* **S.5 API Key Federation**: Issue scoped API keys via ServConsole that work across all services.
+* **O.1 Unified Metrics Pipeline**: RED metrics (Rate/Error/Duration) derived from OpenTelemetry traces.
+* **O.2 Anomaly Detection Engine**: Detect latency spikes, error bursts, and traffic anomalies across all services.
+* **O.3 Cost Attribution**: Track compute/storage/network cost per service, tenant, and API route.
+* **O.4 Distributed Profiling**: Continuous production profiling (CPU/memory) with flamegraph aggregation.
+* **O.5 Chaos Engineering Dashboard**: Inject faults (latency, errors) via ServMesh and inspect in ServConsole.
+* **D.2 Live Reload Across Stack**: File watcher that rebuilds and restarts only affected services.
+* **D.5 ServConsole Dev Mode**: Local dashboard shows all services, live logs, and one-click restart.
+* **D.6 Playground (Web-based IDE)**: Browser-based Serv-lang editor with compilation diagnostics.
+* **D.7 Transactional Notifications**: unified mail/notify helper client routed via ServMail.
+* **SC.1 Multi-Region Control Plane**: Federated ServMesh registry with geo-aware routing across regions.
+* **SC.2 Global ServStore Namespace**: Cross-cluster bucket resolution with bucket@region syntax.
+* **SC.3 Event Bus Federation**: ServQueue topic mirroring across clusters for geo-distributed pub/sub.
+* **SC.5 Edge Deployment**: WASM target support in Serv-lang compiler.
+* **A.2 Prompt Versioning**: A/B test and version prompts via ServStore.
+* **A.3 RAG Pipeline Integration**: Semantic search vector queries routed to ServStore.
+* **A.4 AI-Assisted Incident Response**: Feed alert context to LLM and map component to runbook steps.
+* **A.5 Code Generation from Natural Language**: Mock code structure generator `serv generate "<prompt>"` in compiler.
+
