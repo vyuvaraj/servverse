@@ -36,8 +36,13 @@ exit /b 0
 echo ==========================================================
 echo       BUILDING & STARTING SERVVERSE ECOSYSTEM SANDBOX
 echo ==========================================================
-echo [INFO] Compiling all 12 services and starting container stack...
-podman compose up -d --build
+if "%2"=="" (
+    echo [INFO] Compiling all 12 services and starting container stack...
+    podman compose up -d --build
+) else (
+    echo [INFO] Compiling service '%2' and starting container stack...
+    podman compose up -d --build %2
+)
 if %errorlevel% neq 0 (
     echo [ERROR] Failed to build/start container stack.
     exit /b 1
@@ -73,3 +78,4 @@ echo.
 
 cd scripts
 go run load_generator.go
+
