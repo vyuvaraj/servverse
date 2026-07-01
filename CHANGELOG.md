@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.3.0] - 2026-07-01
+
+### Added
+* **ARCH.5**: Shared package extraction and strict constructor dependency injection in `ServMail`. Handlers are now structured as methods on `MailServer`.
+* **DX.9**: Offline mock mode support. Adds a concurrent TCP-based mock SMTP server (listening on port 1025) in `ServMail` and offline S3 mock API mode (activated via `--mock` or `SERVSTORE_MOCK=true`) in `ServStore`.
+* **OPS.5**: GitOps configuration sync webhook endpoint `/api/gitops/webhook` and `/api/v1/gitops/webhook` in `ServGate` to pull changes and dynamically reload routes.
+* **OPS.6**: Integrated ACME / Let's Encrypt autocert client in `ServGate` supporting port 80 HTTP-01 challenge redirect and automated certificate renewals on port 443.
+* **CORE.2**: Durable Sagas rollback engine in `ServFlow` which executes compensation actions (with support for HTTP endpoints), updates intermediate statuses to `"compensating"`, and durably checkpoints state so rollbacks resume on startup.
+* Added a unit test suite testing S3 mock gateways (`TestS3MockMode` in `ServStore`) and GitOps webhooks (`TestGitOpsConfigSyncWebhook` in `ServGate`).
+
+### Fixed
+* Fixed lint warning on tagged switches for `selected` in `advanced_features_test.go` and `r.Method` in `main.go`.
+* Fixed test port collision flakiness in `TestRateLimiting` inside `ServGate/main_test.go` by changing ports to `8073`/`8074` to prevent issues with running services.
+
+---
+
 ## [1.2.0] - 2026-06-30
 
 ### Added

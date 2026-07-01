@@ -319,6 +319,16 @@ This document serves as an archive of all successfully completed items, features
 * **DOC.6 Component Release Tags**: Integrated automatic release tagger GitHub Actions workflow to tag main branch on merges.
 * **ARCH.7 Plugin Panel Architecture**: Designed dynamic plugin loading interface (`/api/plugins` and `/api/plugins/register`) serving hot-swappable WASM console panels.
 
+---
+
+## 9. Phase 6 Completed Ecosystem Hardening (July 1, 2026)
+* **ARCH.5: Ecosystem Modularization & DI Constructors**: Shared package extraction and strict DI constructors refactored in ServMail. Handlers are structured as methods on `MailServer`.
+* **DX.9: Local Mock Dev Server (SMTP & S3)**: Implemented offline SMTP mock server in ServMail with HTTP query/delete endpoints, and offline S3 mock mode in ServStore using command-line flags and environment variables to bypass S3 requests with mock XML responses.
+* **OPS.5: GitOps Config Sync**: Webhook endpoints `/api/gitops/webhook` and `/api/v1/gitops/webhook` in ServGate to trigger local `git pull` and dynamically hot-reload configuration routes.
+* **OPS.6: Auto TLS Let's Encrypt**: Integrated ACME autocert client inside ServGate with port 80 HTTP-01 challenge redirect handler and automatic cert renewals on port 443.
+* **CORE.2: Durable Sagas State Machine**: Refactored Saga failure rollback execution in ServFlow to execute real compensation actions (including HTTP calls), track rollbacks using `"compensating"` status, persist checkpoints to ServStore, and automatically resume rollback sequences from checkpoints upon server restart.
+
+
 
 
 
