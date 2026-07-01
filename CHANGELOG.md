@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.4.0] - 2026-07-01
+
+### Added
+* **HA.1**: Dynamic Active-Active Cluster Replication. Implemented object replication in `ServStore` with LWW conflict resolution, and mutating query statement replication across cluster peers in `ServDB`.
+* **PS.4**: Internal gRPC Mesh Transport. Implemented a zero-compile gRPC JSON-codec transport in `ServMesh` enabling inter-service communication to execute over high-performance HTTP/2 multiplexed gRPC connections.
+* Added a unit test suite validating Active-Active object conflict resolution (`TestS3ActiveActiveConflictResolution` in `ServStore`), database statement replication (`TestDatabaseQueryReplication` in `ServDB`), and gRPC mesh forwarding (`TestGRPCMeshTransport` in `ServMesh`).
+
 ## [1.3.0] - 2026-07-01
 
 ### Added
