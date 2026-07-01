@@ -20,7 +20,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * **CORE.5**: First-Class Ecosystem Standard Library. Added `cache.srv` and `db.srv`, and updated `auth.srv` and `queue.srv` to export native bindings directly in `serv-lang`.
 * **PS.3**: Dynamic Backpressure Routing. Added backpressure load balancer strategy in `ServGate` routing load dynamically away from busy target nodes based on `X-Backpressure` headers.
 * **SEC.15**: Dynamic IAM Policy Hot-Reloading. Enabled session revocation and dynamic token refresh signaling via `X-Token-Refresh` responses on stale policy versions in `ServGate`.
-* Added a unit test suite testing S3 mock gateways (`TestS3MockMode` in `ServStore`), GitOps webhooks (`TestGitOpsConfigSyncWebhook` in `ServGate`), event-driven saga compensations (`TestEventDrivenSagaCompensation` in `ServFlow`), dynamic backpressure routing (`TestDynamicBackpressureRouting` in `ServGate`), and policy reloading (`TestDynamicIAMPolicyHotReloading` in `ServGate`).
+* **ARCH.8**: Domain-Driven Decomposition. Added compile-time boundary coupling check in `Serv-lang` compiler/linter preventing direct cross-domain helper calls in route handlers.
+* **OPS.10**: Zero-Configuration Mesh Service Discovery. Added automatic multicast UDP UDP-announce and query-broadcast auto-discovery loops inside `ServMesh` registry.
+* Added a unit test suite testing S3 mock gateways (`TestS3MockMode` in `ServStore`), GitOps webhooks (`TestGitOpsConfigSyncWebhook` in `ServGate`), event-driven saga compensations (`TestEventDrivenSagaCompensation` in `ServFlow`), dynamic backpressure routing (`TestDynamicBackpressureRouting` in `ServGate`), policy reloading (`TestDynamicIAMPolicyHotReloading` in `ServGate`), compiler boundary rules (`TestDomainDrivenDecompositionLinter` in `Serv-lang`), and mesh multicast service discovery (`TestMulticastServiceDiscovery` in `ServMesh`).
 
 ### Fixed
 * Fixed base64 URL decoding type mismatch bug in `base64UrlDecode` utility.
