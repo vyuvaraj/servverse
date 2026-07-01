@@ -18,13 +18,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * **OPS.11**: Performance Regression CI Gates. Integrated PR benchmark gating workflow ([perf-gates.yml](file:///c:/Mine/try/serv/servverse-repo/.github/workflows/perf-gates.yml)) and SLA validators ([verify_perf_sla.py](file:///c:/Mine/try/serv/servverse-repo/scripts/verify_perf_sla.py)) verifying latency (<20ms) and error margins.
 * **CORE.3**: Asynchronous Event-Driven Sagas. Implemented STOMP messaging-based saga compensation notifications over `ServQueue` topics and a REST continuation callback API in `ServFlow`.
 * **CORE.5**: First-Class Ecosystem Standard Library. Added `cache.srv` and `db.srv`, and updated `auth.srv` and `queue.srv` to export native bindings directly in `serv-lang`.
-* Added a unit test suite testing S3 mock gateways (`TestS3MockMode` in `ServStore`), GitOps webhooks (`TestGitOpsConfigSyncWebhook` in `ServGate`), and event-driven saga compensations (`TestEventDrivenSagaCompensation` in `ServFlow`).
+* **PS.3**: Dynamic Backpressure Routing. Added backpressure load balancer strategy in `ServGate` routing load dynamically away from busy target nodes based on `X-Backpressure` headers.
+* **SEC.15**: Dynamic IAM Policy Hot-Reloading. Enabled session revocation and dynamic token refresh signaling via `X-Token-Refresh` responses on stale policy versions in `ServGate`.
+* Added a unit test suite testing S3 mock gateways (`TestS3MockMode` in `ServStore`), GitOps webhooks (`TestGitOpsConfigSyncWebhook` in `ServGate`), event-driven saga compensations (`TestEventDrivenSagaCompensation` in `ServFlow`), dynamic backpressure routing (`TestDynamicBackpressureRouting` in `ServGate`), and policy reloading (`TestDynamicIAMPolicyHotReloading` in `ServGate`).
 
 ### Fixed
+* Fixed base64 URL decoding type mismatch bug in `base64UrlDecode` utility.
 * Fixed vendor dependency resolution in `ServFlow` container builds.
 * Fixed Printf format verb compilation warning in `Serv-lang` status command ([cmd_status.go](file:///c:/Mine/try/serv/Serv-lang/cmd_status.go)).
 * Fixed lint warning on tagged switches for `selected` in `advanced_features_test.go` and `r.Method` in `main.go`.
-* Fixed test port collision flakiness in `TestRateLimiting` inside `ServGate/main_test.go` by changing ports to `8073`/`8074` to prevent issues with running services.
+* Fixed test port collision flakiness in `TestRateLimiting` and `TestDirectMemoryPassingAndResponseFilters` inside `ServGate/main_test.go` by dynamic port reassignment.
 
 ---
 
