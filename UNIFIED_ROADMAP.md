@@ -167,7 +167,8 @@ To transition the Servverse ecosystem from local/sandbox stage to enterprise pro
 | **🌐 DevOps & Infrastructure** | 1 | 0 | 1 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
 | **📋 API Versioning & Scaling** | 1 | 0 | 1 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
 | **📟 Diagnostics & Operations** | 1 | 0 | 1 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
-| **TOTAL PENDING WORK** | **6** | **0** | **6** | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
+| **🚀 Next-Level Core Enhancements** | 1 | 0 | 1 | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
+| **TOTAL PENDING WORK** | **7** | **0** | **7** | **0%** | ░░░░░░░░░░░░░░░░░░░░░ |
 
 ---
 
@@ -216,4 +217,12 @@ To transition the Servverse ecosystem from local/sandbox stage to enterprise pro
 | # | Feature | Components Affected | Priority |
 |---|---------|-------------------|----------|
 | OPS.13 | **Ecosystem Doctor & Telemetry Diagnostics** — CLI diagnostics utility verifying inter-service telemetry pipelines | All Services | High |
+
+---
+
+### 🚀 Next-Level Core Enhancements (Pending)
+
+| # | Feature | Components Affected | Priority |
+|---|---------|-------------------|----------|
+| CORE.4 | **Unified Application Block DSL** — Support declaring complete application boundaries containing auth, database, queue, api, and workflow components | Serv-lang | High |
 
