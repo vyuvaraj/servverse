@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.6.0] - 2026-07-01
+
+### Added
+* **OPS.14**: Enterprise Control Plane (Tenant Routing). Implemented dynamic tenant policies configuring allowed regions/clusters under `/api/tenants/policies` in `ServGate`, automatically checking incoming `X-Tenant-ID` header parameters.
+* **OPS.15**: Production Digital Twin (Sandbox Config Generator). Built AST scanner and regex fallback generator inside `Serv-lang` (`serv generate sandbox <file>`) to produce a local sanitized digital twin configuration.
+* Added validation test suites: `TestTenantControlPlanePolicies` in `ServGate` and `TestSandboxConfigGeneration` in `Serv-lang`.
+
 ## [1.5.0] - 2026-07-01
 
 ### Added
