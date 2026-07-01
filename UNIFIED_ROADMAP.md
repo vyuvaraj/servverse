@@ -242,6 +242,7 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 |---|---------|-------------------|----------|
 | DX.11 | **AI-Powered Scaffolder** — Natural language scaffolding generator (`serv create "<prompt>"`) | Serv-lang | High |
 | UI.3 | **Visual Architecture Designer** — Interactive drag-and-drop designer with round-trip sync | ServConsole, Serv-lang | Medium |
+| UI.4 | **Visual Workflow Designer** — Drag-and-drop stateful workflow editor generating native `serv-lang` code | ServConsole, ServFlow | High |
 | AI.9 | **Autonomous Tuning & Self-Optimization** — Production telemetry analysis applying dynamic indexes/caches | ServTrace, ServShared | Medium |
 | REG.3 | **Package Developer Marketplace** — Shared package hub for templates, WASM filters, and workflows | ServRegistry | Medium |
 | CLOUD.1 | **Servverse Cloud Platform** — Managed serverless PaaS hosting environment | ServCloud, ServGate | High |
