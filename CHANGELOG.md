@@ -15,9 +15,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * **OPS.5**: GitOps configuration sync webhook endpoint `/api/gitops/webhook` and `/api/v1/gitops/webhook` in `ServGate` to pull changes and dynamically reload routes.
 * **OPS.6**: Integrated ACME / Let's Encrypt autocert client in `ServGate` supporting port 80 HTTP-01 challenge redirect and automated certificate renewals on port 443.
 * **CORE.2**: Durable Sagas rollback engine in `ServFlow` which executes compensation actions (with support for HTTP endpoints), updates intermediate statuses to `"compensating"`, and durably checkpoints state so rollbacks resume on startup.
-* Added a unit test suite testing S3 mock gateways (`TestS3MockMode` in `ServStore`) and GitOps webhooks (`TestGitOpsConfigSyncWebhook` in `ServGate`).
+* **OPS.11**: Performance Regression CI Gates. Integrated PR benchmark gating workflow ([perf-gates.yml](file:///c:/Mine/try/serv/servverse-repo/.github/workflows/perf-gates.yml)) and SLA validators ([verify_perf_sla.py](file:///c:/Mine/try/serv/servverse-repo/scripts/verify_perf_sla.py)) verifying latency (<20ms) and error margins.
+* **CORE.3**: Asynchronous Event-Driven Sagas. Implemented STOMP messaging-based saga compensation notifications over `ServQueue` topics and a REST continuation callback API in `ServFlow`.
+* **CORE.5**: First-Class Ecosystem Standard Library. Added `cache.srv` and `db.srv`, and updated `auth.srv` and `queue.srv` to export native bindings directly in `serv-lang`.
+* Added a unit test suite testing S3 mock gateways (`TestS3MockMode` in `ServStore`), GitOps webhooks (`TestGitOpsConfigSyncWebhook` in `ServGate`), and event-driven saga compensations (`TestEventDrivenSagaCompensation` in `ServFlow`).
 
 ### Fixed
+* Fixed vendor dependency resolution in `ServFlow` container builds.
+* Fixed Printf format verb compilation warning in `Serv-lang` status command ([cmd_status.go](file:///c:/Mine/try/serv/Serv-lang/cmd_status.go)).
 * Fixed lint warning on tagged switches for `selected` in `advanced_features_test.go` and `r.Method` in `main.go`.
 * Fixed test port collision flakiness in `TestRateLimiting` inside `ServGate/main_test.go` by changing ports to `8073`/`8074` to prevent issues with running services.
 
