@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.5.0] - 2026-07-01
+
+### Added
+* **SEC.16**: Zero-Trust mTLS Network Policies. Implemented `NetworkPolicy` registry configurations and gRPC client CN certificate identity checking in `ServMesh` to reject unauthorized mesh access requests.
+* **DX.10**: Scaffolding CLI & Sandbox. Expanded `serv generate` CLI commands in the `Serv-lang` compiler to scaffold standard REST APIs (`api`), database schemes (`db`), and distributed workflow patterns (`workflow`).
+* **OPS.12**: Automated Canary Deployment Engine. Added in-memory error stats tracking and background auto-promotion / auto-rollback routines in `ServGate`. Rolling canary promotions automatically revert weights to stable target (0% canary weight) if error rates exceed 5%.
+* Added validation test suites: `TestZeroTrustNetworkPolicies` in `ServMesh`, `TestScaffoldingCLI` in `Serv-lang`, and `TestAutomatedCanaryRollback` in `ServGate`.
+
 ## [1.4.0] - 2026-07-01
 
 ### Added
