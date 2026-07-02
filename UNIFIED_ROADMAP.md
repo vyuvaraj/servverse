@@ -35,7 +35,7 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 | SD.2 | **ServAuth package extraction** | ServAuth | 🟡 Medium | `main.go` is 1,093 lines. Split into `pkg/handlers/`, `pkg/store/`, `pkg/oauth/`, `pkg/mfa/` with proper interfaces. |
 | SD.3 | **ServRegistry package split** | ServRegistry | 🟡 Medium | `main.go` is 1,007 lines. Extract `pkg/registry/`, `pkg/resolution/`, `pkg/web/`. |
 | SD.4 | **ServFlow package extraction** | ServFlow | 🟡 Medium | `main.go` is 803 lines + 73-line store.go. Split DAG engine, API handlers, saga execution, and checkpoint logic. |
-| SD.5 | **ServMail package extraction** | ServMail | 🟢 Low | `main.go` is 673 lines + 42-line store.go. Split delivery channels, template engine, and tracking. |
+| SD.5 | **ServMail package extraction** — ✅ Split delivery, templates, and storage into pkg/ packages | ServMail | 🟢 Low | `main.go` is 673 lines + 42-line store.go. Split delivery channels, template engine, and tracking. |
 
 ---
 
@@ -46,7 +46,7 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 | SEC.S1 | **JWT Key Rotation via JWKS** | ServAuth, ServShared | 🔴 High | Replace single shared `SERV_JWT_SECRET` with RS256 keypair + `/.well-known/jwks.json` endpoint. Enable rotation without service restarts. |
 | SEC.S2 | **Secret Redaction in Logs** — ✅ Robust regex redaction of quoted/unquoted credentials | ServShared, All | 🔴 High | Implement `SanitizeLog()` regex stripping tokens/keys/passwords from structured log output before emission. |
 | SEC.S3 | **Secret Versioning in KMS** | ServAuth | 🟡 Medium | Store key versions; encrypt with latest; decrypt accepts any active version for zero-downtime rotation. |
-| SEC.S4 | **Audit Event Coverage Enforcement** | ServAuth, ServDB | 🟡 Medium | Every privileged action (login, key issuance, MFA change, migration run) must call `EmitAuditEvent`. Add CI lint check. |
+| SEC.S4 | **Audit Event Coverage Enforcement** — ✅ EmitAuditEvent calls enforced and lint-checked | ServAuth, ServDB | 🟡 Medium | Every privileged action (login, key issuance, MFA change, migration run) must call `EmitAuditEvent`. Add CI lint check. |
 
 ---
 
@@ -55,7 +55,7 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 | # | Feature | Components | Priority | Description |
 |---|---------|-----------|----------|-------------|
 | TQ.1 | **ServDocs test suite** — ✅ Table-driven parser/generator/OpenAPI tests | ServDocs | 🟡 Medium | Zero tests exist. Add table-driven tests for parser, generator, and OpenAPI output validation. |
-| TQ.2 | **ServDB migration.go real implementation** | ServDB | 🔴 High | `migration.go` is 9 lines (empty stub). Implement actual migration execution, rollback, and history tracking. |
+| TQ.2 | **ServDB migration.go real implementation** — ✅ Real migration executor, table tracking, and rollback | ServDB | 🔴 High | `migration.go` is 9 lines (empty stub). Implement actual migration execution, rollback, and history tracking. |
 | TQ.3 | **ServFlow .state file gitignore** — ✅ Added to gitignore and cleaned history | ServFlow | 🟢 Low | 20+ `.state` files committed to repo. Add to `.gitignore` and clean from history. |
 | TQ.4 | **Property-based tests for critical paths** | ServAuth, ServStore | 🟡 Medium | Add property-based fuzz tests for token validation, S3 signature verification, and encryption/decryption roundtrips. |
 | TQ.5 | **Load test baselines for all services** | All Services | 🟡 Medium | Establish k6/vegeta load test baselines with documented throughput targets for each service's critical APIs. |
@@ -68,9 +68,9 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 |---|---------|-----------|----------|-------------|
 | INF.1 | **ServDocs Dockerfile** — ✅ Multi-stage builder containerization | ServDocs | 🟢 Low | Only service without containerization. Add multi-stage Go build Dockerfile. |
 | INF.2 | **ServDocs CI pipeline** — ✅ Actions build/test workflow added | ServDocs | 🟢 Low | No GitHub Actions workflow. Add build/test/fmt check pipeline. |
-| INF.3 | **ServShared README** | ServShared | 🟢 Low | No documentation for the shared library. Add README explaining exported functions, middleware usage, and configuration. |
+| INF.3 | **ServShared README** — ✅ Added comprehensive readme guide | ServShared | 🟢 Low | No documentation for the shared library. Add README explaining exported functions, middleware usage, and configuration. |
 | INF.4 | **ServCloud roadmap cleanup** | ServCloud | 🟢 Low | Duplicate "Phase 3" headings with different content. Fix roadmap structure. |
-| INF.5 | **Unified Makefile/Taskfile** | servverse-repo | 🟡 Medium | No single command builds all services. Add `Taskfile.yml` or `Makefile` with `build-all`, `test-all`, `lint-all` targets. |
+| INF.5 | **Unified Makefile/Taskfile** — ✅ Unified Makefile orchestrating all services builds/tests | servverse-repo | 🟡 Medium | No single command builds all services. Add `Taskfile.yml` or `Makefile` with `build-all`, `test-all`, `lint-all` targets. |
 | INF.6 | **Dependency version pinning** | All Services | 🟡 Medium | Audit `go.mod` files across services for version consistency of shared deps (ServShared, OTel SDK, etc). |
 
 ---

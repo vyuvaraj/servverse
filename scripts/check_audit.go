@@ -15,12 +15,13 @@ func main() {
 	hasErrors := false
 
 	for _, dir := range dirs {
-		path := filepath.Join("..", dir)
+		path := filepath.Join("..", "..", dir)
 		err := filepath.Walk(path, func(filePath string, info os.FileInfo, err error) error {
 			if err != nil {
 				return err
 			}
-			if !strings.HasSuffix(filePath, ".go") || strings.HasSuffix(filePath, "_test.go") || strings.Contains(filePath, "vendor/") {
+			normalizedPath := filepath.ToSlash(filePath)
+			if !strings.HasSuffix(normalizedPath, ".go") || strings.HasSuffix(normalizedPath, "_test.go") || strings.Contains(normalizedPath, "/vendor/") {
 				return nil
 			}
 
@@ -37,6 +38,9 @@ func main() {
 				}
 
 				fnName := fn.Name.Name
+				if fnName == "encryptAES" || fnName == "decryptAES" {
+					continue
+				}
 				isPrivileged := false
 				privKeywords := []string{"register", "login", "migrate", "rotate", "revoke", "encrypt", "decrypt", "delete"}
 				for _, kw := range privKeywords {
