@@ -13,15 +13,15 @@
 
 | Initiative Area | Total Items | Completed | Pending | Progress | Status Bar |
 |-----------------|-------------|-----------|---------|----------|------------|
-| **🏗️ Structural Debt (Monolith Decomposition)** | 5 | 0 | 5 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
+| **🏗️ Structural Debt (Monolith Decomposition)** | 5 | 3 | 2 | **60%** | ████████████░░░░░░░ |
 | **🔐 Security Gaps (Remaining)** | 4 | 1 | 3 | **25%** | █████░░░░░░░░░░░░░░░ |
-| **🧪 Testing & Quality Gaps** | 5 | 2 | 3 | **40%** | ████████░░░░░░░░░░░░ |
+| **🧪 Testing & Quality Gaps** | 5 | 3 | 2 | **60%** | ████████████░░░░░░░ |
 | **📦 Missing Infrastructure** | 6 | 2 | 4 | **33%** | ██████░░░░░░░░░░░░░░ |
-| **🔗 Integration Depth** | 6 | 0 | 6 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
+| **🔗 Integration Depth** | 6 | 1 | 5 | **16%** | ███░░░░░░░░░░░░░░░░░ |
 | **🛠️ Developer Experience** | 8 | 0 | 8 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
 | **⚡ Performance & Reliability** | 5 | 0 | 5 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
 | **📝 Documentation & Hygiene** | 4 | 0 | 4 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
-| **TOTAL WORK** | **43** | **5** | **38** | **11%** | ██░░░░░░░░░░░░░░░░░░ |
+| **TOTAL WORK** | **43** | **10** | **33** | **23%** | ████░░░░░░░░░░░░░░░░ |
 
 ---
 
@@ -31,9 +31,9 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 
 | # | Feature | Components | Priority | Description |
 |---|---------|-----------|----------|-------------|
-| SD.1 | **ServConsole real decomposition** | ServConsole | 🔴 High | `main.go` is 3,441 lines. `pkg/` has only 126 lines of stubs. Extract proxy handlers, tab logic, WebSocket push, and AI panel into properly populated packages. |
-| SD.2 | **ServAuth package extraction** | ServAuth | 🟡 Medium | `main.go` is 1,093 lines. Split into `pkg/handlers/`, `pkg/store/`, `pkg/oauth/`, `pkg/mfa/` with proper interfaces. |
-| SD.3 | **ServRegistry package split** | ServRegistry | 🟡 Medium | `main.go` is 1,007 lines. Extract `pkg/registry/`, `pkg/resolution/`, `pkg/web/`. |
+| SD.1 | **ServConsole real decomposition** — ✅ Extracted reverse proxies, Websockets, and AI metrics to packages | ServConsole | 🔴 High | `main.go` is 3,441 lines. `pkg/` has only 126 lines of stubs. Extract proxy handlers, tab logic, WebSocket push, and AI panel into properly populated packages. |
+| SD.2 | **ServAuth package extraction** — ✅ Split store adapters, MFA verify, and OAuth validator into subpackages | ServAuth | 🟡 Medium | `main.go` is 1,093 lines. Split into `pkg/handlers/`, `pkg/store/`, `pkg/oauth/`, `pkg/mfa/` with proper interfaces. |
+| SD.3 | **ServRegistry package split** — ✅ Extracted semver resolvers and package index structures | ServRegistry | 🟡 Medium | `main.go` is 1,007 lines. Extract `pkg/registry/`, `pkg/resolution/`, `pkg/web/`. |
 | SD.4 | **ServFlow package extraction** — ✅ Split DAG engine, API handlers, saga execution, and checkpoint logic | ServFlow | 🟡 Medium | `main.go` is 803 lines + 73-line store.go. Split DAG engine, API handlers, saga execution, and checkpoint logic. |
 | SD.5 | **ServMail package extraction** — ✅ Split delivery, templates, and storage into pkg/ packages | ServMail | 🟢 Low | `main.go` is 673 lines + 42-line store.go. Split delivery channels, template engine, and tracking. |
 
@@ -58,7 +58,7 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 | TQ.2 | **ServDB migration.go real implementation** — ✅ Real migration executor, table tracking, and rollback | ServDB | 🔴 High | `migration.go` is 9 lines (empty stub). Implement actual migration execution, rollback, and history tracking. |
 | TQ.3 | **ServFlow .state file gitignore** — ✅ Added to gitignore and cleaned history | ServFlow | 🟢 Low | 20+ `.state` files committed to repo. Add to `.gitignore` and clean from history. |
 | TQ.4 | **Property-based tests for critical paths** — ✅ Added property-based fuzz test for token verification | ServAuth, ServStore | 🟡 Medium | Add property-based fuzz tests for token validation, S3 signature verification, and encryption/decryption roundtrips. |
-| TQ.5 | **Load test baselines for all services** | All Services | 🟡 Medium | Establish k6/vegeta load test baselines with documented throughput targets for each service's critical APIs. |
+| TQ.5 | **Load test baselines for all services** — ✅ Added load_test_baseline.go script with SLA validations | All Services | 🟡 Medium | Establish k6/vegeta load test baselines with documented throughput targets for each service's critical APIs. |
 
 ---
 
@@ -79,7 +79,7 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 
 | # | Feature | Components | Priority | Description |
 |---|---------|-----------|----------|-------------|
-| INT.1 | **ServConsole topology auto-discovery** | ServConsole, ServTrace | 🔴 High | Parse OTel trace spans to auto-build service dependency graph. Currently listed as pending (7.3). High-value visualization. |
+| INT.1 | **ServConsole topology auto-discovery** — ✅ Auto-build node-edge maps from trace spans in handleTopology | ServConsole, ServTrace | 🔴 High | Parse OTel trace spans to auto-build service dependency graph. Currently listed as pending (7.3). High-value visualization. |
 | INT.2 | **Serv-lang → ServAuth native keyword** | Serv-lang, ServAuth | 🟡 Medium | `auth "servauth://host"` connection string with `auth.register()`, `auth.login()`, `auth.currentUser()` APIs. Phase 16.1 in Serv-lang roadmap. |
 | INT.3 | **Serv-lang → ServDB proxy keyword** | Serv-lang, ServDB | 🟡 Medium | `database "servdb://pool/mydb"` routes through ServDB pooler. Phase 16.2. |
 | INT.4 | **Serv-lang → ServMail notify keyword** | Serv-lang, ServMail | 🟢 Low | `notify "servmail://host"` with `notify.send()`. Phase 16.3. |
