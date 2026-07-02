@@ -17,11 +17,11 @@
 | **🔐 Security Gaps (Remaining)** | 4 | 2 | 2 | **50%** | ██████████░░░░░░░░░ |
 | **🧪 Testing & Quality Gaps** | 5 | 3 | 2 | **60%** | ████████████░░░░░░░ |
 | **📦 Missing Infrastructure** | 6 | 3 | 3 | **50%** | ██████████░░░░░░░░░ |
-| **🔗 Integration Depth** | 6 | 2 | 4 | **33%** | ██████░░░░░░░░░░░░░ |
+| **🔗 Integration Depth** | 6 | 4 | 2 | **66%** | █████████████░░░░░░░ |
 | **🛠️ Developer Experience** | 8 | 0 | 8 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
 | **⚡ Performance & Reliability** | 5 | 0 | 5 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
 | **📝 Documentation & Hygiene** | 4 | 0 | 4 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
-| **TOTAL WORK** | **43** | **15** | **28** | **35%** | ███████░░░░░░░░░░░░░ |
+| **TOTAL WORK** | **43** | **17** | **26** | **40%** | ████████░░░░░░░░░░░░ |
 
 ---
 
@@ -81,8 +81,8 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 |---|---------|-----------|----------|-------------|
 | INT.1 | **ServConsole topology auto-discovery** — ✅ Auto-build node-edge maps from trace spans in handleTopology | ServConsole, ServTrace | 🔴 High | Parse OTel trace spans to auto-build service dependency graph. Currently listed as pending (7.3). High-value visualization. |
 | INT.2 | **Serv-lang → ServAuth native keyword** — ✅ Support servauth:// connection string with native APIs | Serv-lang, ServAuth | 🟡 Medium | `auth "servauth://host"` connection string with `auth.register()`, `auth.login()`, `auth.currentUser()` APIs. Phase 16.1 in Serv-lang roadmap. |
-| INT.3 | **Serv-lang → ServDB proxy keyword** | Serv-lang, ServDB | 🟡 Medium | `database "servdb://pool/mydb"` routes through ServDB pooler. Phase 16.2. |
-| INT.4 | **Serv-lang → ServMail notify keyword** | Serv-lang, ServMail | 🟢 Low | `notify "servmail://host"` with `notify.send()`. Phase 16.3. |
+| INT.3 | **Serv-lang → ServDB proxy keyword** — ✅ `database "servdb://pool/mydb"` routes through ServDB pooler | Serv-lang, ServDB | 🟡 Medium | `database "servdb://pool/mydb"` routes through ServDB pooler. Phase 16.2. |
+| INT.4 | **Serv-lang → ServMail notify keyword** — ✅ Support `notify "servmail://host"` with `notify.send()` API | Serv-lang, ServMail | 🟢 Low | `notify "servmail://host"` with `notify.send()`. Phase 16.3. |
 | INT.5 | **ServQueue stream processing DSL** | ServQueue, Serv-lang | 🟡 Medium | `stream "orders" |> filter(...) |> window(5m) |> count()`. Phase 9.5 in ServQueue roadmap. |
 | INT.6 | **ServCron → ServQueue job chaining** | ServCron, ServQueue | 🟡 Medium | Trigger next job by publishing to topic on completion. Event-driven scheduling pipeline. |
 
