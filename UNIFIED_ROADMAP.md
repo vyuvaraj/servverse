@@ -383,4 +383,49 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | API.8 | **Ecosystem-Wide Schema Registry** — Schema broker validating DTOs across REST requests, STOMP messages, and S3 payloads | ServRegistry, ServGate | High |
 | OPS.17 | **Chaos Fault Injection Middleware** — Inject transport latencies, connection drops, and queue dropouts dynamically in development | ServMesh, ServShared | Medium |
 
+---
+
+## Phase 12: Dual-Licensing, Monetization, & Enterprise Separation (Active Transition)
+
+Transitioning the Apache 2.0 public monorepo into a dual-licensed model (AGPLv3 for OSS Core, Proprietary for Enterprise Edition) with clear codebase separation.
+
+### Completion Tracker
+
+| Initiative Area | Total Items | Completed | Pending | Progress | Status Bar |
+|-----------------|-------------|-----------|---------|----------|------------|
+| **⚖️ License & Policy Transition** | 3 | 0 | 3 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
+| **📦 Codebase & Module Split** | 3 | 0 | 3 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
+| **🚀 Enterprise Build Pipeline** | 2 | 0 | 2 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
+| **TOTAL WORK** | **8** | **0** | **8** | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
+
+---
+
+### ⚖️ License & Policy Transition
+
+| # | Feature | Components | Priority | Description |
+|---|---------|-----------|----------|-------------|
+| LIC.1 | **Ecosystem CLA (Contributor License Agreement)** | servverse-repo | 🔴 High | Draft and integrate CLA checking workflow on PRs, ensuring copyright assignment for commercial use. |
+| LIC.2 | **License Re-assignment (v2.0.0+)** | All Services | 🔴 High | Transition future commits/versions to AGPLv3. Update LICENSE file and file headers without revoking past Apache-2.0 commits. |
+| LIC.3 | **Commercial License Terms** | servverse-repo | 🟡 Medium | Draft commercial license EULA allowing proprietary extensions and sub-licensing. |
+
+---
+
+### 📦 Codebase & Module Split
+
+| # | Feature | Components | Priority | Description |
+|---|---------|-----------|----------|-------------|
+| SPL.1 | **Private Enterprise Monorepo Setup** | All Services | 🔴 High | Initialize private `servverse-ee` repository to house proprietary plugins and wrappers. |
+| SPL.2 | **Build Tag Integration (`//go:build enterprise`)** | ServGate, ServStore | 🟡 Medium | Refactor core hooks using Go build tags to isolate premium logic (e.g. `canary_ee.go`). |
+| SPL.3 | **Premium WASM Middleware Compilation** | ServGate, ServStore | 🟡 Medium | Package OIDC verification and PII redaction as pre-compiled WASM extensions in the commercial distribution. |
+
+---
+
+### 🚀 Enterprise Build Pipeline
+
+| # | Feature | Components | Priority | Description |
+|---|---------|-----------|----------|-------------|
+| EE.1 | **Commercial CLI Builder** | Serv-lang | 🟡 Medium | Configure private CI pipeline compiling `serv` binaries injected with enterprise targets (multi-region, ServCloud). |
+| EE.2 | **Licensed Artifact Verification** | ServConsole | 🟡 Medium | Implement local cryptographic license key verification on enterprise panels startup. |
+
+
 
