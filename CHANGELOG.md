@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.7.0] - 2026-07-02
+
+### Added
+* **SEC.S2**: Enhanced Structured Log Sanitizer. Upgraded `SanitizeLog` in `ServShared` to redact quoted/unquoted credentials matching JSON structures.
+* **TQ.1**: Added unit test coverage for `ServDocs` verifying parser, HTML generator, and OpenAPI generator logic.
+* **TQ.3**: Configured `*.state` gitignore rules and cleaned dangling state files in `ServFlow`.
+* **INF.1**: Added multi-stage builder `Dockerfile` to `ServDocs`.
+* **INF.2**: Configured GitHub Actions CI pipeline for `ServDocs`.
+
 ## [1.6.0] - 2026-07-01
 
 ### Added

@@ -327,8 +327,9 @@ This document serves as an archive of all successfully completed items, features
 * **OPS.5: GitOps Config Sync**: Webhook endpoints `/api/gitops/webhook` and `/api/v1/gitops/webhook` in ServGate to trigger local `git pull` and dynamically hot-reload configuration routes.
 * **OPS.6: Auto TLS Let's Encrypt**: Integrated ACME autocert client inside ServGate with port 80 HTTP-01 challenge redirect handler and automatic cert renewals on port 443.
 * **CORE.2: Durable Sagas State Machine**: Refactored Saga failure rollback execution in ServFlow to execute real compensation actions (including HTTP calls), track rollbacks using `"compensating"` status, persist checkpoints to ServStore, and automatically resume rollback sequences from checkpoints upon server restart.
-
-
-
-
-
+## 10. Phase 11 Completed Ecosystem Hardening (July 2, 2026)
+* **SEC.S2: Log Redaction Enhancement**: Refactored `SanitizeLog` in `ServShared` to support regex-based credentials stripping for both single/double quoted keys and values, preventing secrets exposure in JSON logs.
+* **TQ.1: ServDocs Test Suite**: Created robust parser, HTML generator, and OpenAPI spec generator table-driven unit tests inside `ServDocs`.
+* **TQ.3: ServFlow state files cleanup**: Cleaned committed state files from Git index, and updated `.gitignore` with `*.state` patterns to prevent future tracking.
+* **INF.1: ServDocs Containerization**: Created multi-stage builder Dockerfile for `ServDocs`.
+* **INF.2: ServDocs CI Pipeline**: Configured GitHub Actions build and test execution workflows for `ServDocs`.

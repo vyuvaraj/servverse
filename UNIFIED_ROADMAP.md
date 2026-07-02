@@ -1,7 +1,130 @@
 # Serv Unified Ecosystem Roadmap & Architect Analysis
 
 > Single source of truth for the **Serv** ecosystem: Serv-lang, ServGate, ServStore, ServQueue, ServConsole, ServCache, ServMesh, ServCron, ServCloud, ServTrace, ServTunnel, ServAuth, ServDB, ServMail, ServFlow, and the Servverse vision.  
-> Last updated: June 30, 2026
+> Last updated: July 1, 2026
+
+---
+
+## Phase 11: Next-Level Component Hardening & Ecosystem Depth (Active — July 2026)
+
+> Items identified by deep-dive component analysis. Focuses on closing gaps between "feature complete" and "production-quality" across all 16 services.
+
+### Completion Tracker
+
+| Initiative Area | Total Items | Completed | Pending | Progress | Status Bar |
+|-----------------|-------------|-----------|---------|----------|------------|
+| **🏗️ Structural Debt (Monolith Decomposition)** | 5 | 0 | 5 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
+| **🔐 Security Gaps (Remaining)** | 4 | 1 | 3 | **25%** | █████░░░░░░░░░░░░░░░ |
+| **🧪 Testing & Quality Gaps** | 5 | 2 | 3 | **40%** | ████████░░░░░░░░░░░░ |
+| **📦 Missing Infrastructure** | 6 | 2 | 4 | **33%** | ██████░░░░░░░░░░░░░░ |
+| **🔗 Integration Depth** | 6 | 0 | 6 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
+| **🛠️ Developer Experience** | 8 | 0 | 8 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
+| **⚡ Performance & Reliability** | 5 | 0 | 5 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
+| **📝 Documentation & Hygiene** | 4 | 0 | 4 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
+| **TOTAL WORK** | **43** | **5** | **38** | **11%** | ██░░░░░░░░░░░░░░░░░░ |
+
+---
+
+### 🏗️ Structural Debt — Monolith Decomposition (P1)
+
+Services marked "decomposed" still have monolithic main.go files. Real extraction needed.
+
+| # | Feature | Components | Priority | Description |
+|---|---------|-----------|----------|-------------|
+| SD.1 | **ServConsole real decomposition** | ServConsole | 🔴 High | `main.go` is 3,441 lines. `pkg/` has only 126 lines of stubs. Extract proxy handlers, tab logic, WebSocket push, and AI panel into properly populated packages. |
+| SD.2 | **ServAuth package extraction** | ServAuth | 🟡 Medium | `main.go` is 1,093 lines. Split into `pkg/handlers/`, `pkg/store/`, `pkg/oauth/`, `pkg/mfa/` with proper interfaces. |
+| SD.3 | **ServRegistry package split** | ServRegistry | 🟡 Medium | `main.go` is 1,007 lines. Extract `pkg/registry/`, `pkg/resolution/`, `pkg/web/`. |
+| SD.4 | **ServFlow package extraction** | ServFlow | 🟡 Medium | `main.go` is 803 lines + 73-line store.go. Split DAG engine, API handlers, saga execution, and checkpoint logic. |
+| SD.5 | **ServMail package extraction** | ServMail | 🟢 Low | `main.go` is 673 lines + 42-line store.go. Split delivery channels, template engine, and tracking. |
+
+---
+
+### 🔐 Security Gaps — Remaining (P0)
+
+| # | Feature | Components | Priority | Description |
+|---|---------|-----------|----------|-------------|
+| SEC.S1 | **JWT Key Rotation via JWKS** | ServAuth, ServShared | 🔴 High | Replace single shared `SERV_JWT_SECRET` with RS256 keypair + `/.well-known/jwks.json` endpoint. Enable rotation without service restarts. |
+| SEC.S2 | **Secret Redaction in Logs** — ✅ Robust regex redaction of quoted/unquoted credentials | ServShared, All | 🔴 High | Implement `SanitizeLog()` regex stripping tokens/keys/passwords from structured log output before emission. |
+| SEC.S3 | **Secret Versioning in KMS** | ServAuth | 🟡 Medium | Store key versions; encrypt with latest; decrypt accepts any active version for zero-downtime rotation. |
+| SEC.S4 | **Audit Event Coverage Enforcement** | ServAuth, ServDB | 🟡 Medium | Every privileged action (login, key issuance, MFA change, migration run) must call `EmitAuditEvent`. Add CI lint check. |
+
+---
+
+### 🧪 Testing & Quality Gaps (P1)
+
+| # | Feature | Components | Priority | Description |
+|---|---------|-----------|----------|-------------|
+| TQ.1 | **ServDocs test suite** — ✅ Table-driven parser/generator/OpenAPI tests | ServDocs | 🟡 Medium | Zero tests exist. Add table-driven tests for parser, generator, and OpenAPI output validation. |
+| TQ.2 | **ServDB migration.go real implementation** | ServDB | 🔴 High | `migration.go` is 9 lines (empty stub). Implement actual migration execution, rollback, and history tracking. |
+| TQ.3 | **ServFlow .state file gitignore** — ✅ Added to gitignore and cleaned history | ServFlow | 🟢 Low | 20+ `.state` files committed to repo. Add to `.gitignore` and clean from history. |
+| TQ.4 | **Property-based tests for critical paths** | ServAuth, ServStore | 🟡 Medium | Add property-based fuzz tests for token validation, S3 signature verification, and encryption/decryption roundtrips. |
+| TQ.5 | **Load test baselines for all services** | All Services | 🟡 Medium | Establish k6/vegeta load test baselines with documented throughput targets for each service's critical APIs. |
+
+---
+
+### 📦 Missing Infrastructure (P1)
+
+| # | Feature | Components | Priority | Description |
+|---|---------|-----------|----------|-------------|
+| INF.1 | **ServDocs Dockerfile** — ✅ Multi-stage builder containerization | ServDocs | 🟢 Low | Only service without containerization. Add multi-stage Go build Dockerfile. |
+| INF.2 | **ServDocs CI pipeline** — ✅ Actions build/test workflow added | ServDocs | 🟢 Low | No GitHub Actions workflow. Add build/test/fmt check pipeline. |
+| INF.3 | **ServShared README** | ServShared | 🟢 Low | No documentation for the shared library. Add README explaining exported functions, middleware usage, and configuration. |
+| INF.4 | **ServCloud roadmap cleanup** | ServCloud | 🟢 Low | Duplicate "Phase 3" headings with different content. Fix roadmap structure. |
+| INF.5 | **Unified Makefile/Taskfile** | servverse-repo | 🟡 Medium | No single command builds all services. Add `Taskfile.yml` or `Makefile` with `build-all`, `test-all`, `lint-all` targets. |
+| INF.6 | **Dependency version pinning** | All Services | 🟡 Medium | Audit `go.mod` files across services for version consistency of shared deps (ServShared, OTel SDK, etc). |
+
+---
+
+### 🔗 Integration Depth (P1)
+
+| # | Feature | Components | Priority | Description |
+|---|---------|-----------|----------|-------------|
+| INT.1 | **ServConsole topology auto-discovery** | ServConsole, ServTrace | 🔴 High | Parse OTel trace spans to auto-build service dependency graph. Currently listed as pending (7.3). High-value visualization. |
+| INT.2 | **Serv-lang → ServAuth native keyword** | Serv-lang, ServAuth | 🟡 Medium | `auth "servauth://host"` connection string with `auth.register()`, `auth.login()`, `auth.currentUser()` APIs. Phase 16.1 in Serv-lang roadmap. |
+| INT.3 | **Serv-lang → ServDB proxy keyword** | Serv-lang, ServDB | 🟡 Medium | `database "servdb://pool/mydb"` routes through ServDB pooler. Phase 16.2. |
+| INT.4 | **Serv-lang → ServMail notify keyword** | Serv-lang, ServMail | 🟢 Low | `notify "servmail://host"` with `notify.send()`. Phase 16.3. |
+| INT.5 | **ServQueue stream processing DSL** | ServQueue, Serv-lang | 🟡 Medium | `stream "orders" |> filter(...) |> window(5m) |> count()`. Phase 9.5 in ServQueue roadmap. |
+| INT.6 | **ServCron → ServQueue job chaining** | ServCron, ServQueue | 🟡 Medium | Trigger next job by publishing to topic on completion. Event-driven scheduling pipeline. |
+
+---
+
+### 🛠️ Developer Experience (P2)
+
+| # | Feature | Components | Priority | Description |
+|---|---------|-----------|----------|-------------|
+| DX.S1 | **`serv cache inspect` CLI** | ServCache | 🟡 Medium | Show per-namespace key counts, memory usage, hit/miss ratios, top hot keys from terminal. |
+| DX.S2 | **`servqueue tail` CLI** | ServQueue | 🟡 Medium | Stream live messages from any topic with JSON pretty-print and regex filter. Essential for debugging. |
+| DX.S3 | **`serv trace search` CLI** | ServTrace | 🟡 Medium | Search traces by service, operation, error, or duration threshold. Output as JSON or ASCII waterfall. |
+| DX.S4 | **`serv tunnel inspect` CLI** | ServTunnel | 🟢 Low | Real-time active tunnel connections, throughput, recent request log from terminal. |
+| DX.S5 | **`serv cron list` CLI** | ServCron | 🟢 Low | Next 5 scheduled runs per job, last outcome, failure count in terminal. |
+| DX.S6 | **ServMail local mock dev server** | ServMail | 🟡 Medium | Offline SMTP mock for local testing without real mail infrastructure. HTTP endpoints to inspect sent mail. |
+| DX.S7 | **Serv-lang incremental compilation** | Serv-lang | 🔴 High | Cache AST/codegen per-file. Only recompile changed files. Critical for projects with 50+ files. |
+| DX.S8 | **Serv-lang `serv test --watch`** | Serv-lang | 🟡 Medium | Re-run affected tests on file save. Tight feedback loop. |
+
+---
+
+### ⚡ Performance & Reliability (P2)
+
+| # | Feature | Components | Priority | Description |
+|---|---------|-----------|----------|-------------|
+| PR.1 | **ServCache distributed coherence (gossip)** | ServCache | 🟡 Medium | Multi-node cache with gossip-based invalidation. No single point of failure for cache tier. |
+| PR.2 | **ServMesh health-aware load balancing** | ServMesh | 🟡 Medium | Weight routing based on real-time latency/error-rate feedback from OTel spans. |
+| PR.3 | **ServCloud horizontal auto-scaling** | ServCloud | 🟡 Medium | Scale instances based on request rate from ServGate metrics. React to traffic spikes. |
+| PR.4 | **ServTrace adaptive sampling** | ServTrace | 🟡 Medium | Dynamically raise sampling when error rate spikes, lower it in normal operation. Reduce overhead. |
+| PR.5 | **ServQueue end-to-end message tracing** | ServQueue | 🟡 Medium | Track a message from publish through every WASM transform, DLQ redirect, and consumer ack. Full journey visualization. |
+
+---
+
+### 📝 Documentation & Hygiene (P3)
+
+| # | Feature | Components | Priority | Description |
+|---|---------|-----------|----------|-------------|
+| DOC.S1 | **Cross-service runtime dependency diagram** | servverse-repo | 🟡 Medium | Document which services depend on which at runtime with version requirements. Update architecture diagram. |
+| DOC.S2 | **ServDocs roadmap** | ServDocs | 🟢 Low | Currently the only code-bearing service without a forward-looking roadmap. |
+| DOC.S3 | **API contract versioning audit** | All Services | 🟡 Medium | Verify all services expose `/api/version` consistently. Enforce `serv doctor` compatibility matrix. |
+| DOC.S4 | **Component maturity matrix** | servverse-repo | 🟡 Medium | Replace binary "complete/pending" with a multi-axis maturity model: API contract, persistence, security, observability, tests, docs. |
+
+---
 
 ## Phase 6: Ecosystem Depth & Production Hardening (Completed & Archived)
 
