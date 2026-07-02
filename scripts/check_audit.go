@@ -1,3 +1,5 @@
+//go:build ignore
+
 package main
 
 import (
@@ -38,11 +40,11 @@ func main() {
 				}
 
 				fnName := fn.Name.Name
-				if fnName == "encryptAES" || fnName == "decryptAES" || fnName == "decryptWithKey" {
+				if fnName == "encryptAES" || fnName == "decryptAES" || fnName == "decryptWithKey" || fnName == "saveAPIKeysToStore" || fnName == "LoadKeys" || fnName == "SaveKeys" {
 					continue
 				}
 				isPrivileged := false
-				privKeywords := []string{"register", "login", "migrate", "rotate", "revoke", "encrypt", "decrypt", "delete"}
+				privKeywords := []string{"register", "login", "migrate", "rotate", "revoke", "encrypt", "decrypt", "delete", "mfa", "keys"}
 				for _, kw := range privKeywords {
 					if strings.Contains(strings.ToLower(fnName), kw) {
 						isPrivileged = true
@@ -90,10 +92,7 @@ func main() {
 
 	if hasErrors {
 		fmt.Println("\n❌ Audit Event Coverage check failed.")
-		// Warn only for now since we are in local development mode, but exit 0 to keep the CI clean while we refine the linters.
-		// Wait, let's exit 1 if it fails to strictly enforce it, but let's see how many violations we have first.
-		// Let's do exit 0 to keep the check informative first or exit 1 if we've resolved them.
-		// Actually, let's keep it as warning/exit 0 so that it doesn't break builds of unrelated components.
+		os.Exit(1)
 	}
 	fmt.Println("\n✅ Audit Event Coverage check completed.")
 }
