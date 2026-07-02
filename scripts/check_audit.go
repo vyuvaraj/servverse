@@ -38,7 +38,7 @@ func main() {
 				}
 
 				fnName := fn.Name.Name
-				if fnName == "encryptAES" || fnName == "decryptAES" {
+				if fnName == "encryptAES" || fnName == "decryptAES" || fnName == "decryptWithKey" {
 					continue
 				}
 				isPrivileged := false
