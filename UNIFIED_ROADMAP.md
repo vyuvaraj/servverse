@@ -14,14 +14,14 @@
 | Initiative Area | Total Items | Completed | Pending | Progress | Status Bar |
 |-----------------|-------------|-----------|---------|----------|------------|
 | **🏗️ Structural Debt (Monolith Decomposition)** | 5 | 3 | 2 | **60%** | ████████████░░░░░░░ |
-| **🔐 Security Gaps (Remaining)** | 4 | 1 | 3 | **25%** | █████░░░░░░░░░░░░░░░ |
+| **🔐 Security Gaps (Remaining)** | 4 | 2 | 2 | **50%** | ██████████░░░░░░░░░ |
 | **🧪 Testing & Quality Gaps** | 5 | 3 | 2 | **60%** | ████████████░░░░░░░ |
-| **📦 Missing Infrastructure** | 6 | 2 | 4 | **33%** | ██████░░░░░░░░░░░░░░ |
-| **🔗 Integration Depth** | 6 | 1 | 5 | **16%** | ███░░░░░░░░░░░░░░░░░ |
+| **📦 Missing Infrastructure** | 6 | 3 | 3 | **50%** | ██████████░░░░░░░░░ |
+| **🔗 Integration Depth** | 6 | 2 | 4 | **33%** | ██████░░░░░░░░░░░░░ |
 | **🛠️ Developer Experience** | 8 | 0 | 8 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
 | **⚡ Performance & Reliability** | 5 | 0 | 5 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
 | **📝 Documentation & Hygiene** | 4 | 0 | 4 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
-| **TOTAL WORK** | **43** | **10** | **33** | **23%** | ████░░░░░░░░░░░░░░░░ |
+| **TOTAL WORK** | **43** | **13** | **30** | **30%** | ██████░░░░░░░░░░░░░░ |
 
 ---
 
@@ -69,7 +69,7 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 | INF.1 | **ServDocs Dockerfile** — ✅ Multi-stage builder containerization | ServDocs | 🟢 Low | Only service without containerization. Add multi-stage Go build Dockerfile. |
 | INF.2 | **ServDocs CI pipeline** — ✅ Actions build/test workflow added | ServDocs | 🟢 Low | No GitHub Actions workflow. Add build/test/fmt check pipeline. |
 | INF.3 | **ServShared README** — ✅ Added comprehensive readme guide | ServShared | 🟢 Low | No documentation for the shared library. Add README explaining exported functions, middleware usage, and configuration. |
-| INF.4 | **ServCloud roadmap cleanup** | ServCloud | 🟢 Low | Duplicate "Phase 3" headings with different content. Fix roadmap structure. |
+| INF.4 | **ServCloud roadmap cleanup** — ✅ Duplicate Phase 3 headings cleaned up | ServCloud | 🟢 Low | Duplicate "Phase 3" headings with different content. Fix roadmap structure. |
 | INF.5 | **Unified Makefile/Taskfile** — ✅ Unified Makefile orchestrating all services builds/tests | servverse-repo | 🟡 Medium | No single command builds all services. Add `Taskfile.yml` or `Makefile` with `build-all`, `test-all`, `lint-all` targets. |
 | INF.6 | **Dependency version pinning** — ✅ Aligned ServShared versions across workspace go.mod files | All Services | 🟡 Medium | Audit `go.mod` files across services for version consistency of shared deps (ServShared, OTel SDK, etc). |
 
@@ -80,7 +80,7 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 | # | Feature | Components | Priority | Description |
 |---|---------|-----------|----------|-------------|
 | INT.1 | **ServConsole topology auto-discovery** — ✅ Auto-build node-edge maps from trace spans in handleTopology | ServConsole, ServTrace | 🔴 High | Parse OTel trace spans to auto-build service dependency graph. Currently listed as pending (7.3). High-value visualization. |
-| INT.2 | **Serv-lang → ServAuth native keyword** | Serv-lang, ServAuth | 🟡 Medium | `auth "servauth://host"` connection string with `auth.register()`, `auth.login()`, `auth.currentUser()` APIs. Phase 16.1 in Serv-lang roadmap. |
+| INT.2 | **Serv-lang → ServAuth native keyword** — ✅ Support servauth:// connection string with native APIs | Serv-lang, ServAuth | 🟡 Medium | `auth "servauth://host"` connection string with `auth.register()`, `auth.login()`, `auth.currentUser()` APIs. Phase 16.1 in Serv-lang roadmap. |
 | INT.3 | **Serv-lang → ServDB proxy keyword** | Serv-lang, ServDB | 🟡 Medium | `database "servdb://pool/mydb"` routes through ServDB pooler. Phase 16.2. |
 | INT.4 | **Serv-lang → ServMail notify keyword** | Serv-lang, ServMail | 🟢 Low | `notify "servmail://host"` with `notify.send()`. Phase 16.3. |
 | INT.5 | **ServQueue stream processing DSL** | ServQueue, Serv-lang | 🟡 Medium | `stream "orders" |> filter(...) |> window(5m) |> count()`. Phase 9.5 in ServQueue roadmap. |
