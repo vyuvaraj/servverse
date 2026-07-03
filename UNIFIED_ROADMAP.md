@@ -17,11 +17,11 @@
 | **🔐 Security Gaps (Remaining)** | 4 | 2 | 2 | **50%** | ██████████░░░░░░░░░ |
 | **🧪 Testing & Quality Gaps** | 5 | 3 | 2 | **60%** | ████████████░░░░░░░ |
 | **📦 Missing Infrastructure** | 6 | 3 | 3 | **50%** | ██████████░░░░░░░░░ |
-| **🔗 Integration Depth** | 6 | 4 | 2 | **66%** | █████████████░░░░░░░ |
-| **🛠️ Developer Experience** | 8 | 0 | 8 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
+| **🔗 Integration Depth** | 6 | 6 | 0 | **100%** | ████████████████████ |
+| **🛠️ Developer Experience** | 8 | 3 | 5 | **37%** | ███████░░░░░░░░░░░░░ |
 | **⚡ Performance & Reliability** | 5 | 0 | 5 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
 | **📝 Documentation & Hygiene** | 4 | 0 | 4 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
-| **TOTAL WORK** | **43** | **17** | **26** | **40%** | ████████░░░░░░░░░░░░ |
+| **TOTAL WORK** | **43** | **22** | **21** | **51%** | ██████████░░░░░░░░░░ |
 
 ---
 
@@ -83,8 +83,8 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 | INT.2 | **Serv-lang → ServAuth native keyword** — ✅ Support servauth:// connection string with native APIs | Serv-lang, ServAuth | 🟡 Medium | `auth "servauth://host"` connection string with `auth.register()`, `auth.login()`, `auth.currentUser()` APIs. Phase 16.1 in Serv-lang roadmap. |
 | INT.3 | **Serv-lang → ServDB proxy keyword** — ✅ `database "servdb://pool/mydb"` routes through ServDB pooler | Serv-lang, ServDB | 🟡 Medium | `database "servdb://pool/mydb"` routes through ServDB pooler. Phase 16.2. |
 | INT.4 | **Serv-lang → ServMail notify keyword** — ✅ Support `notify "servmail://host"` with `notify.send()` API | Serv-lang, ServMail | 🟢 Low | `notify "servmail://host"` with `notify.send()`. Phase 16.3. |
-| INT.5 | **ServQueue stream processing DSL** | ServQueue, Serv-lang | 🟡 Medium | `stream "orders" |> filter(...) |> window(5m) |> count()`. Phase 9.5 in ServQueue roadmap. |
-| INT.6 | **ServCron → ServQueue job chaining** | ServCron, ServQueue | 🟡 Medium | Trigger next job by publishing to topic on completion. Event-driven scheduling pipeline. |
+| INT.5 | **ServQueue stream processing DSL** — ✅ `stream "orders" |> filter(...) |> window(5m) |> count()` | ServQueue, Serv-lang | 🟡 Medium | `stream "orders" |> filter(...) |> window(5m) |> count()`. Phase 9.5 in ServQueue roadmap. |
+| INT.6 | **ServCron → ServQueue job chaining** — ✅ Trigger next job by publishing to topic on completion | ServCron, ServQueue | 🟡 Medium | Trigger next job by publishing to topic on completion. Event-driven scheduling pipeline. |
 
 ---
 
@@ -92,9 +92,9 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 
 | # | Feature | Components | Priority | Description |
 |---|---------|-----------|----------|-------------|
-| DX.S1 | **`serv cache inspect` CLI** | ServCache | 🟡 Medium | Show per-namespace key counts, memory usage, hit/miss ratios, top hot keys from terminal. |
-| DX.S2 | **`servqueue tail` CLI** | ServQueue | 🟡 Medium | Stream live messages from any topic with JSON pretty-print and regex filter. Essential for debugging. |
-| DX.S3 | **`serv trace search` CLI** | ServTrace | 🟡 Medium | Search traces by service, operation, error, or duration threshold. Output as JSON or ASCII waterfall. |
+| DX.S1 | **`serv cache inspect` CLI** — ✅ Show per-namespace key counts, hit/miss ratios, top hot keys | ServCache | 🟡 Medium | Show per-namespace key counts, memory usage, hit/miss ratios, top hot keys from terminal. |
+| DX.S2 | **`servqueue tail` CLI** — ✅ Stream live topic messages with JSON pretty-print and regex filter | ServQueue | 🟡 Medium | Stream live messages from any topic with JSON pretty-print and regex filter. Essential for debugging. |
+| DX.S3 | **`serv trace search` CLI** — ✅ Search traces with JSON or ASCII waterfall outputs | ServTrace | 🟡 Medium | Search traces by service, operation, error, or duration threshold. Output as JSON or ASCII waterfall. |
 | DX.S4 | **`serv tunnel inspect` CLI** | ServTunnel | 🟢 Low | Real-time active tunnel connections, throughput, recent request log from terminal. |
 | DX.S5 | **`serv cron list` CLI** | ServCron | 🟢 Low | Next 5 scheduled runs per job, last outcome, failure count in terminal. |
 | DX.S6 | **ServMail local mock dev server** | ServMail | 🟡 Medium | Offline SMTP mock for local testing without real mail infrastructure. HTTP endpoints to inspect sent mail. |
