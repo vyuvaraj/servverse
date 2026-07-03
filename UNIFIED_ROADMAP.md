@@ -18,10 +18,10 @@
 | **🧪 Testing & Quality Gaps** | 5 | 3 | 2 | **60%** | ████████████░░░░░░░ |
 | **📦 Missing Infrastructure** | 6 | 3 | 3 | **50%** | ██████████░░░░░░░░░ |
 | **🔗 Integration Depth** | 6 | 6 | 0 | **100%** | ████████████████████ |
-| **🛠️ Developer Experience** | 8 | 3 | 5 | **37%** | ███████░░░░░░░░░░░░░ |
+| **🛠️ Developer Experience** | 8 | 6 | 2 | **75%** | ███████████████░░░░░ |
 | **⚡ Performance & Reliability** | 5 | 0 | 5 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
-| **📝 Documentation & Hygiene** | 4 | 0 | 4 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
-| **TOTAL WORK** | **43** | **22** | **21** | **51%** | ██████████░░░░░░░░░░ |
+| **📝 Documentation & Hygiene** | 4 | 1 | 3 | **25%** | █████░░░░░░░░░░░░░░░ |
+| **TOTAL WORK** | **43** | **26** | **17** | **60%** | ████████████░░░░░░░░ |
 
 ---
 
@@ -95,9 +95,9 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 | DX.S1 | **`serv cache inspect` CLI** — ✅ Show per-namespace key counts, hit/miss ratios, top hot keys | ServCache | 🟡 Medium | Show per-namespace key counts, memory usage, hit/miss ratios, top hot keys from terminal. |
 | DX.S2 | **`servqueue tail` CLI** — ✅ Stream live topic messages with JSON pretty-print and regex filter | ServQueue | 🟡 Medium | Stream live messages from any topic with JSON pretty-print and regex filter. Essential for debugging. |
 | DX.S3 | **`serv trace search` CLI** — ✅ Search traces with JSON or ASCII waterfall outputs | ServTrace | 🟡 Medium | Search traces by service, operation, error, or duration threshold. Output as JSON or ASCII waterfall. |
-| DX.S4 | **`serv tunnel inspect` CLI** | ServTunnel | 🟢 Low | Real-time active tunnel connections, throughput, recent request log from terminal. |
-| DX.S5 | **`serv cron list` CLI** | ServCron | 🟢 Low | Next 5 scheduled runs per job, last outcome, failure count in terminal. |
-| DX.S6 | **ServMail local mock dev server** | ServMail | 🟡 Medium | Offline SMTP mock for local testing without real mail infrastructure. HTTP endpoints to inspect sent mail. |
+| DX.S4 | **`serv tunnel inspect` CLI** — ✅ Expose active tunnels, throughput, recent request logs | ServTunnel | 🟢 Low | Real-time active tunnel connections, throughput, recent request log from terminal. |
+| DX.S5 | **`serv cron list` CLI** — ✅ List job details, consecutive failure count, next 5 projected runs | ServCron | 🟢 Low | Next 5 scheduled runs per job, last outcome, failure count in terminal. |
+| DX.S6 | **ServMail local mock dev server** — ✅ Consolidate SMTP and HTTP mail mocks in mock emails log | ServMail | 🟡 Medium | Offline SMTP mock for local testing without real mail infrastructure. HTTP endpoints to inspect sent mail. |
 | DX.S7 | **Serv-lang incremental compilation** | Serv-lang | 🔴 High | Cache AST/codegen per-file. Only recompile changed files. Critical for projects with 50+ files. |
 | DX.S8 | **Serv-lang `serv test --watch`** | Serv-lang | 🟡 Medium | Re-run affected tests on file save. Tight feedback loop. |
 
@@ -121,7 +121,7 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 |---|---------|-----------|----------|-------------|
 | DOC.S1 | **Cross-service runtime dependency diagram** | servverse-repo | 🟡 Medium | Document which services depend on which at runtime with version requirements. Update architecture diagram. |
 | DOC.S2 | **ServDocs roadmap** | ServDocs | 🟢 Low | Currently the only code-bearing service without a forward-looking roadmap. |
-| DOC.S3 | **API contract versioning audit** | All Services | 🟡 Medium | Verify all services expose `/api/version` consistently. Enforce `serv doctor` compatibility matrix. |
+| DOC.S3 | **API contract versioning audit** — ✅ Expose /api/version consistently across all services | All Services | 🟡 Medium | Verify all services expose `/api/version` consistently. Enforce `serv doctor` compatibility matrix. |
 | DOC.S4 | **Component maturity matrix** | servverse-repo | 🟡 Medium | Replace binary "complete/pending" with a multi-axis maturity model: API contract, persistence, security, observability, tests, docs. |
 
 ---
