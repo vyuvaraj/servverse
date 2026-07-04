@@ -394,9 +394,9 @@ Transitioning the Apache 2.0 public monorepo into a dual-licensed model (AGPLv3 
 | Initiative Area | Total Items | Completed | Pending | Progress | Status Bar |
 |-----------------|-------------|-----------|---------|----------|------------|
 | **⚖️ License & Policy Transition** | 3 | 3 | 0 | **100%** | ████████████████████ |
-| **📦 Codebase & Module Split** | 4 | 3 | 1 | **75%** | ███████████████░░░░ |
+| **📦 Codebase & Module Split** | 7 | 3 | 4 | **43%** | ████████░░░░░░░░░░░░ |
 | **🚀 Enterprise Build Pipeline** | 2 | 1 | 1 | **50%** | ██████████░░░░░░░░░ |
-| **TOTAL WORK** | **9** | **7** | **2** | **78%** | ███████████████░░░░ |
+| **TOTAL WORK** | **12** | **7** | **5** | **58%** | ████████████░░░░░░░ |
 
 ---
 
@@ -418,6 +418,9 @@ Transitioning the Apache 2.0 public monorepo into a dual-licensed model (AGPLv3 
 | SPL.2 | **Build Tag Integration (`//go:build enterprise`)** — ✅ Extracted premium canary promotion engine logic to build-tagged source files | ServGate, ServStore | 🟡 Medium | Refactor core hooks using Go build tags to isolate premium logic (e.g. `canary_ee.go`). |
 | SPL.3 | **Premium WASM Middleware Compilation** — ✅ Implemented premium OIDC verification and PII redaction middleware packages in servverse-ee | ServGate, ServStore | 🟡 Medium | Package OIDC verification and PII redaction as pre-compiled WASM extensions in the commercial distribution. |
 | SPL.4 | **AI Diagnostics & Incident Panel Migration** | ServConsole | 🟡 Medium | Migrate AI-powered diagnostics panel, trace lookups, and incident analysis hooks out of OSS to build-tagged EE packages. |
+| SPL.5 | **GraphQL Schema Federation** | ServGate | 🟡 Medium | Move GraphQL federation schema merging and query resolver aggregation to the enterprise module. |
+| SPL.6 | **Cost-Aware LLM Routing & Guardrails** | ServGate | 🟡 Medium | Migrate the token-cost estimation, LLM failover routing, and prompt guard middleware to the enterprise build. |
+| SPL.7 | **Cold Storage Cloud Tiering** | ServStore | 🟡 Medium | Migrate S3-compatible cloud archival adapters (Glacier, B2) and background tiering sweep loops from OSS to EE. |
 
 ---
 
