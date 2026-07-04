@@ -42,7 +42,7 @@ every 1h {
 every 30s {
     log.info("[Pipeline Daemon] Polling GitHub Actions API for pipeline updates...")
     
-    let repos = ["ServGate", "ServConsole", "ServStore", "Serv-lang"]
+    let repos = ["ServGate", "ServConsole", "ServStore", "Serv-lang", "servverse-ee"]
     for r in repos {
         let apiURL = "https://api.github.com/repos/vyuvaraj/" + r + "/actions/runs?per_page=1"
         
