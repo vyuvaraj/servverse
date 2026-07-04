@@ -1,4 +1,4 @@
-// Servverse Pipeline Status Dashboard - Written in Serv-lang
+// Servverse Pipeline Status Dashboard - Written in Serv-lang (V2 - SafeMap Resolved)
 // Demonstrates: HTTP routes, direct HTML rendering, SQLite persistence, background polling
 // Run locally: serv run main.srv --watch
 
