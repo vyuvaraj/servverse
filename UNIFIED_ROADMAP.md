@@ -342,7 +342,7 @@ To transition the Servverse ecosystem from local/sandbox stage to enterprise pro
 
 | # | Feature | Components Affected | Priority |
 |---|---------|-------------------|----------|
-| OPS.13 | **Ecosystem Doctor & Telemetry Diagnostics** — CLI diagnostics utility verifying inter-service telemetry pipelines | All Services | High |
+| OPS.13 | **Ecosystem Doctor & Telemetry Diagnostics** — ✅ CLI diagnostics utility verifying version matrix, editions, and OTLP pipelines | All Services | High |
 
 ---
 
