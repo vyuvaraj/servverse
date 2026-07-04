@@ -131,6 +131,8 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 | DOC.S2 | **ServDocs roadmap** — ✅ Authored forward-looking ROADMAP.md | ServDocs | 🟢 Low | Currently the only code-bearing service without a forward-looking roadmap. |
 | DOC.S3 | **API contract versioning audit** — ✅ Expose /api/version consistently across all services | All Services | 🟡 Medium | Verify all services expose `/api/version` consistently. Enforce `serv doctor` compatibility matrix. |
 | DOC.S4 | **Component maturity matrix** — ✅ Formulated below | servverse-repo | 🟡 Medium | Replace binary "complete/pending" with a multi-axis maturity model: API contract, persistence, security, observability, tests, docs. |
+| DOC.S5 | **`LANGUAGE_GUIDE.md` Language Guide** | servverse-repo | 🟡 Medium | Compile a comprehensive guide covering global blocks, variables, control flow, functions, built-in libraries (http, html, json, db, log), and pub/sub broker messaging. |
+| DOC.S6 | **Auto-Documentation Generator (`serv doc`)** | Serv-lang | 🔴 High | Add AST-based auto-doc generator CLI extracting routes (OpenAPI/Swagger), cron schedules, SQLite tables, event topics, and triple-slash (///) comments into interactive HTML guides. |
 
 ---
 
