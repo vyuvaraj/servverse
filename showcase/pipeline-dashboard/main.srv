@@ -107,11 +107,236 @@ export route "GET" "/" (req) {
             statusIcon = "⟳"
         }
         
-        let cardHTML = "<div class=\"card\"><div class=\"card-header\"><span class=\"repo-name\">" + row.repo + "</span><span class=\"badge " + statusClass + "\">" + statusIcon + " " + row.status + "</span></div><div class=\"card-body\"><p><strong>Run:</strong> #" + row.run_number + "</p><p><strong>Triggered By:</strong> " + row.author + "</p><p><strong>Last Updated:</strong> " + row.updated_at + "</p></div><div class=\"card-footer\"><a href=\"" + row.url + "\" target=\"_blank\" class=\"btn\">View Actions Workflow</a></div></div>"
+        let cardHTML = f`
+        <div class="card">
+            <div class="card-header">
+                <span class="repo-name">{row.repo}</span>
+                <span class="badge {statusClass}">{statusIcon} {row.status}</span>
+            </div>
+            <div class="card-body">
+                <p><strong>Run:</strong> #{row.run_number}</p>
+                <p><strong>Triggered By:</strong> {row.author}</p>
+                <p><strong>Last Updated:</strong> {row.updated_at}</p>
+            </div>
+            <div class="card-footer">
+                <a href="{row.url}" target="_blank" class="btn">View Actions Workflow</a>
+            </div>
+        </div>`
         listHTML = listHTML + cardHTML
     }
     
-    let html = "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>Servverse CI/CD Pipeline Dashboard</title><link href=\"https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap\" rel=\"stylesheet\"><style>:root { --primary: #6366f1; --primary-glow: rgba(99, 102, 241, 0.15); --bg: #090a0f; --card-bg: rgba(255, 255, 255, 0.03); --card-border: rgba(255, 255, 255, 0.05); --text: #f3f4f6; --text-muted: #9ca3af; --success: #10b981; --failed: #ef4444; --running: #f59e0b; } * { box-sizing: border-box; margin: 0; padding: 0; } body { font-family: 'Outfit', sans-serif; background-color: var(--bg); color: var(--text); min-height: 100vh; background-image: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.03) 0%, transparent 45%); padding: 2rem; } .container { max-width: 1200px; margin: 0 auto; } header { text-align: center; margin-bottom: 3rem; } h1 { font-size: 2.8rem; font-weight: 800; background: linear-gradient(135deg, #fff 30%, var(--primary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; letter-spacing: -0.05em; } .subtitle { color: var(--text-muted); font-size: 1.1rem; } .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 1.5rem; } .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; backdrop-filter: blur(12px); transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; position: relative; overflow: hidden; } .card:hover { transform: translateY(-4px); border-color: rgba(99, 102, 241, 0.2); box-shadow: 0 12px 30px var(--primary-glow); } .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--primary), transparent); opacity: 0; transition: opacity 0.2s; } .card:hover::before { opacity: 1; } .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; } .repo-name { font-size: 1.4rem; font-weight: 600; letter-spacing: -0.02em; } .badge { padding: 0.35rem 0.75rem; border-radius: 99px; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; display: inline-flex; align-items: center; gap: 0.3rem; } .status-success { background: rgba(16, 185, 129, 0.1); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.2); } .status-failed { background: rgba(239, 68, 68, 0.1); color: var(--failed); border: 1px solid rgba(239, 68, 68, 0.2); } .status-running { background: rgba(245, 158, 11, 0.1); color: var(--running); border: 1px solid rgba(245, 158, 11, 0.2); animation: pulse 2s infinite; } @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } } .card-body { margin-bottom: 1.5rem; font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; } .card-body p { margin-bottom: 0.4rem; } .card-body strong { color: var(--text); } .card-footer { margin-top: auto; } .btn { display: block; width: 100%; text-align: center; padding: 0.75rem; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--card-border); border-radius: 10px; color: var(--text); text-decoration: none; font-weight: 600; transition: background 0.2s, border-color 0.2s; } .btn:hover { background: var(--primary); border-color: var(--primary); box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4); } </style><script>setTimeout(function(){ window.location.reload(); }, 15000);</script></head><body><div class=\"container\"><header><h1>Servverse Pipeline Monitor</h1><p class=\"subtitle\">Real-time status of 15 ecosystem modules powered by Serv-lang</p></header><div class=\"grid\">" + listHTML + "</div></div></body></html>"
+    let html = f`<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Servverse CI/CD Pipeline Dashboard</title>
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+        <style>
+            :root {{
+                --primary: #6366f1;
+                --primary-glow: rgba(99, 102, 241, 0.15);
+                --bg: #090a0f;
+                --card-bg: rgba(255, 255, 255, 0.03);
+                --card-border: rgba(255, 255, 255, 0.05);
+                --text: #f3f4f6;
+                --text-muted: #9ca3af;
+                --success: #10b981;
+                --failed: #ef4444;
+                --running: #f59e0b;
+            }}
+            
+            * {{
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }}
+            
+            body {{
+                font-family: 'Outfit', sans-serif;
+                background-color: var(--bg);
+                color: var(--text);
+                min-height: 100vh;
+                background-image: 
+                    radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
+                    radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.03) 0%, transparent 45%);
+                padding: 2rem;
+            }}
+            
+            .container {{
+                max-width: 1200px;
+                margin: 0 auto;
+            }}
+            
+            header {{
+                text-align: center;
+                margin-bottom: 3rem;
+            }}
+            
+            h1 {{
+                font-size: 2.8rem;
+                font-weight: 800;
+                background: linear-gradient(135deg, #fff 30%, var(--primary) 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-bottom: 0.5rem;
+                letter-spacing: -0.05em;
+            }}
+            
+            .subtitle {{
+                color: var(--text-muted);
+                font-size: 1.1rem;
+            }}
+            
+            .grid {{
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+                gap: 1.5rem;
+            }}
+            
+            .card {{
+                background: var(--card-bg);
+                border: 1px solid var(--card-border);
+                border-radius: 16px;
+                padding: 1.5rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                backdrop-filter: blur(12px);
+                transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+                position: relative;
+                overflow: hidden;
+            }}
+            
+            .card:hover {{
+                transform: translateY(-4px);
+                border-color: rgba(99, 102, 241, 0.2);
+                box-shadow: 0 12px 30px var(--primary-glow);
+            }}
+            
+            .card::before {{
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 4px;
+                background: linear-gradient(90deg, var(--primary), transparent);
+                opacity: 0;
+                transition: opacity 0.2s;
+            }}
+            
+            .card:hover::before {{
+                opacity: 1;
+            }}
+            
+            .card-header {{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1.5rem;
+            }}
+            
+            .repo-name {{
+                font-size: 1.4rem;
+                font-weight: 600;
+                letter-spacing: -0.02em;
+            }}
+            
+            .badge {{
+                padding: 0.35rem 0.75rem;
+                border-radius: 99px;
+                font-size: 0.85rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.3rem;
+            }}
+            
+            .status-success {{
+                background: rgba(16, 185, 129, 0.1);
+                color: var(--success);
+                border: 1px solid rgba(16, 185, 129, 0.2);
+            }}
+            
+            .status-failed {{
+                background: rgba(239, 68, 68, 0.1);
+                color: var(--failed);
+                border: 1px solid rgba(239, 68, 68, 0.2);
+            }}
+            
+            .status-running {{
+                background: rgba(245, 158, 11, 0.1);
+                color: var(--running);
+                border: 1px solid rgba(245, 158, 11, 0.2);
+                animation: pulse 2s infinite;
+            }}
+            
+            @keyframes pulse {{
+                0% {{ opacity: 1; }}
+                50% {{ opacity: 0.6; }}
+                100% {{ opacity: 1; }}
+            }}
+            
+            .card-body {{
+                margin-bottom: 1.5rem;
+                font-size: 0.95rem;
+                color: var(--text-muted);
+                line-height: 1.6;
+            }}
+            
+            .card-body p {{
+                margin-bottom: 0.4rem;
+            }}
+            
+            .card-body strong {{
+                color: var(--text);
+            }}
+            
+            .card-footer {{
+                margin-top: auto;
+            }}
+            
+            .btn {{
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: 0.75rem;
+                background: rgba(255, 255, 255, 0.02);
+                border: 1px solid var(--card-border);
+                border-radius: 10px;
+                color: var(--text);
+                text-decoration: none;
+                font-weight: 600;
+                transition: background 0.2s, border-color 0.2s;
+            }}
+            
+            .btn:hover {{
+                background: var(--primary);
+                border-color: var(--primary);
+                box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            }}
+        </style>
+        <script>
+            setTimeout(function(){{
+                window.location.reload();
+            }}, 15000);
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>Servverse Pipeline Monitor</h1>
+                <p class="subtitle">Real-time status of 15 ecosystem modules powered by Serv-lang</p>
+            </header>
+            
+            <div class="grid">
+                {listHTML}
+            </div>
+        </div>
+    </body>
+    </html>`
     
     return html
 }
