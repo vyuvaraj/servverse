@@ -428,7 +428,7 @@ Transitioning the Apache 2.0 public monorepo into a dual-licensed model (AGPLv3 
 
 | # | Feature | Components | Priority | Description |
 |---|---------|-----------|----------|-------------|
-| EE.1 | **Commercial CLI Builder** | Serv-lang | 🟡 Medium | Configure private CI pipeline compiling `serv` binaries injected with enterprise targets (multi-region, ServCloud). |
+| EE.1 | **Commercial CLI Builder** — ✅ Configured private CI pipeline with dynamic EE code overlays | Serv-lang | 🟡 Medium | Configure private CI pipeline compiling `serv` binaries injected with enterprise targets (multi-region, ServCloud). |
 | EE.2 | **Licensed Artifact Verification** — ✅ Cryptographic HMAC-SHA256 license check enforced on Enterprise panels startup | ServConsole | 🟡 Medium | Implement local cryptographic license key verification on enterprise panels startup. |
 
 ---
