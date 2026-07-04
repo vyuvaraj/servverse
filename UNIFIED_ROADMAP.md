@@ -18,10 +18,10 @@
 | **🧪 Testing & Quality Gaps** | 5 | 3 | 2 | **60%** | ████████████░░░░░░░ |
 | **📦 Missing Infrastructure** | 6 | 3 | 3 | **50%** | ██████████░░░░░░░░░ |
 | **🔗 Integration Depth** | 6 | 6 | 0 | **100%** | ████████████████████ |
-| **🛠️ Developer Experience** | 8 | 6 | 2 | **75%** | ███████████████░░░░░ |
-| **⚡ Performance & Reliability** | 5 | 0 | 5 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
-| **📝 Documentation & Hygiene** | 4 | 1 | 3 | **25%** | █████░░░░░░░░░░░░░░░ |
-| **TOTAL WORK** | **43** | **26** | **17** | **60%** | ████████████░░░░░░░░ |
+| **🛠️ Developer Experience** | 8 | 7 | 1 | **87%** | █████████████████░░ |
+| **⚡ Performance & Reliability** | 5 | 3 | 2 | **60%** | ████████████░░░░░░░ |
+| **📝 Documentation & Hygiene** | 4 | 3 | 1 | **75%** | ███████████████░░░░ |
+| **TOTAL WORK** | **43** | **32** | **11** | **74%** | ███████████████░░░░ |
 
 ---
 
@@ -119,10 +119,10 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 
 | # | Feature | Components | Priority | Description |
 |---|---------|-----------|----------|-------------|
-| DOC.S1 | **Cross-service runtime dependency diagram** | servverse-repo | 🟡 Medium | Document which services depend on which at runtime with version requirements. Update architecture diagram. |
+| DOC.S1 | **Cross-service runtime dependency diagram** — ✅ Documented below | servverse-repo | 🟡 Medium | Document which services depend on which at runtime with version requirements. Update architecture diagram. |
 | DOC.S2 | **ServDocs roadmap** | ServDocs | 🟢 Low | Currently the only code-bearing service without a forward-looking roadmap. |
 | DOC.S3 | **API contract versioning audit** — ✅ Expose /api/version consistently across all services | All Services | 🟡 Medium | Verify all services expose `/api/version` consistently. Enforce `serv doctor` compatibility matrix. |
-| DOC.S4 | **Component maturity matrix** | servverse-repo | 🟡 Medium | Replace binary "complete/pending" with a multi-axis maturity model: API contract, persistence, security, observability, tests, docs. |
+| DOC.S4 | **Component maturity matrix** — ✅ Formulated below | servverse-repo | 🟡 Medium | Replace binary "complete/pending" with a multi-axis maturity model: API contract, persistence, security, observability, tests, docs. |
 
 ---
 
@@ -426,6 +426,62 @@ Transitioning the Apache 2.0 public monorepo into a dual-licensed model (AGPLv3 
 |---|---------|-----------|----------|-------------|
 | EE.1 | **Commercial CLI Builder** | Serv-lang | 🟡 Medium | Configure private CI pipeline compiling `serv` binaries injected with enterprise targets (multi-region, ServCloud). |
 | EE.2 | **Licensed Artifact Verification** | ServConsole | 🟡 Medium | Implement local cryptographic license key verification on enterprise panels startup. |
+
+---
+
+## Appendix A: Cross-Service Runtime Dependency Diagram
+
+```mermaid
+graph TD
+    %% CLI & Compiler Connector
+    ServCLI["Serv-lang CLI"] -->|compiles & deploys| ServCloud
+    ServCLI -->|runs tests| ServLocal
+
+    %% Gateway Edge Layer
+    ServGate["ServGate (API Gateway)"] -->|proxies client requests| ServMesh
+    ServGate -->|reports traffic metrics| ServCloud
+
+    %% Service Mesh Layer
+    ServMesh["ServMesh (Service Mesh)"] -->|routes traffic| ServMeshInstances["Service Instances"]
+    ServMeshInstances -->|registers to| ServRegistry
+    ServMeshInstances -->|publishes traces| ServTrace
+    ServMeshInstances -->|accesses cache| ServCache
+    ServMeshInstances -->|enqueues tasks| ServQueue
+    ServMeshInstances -->|schedules jobs| ServCron
+    ServMeshInstances -->|sends mail| ServMail
+
+    %% Control Plane & Orchestrator
+    ServCloud["ServCloud (Orchestrator)"] -->|orchestrates processes| ServMeshInstances
+    ServCloud -->|manages routing rules| ServMesh
+    ServCloud -->|reads metrics & autoscales| ServGate
+
+    %% Auxiliary Core Services
+    ServCron -->|triggers target HTTP hooks| ServMeshInstances
+    ServQueue -->|dispatches messages to| ServMeshInstances
+    ServTrace -->|stores & indexes telemetry| ServStore
+    ServRegistry -->|indexes service packages| ServStore
+    ServStore["ServStore (S3 Storage)"]
+```
+
+---
+
+## Appendix B: Component Maturity Matrix
+
+| Component | API Contract | Persistence | Security | Observability | Tests | Docs | Overall Maturity |
+|-----------|--------------|-------------|----------|---------------|-------|------|------------------|
+| **Serv-lang** | 🟢 Production | ⚪ N/A | 🟡 Medium | 🟢 Production | 🟢 Production | 🟢 Production | **Production-Ready** |
+| **ServGate** | 🟢 Production | ⚪ N/A | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | **Production-Ready** |
+| **ServMesh** | 🟢 Production | ⚪ N/A | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | **Production-Ready** |
+| **ServCloud** | 🟢 Production | 🟢 Production | 🟡 Medium | 🟢 Production | 🟢 Production | 🟢 Production | **Production-Ready** |
+| **ServTrace** | 🟢 Production | 🟢 Production | 🟡 Medium | 🟢 Production | 🟢 Production | 🟢 Production | **Production-Ready** |
+| **ServStore** | 🟢 Production | 🟢 Production | 🟡 Medium | 🟡 Medium | 🟡 Medium | 🟡 Medium | **Stable** |
+| **ServQueue** | 🟢 Production | 🟢 Production | 🟡 Medium | 🟡 Medium | 🟢 Production | 🟡 Medium | **Stable** |
+| **ServCache** | 🟢 Production | 🟢 Production | 🟡 Medium | 🟡 Medium | 🟢 Production | 🟡 Medium | **Stable** |
+| **ServCron** | 🟢 Production | 🟢 Production | 🟡 Medium | 🟡 Medium | 🟢 Production | 🟡 Medium | **Stable** |
+| **ServMail** | 🟢 Production | 🟡 Medium | 🟡 Medium | 🟡 Medium | 🟢 Production | 🟡 Medium | **Stable** |
+| **ServRegistry**| 🟢 Production | 🟢 Production | 🟡 Medium | 🟡 Medium | 🟡 Medium | 🟡 Medium | **Stable** |
+| **ServDocs** | 🟡 Medium | ⚪ N/A | ⚪ N/A | ⚪ N/A | 🟡 Medium | 🟢 Production | **Beta** |
+
 
 
 
