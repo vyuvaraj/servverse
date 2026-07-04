@@ -193,6 +193,17 @@ We are actively expanding ServGate's edge-compute capabilities:
 
 ---
 
+## Open Source vs. Enterprise Gateway Features
+
+ServGate is packaged under two distinct editions depending on scale and security compliance:
+
+* **Open Source (OSS)**: Fully featured single-tenant reverse proxy, local route configuration discovery, basic prompt checking rules, static JWT authorization checks, and standard local rate limiting.
+* **Enterprise Edition (EE)**: Adds dynamic OIDC multi-tenant context isolation, prompt injection firewall (AI Shield), automated PII masking on JSON response streams, cost-aware fallback LLM routing, and federated GraphQL schemas with semantic routing.
+
+For SLA-backed support or corporate deployments, reach out to the core team at **servverse@gmail.com**.
+
+---
+
 ## Links
 
 - **GitHub**: [github.com/vyuvaraj/ServGate](https://github.com/vyuvaraj/ServGate)

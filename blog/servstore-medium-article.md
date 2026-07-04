@@ -250,6 +250,17 @@ The web console gives you drag-and-drop uploads, bucket management, versioning c
 
 ---
 
+## Open Source vs. Enterprise Storage Features
+
+ServStore offers both free community-supported and commercial tiers:
+
+* **Open Source (OSS)**: Pure S3 REST API compliance, object versioning, WORM locking, TF-IDF semantic text indexing, server-side WASM transforms (compute-near-data), and local storage pooling.
+* **Enterprise Edition (EE)**: Adds multi-region active-active database replication, distributed Raft clustering with cross-region consistency, Reed-Solomon erasure coding, auto-healing background scrubbers, and 24/7 SLA support.
+
+For enterprise scale deployments, reach out to the core team at **servverse@gmail.com**.
+
+---
+
 ## Links
 
 - **GitHub**: [github.com/vyuvaraj/ServStore](https://github.com/vyuvaraj/ServStore)

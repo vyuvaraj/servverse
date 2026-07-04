@@ -172,6 +172,17 @@ The Servverse is designed to grow. The platform has expanded to include major ne
 
 ---
 
+## Open Source vs. Enterprise Editions
+
+To support standard self-hostable development while addressing enterprise scale and security requirements, the Servverse ecosystem is split into two models:
+
+* **Open Source (OSS)**: Under the Apache 2.0 license, providing the full core DSL compiler (`Serv-lang`), single-tenant reverse proxy (`ServGate`), object storage (`ServStore`), queue (`ServQueue`), and local dashboard observability (`ServConsole`).
+* **Enterprise Edition (EE)**: Provides production-scale extensions like multi-region active-active database replication, strict multi-tenant JWT context isolation, high-throughput prompt injection firewalls, federated GraphQL gateways with LLM semantic routing, and 24/7 SLA-backed support.
+
+For commercial inquiries or SLA support, contact the core team directly at **servverse@gmail.com**.
+
+---
+
 ## Links
 
 - **Serv-lang**: [github.com/vyuvaraj/Serv-lang](https://github.com/vyuvaraj/Serv-lang)
