@@ -99,7 +99,7 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 | DX.S5 | **`serv cron list` CLI** — ✅ List job details, consecutive failure count, next 5 projected runs | ServCron | 🟢 Low | Next 5 scheduled runs per job, last outcome, failure count in terminal. |
 | DX.S6 | **ServMail local mock dev server** — ✅ Consolidate SMTP and HTTP mail mocks in mock emails log | ServMail | 🟡 Medium | Offline SMTP mock for local testing without real mail infrastructure. HTTP endpoints to inspect sent mail. |
 | DX.S7 | **Serv-lang incremental compilation** — ✅ Cache AST/codegen per-file | Serv-lang | 🔴 High | Cache AST/codegen per-file. Only recompile changed files. Critical for projects with 50+ files. |
-| DX.S8 | **Serv-lang `serv test --watch`** | Serv-lang | 🟡 Medium | Re-run affected tests on file save. Tight feedback loop. |
+| DX.S8 | **Serv-lang `serv test --watch`** — ✅ Incremental watcher restarting tests and staying alive on failures | Serv-lang | 🟡 Medium | Re-run affected tests on file save. Tight feedback loop. |
 
 ---
 
@@ -108,7 +108,7 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 | # | Feature | Components | Priority | Description |
 |---|---------|-----------|----------|-------------|
 | PR.1 | **ServCache distributed coherence (gossip)** — ✅ Gossip-based invalidation across cache nodes | ServCache | 🟡 Medium | Multi-node cache with gossip-based invalidation. No single point of failure for cache tier. |
-| PR.2 | **ServMesh health-aware load balancing** | ServMesh | 🟡 Medium | Weight routing based on real-time latency/error-rate feedback from OTel spans. |
+| PR.2 | **ServMesh health-aware load balancing** — ✅ Dynamic routing weight adjustment based on latency and error metrics | ServMesh | 🟡 Medium | Weight routing based on real-time latency/error-rate feedback from OTel spans. |
 | PR.3 | **ServCloud horizontal auto-scaling** | ServCloud | 🟡 Medium | Scale instances based on request rate from ServGate metrics. React to traffic spikes. |
 | PR.4 | **ServTrace adaptive sampling** | ServTrace | 🟡 Medium | Dynamically raise sampling when error rate spikes, lower it in normal operation. Reduce overhead. |
 | PR.5 | **ServQueue end-to-end message tracing** — ✅ Full span journey trace propagation | ServQueue | 🟡 Medium | Track a message from publish through every WASM transform, DLQ redirect, and consumer ack. Full journey visualization. |
