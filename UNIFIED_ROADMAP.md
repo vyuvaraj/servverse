@@ -104,6 +104,10 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 | DX.S10 | **Form/JSON Request binding & validation** | Serv-lang | 🟡 Medium | Bind and validate form data/JSON payloads directly to typed variables. |
 | DX.S11 | **`html.redirect` response helper** | Serv-lang | 🟢 Low | Native HTTP redirect helper handling 301/302 routing redirection. |
 | DX.S12 | **WASM-edge interactive frontend components** | Serv-lang | 🔴 High | Compile serv logic to client-side browser WASM targets for dynamic component updates. |
+| DX.S13 | **ORM declarative models (`model`)** | Serv-lang | 🔴 High | Declare schemas as models with auto-generated SQLite migrations and CRUD operations. |
+| DX.S14 | **Object short-hand init & destructuring** | Serv-lang | 🟡 Medium | Support object field short-hands and destructured assignment syntax. |
+| DX.S15 | **Implicit route returns** | Serv-lang | 🟢 Low | Automatically infer Content-Type (JSON, HTML) directly from returned routing types. |
+| DX.S16 | **Wildcard directory imports** | Serv-lang | 🟢 Low | Support wildcard import directories (e.g. `import "handlers/*.srv"`). |
 
 ---
 
