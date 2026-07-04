@@ -101,7 +101,7 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 | DX.S7 | **Serv-lang incremental compilation** — ✅ Cache AST/codegen per-file | Serv-lang | 🔴 High | Cache AST/codegen per-file. Only recompile changed files. Critical for projects with 50+ files. |
 | DX.S8 | **Serv-lang `serv test --watch`** — ✅ Incremental watcher restarting tests and staying alive on failures | Serv-lang | 🟡 Medium | Re-run affected tests on file save. Tight feedback loop. |
 | DX.S9 | **`html.static` static file server** — ✅ Serve local directories over HTTP via `html.static(prefix, dir)` | Serv-lang | 🟡 Medium | Serve assets and static directories (CSS, JS, images, SPA bundles) natively over HTTP. |
-| DX.S10 | **Form/JSON Request binding & validation** | Serv-lang | 🟡 Medium | Bind and validate form data/JSON payloads directly to typed variables. |
+| DX.S10 | **Form/JSON Request binding & validation** — ✅ `req.json()`, `req.form()`, `req.param(key)` shorthands eliminate boilerplate body parsing | Serv-lang | 🟡 Medium | Bind and validate form data/JSON payloads directly to typed variables. |
 | DX.S11 | **`html.redirect` response helper** — ✅ `html.redirect(url, code)` issues HTTP 301/302 redirects from route handlers | Serv-lang | 🟢 Low | Native HTTP redirect helper handling 301/302 routing redirection. |
 | DX.S12 | **WASM-edge interactive frontend components** | Serv-lang | 🔴 High | Compile serv logic to client-side browser WASM targets for dynamic component updates. |
 | DX.S13 | **ORM declarative models (`model`)** | Serv-lang | 🔴 High | Declare schemas as models with auto-generated SQLite migrations and CRUD operations. |
