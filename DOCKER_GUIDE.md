@@ -425,6 +425,86 @@ curl -H "Authorization: Bearer <your-jwt-token>" http://localhost:8082/api/v1/to
 
 ---
 
+## Production Release Images (GHCR)
+
+All platform services are compiled, packaged, and published as production-ready container images on GitHub Container Registry (GHCR) whenever a version tag (`v*`) is released.
+
+### Image Registry Paths
+
+All component images are publicly available at:
+`ghcr.io/vyuvaraj/<service-name>:v0.1.0` (and `latest`)
+
+| Service | Registry Path |
+|---|---|
+| ServGate | `ghcr.io/vyuvaraj/servgate:latest` |
+| ServStore | `ghcr.io/vyuvaraj/servstore:latest` |
+| ServQueue | `ghcr.io/vyuvaraj/servqueue:latest` |
+| ServCache | `ghcr.io/vyuvaraj/servcache:latest` |
+| ServConsole | `ghcr.io/vyuvaraj/servconsole:latest` |
+| ServCron | `ghcr.io/vyuvaraj/servcron:latest` |
+| ServCloud | `ghcr.io/vyuvaraj/servcloud:latest` |
+| ServMesh | `ghcr.io/vyuvaraj/servmesh:latest` |
+| ServTrace | `ghcr.io/vyuvaraj/servtrace:latest` |
+| ServTunnel | `ghcr.io/vyuvaraj/servtunnel:latest` |
+| ServRegistry | `ghcr.io/vyuvaraj/servregistry:latest` |
+
+### Running the Pre-built Stack (No Source Code Needed)
+
+You can run the entire platform stack using production images from GHCR without cloning all the individual component source repositories. 
+
+Create a `docker-compose.prod.yml` file:
+
+```yaml
+version: '3.8'
+
+services:
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    ports: ["16686:16686", "4317:4317", "4318:4318"]
+
+  servtrace:
+    image: ghcr.io/vyuvaraj/servtrace:latest
+    ports: ["8090:8090"]
+
+  servstore:
+    image: ghcr.io/vyuvaraj/servstore:latest
+    ports: ["8081:8081"]
+    command: ["--port", "8081", "--data-dir", "/data"]
+    environment:
+      - SERV_OTLP_ENDPOINT=http://servtrace:8090
+    depends_on: [servtrace]
+
+  servqueue:
+    image: ghcr.io/vyuvaraj/servqueue:latest
+    ports: ["8082:8082", "61613:61613"]
+    environment:
+      - SERV_OTLP_ENDPOINT=http://servtrace:8090
+    depends_on: [servtrace]
+
+  servcache:
+    image: ghcr.io/vyuvaraj/servcache:latest
+    ports: ["8086:8086"]
+    environment:
+      - SERV_OTLP_ENDPOINT=http://servtrace:8090
+    depends_on: [servtrace]
+
+  servgate:
+    image: ghcr.io/vyuvaraj/servgate:latest
+    ports: ["8080:8080"]
+    environment:
+      - SERV_OTLP_ENDPOINT=http://servtrace:8090
+    depends_on: [servtrace]
+
+  # Add other services as needed...
+```
+
+Then run:
+```bash
+podman compose -f docker-compose.prod.yml up -d
+```
+
+---
+
 ## Troubleshooting
 
 ### View logs for a specific service
