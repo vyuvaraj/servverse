@@ -88,7 +88,7 @@ every 5m {
 
 // --- Web Dashboard Route ---
 export route "GET" "/" (req) {
-    let rows = db.query("SELECT * FROM pipelines ORDER BY repo ASC")
+    let rows = db.query("SELECT * FROM pipelines ORDER BY CASE WHEN status = 'failure' OR status = 'failed' THEN 1 WHEN status = 'in_progress' OR status = 'queued' THEN 2 WHEN status = 'success' THEN 3 ELSE 4 END ASC, repo ASC")
     
     // Fallback if DB is querying mid-setup
     if rows == nil {
