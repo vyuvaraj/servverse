@@ -394,9 +394,9 @@ Transitioning the Apache 2.0 public monorepo into a dual-licensed model (AGPLv3 
 | Initiative Area | Total Items | Completed | Pending | Progress | Status Bar |
 |-----------------|-------------|-----------|---------|----------|------------|
 | **⚖️ License & Policy Transition** | 3 | 2 | 1 | **67%** | █████████████░░░░░░ |
-| **📦 Codebase & Module Split** | 3 | 0 | 3 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
+| **📦 Codebase & Module Split** | 3 | 2 | 1 | **67%** | █████████████░░░░░░ |
 | **🚀 Enterprise Build Pipeline** | 2 | 0 | 2 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
-| **TOTAL WORK** | **8** | **2** | **6** | **25%** | █████░░░░░░░░░░░░░░░ |
+| **TOTAL WORK** | **8** | **4** | **4** | **50%** | ██████████░░░░░░░░░ |
 
 ---
 
@@ -414,8 +414,8 @@ Transitioning the Apache 2.0 public monorepo into a dual-licensed model (AGPLv3 
 
 | # | Feature | Components | Priority | Description |
 |---|---------|-----------|----------|-------------|
-| SPL.1 | **Private Enterprise Monorepo Setup** | All Services | 🔴 High | Initialize private `servverse-ee` repository to house proprietary plugins and wrappers. |
-| SPL.2 | **Build Tag Integration (`//go:build enterprise`)** | ServGate, ServStore | 🟡 Medium | Refactor core hooks using Go build tags to isolate premium logic (e.g. `canary_ee.go`). |
+| SPL.1 | **Private Enterprise Monorepo Setup** — ✅ Initialized servverse-ee repository and premium plugins module | All Services | 🔴 High | Initialize private `servverse-ee` repository to house proprietary plugins and wrappers. |
+| SPL.2 | **Build Tag Integration (`//go:build enterprise`)** — ✅ Extracted premium canary promotion engine logic to build-tagged source files | ServGate, ServStore | 🟡 Medium | Refactor core hooks using Go build tags to isolate premium logic (e.g. `canary_ee.go`). |
 | SPL.3 | **Premium WASM Middleware Compilation** | ServGate, ServStore | 🟡 Medium | Package OIDC verification and PII redaction as pre-compiled WASM extensions in the commercial distribution. |
 
 ---
