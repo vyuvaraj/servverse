@@ -39,15 +39,26 @@ every 1h {
 }
 
 // --- Live GitHub API Polling ---
-every 30s {
+every 5m {
     log.info("[Pipeline Daemon] Polling GitHub Actions API for pipeline updates...")
     
     let repos = ["ServGate", "ServConsole", "ServStore", "ServQueue", "ServAuth", "ServDB", "ServTrace", "Serv-lang", "servverse-ee", "ServMesh", "ServCron", "ServCache", "ServDocs", "ServMail", "ServRegistry"]
     for r in repos {
         let apiURL = "https://api.github.com/repos/vyuvaraj/" + r + "/actions/runs?per_page=1"
         
-        // Use http.get directly
-        let res = http.get(apiURL)
+        let headers = {}
+        let token = env("GITHUB_TOKEN")
+        if token != nil {
+            headers = { "Authorization": "Bearer " + token }
+        } else {
+            let pat = env("GITHUB_PAT")
+            if pat != nil {
+                headers = { "Authorization": "token " + pat }
+            }
+        }
+        
+        // Use http.get directly with custom headers
+        let res = http.get(apiURL, headers)
         if res.status == 200 {
             let data = json.parse(res.body)
             if data != nil {
