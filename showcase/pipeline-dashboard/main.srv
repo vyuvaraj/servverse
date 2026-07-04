@@ -95,37 +95,8 @@ export route "GET" "/" (req) {
         rows = []
     }
     
-    let listHTML = ""
-    for row in rows {
-        let statusClass = "status-success"
-        let statusIcon = "✓"
-        if row.status == "failure" || row.status == "failed" {
-            statusClass = "status-failed"
-            statusIcon = "✗"
-        } else if row.status == "in_progress" || row.status == "queued" {
-            statusClass = "status-running"
-            statusIcon = "⟳"
-        }
-        
-        let cardHTML = f`
-        <div class="card">
-            <div class="card-header">
-                <span class="repo-name">{row.repo}</span>
-                <span class="badge {statusClass}">{statusIcon} {row.status}</span>
-            </div>
-            <div class="card-body">
-                <p><strong>Run:</strong> #{row.run_number}</p>
-                <p><strong>Triggered By:</strong> {row.author}</p>
-                <p><strong>Last Updated:</strong> {row.updated_at}</p>
-            </div>
-            <div class="card-footer">
-                <a href="{row.url}" target="_blank" class="btn">View Actions Workflow</a>
-            </div>
-        </div>`
-        listHTML = listHTML + cardHTML
-    }
-    
-    let html = f`<!DOCTYPE html>
+    // Define raw HTML template using standard go templates
+    let tpl = `<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -133,7 +104,7 @@ export route "GET" "/" (req) {
         <title>Servverse CI/CD Pipeline Dashboard</title>
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
         <style>
-            :root {{
+            :root {
                 --primary: #6366f1;
                 --primary-glow: rgba(99, 102, 241, 0.15);
                 --bg: #090a0f;
@@ -144,15 +115,15 @@ export route "GET" "/" (req) {
                 --success: #10b981;
                 --failed: #ef4444;
                 --running: #f59e0b;
-            }}
+            }
             
-            * {{
+            * {
                 box-sizing: border-box;
                 margin: 0;
                 padding: 0;
-            }}
+            }
             
-            body {{
+            body {
                 font-family: 'Outfit', sans-serif;
                 background-color: var(--bg);
                 color: var(--text);
@@ -161,19 +132,19 @@ export route "GET" "/" (req) {
                     radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
                     radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.03) 0%, transparent 45%);
                 padding: 2rem;
-            }}
+            }
             
-            .container {{
+            .container {
                 max-width: 1200px;
                 margin: 0 auto;
-            }}
+            }
             
-            header {{
+            header {
                 text-align: center;
                 margin-bottom: 3rem;
-            }}
+            }
             
-            h1 {{
+            h1 {
                 font-size: 2.8rem;
                 font-weight: 800;
                 background: linear-gradient(135deg, #fff 30%, var(--primary) 100%);
@@ -181,20 +152,20 @@ export route "GET" "/" (req) {
                 -webkit-text-fill-color: transparent;
                 margin-bottom: 0.5rem;
                 letter-spacing: -0.05em;
-            }}
+            }
             
-            .subtitle {{
+            .subtitle {
                 color: var(--text-muted);
                 font-size: 1.1rem;
-            }}
+            }
             
-            .grid {{
+            .grid {
                 display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
                 gap: 1.5rem;
-            }}
+            }
             
-            .card {{
+            .card {
                 background: var(--card-bg);
                 border: 1px solid var(--card-border);
                 border-radius: 16px;
@@ -206,15 +177,15 @@ export route "GET" "/" (req) {
                 transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
                 position: relative;
                 overflow: hidden;
-            }}
+            }
             
-            .card:hover {{
+            .card:hover {
                 transform: translateY(-4px);
                 border-color: rgba(99, 102, 241, 0.2);
                 box-shadow: 0 12px 30px var(--primary-glow);
-            }}
+            }
             
-            .card::before {{
+            .card::before {
                 content: '';
                 position: absolute;
                 top: 0;
@@ -224,26 +195,26 @@ export route "GET" "/" (req) {
                 background: linear-gradient(90deg, var(--primary), transparent);
                 opacity: 0;
                 transition: opacity 0.2s;
-            }}
+            }
             
-            .card:hover::before {{
+            .card:hover::before {
                 opacity: 1;
-            }}
+            }
             
-            .card-header {{
+            .card-header {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 margin-bottom: 1.5rem;
-            }}
+            }
             
-            .repo-name {{
+            .repo-name {
                 font-size: 1.4rem;
                 font-weight: 600;
                 letter-spacing: -0.02em;
-            }}
+            }
             
-            .badge {{
+            .badge {
                 padding: 0.35rem 0.75rem;
                 border-radius: 99px;
                 font-size: 0.85rem;
@@ -252,53 +223,53 @@ export route "GET" "/" (req) {
                 display: inline-flex;
                 align-items: center;
                 gap: 0.3rem;
-            }}
+            }
             
-            .status-success {{
+            .status-success {
                 background: rgba(16, 185, 129, 0.1);
                 color: var(--success);
                 border: 1px solid rgba(16, 185, 129, 0.2);
-            }}
+            }
             
-            .status-failed {{
+            .status-failed {
                 background: rgba(239, 68, 68, 0.1);
                 color: var(--failed);
                 border: 1px solid rgba(239, 68, 68, 0.2);
-            }}
+            }
             
-            .status-running {{
+            .status-running {
                 background: rgba(245, 158, 11, 0.1);
                 color: var(--running);
                 border: 1px solid rgba(245, 158, 11, 0.2);
                 animation: pulse 2s infinite;
-            }}
+            }
             
-            @keyframes pulse {{
-                0% {{ opacity: 1; }}
-                50% {{ opacity: 0.6; }}
-                100% {{ opacity: 1; }}
-            }}
+            @keyframes pulse {
+                0% { opacity: 1; }
+                50% { opacity: 0.6; }
+                100% { opacity: 1; }
+            }
             
-            .card-body {{
+            .card-body {
                 margin-bottom: 1.5rem;
                 font-size: 0.95rem;
                 color: var(--text-muted);
                 line-height: 1.6;
-            }}
+            }
             
-            .card-body p {{
+            .card-body p {
                 margin-bottom: 0.4rem;
-            }}
+            }
             
-            .card-body strong {{
+            .card-body strong {
                 color: var(--text);
-            }}
+            }
             
-            .card-footer {{
+            .card-footer {
                 margin-top: auto;
-            }}
+            }
             
-            .btn {{
+            .btn {
                 display: block;
                 width: 100%;
                 text-align: center;
@@ -310,18 +281,18 @@ export route "GET" "/" (req) {
                 text-decoration: none;
                 font-weight: 600;
                 transition: background 0.2s, border-color 0.2s;
-            }}
+            }
             
-            .btn:hover {{
+            .btn:hover {
                 background: var(--primary);
                 border-color: var(--primary);
                 box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
-            }}
+            }
         </style>
         <script>
-            setTimeout(function(){{
+            setTimeout(function(){
                 window.location.reload();
-            }}, 15000);
+            }, 15000);
         </script>
     </head>
     <body>
@@ -332,11 +303,32 @@ export route "GET" "/" (req) {
             </header>
             
             <div class="grid">
-                {listHTML}
+                {{ range .pipelines }}
+                <div class="card">
+                    <div class="card-header">
+                        <span class="repo-name">{{ .repo }}</span>
+                        {{ if or (eq .status "failure") (eq .status "failed") }}
+                        <span class="badge status-failed">✗ {{ .status }}</span>
+                        {{ else if or (eq .status "in_progress") (eq .status "queued") }}
+                        <span class="badge status-running">⟳ {{ .status }}</span>
+                        {{ else }}
+                        <span class="badge status-success">✓ {{ .status }}</span>
+                        {{ end }}
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Run:</strong> #{{ .run_number }}</p>
+                        <p><strong>Triggered By:</strong> {{ .author }}</p>
+                        <p><strong>Last Updated:</strong> {{ .updated_at }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ .url }}" target="_blank" class="btn">View Actions Workflow</a>
+                    </div>
+                </div>
+                {{ end }}
             </div>
         </div>
     </body>
     </html>`
     
-    return html
+    return html.template(tpl, { "pipelines": rows })
 }
