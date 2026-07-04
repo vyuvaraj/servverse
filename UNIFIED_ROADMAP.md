@@ -417,10 +417,10 @@ Transitioning the Apache 2.0 public monorepo into a dual-licensed model (AGPLv3 
 | SPL.1 | **Private Enterprise Monorepo Setup** — ✅ Initialized servverse-ee repository and premium plugins module | All Services | 🔴 High | Initialize private `servverse-ee` repository to house proprietary plugins and wrappers. |
 | SPL.2 | **Build Tag Integration (`//go:build enterprise`)** — ✅ Extracted premium canary promotion engine logic to build-tagged source files | ServGate, ServStore | 🟡 Medium | Refactor core hooks using Go build tags to isolate premium logic (e.g. `canary_ee.go`). |
 | SPL.3 | **Premium WASM Middleware Compilation** — ✅ Implemented premium OIDC verification and PII redaction middleware packages in servverse-ee | ServGate, ServStore | 🟡 Medium | Package OIDC verification and PII redaction as pre-compiled WASM extensions in the commercial distribution. |
-| SPL.4 | **AI Diagnostics & Incident Panel Migration** | ServConsole | 🟡 Medium | Migrate AI-powered diagnostics panel, trace lookups, and incident analysis hooks out of OSS to build-tagged EE packages. |
-| SPL.5 | **GraphQL Schema Federation** | ServGate | 🟡 Medium | Move GraphQL federation schema merging and query resolver aggregation to the enterprise module. |
-| SPL.6 | **Cost-Aware LLM Routing & Guardrails** | ServGate | 🟡 Medium | Migrate the token-cost estimation, LLM failover routing, and prompt guard middleware to the enterprise build. |
-| SPL.7 | **Cold Storage Cloud Tiering** | ServStore | 🟡 Medium | Migrate S3-compatible cloud archival adapters (Glacier, B2) and background tiering sweep loops from OSS to EE. |
+| SPL.4 | **AI Diagnostics & Incident Panel Migration** — ✅ Migrated out of public repos to private servverse-ee overlay | ServConsole | 🟡 Medium | Migrate AI-powered diagnostics panel, trace lookups, and incident analysis hooks out of OSS to build-tagged EE packages. |
+| SPL.5 | **GraphQL Schema Federation** — ✅ Migrated out of public repos to private servverse-ee overlay | ServGate | 🟡 Medium | Move GraphQL federation schema merging and query resolver aggregation to the enterprise module. |
+| SPL.6 | **Cost-Aware LLM Routing & Guardrails** — ✅ Migrated out of public repos to private servverse-ee overlay | ServGate | 🟡 Medium | Migrate the token-cost estimation, LLM failover routing, and prompt guard middleware to the enterprise build. |
+| SPL.7 | **Cold Storage Cloud Tiering** — ✅ Migrated out of public repos to private servverse-ee overlay | ServStore | 🟡 Medium | Migrate S3-compatible cloud archival adapters (Glacier, B2) and background tiering sweep loops from OSS to EE. |
 
 ---
 
