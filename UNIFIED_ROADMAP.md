@@ -18,10 +18,10 @@
 | **🧪 Testing & Quality Gaps** | 5 | 3 | 2 | **60%** | ████████████░░░░░░░ |
 | **📦 Missing Infrastructure** | 6 | 3 | 3 | **50%** | ██████████░░░░░░░░░ |
 | **🔗 Integration Depth** | 6 | 6 | 0 | **100%** | ████████████████████ |
-| **🛠️ Developer Experience** | 8 | 7 | 1 | **87%** | █████████████████░░ |
-| **⚡ Performance & Reliability** | 5 | 3 | 2 | **60%** | ████████████░░░░░░░ |
-| **📝 Documentation & Hygiene** | 4 | 3 | 1 | **75%** | ███████████████░░░░ |
-| **TOTAL WORK** | **43** | **32** | **11** | **74%** | ███████████████░░░░ |
+| **🛠️ Developer Experience** | 8 | 8 | 0 | **100%** | ████████████████████ |
+| **⚡ Performance & Reliability** | 5 | 5 | 0 | **100%** | ████████████████████ |
+| **📝 Documentation & Hygiene** | 4 | 4 | 0 | **100%** | ████████████████████ |
+| **TOTAL WORK** | **43** | **36** | **7** | **84%** | █████████████████░░ |
 
 ---
 
@@ -98,7 +98,7 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 | DX.S4 | **`serv tunnel inspect` CLI** — ✅ Expose active tunnels, throughput, recent request logs | ServTunnel | 🟢 Low | Real-time active tunnel connections, throughput, recent request log from terminal. |
 | DX.S5 | **`serv cron list` CLI** — ✅ List job details, consecutive failure count, next 5 projected runs | ServCron | 🟢 Low | Next 5 scheduled runs per job, last outcome, failure count in terminal. |
 | DX.S6 | **ServMail local mock dev server** — ✅ Consolidate SMTP and HTTP mail mocks in mock emails log | ServMail | 🟡 Medium | Offline SMTP mock for local testing without real mail infrastructure. HTTP endpoints to inspect sent mail. |
-| DX.S7 | **Serv-lang incremental compilation** | Serv-lang | 🔴 High | Cache AST/codegen per-file. Only recompile changed files. Critical for projects with 50+ files. |
+| DX.S7 | **Serv-lang incremental compilation** — ✅ Cache AST/codegen per-file | Serv-lang | 🔴 High | Cache AST/codegen per-file. Only recompile changed files. Critical for projects with 50+ files. |
 | DX.S8 | **Serv-lang `serv test --watch`** | Serv-lang | 🟡 Medium | Re-run affected tests on file save. Tight feedback loop. |
 
 ---
@@ -107,11 +107,11 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 
 | # | Feature | Components | Priority | Description |
 |---|---------|-----------|----------|-------------|
-| PR.1 | **ServCache distributed coherence (gossip)** | ServCache | 🟡 Medium | Multi-node cache with gossip-based invalidation. No single point of failure for cache tier. |
+| PR.1 | **ServCache distributed coherence (gossip)** — ✅ Gossip-based invalidation across cache nodes | ServCache | 🟡 Medium | Multi-node cache with gossip-based invalidation. No single point of failure for cache tier. |
 | PR.2 | **ServMesh health-aware load balancing** | ServMesh | 🟡 Medium | Weight routing based on real-time latency/error-rate feedback from OTel spans. |
 | PR.3 | **ServCloud horizontal auto-scaling** | ServCloud | 🟡 Medium | Scale instances based on request rate from ServGate metrics. React to traffic spikes. |
 | PR.4 | **ServTrace adaptive sampling** | ServTrace | 🟡 Medium | Dynamically raise sampling when error rate spikes, lower it in normal operation. Reduce overhead. |
-| PR.5 | **ServQueue end-to-end message tracing** | ServQueue | 🟡 Medium | Track a message from publish through every WASM transform, DLQ redirect, and consumer ack. Full journey visualization. |
+| PR.5 | **ServQueue end-to-end message tracing** — ✅ Full span journey trace propagation | ServQueue | 🟡 Medium | Track a message from publish through every WASM transform, DLQ redirect, and consumer ack. Full journey visualization. |
 
 ---
 
@@ -120,7 +120,7 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 | # | Feature | Components | Priority | Description |
 |---|---------|-----------|----------|-------------|
 | DOC.S1 | **Cross-service runtime dependency diagram** — ✅ Documented below | servverse-repo | 🟡 Medium | Document which services depend on which at runtime with version requirements. Update architecture diagram. |
-| DOC.S2 | **ServDocs roadmap** | ServDocs | 🟢 Low | Currently the only code-bearing service without a forward-looking roadmap. |
+| DOC.S2 | **ServDocs roadmap** — ✅ Authored forward-looking ROADMAP.md | ServDocs | 🟢 Low | Currently the only code-bearing service without a forward-looking roadmap. |
 | DOC.S3 | **API contract versioning audit** — ✅ Expose /api/version consistently across all services | All Services | 🟡 Medium | Verify all services expose `/api/version` consistently. Enforce `serv doctor` compatibility matrix. |
 | DOC.S4 | **Component maturity matrix** — ✅ Formulated below | servverse-repo | 🟡 Medium | Replace binary "complete/pending" with a multi-axis maturity model: API contract, persistence, security, observability, tests, docs. |
 
@@ -393,10 +393,10 @@ Transitioning the Apache 2.0 public monorepo into a dual-licensed model (AGPLv3 
 
 | Initiative Area | Total Items | Completed | Pending | Progress | Status Bar |
 |-----------------|-------------|-----------|---------|----------|------------|
-| **⚖️ License & Policy Transition** | 3 | 0 | 3 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
+| **⚖️ License & Policy Transition** | 3 | 2 | 1 | **67%** | █████████████░░░░░░ |
 | **📦 Codebase & Module Split** | 3 | 0 | 3 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
 | **🚀 Enterprise Build Pipeline** | 2 | 0 | 2 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
-| **TOTAL WORK** | **8** | **0** | **8** | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
+| **TOTAL WORK** | **8** | **2** | **6** | **25%** | █████░░░░░░░░░░░░░░░ |
 
 ---
 
@@ -404,8 +404,8 @@ Transitioning the Apache 2.0 public monorepo into a dual-licensed model (AGPLv3 
 
 | # | Feature | Components | Priority | Description |
 |---|---------|-----------|----------|-------------|
-| LIC.1 | **Ecosystem CLA (Contributor License Agreement)** | servverse-repo | 🔴 High | Draft and integrate CLA checking workflow on PRs, ensuring copyright assignment for commercial use. |
-| LIC.2 | **License Re-assignment (v2.0.0+)** | All Services | 🔴 High | Transition future commits/versions to AGPLv3. Update LICENSE file and file headers without revoking past Apache-2.0 commits. |
+| LIC.1 | **Ecosystem CLA (Contributor License Agreement)** — ✅ Drafted CLA.md and integrated CI checker | servverse-repo | 🔴 High | Draft and integrate CLA checking workflow on PRs, ensuring copyright assignment for commercial use. |
+| LIC.2 | **License Re-assignment (v2.0.0+)** — ✅ Transitioned all LICENSE files to AGPLv3 | All Services | 🔴 High | Transition future commits/versions to AGPLv3. Update LICENSE file and file headers without revoking past Apache-2.0 commits. |
 | LIC.3 | **Commercial License Terms** | servverse-repo | 🟡 Medium | Draft commercial license EULA allowing proprietary extensions and sub-licensing. |
 
 ---

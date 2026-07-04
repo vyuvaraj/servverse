@@ -1,0 +1,23 @@
+name: "CLA Assistant"
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  cla-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Check CLA Signature"
+        run: |
+          echo "Checking CLA signature for user: ${{ github.event.pull_request.user.login }}"
+          # List of signed contributors
+          SIGNED_CONTRIBUTORS="vyuvaraj collaborator1 collaborator2"
+          AUTHOR="${{ github.event.pull_request.user.login }}"
+          if [[ $SIGNED_CONTRIBUTORS =~ (^|[[:space:]])$AUTHOR($|[[:space:]]) ]]; then
+            echo "CLA signed successfully!"
+            exit 0
+          else
+            echo "ERROR: User $AUTHOR has not signed the Contributor License Agreement (CLA.md)."
+            echo "Please sign the CLA by replying to the PR with 'I have read and agree to the terms in CLA.md'."
+            exit 1
+          fi
