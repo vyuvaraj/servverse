@@ -7,11 +7,15 @@
 - All component repos cloned as siblings to `servverse-repo/`:
   ```
   serv/
+  ├── ServAuth/
   ├── ServCache/
   ├── ServCloud/
   ├── ServConsole/
   ├── ServCron/
+  ├── ServDB/
+  ├── ServFlow/
   ├── ServGate/
+  ├── ServMail/
   ├── ServMesh/
   ├── ServQueue/
   ├── ServRegistry/

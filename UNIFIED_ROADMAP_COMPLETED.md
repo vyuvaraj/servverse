@@ -118,12 +118,15 @@ This document preserves the archived history of completed items migrated from `U
 - **Unified Application Block DSL (CORE.4)** — Added support for logical namespaces enclosing server, db, and API declarations via `app` block syntax.
 - **First-Class Ecosystem Standard Library (CORE.5)** — Native built-in standard library bindings for auth, database, queue, and cache.
 - **Built-in Multi-Agent AI Framework (CORE.6)** — First-class support for AI agents, memory, tools, RAG, and MCP schemas in `serv-lang` via `agent` block declarations.
+- **Unified Distributed Runtime (ARCH.9)** — `ServRuntime` host agent in `ServShared` with OTel init, mesh registration, heartbeat loop, and a `MeshResolver` interface for zero-dependency wiring.
 
 ---
 
 ## Phase 10: Productization & Cloud PaaS Platform (Completed Items)
 
 - **Hot-Reloading Dev Server (DX.15)** — Watcher running local tests, hot-reloading code, and refreshing the console.
+- **AI-Powered Scaffolder (DX.11)** — Natural language scaffolding generator (`serv create "<prompt>"`).
+- **Declarative Schema Migrations (DX.14)** — Native `table` DSL in `.srv` files with `@primary`, `@unique`, `@autoincrement`, `@required`, `@default` annotations. Compiler auto-generates `CREATE TABLE` SQL; `serv migrate` diffs and applies schema changes (CREATE + ALTER TABLE ADD COLUMN).
 
 ---
 
