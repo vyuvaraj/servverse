@@ -1,335 +1,148 @@
-# Serv Unified Ecosystem Completed Roadmap Items
+# Serv Unified Ecosystem Roadmap - Completed Items
 
-This document serves as an archive of all successfully completed items, features, and phases across the **Serv** ecosystem components.
-
----
-
-## 1. Serv-lang Completed Foundations (Phases 1–11)
-* **Language Syntax**: Modulo, loops, compound assignment, bitwise operators, slice expressions.
-* **Type System**: Type inference, return type propagation, null safety (`T?`), union types (`T | error`).
-* **Error Model**: Error returns and `?` propagation.
-* **Performance**: Escape-analysis SafeMap, AOT constant folding, prepared statement cache.
-* **LSP / Tooling**: Autocomplete, hover, go-to-definition, workspace rename & find references, DAP debugger.
-* **Testing**: Structured assertions, cover metrics, setup/teardown hooks, structured mocking.
-* **Advanced**: Generics, Actor Model, ORM generation, Distributed Trace Propagation, Stateful Workflows, WASM target.
-* **Ecosystem**: Web playground (WASM Monaco sandbox), community package registry CLI, Docker base image.
-* **Project System**: `serv.toml`, multi-file compilation, environment profiles, scoped symbol table.
-* **10.9 Serv-verse Core Integrations**: Unified connectors targeting ServQueue and ServGate.
-* **12.1 `servqueue://` compiler connector**: Native URI driver for ServQueue STOMP.
-* **12.2 `servgate://` route registration**: Self-announce service routes to ServGate at startup.
-* **12.3 `serv deploy --target k8s`**: Generate Kubernetes Deployment + Service YAML.
-* **12.4 `serv deploy --target fly`**: Generate `fly.toml`.
-* **12.5 `serv new <template>`**: Starter project scaffolding.
-* **12.6 `serv-ai` adapter**: `ai` connection strings with `ai.complete()` / `ai.embed()`.
-* **12.7 `serv monitor`**: Terminal htop-style runtime inspector.
-* **14.3 OpenAPI auto-generation**: Generates OpenAPI specs.
-* **14.4 Client SDK generation**: Multi-language typed client SDK generation.
-* **14.2 Hot-reload without restart (`serv run --hot`)**: TCP proxy-based zero-downtime binary swap on `.srv` file save. Recompiles and replaces the running process with no dropped connections. Ephemeral port allocation + traffic forwarding ensures seamless local development.
-* **14.7 Streaming response support**: Native SSE/chunked streams.
+This document preserves the archived history of completed items migrated from `UNIFIED_ROADMAP.md`.
 
 ---
 
-## 2. ServStore Completed Core (Phases 1–6)
-* **Core Storage**: S3-compatible REST API, versioning, multipart uploads, WORM locks, pre-signed URLs.
-* **Security**: Signature V4, AES-256-GCM at-rest, TLS 1.3, RBAC, user policy management.
-* **Distributed System**: Gossip membership, Raft consensus, consistent hashing, P2P auto-healing, Reed-Solomon erasure coding, BLAKE3 checksums, cross-region replication.
-* **AI-Native**: CAS content addressing, time travel queries, TF-IDF semantic search, WASM transforms.
-* **Cloud-Native**: Kubernetes Operator, CRDs, Helm charts, CSI plugin.
-* **Observability**: Prometheus metrics, JSON logging, OTel tracing.
-* **LSM-Tree Metadata Engine**: Pebble-backed sub-millisecond metadata ops.
-* **Transform Pipeline DAG Engine**: Chained WASM pipeline execution.
-* **HNSW Vector Indexing**: Upgrade TF-IDF to HNSW via local ONNX embeddings.
-* **`/console/schema` API endpoint**: Expose table/index metadata.
-* **Batch Delete API (Phase 8)**: Bulk object deletion with XML request/response payload parsing and quiet support.
-* **Object Tagging (Phase 9)**: Add tag metadata to object versions, GET/PUT/DELETE tagging APIs, and tag-filter support during ListObjects queries.
-* **Server-Side Copy (Phase 9)**: Enable direct object duplication between keys/buckets using `x-amz-copy-source` headers without client downloads.
-* **Bucket Metrics & Quota (Phase 9)**: Per-bucket storage quota enforcement.
-* **Content-Type Aware Compression (Phase 9)**: Automatically compress text, JSON, and log objects with zstd on write; decompress transparently on read.
-* **Vector similarity + metadata hybrid queries (Phase 9)**: Support combining semantic search queries with metadata filters (tags and date ranges `before`/`after`).
-* **WASM trigger on object events (Phase 9)**: Declare WASM functions that execute automatically on `PutObject` or `DeleteObject` (Lambda@S3 triggers inside the storage engine) matching prefix/suffix criteria asynchronously.
-* **S3 event notifications (CloudEvents) (Phase 9)**: Emit CloudEvents-spec compliant notifications on object lifecycle actions (`s3:ObjectCreated`, `s3:ObjectRemoved`, etc.) to HTTP webhooks.
-* **Multi-modal embedding engine (Phase 9)**: Auto-generate embeddings for images (CLIP), PDFs, and audio on ingest to enable semantic search across any content type.
-* **Object-level access logging (Phase 9)**: Write S3 access logs automatically to an immutable system bucket `system-access-logs` to support security audit logging.
-* **Geo-aware data placement (Phase 9)**: Allow configuring region/zone constraints for object replica placement policies on a bucket.
-* **Multi-user web console sessions (Phase 9)**: Support multiple console user accounts with independent active login sessions, authentication controls, and session validation maps.
+## Phase 11: Next-Level Component Hardening & Ecosystem Depth (Completed)
+
+### 🏗️ Structural Debt — Monolith Decomposition
+
+| # | Feature | Components | Priority | Description |
+|---|---------|-----------|----------|-------------|
+| SD.1 | **ServConsole real decomposition** — Extracted reverse proxies, Websockets, and AI metrics to packages | ServConsole | 🔴 High | `main.go` is 3,441 lines. `pkg/` has only 126 lines of stubs. Extract proxy handlers, tab logic, WebSocket push, and AI panel into properly populated packages. |
+| SD.2 | **ServAuth package extraction** — Split store adapters, MFA verify, and OAuth validator into subpackages | ServAuth | 🟡 Medium | `main.go` is 1,093 lines. Split into `pkg/handlers/`, `pkg/store/`, `pkg/oauth/`, `pkg/mfa/` with proper interfaces. |
+| SD.3 | **ServRegistry package split** — Extracted semver resolvers and package index structures | ServRegistry | 🟡 Medium | `main.go` is 1,007 lines. Extract `pkg/registry/`, `pkg/resolution/`, `pkg/web/`. |
+| SD.4 | **ServFlow package extraction** — Split DAG engine, API handlers, saga execution, and checkpoint logic | ServFlow | 🟡 Medium | `main.go` is 803 lines + 73-line store.go. Split DAG engine, API handlers, saga execution, and checkpoint logic. |
+| SD.5 | **ServMail package extraction** — Split delivery, templates, and storage into pkg/ packages | ServMail | 🟢 Low | `main.go` is 673 lines + 42-line store.go. Split delivery channels, template engine, and tracking. |
+
+### 🔐 Security Gaps — Remaining
+
+| # | Feature | Components | Priority | Description |
+|---|---------|-----------|----------|-------------|
+| SEC.S1 | **JWT Key Rotation via JWKS** — Expose jwks.json and rotating RS256 keypairs | ServAuth, ServShared | 🔴 High | Replace single shared `SERV_JWT_SECRET` with RS256 keypair + `/.well-known/jwks.json` endpoint. Enable rotation without service restarts. |
+| SEC.S2 | **Secret Redaction in Logs** — Robust regex redaction of quoted/unquoted credentials | ServShared, All | 🔴 High | Implement `SanitizeLog()` regex stripping tokens/keys/passwords from structured log output before emission. |
+| SEC.S3 | **Secret Versioning in KMS** — Fallback decrypt across active KMS key versions | ServAuth | 🟡 Medium | Store key versions; encrypt with latest; decrypt accepts any active version for zero-downtime rotation. |
+| SEC.S4 | **Audit Event Coverage Enforcement** — EmitAuditEvent calls enforced and lint-checked | ServAuth, ServDB | 🟡 Medium | Every privileged action (login, key issuance, MFA change, migration run) must call `EmitAuditEvent`. Add CI lint check. |
+
+### 🧪 Testing & Quality Gaps
+
+| # | Feature | Components | Priority | Description |
+|---|---------|-----------|----------|-------------|
+| TQ.1 | **ServDocs test suite** — Table-driven OpenAPI tests | ServDocs | 🟡 Medium | Zero tests exist. Add table-driven tests for parser, generator, and OpenAPI output validation. |
+| TQ.2 | **ServDB migration.go real implementation** — Real migration executor, table tracking, and rollback | ServDB | 🔴 High | `migration.go` is 9 lines (empty stub). Implement actual migration execution, rollback, and history tracking. |
+| TQ.3 | **ServFlow .state file gitignore** — Added to gitignore and cleaned history | ServFlow | 🟢 Low | 20+ `.state` files committed to repo. Add to `.gitignore` and clean from history. |
+| TQ.4 | **Property-based tests for critical paths** — Added property-based fuzz test for token verification | ServAuth, ServStore | 🟡 Medium | Add property-based fuzz tests for token validation, S3 signature verification, and encryption/decryption roundtrips. |
+| TQ.5 | **Load test baselines for all services** — Added load_test_baseline.go script with SLA validations | All Services | 🟡 Medium | Establish k6/vegeta load test baselines with documented throughput targets for each service's critical APIs. |
+
+### 📦 Missing Infrastructure
+
+| # | Feature | Components | Priority | Description |
+|---|---------|-----------|----------|-------------|
+| INF.1 | **ServDocs Dockerfile** — Multi-stage builder containerization | ServDocs | 🟢 Low | Only service without containerization. Add multi-stage Go build Dockerfile. |
+| INF.2 | **ServDocs CI pipeline** — Actions build/test workflow added | ServDocs | 🟢 Low | No GitHub Actions workflow. Add build/test/fmt check pipeline. |
+| INF.3 | **ServShared README** — Added comprehensive readme guide | ServShared | 🟢 Low | No documentation for the shared library. Add README explaining exported functions, middleware usage, and configuration. |
+| INF.4 | **ServCloud roadmap cleanup** — Duplicate Phase 3 headings cleaned up | ServCloud | 🟢 Low | Duplicate "Phase 3" headings with different content. Fix roadmap structure. |
+| INF.5 | **Unified Makefile/Taskfile** — Unified Makefile orchestrating all services builds/tests | servverse-repo | 🟡 Medium | No single command builds all services. Add `Taskfile.yml` or `Makefile` with `build-all`, `test-all`, `lint-all` targets. |
+| INF.6 | **Dependency version pinning** — Aligned ServShared versions across workspace go.mod files | All Services | 🟡 Medium | Audit `go.mod` files across services for version consistency of shared deps (ServShared, OTel SDK, etc). |
+
+### 🔗 Integration Depth
+
+| # | Feature | Components | Priority | Description |
+|---|---------|-----------|----------|-------------|
+| INT.1 | **ServConsole topology auto-discovery** — Auto-build node-edge maps from trace spans in handleTopology | ServConsole, ServTrace | 🔴 High | Parse OTel trace spans to auto-build service dependency graph. Currently listed as pending (7.3). High-value visualization. |
+| INT.2 | **Serv-lang → ServAuth native keyword** — Support servauth:// connection string with native APIs | Serv-lang, ServAuth | 🟡 Medium | `auth "servauth://host"` connection string with `auth.register()`, `auth.login()`, `auth.currentUser()` APIs. Phase 16.1 in Serv-lang roadmap. |
+| INT.3 | **Serv-lang → ServDB proxy keyword** — `database "servdb://pool/mydb"` routes through ServDB pooler | Serv-lang, ServDB | 🟡 Medium | `database "servdb://pool/mydb"` routes through ServDB pooler. Phase 16.2. |
+| INT.4 | **Serv-lang → ServMail notify keyword** — Support `notify "servmail://host"` with `notify.send()` API | Serv-lang, ServMail | 🟢 Low | `notify "servmail://host"` with `notify.send()`. Phase 16.3. |
+| INT.5 | **ServQueue stream processing DSL** — `stream "orders" |> filter(...) |> window(5m) |> count()` | ServQueue, Serv-lang | 🟡 Medium | `stream "orders" |> filter(...) |> window(5m) |> count()`. Phase 9.5 in ServQueue roadmap. |
+| INT.6 | **ServCron → ServQueue job chaining** — Trigger next job by publishing to topic on completion | ServCron, ServQueue | 🟡 Medium | Trigger next job by publishing to topic on completion. Event-driven scheduling pipeline. |
+
+### 🛠️ Developer Experience
+
+| # | Feature | Components | Priority | Description |
+|---|---------|-----------|----------|-------------|
+| DX.S1 | **`serv cache inspect` CLI** — Show per-namespace key counts, hit/miss ratios, top hot keys | ServCache | 🟡 Medium | Show per-namespace key counts, memory usage, hit/miss ratios, top hot keys from terminal. |
+| DX.S2 | **`servqueue tail` CLI** — Stream live topic messages with JSON pretty-print and regex filter | ServQueue | 🟡 Medium | Stream live messages from any topic with JSON pretty-print and regex filter. Essential for debugging. |
+| DX.S3 | **`serv trace search` CLI** — Search traces with JSON or ASCII waterfall outputs | ServTrace | 🟡 Medium | Search traces by service, operation, error, or duration threshold. Output as JSON or ASCII waterfall. |
+| DX.S4 | **`serv tunnel inspect` CLI** — Expose active tunnels, throughput, recent request logs | ServTunnel | 🟢 Low | Real-time active tunnel connections, throughput, recent request log from terminal. |
+| DX.S5 | **`serv cron list` CLI** — List job details, consecutive failure count, next 5 projected runs | ServCron | 🟢 Low | Next 5 scheduled runs per job, last outcome, failure count in terminal. |
+| DX.S6 | **ServMail local mock dev server** — Consolidate SMTP and HTTP mail mocks in mock emails log | ServMail | 🟡 Medium | Offline SMTP mock for local testing without real mail infrastructure. HTTP endpoints to inspect sent mail. |
+| DX.S7 | **`serv auth inspect` CLI** — Show registered clients, active sessions, expired rate limits | ServAuth | 🟢 Low | Command-line client list, active token counts, status dashboard. |
+| DX.S8 | **`serv docs preview` CLI** — Spin up local server rendering ServDocs interface | ServDocs | 🟡 Medium | Live local preview server rendering parsed documentation. |
+
+### ⚡ Performance & Reliability
+
+| # | Feature | Components | Priority | Description |
+|---|---------|-----------|----------|-------------|
+| PR.S1 | **Store chunked multipart upload** — Enforce chunked streaming for uploads >10MB | ServStore | 🔴 High | Add multipart stream uploading to mitigate high memory buffers for files above 10MB. |
+| PR.S2 | **Queue batch dequeue optimizations** — Support batch pulling of messages | ServQueue | 🔴 High | Support batch pulling to reduce network overhead on high-frequency consumption loops. |
+| PR.S3 | **Cache connection multiplexing** — Share connection TCP pools | ServCache | 🟡 Medium | Implement thread-safe connection pooling multiplexing commands across fewer sockets. |
+| PR.S4 | **Mesh circuit breaker trip levels** — Dynamic backoffs and connection dropouts | ServMesh | 🟡 Medium | Configure threshold limits triggering circuit breakers, returning fast fail stubs. |
+| PR.S5 | **Trace compression buffer** — Compress historical spans using zlib before storage | ServTrace | 🟡 Medium | Apply gzip/zlib compression on tracing payloads before database inserts to save disk space. |
+
+### 📝 Documentation & Hygiene
+
+| # | Feature | Components | Priority | Description |
+|---|---------|-----------|----------|-------------|
+| DOC.1 | **Ecosystem architectural book** — Authored ARCHITECTURE.md monorepo blueprint | All | 🟡 Medium | Compile detailed document mapping dependencies, port allocations, and design philosophies. |
+| DOC.2 | **CLI command reference list** — Published clean COMMANDS.md detailing all CLI options | All | 🟢 Low | Automatically compile command documentation outlining sub-command inputs and syntax. |
+| DOC.3 | **API status checklist matrix** — Added detailed maturity dashboard showing API compliance status | All | 🟢 Low | Build status summary tables showing compliance checklist indicators. |
+| DOC.4 | **Clean up orphan tests** — Unified all temporary unit test code under proper test files | All | 🟢 Low | Clean unused and scattered test assets, aligning coverage targets inside test files. |
 
 ---
 
+## Phase 9: Scale & Enterprise Hardening (Completed Items)
 
-## 3. ServGate Completed Phases (Phases 1–4, 6, partial 5/7/8/9/10/11)
-* **Path Routing & Forwarding**: HTTP reverse proxying with route prefix stripping logic.
-* **Declarative Configuration**: Route mappings initialized via a local `config.json` schema.
-* **Dynamic WASM Middleware**: Admin endpoint to compile and load WASM request filters.
-* **OpenTelemetry Tracing**: Trace context propagation (`traceparent`) and JSON-based OTLP span exports.
-* **Security Token Auth**: Bearer token authorization checks for routed APIs.
-* **WASM Module Caching**: Reuse compiled Wazero modules across requests.
-* **Direct Memory Passing**: Pass request headers and body buffers directly into guest WASM linear memory.
-* **WASM Response Filters**: Execute WASM transforms on downstream responses.
-* **gRPC-Web Gateway Transpiler**: Accept HTTP/REST JSON and transpile to binary gRPC calls.
-* **WebSocket Proxying**: Support full-duplex WebSocket connection proxying.
-* **Load Balancing Routing**: Round-robin and least-connections routing.
-* **Native TLS/HTTPS Termination**: Serve API gateway endpoints over secure TLS sockets.
-* **Rate Limiting**: Limit client requests using sliding-window rate limit counters.
-* **Circuit Breakers & Retries**: Fail fast or retry backend connections.
-* **Distributed config backend (Phase 5)**: Store routes in a ServStore bucket (`serv-config`).
-* **ServConsole Administration (Phase 5)**: Optional dashboard sync to manage routes, view active connections, and swap WASM middleware modules dynamically.
-* **Distributed Span Mapping (Phase 5)**: Trace request lifecycles starting at the gateway, through queues (`ServQueue`), and into storage (`ServStore`) in a unified trace view.
-* **Traffic Replay & Validation (Phase 6)**: Dry-run utility (`servgate replay`) for production traffic logs.
-* **One-Command Middleware Marketplace (Phase 6)**: Install WASM modules via `servgate install`.
-* **Native Serv Language Compilation (Phase 6)**: Compiler toolchain support (`serv build --target wasm`).
-* **AI-Native Gateway Features (Phase 7)**: Built-in semantic caching, prompt guard, and PII redaction.
-* **Policy as Code (Phase 7)**: Compile `.policy` files to WASM.
-* **ServGate → ServQueue Webhook Bridge (Phase 7)**: Direct webhook pub/sub bridge.
-* **Standardized health probes & Graceful shutdown (Phase 8)**
-* **OpenAPI auto-discovery & JSON Schema validation (Phase 9)**
-* **IP Allowlisting & Blocklisting (Phase 9)**
-* **Canary/Blue-Green Traffic Splitting (Phase 9)**: Weighted random traffic distribution via `targets_weighted` config. `X-Canary-Target` header for observability.
-* **Response Caching — HTTP Cache Layer (Phase 9)**: TTL-based in-memory response cache with SHA256 cache keys, background eviction, `X-Cache` HIT/MISS headers, and admin invalidation API (`DELETE /api/v1/admin/cache`).
-* **Request Logging & Audit Trail (Phase 9)**: Structured JSONL access logs with per-route toggle. Captures method, path, latency, status, trace_id, client IP, and target via `AccessLogger`.
-* **MCP (Model Context Protocol) Native Gateway (Phase 10)**: Dynamic JSON-RPC tool call routing, metrics, and agent-level rate limiting.
-* **Compiler-Aware Route Registration (Phase 10)**: Dynamic route announcement API `/api/v1/routes/register`.
-* **Cost-Aware LLM Routing (Phase 10)**: Multi-model cost-performance fallback escalation.
-* **Per-Route WASM A/B Testing (Phase 10)**: Traffic-split routing to different WASM middlewares.
+### ⚡ Performance, Scaling & HA
+- **Dynamic Active-Active Cluster Replication (HA.1)** — Enforce low-latency multi-leader state replication.
+- **Internal gRPC Mesh Transport (PS.4)** — Transition inter-service east-west traffic from REST/JSON to binary gRPC over HTTP/2.
 
+### 🔐 Security & Integrity
+- **Zero-Trust mTLS Network Policies (SEC.16)** — Dynamically restrict communication pathways between mesh components.
+
+### 🛠️ Developer Experience
+- **Scaffolding CLI & Dev Sandbox (DX.10)** — Scaffolding tool supporting 'serv generate' boilerplate generation.
+
+### 🌐 DevOps & Infrastructure
+- **Automated Canary Deployment Engine (OPS.12)** — Rolling traffic updates gated by SLO error budgets.
+- **Enterprise Control Plane (OPS.14)** — Multi-cluster, multi-region tenant deployment policy manager.
+- **Production Digital Twin Engine (OPS.15)** — Sandbox configuration generator with sanitized data mirroring.
+
+### 📋 API Versioning & Scaling
+- **Multi-Language Client SDK Generator (API.7)** — Autogenerate clean TypeScript, Python, and Go client SDKs via `serv generate client` CLI.
+
+### 📟 Diagnostics & Operations
+- **Ecosystem Doctor & Telemetry Diagnostics (OPS.13)** — CLI diagnostics utility verifying version matrix, editions, and OTLP pipelines.
+
+### 🚀 Next-Level Core Enhancements
+- **Unified Application Block DSL (CORE.4)** — Added support for logical namespaces enclosing server, db, and API declarations via `app` block syntax.
+- **First-Class Ecosystem Standard Library (CORE.5)** — Native built-in standard library bindings for auth, database, queue, and cache.
+- **Built-in Multi-Agent AI Framework (CORE.6)** — First-class support for AI agents, memory, tools, RAG, and MCP schemas in `serv-lang` via `agent` block declarations.
 
 ---
 
-## 4. ServQueue Completed Phases (Phases 1–6, partial 7/9)
-* **Core Pub/Sub**: Thread-safe pub/sub engine, STOMP TCP server, HTTP management API.
-* **Security & Observability**: WASM sandbox, TLS, auth, OTel metrics & tracing, WASM module caching.
-* **Clustering**: Raft-backed clustering, partitioned queues, HA failover.
-* **Tiered Storage**: WAL + cold data offloading to ServStore, log replay.
-* **Ecosystem Integration**: Serv-lang `servqueue://` driver, ServConsole integration feeds, auto-trace propagation.
-* **Dead Letter Queues (DLQ) (Phase 6)**: Route failed transform messages to `.dlq`.
-* **Delayed & Scheduled Messages (Phase 6)**: Timed-wheel delivery.
-* **Message Deduplication (Phase 6)**: Deduplicate publishes by unique message ID.
-* **Exactly-once delivery (Phase 9)**: Idempotent producer sequences + STOMP transaction buffering.
-* **Schema Registry & Validation (Phase 9)**: Enforce JSON Schema on published messages.
-* **Message Replay with Offset Management (Phase 9)**: Seek and play back from WAL sequence offset.
-* **Fan-out patterns (broadcast + routing keys) (Phase 9)**: Support wildcard routing patterns like `orders.*` and `orders.#` to enable flexible pub/sub topologies.
-* **Backpressure & Flow Control (Phase 9)**: Apply configurable queue threshold limit per topic (`SERVQUEUE_BACKPRESSURE_LIMIT`) and reject publishes when exceeded to prevent unbounded memory growth.
-* **Message TTL & Expiration (Phase 9)**: Set TTL expiration on messages (via context or settings) and automatically route expired messages to a dead-letter queue (DLQ) or purge them.
+## Phase 10: Productization & Cloud PaaS Platform (Completed Items)
+
+- **Hot-Reloading Dev Server (DX.15)** — Watcher running local tests, hot-reloading code, and refreshing the console.
 
 ---
 
-## 5. ServConsole Completed Phases (Phases 1–6)
-* **Unified Console Portal (Phase 1)**: Glassmorphic dashboard, gateway editor, WASM swap UI, hash ring visualizer, OTel trace waterfall.
-* **DB Schema ORM Viewer & SQL query workbench (Phase 2)**
-* **Migration Auditing (Phase 2)**: Track database schema revisions from UI.
-* **Cluster Operations & Repair Panel (Phase 3)**: Replication lag tables, erasure coding health, rebalance trigger.
-* **Console SSO (Phase 4)**: Integrated OIDC/OAuth2 and LDAP user sign-ins.
-* **RBAC Policy Editor (Phase 4)**: Create/apply security policies for S3 buckets and STOMP topics.
-* **Audit Logs Dashboard (Phase 4)**: Immutable log of administrative operations.
-* **Service Discovery Config & Shared OTel (Phase 5)**: dynamic discovery and trace correlation.
-* **ServQueue Topic Admin & ServGate Multi-replica config sync (Phase 5)**
-* **Cross-Service Dependency Graph (Phase 5)**: Visual dependency mapping.
-* **Unified Health Aggregation Dashboard (Phase 6)**: Poll standardized `/healthz` endpoints and display a ternary traffic-light status panel.
-* **Phase 5 — ServConsole Administration**: Expose API Gateways' live active connections metrics on `ServGate` and aggregate them in the `ServConsole` dashboard, plus dynamic route deletion (`DELETE /api/routes?prefix=...`) on both components.
-* **Phase 5 — ServConsole OIDC-aware config sync**: Config writes are signed with JWT using the shared `SERV_JWT_SECRET` and validated by both `ServGate` and `ServConsole` before reloading.
-* **ServStore Unified Management**: Fully integrated OTel tracing timeline waterfall view and trace logs in `ServConsole`, with quick links to traces from storage nodes and replication status dashboards.
-* **Distributed Span Mapping**: Linked end-to-end tracing lifecycles starting from request ingress at `ServGate`, through `ServQueue` partitions/WASM execution, down to S3 cold storage offloader uploads in `ServStore` with context propagation (`traceparent`).
+## Phase 12: Dual-Licensing, Monetization, & Enterprise Separation (Completed)
 
----
+### ⚖️ License & Policy Transition
+- **Ecosystem CLA (Contributor License Agreement) (LIC.1)** — Drafted CLA.md and integrated CI checker.
+- **License Re-assignment (v2.0.0+) (LIC.2)** — Transitioned all LICENSE files to AGPLv3.
+- **Commercial License Terms (LIC.3)** — Authored EULA.md in servverse-repo.
 
-## 6. Completed Cross-Cutting & Operational Items
-* **P1-1 to P1-4 (All Completed)**: Shared JWT/OIDC auth, ServQueue DLQ, Serv-lang `servqueue://` connector, ServConsole service discovery config.
-* **P2-1 to P2-6 (All Completed)**: Shared OTel collector config, ServConsole SSO, ServConsole Audit Logs, ServGate distributed config (S3), ServQueue Message Deduplication, ServStore HNSW index.
-* **P3-1 to P3-6 (All Completed)**: DB Schema ORM viewer, ServGate→Queue webhook bridge, ServQueue dynamic WASM hot-swap, Serv-lang `servgate://` route registration, SQL query workbench, ServStore `/console/schema` API.
-* **P4-1 to P4-6 (All Completed)**: VS Code marketplace publish, ServRegistry server, `serv deploy --target k8s`, `serv new <template>`, ServConsole RBAC policy editor, Medium articles.
-* **P5-1 to P5-5 (All Completed)**: ServPlayground WASM sandbox, `serv-ai` adapter, `serv monitor` CLI, ServCron distributed scheduler, ServConsole dependency graph.
-* **X-1 to X-7 (All Completed)**: healthz/readyz, Graceful shutdown, Error response contract, API versioning, shared `pkg/health` package, Compose healthchecks, GitHub Actions CI.
-* **A-1 to A-10 (All Completed)**: `auth`, `search`, `mail` keywords/adapters, MySQL DB adapter, `store` keyword, Redis Streams adapter, generated code graceful shutdown, full OIDC discovery, auth role/scope guards.
-* **R-1 to R-6 (All Completed)**: Package versioning, metadata, listing APIs, publish auth, S3 search index, dependency resolution.
-* **Q-1 to Q-7 (All Completed)**: E2E tests, shared init pkg, WS dashboard push, `serv.toml` example, S3 event notifications, consumer group partitions, gateway config hot-reload.
+### 📦 Codebase & Module Split
+- **Private Enterprise Monorepo Setup (SPL.1)** — Initialized servverse-ee repository and premium plugins module.
+- **Build Tag Integration (SPL.2)** — Extracted premium canary promotion engine logic to build-tagged source files.
+- **Premium WASM Middleware Compilation (SPL.3)** — Implemented premium OIDC verification and PII redaction middleware packages in servverse-ee.
+- **AI Diagnostics & Incident Panel Migration (SPL.4)** — Migrated out of public repos to private servverse-ee overlay.
+- **GraphQL Schema Federation (SPL.5)** — Migrated out of public repos to private servverse-ee overlay.
+- **Cost-Aware LLM Routing & Guardrails (SPL.6)** — Migrated out of public repos to private servverse-ee overlay.
+- **Cold Storage Cloud Tiering (SPL.7)** — Migrated out of public repos to private servverse-ee overlay.
 
----
-
-## 8. Cross-Cutting Infrastructure (June 27, 2026)
-
-### Standardized Authentication
-* **ServShared.AuthMiddleware**: Wraps any http.Handler. Enforces JWT when `SERV_JWT_SECRET` is set, passes through when empty (dev mode). Health probes always bypass.
-* **ServShared.GenerateServiceToken**: Creates long-lived inter-service JWT with "service" role.
-* **ServShared.GenerateUserToken**: Creates user JWT with configurable roles and TTL.
-* **All 11 services** migrated to use AuthMiddleware (ServQueue, ServMesh, ServCache, ServCloud, ServCron, ServTrace, ServTunnel, ServGate, ServRegistry, ServConsole, ServStore).
-
-### Unified RBAC Engine
-* **ServShared.RequireRole**: Middleware that checks JWT roles against required roles (admin/operator/viewer/service).
-* **ServShared.RequireScope**: Middleware that checks JWT scopes with wildcard support (e.g., `store:*`).
-* **ServShared.EvaluatePolicy**: Evaluates IAM policy documents with allow/deny statements and resource patterns.
-* **DefaultRBACConfig**: Built-in role definitions — admin (full), operator (read+write), viewer (read-only), service (internal).
-
-### Docker Compose Full Stack
-* **12 services** running via single `podman compose up --build`.
-* Standardized `/healthz` endpoint across all components.
-* Fixed Dockerfile Go version compatibility (sed + vendor pattern).
-* ServStore port override (`--port 8081`), ServGate local config mode.
-* ServConsole `SERVVERSE_DISCOVERY` JSON with all service URLs.
-
-### `serv dev` — One-Command Local Stack
-* New CLI command: `serv dev [file.srv] [--services store,queue,cache,gate]`
-* Starts infrastructure services in background, runs user code with hot-reload.
-* Automatic environment variable injection for service discovery.
-* Graceful shutdown on Ctrl+C.
-
-### ServConsole Fixes
-* Added missing `<script src="app.js"></script>` tag (JS was never loading).
-* Added null guards to `initForms()` preventing crash on missing DOM elements.
-* Closed unclosed `</div>` tags for tab-cost and tab-slo panes.
-* Removed dead `fetchTraces` function hitting wrong endpoint.
-* Replaced dummy/mock data with real S3 XML API calls (DOMParser).
-* Removed `SERV_JWT_SECRET` to allow unauthenticated local dev access.
-* Fixed `latency_ms` display (removed `omitempty`, added `|| 0` fallback).
-
-### GitHub Pages Site Improvements
-* SEO: og:image, og:url, canonical, JSON-LD structured data, sitemap.xml, robots.txt.
-* Accessibility: skip-to-content link, ARIA roles, logo as `<a>`, SVG aria-label.
-* Content: 404 page, blog TOC/reading time, mobile nav on blog.html.
-* Architecture diagram: rebuilt with all 12 components in 4 layers + legend.
-* Quickstart: references actual servverse repo, shows all ports including ServTrace.
-
-### ServGate Completed (Category-Defining)
-* Multi-tenant API key management
-* Canary/blue-green traffic splitting
-* Response caching (HTTP cache layer)
-* GraphQL federation proxy
-* Request logging & audit trail
-* Plugin SDK (Go interface)
-* Mutual TLS (mTLS)
-* Request queuing & backpressure
-
-### ServQueue Completed (Category-Defining)
-* Schema validation, Topic Compaction, Multi-tenant isolation
-* Dead Letter Queue (DLQ), Message TTL & Expiry
-* Broker-side WASM Transforms, Consumer Groups
-* At-Least-Once Delivery, Distributed WAL Replay
-* Token Bucket Rate Limiting, STOMP Transactions
-* Admin CLI, Distributed Consensus (Raft)
-* Storage Tiering, Idempotent Producer
-
-### ServStore Completed (Category-Defining)
-* Multi-modal embedding engine, Vector + metadata hybrid queries
-* Incremental backup & PITR, Object-level access logging
-* S3 event notifications (CloudEvents), Geo-aware data placement
-* WASM trigger on object events, S3 batch operations
-* Content-type aware compression, Federation (cross-cluster namespace)
-
-### Serv-lang Completed (Category-Defining)
-* Compile-time dependency injection
-* GraphQL endpoint declaration
-* Language server code actions
-* Compile-time macros
-
-### ServConsole Completed (Category-Defining)
-* Alerting engine & notifications
-* Incident timeline auto-generation
-* Log aggregation & search
-* Custom dashboard builder
-* SLO/SLI tracking & error budgets
-* Runbook automation
-
-### ServAuth Completed (New Component)
-* User registration & login (Email/password + magic link)
-* OAuth2/OIDC provider
-* Multi-tenant user directories
-* Social login (Google, GitHub, GitLab federation)
-* MFA support (TOTP, WebAuthn/passkey)
-* Password reset & account lockout
-* User management UI in ServConsole
-* Serv-lang integration (`auth.register()`, etc.)
-* API key issuance
-* Session management
-
-### ServDB Completed (New Component)
-* Connection pooling PgBouncer-style proxy
-* Query routing (Read replica, write-to-primary)
-* Slow query detection & telemetry
-* Query analytics
-* Schema migration orchestration
-* Database health in ServConsole
-* Multi-database support (PostgreSQL, MySQL, SQLite)
-* Query caching invalidation
-* Serv-lang integration (`database "servdb://..."`)
-
-### ServMail Completed (New Component)
-* Multi-channel delivery (Email, Slack, webhook, SMS)
-* Template engine variable injection
-* Template versioning in ServStore
-* Delivery tracking (Open/click/bounce)
-* Retry via ServQueue DLQ integration
-* Notification preferences management
-* Rate limiting
-* ServConsole templates dashboard
-* Serv-lang integration (`mail.send()`, `notify()`)
-
-### ServFlow Completed (New Component)
-* DAG-based workflow definitions
-* Durable execution state checkpointing
-* Compensation / Sagas rollback
-* Human approval gates
-* Retry policies
-* Timeout & deadline enforcement
-* Visual workflow editor
-* Event-triggered workflows
-* Serv-lang integration (`workflow "..." { ... }`)
-* Execution history & replay
-
----
-
-## 8. Completed Cross-Cutting Initiatives (June 2026)
-* **S.4 Audit Trail Unification**: Every write operation across all services emits immutable audit events to a shared ServStore bucket.
-* **S.5 API Key Federation**: Issue scoped API keys via ServConsole that work across all services.
-* **O.1 Unified Metrics Pipeline**: RED metrics (Rate/Error/Duration) derived from OpenTelemetry traces.
-* **O.2 Anomaly Detection Engine**: Detect latency spikes, error bursts, and traffic anomalies across all services.
-* **O.3 Cost Attribution**: Track compute/storage/network cost per service, tenant, and API route.
-* **O.4 Distributed Profiling**: Continuous production profiling (CPU/memory) with flamegraph aggregation.
-* **O.5 Chaos Engineering Dashboard**: Inject faults (latency, errors) via ServMesh and inspect in ServConsole.
-* **D.2 Live Reload Across Stack**: File watcher that rebuilds and restarts only affected services.
-* **D.5 ServConsole Dev Mode**: Local dashboard shows all services, live logs, and one-click restart.
-* **D.6 Playground (Web-based IDE)**: Browser-based Serv-lang editor with compilation diagnostics.
-* **D.7 Transactional Notifications**: unified mail/notify helper client routed via ServMail.
-* **SC.1 Multi-Region Control Plane**: Federated ServMesh registry with geo-aware routing across regions.
-* **SC.2 Global ServStore Namespace**: Cross-cluster bucket resolution with bucket@region syntax.
-* **SC.3 Event Bus Federation**: ServQueue topic mirroring across clusters for geo-distributed pub/sub.
-* **SC.5 Edge Deployment**: WASM target support in Serv-lang compiler.
-* **A.2 Prompt Versioning**: A/B test and version prompts via ServStore.
-* **A.3 RAG Pipeline Integration**: Semantic search vector queries routed to ServStore.
-* **A.4 AI-Assisted Incident Response**: Feed alert context to LLM and map component to runbook steps.
-* **A.5 Code Generation from Natural Language**: Mock code structure generator `serv generate "<prompt>"` in compiler.
-* **SEC.12 Tenant JWT Claim Enforcement**: Standardized middleware in `ServShared` enforces that `X-Tenant-ID` header matches verified JWT `tenant_id` claim, preventing cross-tenant access bypasses.
-* **API.1 Shared Input Validation Middleware**: Generic `DecodeAndValidateJSON` helper in `ServShared` decoding request body up to a limit and enforcing validation schemas.
-* **API.2 Request Body Size Limits**: Dynamic per-route `MaxBodySize` limits in `ServGate` reverse proxy using `http.MaxBytesReader`.
-* **SEC.9 JWT Key Rotation via JWKS**: Dynamic RSA keypair signing with `RS256` and `/api/auth/jwks` public key publishing endpoint on `ServAuth` with dynamic JWKS caching validator in `ServShared`.
-* **TEST.6 Cross-Service Contract Test Suite**: Fully automated Docker Compose E2E testing framework verifying inter-service boundaries.
-* **API.3 API Schema Registry**: OpenAPI specifications for all services are stored in ServStore (`openapi-registry` bucket) and queryable via scripts.
-* **API.4 Ecosystem Version Manifest**: Enabled `/api/version` endpoints on all services and implemented `serv doctor` to verify compatibility across components.
-* **TEST.7 Audit Event Coverage Linter**: Created a static analysis linter (`check_audit.go`) checking for `EmitAuditEvent` calls in privileged functions.
-* **SEC.10 Secret Redaction in Logs**: Added `SanitizeLog` regex-based redactor to `LogJSON` inside `ServShared` to automatically strip passwords/tokens/keys.
-* **SEC.11 Secret Versioning**: Replaced single static KMS key with a versioned envelope key schema (`v1`/`v2`) in `ServAuth` enabling zero-downtime secret rotation.
-* **SEC.13 Tenant Resource Isolation**: Added context-aware bucket prefixing (`IsolateBucket`, `PutCtx`, `GetCtx`) in `StoreClient` and DB/topic isolators.
-* **ARCH.6 ServConsole Package Decomposition**: Split monolith console handlers into modular packages (`pkg/proxy`, `pkg/ws`, `pkg/ai`, `pkg/incidents`).
-* **OPS.7 Operational Runbooks**: Generated operational runbooks at `docs/runbooks/README.md` covering standard procedures.
-* **OPS.8 SLO Baseline Definitions**: Defined target SLOs and exposed them via the new `/api/slo?decomposed=true` endpoint.
-* **TEST.8 Fuzz Testing for HTTP Endpoints**: Added Go 1.18+ native fuzzing corpus in `ServShared` testing validating inputs and log sanitization.
-* **TEST.9 Chaos Recovery Tests**: Created E2E chaos recovery test asserting service resilience against transient network/dependency dropouts.
-* **SEC.14 Tenant Switch Session Invalidation**: Integrated `/api/tenant/switch` endpoint with automatic session token rotation in `ServConsole`.
-* **API.5 Deprecation Header Standard**: Implemented `DeprecationMiddleware` injecting standard `Deprecation` and `Sunset` headers.
-* **API.6 & DOC.7 Backward-Compatible Change Policy**: Developed backward-compatible spec checker script and registered CI compat verification check.
-* **OPS.9 serv status CLI Command**: Created `serv status` subcommand in the compiler CLI to query and present live health, uptime, and latency stats.
-* **DOC.5 Ecosystem CHANGELOG.md**: Published ecosystem-wide release log detailing all migrations and features.
-* **DOC.6 Component Release Tags**: Integrated automatic release tagger GitHub Actions workflow to tag main branch on merges.
-* **ARCH.7 Plugin Panel Architecture**: Designed dynamic plugin loading interface (`/api/plugins` and `/api/plugins/register`) serving hot-swappable WASM console panels.
-
----
-
-## 9. Phase 6 Completed Ecosystem Hardening (July 1, 2026)
-* **ARCH.5: Ecosystem Modularization & DI Constructors**: Shared package extraction and strict DI constructors refactored in ServMail. Handlers are structured as methods on `MailServer`.
-* **DX.9: Local Mock Dev Server (SMTP & S3)**: Implemented offline SMTP mock server in ServMail with HTTP query/delete endpoints, and offline S3 mock mode in ServStore using command-line flags and environment variables to bypass S3 requests with mock XML responses.
-* **OPS.5: GitOps Config Sync**: Webhook endpoints `/api/gitops/webhook` and `/api/v1/gitops/webhook` in ServGate to trigger local `git pull` and dynamically hot-reload configuration routes.
-* **OPS.6: Auto TLS Let's Encrypt**: Integrated ACME autocert client inside ServGate with port 80 HTTP-01 challenge redirect handler and automatic cert renewals on port 443.
-* **CORE.2: Durable Sagas State Machine**: Refactored Saga failure rollback execution in ServFlow to execute real compensation actions (including HTTP calls), track rollbacks using `"compensating"` status, persist checkpoints to ServStore, and automatically resume rollback sequences from checkpoints upon server restart.
-## 10. Phase 11 Completed Ecosystem Hardening (July 2, 2026)
-* **SEC.S2: Log Redaction Enhancement**: Refactored `SanitizeLog` in `ServShared` to support regex-based credentials stripping for both single/double quoted keys and values, preventing secrets exposure in JSON logs.
-* **TQ.1: ServDocs Test Suite**: Created robust parser, HTML generator, and OpenAPI spec generator table-driven unit tests inside `ServDocs`.
-* **TQ.3: ServFlow state files cleanup**: Cleaned committed state files from Git index, and updated `.gitignore` with `*.state` patterns to prevent future tracking.
-* **INF.1: ServDocs Containerization**: Created multi-stage builder Dockerfile for `ServDocs`.
-* **INF.2: ServDocs CI Pipeline**: Configured GitHub Actions build and test execution workflows for `ServDocs`.
+### 🚀 Enterprise Build Pipeline
+- **Commercial CLI Builder (EE.1)** — Configured private CI pipeline with dynamic EE code overlays.
+- **Licensed Artifact Verification (EE.2)** — Cryptographic HMAC-SHA256 license check enforced on Enterprise panels startup.
