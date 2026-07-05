@@ -7,25 +7,26 @@
 ## Table of Contents
 
 1. [Project Setup](#1-project-setup)
-2. [Server & Routes](#2-server--routes)
-3. [Request Binding](#3-request-binding)
-4. [HTML & Web Responses](#4-html--web-responses)
-5. [Database](#5-database)
-6. [Variables & Data Types](#6-variables--data-types)
-7. [Functions](#7-functions)
-8. [Control Flow](#8-control-flow)
-9. [Imports & Modules](#9-imports--modules)
-10. [Authentication](#10-authentication)
-11. [Pub/Sub Messaging](#11-pubsub-messaging)
-12. [Scheduling & Cron](#12-scheduling--cron)
-13. [Object Store (S3)](#13-object-store-s3)
-14. [WebSockets](#14-websockets)
-15. [Middleware](#15-middleware)
-16. [Environment & Config](#16-environment--config)
-17. [Error Handling](#17-error-handling)
-18. [Concurrency](#18-concurrency)
-19. [Observability (OTel)](#19-observability-otel)
-20. [CLI Reference](#20-cli-reference)
+2. [Unified Application Block](#unified-application-block)
+3. [Server & Routes](#2-server--routes)
+4. [Request Binding](#3-request-binding)
+5. [HTML & Web Responses](#4-html--web-responses)
+6. [Database](#5-database)
+7. [Variables & Data Types](#6-variables--data-types)
+8. [Functions](#7-functions)
+9. [Control Flow](#8-control-flow)
+10. [Imports & Modules](#9-imports--modules)
+11. [Authentication](#10-authentication)
+12. [Pub/Sub Messaging](#11-pubsub-messaging)
+13. [Scheduling & Cron](#12-scheduling--cron)
+14. [Object Store (S3)](#13-object-store-s3)
+15. [WebSockets](#14-websockets)
+16. [Middleware](#15-middleware)
+17. [Environment & Config](#16-environment--config)
+18. [Error Handling](#17-error-handling)
+19. [Concurrency](#18-concurrency)
+20. [Observability (OTel)](#19-observability-otel)
+21. [CLI Reference](#20-cli-reference)
 
 ---
 
@@ -38,6 +39,21 @@ server "9000"
 
 export route "GET" "/" (req) {
     return { "message": "Hello, world!" }
+}
+```
+
+## Unified Application Block
+
+You can wrap configuration nodes and routes inside an `app` block to create a clean logical boundary:
+
+```python
+app GatewayService {
+    server "9000"
+    database "sqlite://app.db"
+
+    export route "GET" "/health" (req) {
+        return { "status": "UP" }
+    }
 }
 ```
 
