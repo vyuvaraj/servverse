@@ -107,6 +107,33 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 
 ---
 
+## Phase 11.6: OSS/EE Feature Boundary Enforcement (Pending — Q3 2026)
+
+> **Issue:** Several enterprise-grade features are fully implemented in public repos with no gating. This dilutes EE commercial value and provides no upgrade incentive. Move these behind `//go:build enterprise` tags with OSS stubs returning "requires Enterprise Edition".
+
+### Immediate (High EE Value — Move Now)
+
+| # | Feature | Current Location | OSS Stub Behavior | Status |
+|---|---------|-----------------|-------------------|--------|
+| EE.10 | **Multi-tenant resource isolation** | ServShared `TenantMiddleware`, `IsolateTopic`, `IsolateDBPool`, `IsolateBucket` | OSS: single "default" tenant only, middleware passes through. EE: full tenant verification + isolation | [ ] |
+| EE.11 | **ServStore federation** | ServStore `pkg/s3/api.go` (federation rules, cross-cluster routing, proxy) | OSS: single-cluster only. EE: multi-cluster namespace federation | [ ] |
+| EE.12 | **ServQueue federation** | ServQueue (cross-cluster event mirroring) | OSS: single-cluster. EE: geo-distributed topic mirroring | [ ] |
+| EE.13 | **SLO tracking & error budgets** | ServConsole `handleSLO` + `pkg/incidents/` | OSS: return 403 EE required. EE: full SLO dashboard | [ ] |
+| EE.14 | **Cost estimation panel** | ServConsole `handleCostEstimation` | OSS: return 403. EE: infrastructure cost projections | [ ] |
+
+### Next Sprint (Medium EE Value)
+
+| # | Feature | Current Location | OSS Stub Behavior | Status |
+|---|---------|-----------------|-------------------|--------|
+| EE.15 | **Runbook automation** | ServConsole `handleRunbooks`, `handleExecuteRunbook` | OSS: read-only runbook list (no execute). EE: full auto-execute | [ ] |
+| EE.16 | **Custom dashboard builder** | ServConsole `handleDashboards` | OSS: fixed default dashboard. EE: drag-and-drop custom dashboards | [ ] |
+| EE.17 | **Infrastructure provisioning** | ServConsole `handleProvisionStore`, `handleProvisionQueue` | OSS: read-only view. EE: create/delete buckets/topics from console | [ ] |
+| EE.18 | **Diagnostics terminal** | ServConsole `handleDiagnosticExec` | OSS: disabled (security risk). EE: interactive exec with audit log | [ ] |
+| EE.19 | **Multi-environment management** | ServConsole `handleEnvironments`, `handleSelectEnvironment` | OSS: single environment. EE: dev/staging/prod with config promotion | [ ] |
+| EE.20 | **Deployment rollback** | ServConsole `handleRollback` | OSS: view deploy history only. EE: one-click rollback via ServCloud | [ ] |
+
+---
+
 ## Phase 11.5: Documentation Overhaul (Pending — Q3 2026)
 
 > **Critical gap:** Documentation reflects pre-implementation design specs. The LANGUAGE_GUIDE covers ~40% of actual features. Component docs show "🔴 Not Started" for services that are production-ready. No operational docs exist.
