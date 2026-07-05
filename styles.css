@@ -162,6 +162,8 @@ body {
 .window-dot.green { background: var(--success); }
 .window-title { margin-left: 0.5rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); }
 .hero-visual pre, .showcase-code pre { padding: 1.5rem 2rem; font-family: var(--font-mono); font-size: 0.82rem; overflow-x: auto; line-height: 1.75; }
+.hero-visual pre, .showcase-code pre { background: hsl(230, 25%, 6%); }
+.light-theme .hero-visual pre, .light-theme .showcase-code pre { background: hsl(230, 20%, 14%); }
 .kw { color: hsl(275, 100%, 75%); }
 .str { color: hsl(145, 90%, 65%); }
 .cmt { color: var(--text-muted); font-style: italic; }
