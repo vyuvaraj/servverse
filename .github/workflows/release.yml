@@ -1,0 +1,130 @@
+name: Release Servverse Bundle
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            goos: linux
+            goarch: amd64
+            ext: ""
+            archive: tar.gz
+          - os: ubuntu-latest
+            goos: linux
+            goarch: arm64
+            ext: ""
+            archive: tar.gz
+          - os: macos-latest
+            goos: darwin
+            goarch: amd64
+            ext: ""
+            archive: tar.gz
+          - os: macos-latest
+            goos: darwin
+            goarch: arm64
+            ext: ""
+            archive: tar.gz
+          - os: windows-latest
+            goos: windows
+            goarch: amd64
+            ext: ".exe"
+            archive: zip
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+
+      - name: Checkout all component repos
+        run: |
+          cd ..
+          repos=(Serv-lang ServGate ServStore ServQueue ServConsole ServCache ServMesh ServCron ServCloud ServTrace ServTunnel ServAuth ServDB ServMail ServFlow ServRegistry)
+          for repo in "${repos[@]}"; do
+            git clone --depth 1 --branch ${{ github.ref_name }} https://github.com/vyuvaraj/${repo}.git 2>/dev/null || \
+            git clone --depth 1 https://github.com/vyuvaraj/${repo}.git
+          done
+        shell: bash
+
+      - name: Build all binaries
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+          CGO_ENABLED: "0"
+        run: |
+          VERSION=${{ github.ref_name }}
+          OUTDIR="dist/servverse-${VERSION}-${{ matrix.goos }}-${{ matrix.goarch }}"
+          mkdir -p "$OUTDIR"
+
+          declare -A components=(
+            [serv]="../Serv-lang"
+            [servgate]="../ServGate"
+            [servstore]="../ServStore"
+            [servqueue]="../ServQueue"
+            [servconsole]="../ServConsole"
+            [servcache]="../ServCache"
+            [servmesh]="../ServMesh"
+            [servcron]="../ServCron"
+            [servcloud]="../ServCloud"
+            [servtrace]="../ServTrace"
+            [servtunnel]="../ServTunnel"
+            [servauth]="../ServAuth"
+            [servdb]="../ServDB"
+            [servmail]="../ServMail"
+            [servflow]="../ServFlow"
+            [servregistry]="../ServRegistry"
+          )
+
+          for name in "${!components[@]}"; do
+            dir="${components[$name]}"
+            if [ -d "$dir" ]; then
+              echo "Building $name..."
+              cd "$dir"
+              go build -ldflags "-s -w -X main.version=$VERSION" -o "../servverse/${OUTDIR}/${name}${{ matrix.ext }}" . 2>/dev/null || echo "  WARN: $name build failed"
+              cd "../servverse"
+            fi
+          done
+
+          # Build the launcher
+          echo "Building servverse launcher..."
+          go build -ldflags "-s -w -X main.version=$VERSION" -o "${OUTDIR}/servverse${{ matrix.ext }}" ./cmd/servverse/
+
+          ls -la "$OUTDIR"
+        shell: bash
+
+      - name: Create archive (tar.gz)
+        if: matrix.archive == 'tar.gz'
+        run: |
+          VERSION=${{ github.ref_name }}
+          DIR="servverse-${VERSION}-${{ matrix.goos }}-${{ matrix.goarch }}"
+          cd dist
+          tar -czf "${DIR}.tar.gz" "$DIR"
+        shell: bash
+
+      - name: Create archive (zip)
+        if: matrix.archive == 'zip'
+        run: |
+          VERSION=${{ github.ref_name }}
+          DIR="servverse-${VERSION}-${{ matrix.goos }}-${{ matrix.goarch }}"
+          cd dist
+          7z a "${DIR}.zip" "$DIR"
+        shell: bash
+
+      - name: Upload release asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/servverse-${{ github.ref_name }}-${{ matrix.goos }}-${{ matrix.goarch }}.${{ matrix.archive }}
+          draft: false
+          prerelease: false
