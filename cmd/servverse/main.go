@@ -378,6 +378,8 @@ services:
 
   servconsole:
     port: 8083
+    env:
+      SERV_JWT_SECRET: ""  # empty = no login required (dev mode). Set to shared secret for SSO.
 
   servcache:
     port: 8084
