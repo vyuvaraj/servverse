@@ -68,34 +68,33 @@ jobs:
           OUTDIR="dist/servverse-${VERSION}-${{ matrix.goos }}-${{ matrix.goarch }}"
           mkdir -p "$OUTDIR"
 
-          declare -A components=(
-            [serv]="../Serv-lang"
-            [servgate]="../ServGate"
-            [servstore]="../ServStore"
-            [servqueue]="../ServQueue"
-            [servconsole]="../ServConsole"
-            [servcache]="../ServCache"
-            [servmesh]="../ServMesh"
-            [servcron]="../ServCron"
-            [servcloud]="../ServCloud"
-            [servtrace]="../ServTrace"
-            [servtunnel]="../ServTunnel"
-            [servauth]="../ServAuth"
-            [servdb]="../ServDB"
-            [servmail]="../ServMail"
-            [servflow]="../ServFlow"
-            [servregistry]="../ServRegistry"
-          )
-
-          for name in "${!components[@]}"; do
-            dir="${components[$name]}"
+          build_component() {
+            local name="$1"
+            local dir="$2"
             if [ -d "$dir" ]; then
               echo "Building $name..."
               cd "$dir"
               go build -ldflags "-s -w -X main.version=$VERSION" -o "../servverse/${OUTDIR}/${name}${{ matrix.ext }}" . 2>/dev/null || echo "  WARN: $name build failed"
               cd "../servverse"
             fi
-          done
+          }
+
+          build_component "serv" "../Serv-lang"
+          build_component "servgate" "../ServGate"
+          build_component "servstore" "../ServStore"
+          build_component "servqueue" "../ServQueue"
+          build_component "servconsole" "../ServConsole"
+          build_component "servcache" "../ServCache"
+          build_component "servmesh" "../ServMesh"
+          build_component "servcron" "../ServCron"
+          build_component "servcloud" "../ServCloud"
+          build_component "servtrace" "../ServTrace"
+          build_component "servtunnel" "../ServTunnel"
+          build_component "servauth" "../ServAuth"
+          build_component "servdb" "../ServDB"
+          build_component "servmail" "../ServMail"
+          build_component "servflow" "../ServFlow"
+          build_component "servregistry" "../ServRegistry"
 
           # Build the launcher
           echo "Building servverse launcher..."
