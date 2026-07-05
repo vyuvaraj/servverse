@@ -105,9 +105,9 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 | DX.S11 | **`html.redirect` response helper** — ✅ `html.redirect(url, code)` issues HTTP 301/302 redirects from route handlers | Serv-lang | 🟢 Low | Native HTTP redirect helper handling 301/302 routing redirection. |
 | DX.S12 | **WASM-edge interactive frontend components** | Serv-lang | 🔴 High | Compile serv logic to client-side browser WASM targets for dynamic component updates. |
 | DX.S13 | **ORM declarative models (`model`)** | Serv-lang | 🔴 High | Declare schemas as models with auto-generated SQLite migrations and CRUD operations. |
-| DX.S14 | **Object short-hand init & destructuring** | Serv-lang | 🟡 Medium | Support object field short-hands and destructured assignment syntax. |
-| DX.S15 | **Implicit route returns** | Serv-lang | 🟢 Low | Automatically infer Content-Type (JSON, HTML) directly from returned routing types. |
-| DX.S16 | **Wildcard directory imports** | Serv-lang | 🟢 Low | Support wildcard import directories (e.g. `import "handlers/*.srv"`). |
+| DX.S14 | **Object short-hand init & destructuring** — ✅ `{ name, email }` shorthand and `let { name, email } = data` destructuring | Serv-lang | 🟡 Medium | Support object field short-hands and destructured assignment syntax. |
+| DX.S15 | **Implicit route returns** — ✅ Auto Content-Type: HTML→`text/html`, JSON→`application/json`, XML→`application/xml`, else `text/plain` | Serv-lang | 🟢 Low | Automatically infer Content-Type (JSON, HTML) directly from returned routing types. |
+| DX.S16 | **Wildcard directory imports** — ✅ `import "handlers/*"` glob-expands all `.srv` files in directory at compile time | Serv-lang | 🟢 Low | Support wildcard import directories (e.g. `import "handlers/*.srv"`). |
 
 ---
 
@@ -131,7 +131,7 @@ Services marked "decomposed" still have monolithic main.go files. Real extractio
 | DOC.S2 | **ServDocs roadmap** — ✅ Authored forward-looking ROADMAP.md | ServDocs | 🟢 Low | Currently the only code-bearing service without a forward-looking roadmap. |
 | DOC.S3 | **API contract versioning audit** — ✅ Expose /api/version consistently across all services | All Services | 🟡 Medium | Verify all services expose `/api/version` consistently. Enforce `serv doctor` compatibility matrix. |
 | DOC.S4 | **Component maturity matrix** — ✅ Formulated below | servverse-repo | 🟡 Medium | Replace binary "complete/pending" with a multi-axis maturity model: API contract, persistence, security, observability, tests, docs. |
-| DOC.S5 | **`LANGUAGE_GUIDE.md` Language Guide** | servverse-repo | 🟡 Medium | Compile a comprehensive guide covering global blocks, variables, control flow, functions, built-in libraries (http, html, json, db, log), and pub/sub broker messaging. |
+| DOC.S5 | **`LANGUAGE_GUIDE.md` Language Guide** — ✅ Created LANGUAGE_GUIDE.md documenting syntax, types, and standard library components | servverse-repo | 🟡 Medium | Compile a comprehensive guide covering global blocks, variables, control flow, functions, built-in libraries (http, html, json, db, log), and pub/sub broker messaging. |
 | DOC.S6 | **Auto-Documentation Generator (`serv doc`)** | Serv-lang | 🔴 High | Add AST-based auto-doc generator CLI extracting routes (OpenAPI/Swagger), cron schedules, SQLite tables, event topics, and triple-slash (///) comments into interactive HTML guides. |
 
 ---
