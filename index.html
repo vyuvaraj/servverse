@@ -27,7 +27,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://vyuvaraj.github.io/servverse/",
     "author": { "@type": "Person", "name": "Yuvaraj" },
-    "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "license": "https://www.gnu.org/licenses/agpl-3.0.html",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
   }
   </script>
@@ -57,8 +57,7 @@
       <a href="#components">Components</a>
       <a href="#showcase">Showcase</a>
       <a href="#quickstart">Quickstart</a>
-      <a href="https://github.com/vyuvaraj/servverse/blob/main/docs/index.md">Docs</a>
-      <a href="https://github.com/vyuvaraj/servverse/blob/main/docs/language-guide.md">Language Guide</a>
+      <a href="https://github.com/vyuvaraj/servverse/blob/main/docs/index.md" target="_blank" rel="noopener">Docs</a>
       <a href="#blog">Blog</a>
       <a href="https://github.com/vyuvaraj/Serv-lang" class="github-btn" target="_blank" rel="noopener">
         <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right:6px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -82,7 +81,7 @@
       <p>Build APIs, event-driven systems, storage services, and observability workflows without assembling dozens of disconnected tools. Servverse brings language, gateway, messaging, storage, and operations into a single open platform.</p>
       <div class="stats-row">
         <div class="stat-pill">16 Microservices</div>
-        <div class="stat-pill">Apache 2.0</div>
+        <div class="stat-pill">AGPLv3 + EE</div>
         <div class="stat-pill">Native Binaries</div>
         <div class="stat-pill">S3 Compatible</div>
         <div class="stat-pill">WASM Powered</div>
@@ -145,7 +144,7 @@
           <tr><td>Observability</td><td>Grafana + Jaeger + Prometheus</td><td class="hl-col">ServConsole — unified dashboard</td></tr>
           <tr><td>Deploy</td><td>Dockerfile + CI/CD + Terraform</td><td class="hl-col"><code>serv deploy --target docker</code></td></tr>
           <tr><td>Caching</td><td>Redis + client SDK + config</td><td class="hl-col">ServCache — pluggable memory/Redis with TTL</td></tr>
-          <tr><td>Auth & RBAC</td><td>Auth0 / Keycloak + custom JWT</td><td class="hl-col">ServShared — unified JWT + role-based access</td></tr>
+          <tr><td>Auth & RBAC</td><td>Auth0 / Keycloak + custom JWT</td><td class="hl-col">ServAuth — identity provider + RBAC</td></tr>
           <tr><td>Dev Environment</td><td>Docker Compose + .env + docs</td><td class="hl-col"><code>serv dev main.srv</code> — one command</td></tr>
         </tbody>
       </table>
@@ -168,12 +167,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Licensing</td><td>Apache 2.0</td><td class="hl-col">Commercial Enterprise License (EULA)</td></tr>
+          <tr><td>Licensing</td><td>AGPLv3</td><td class="hl-col">Commercial Enterprise License (EULA)</td></tr>
           <tr><td>Multi-Tenancy</td><td>Single tenant only</td><td class="hl-col">Dynamic multi-tenancy & strict isolation</td></tr>
           <tr><td>AI-Native Security</td><td>Basic prompt check</td><td class="hl-col">Prompt injection firewall & auto PII redaction</td></tr>
           <tr><td>GraphQL Federation</td><td>Single endpoint schema</td><td class="hl-col">Federated schema merging & LLM semantic routing</td></tr>
           <tr><td>Cluster Replication</td><td>Local clustering</td><td class="hl-col">Multi-region active-active database replication</td></tr>
-          <tr><td>Support & SLA</td><td>Community Slack / GitHub</td><td class="hl-col"><a href="mailto:servverse@gmail.com?subject=Enterprise Edition Inquiry" class="table-link">24/7 SLA-backed support</a></td></tr>
+          <tr><td>Support & SLA</td><td>Community GitHub Issues</td><td class="hl-col"><a href="mailto:servverse@gmail.com?subject=Enterprise Edition Inquiry" class="table-link">24/7 SLA-backed support</a></td></tr>
         </tbody>
       </table>
     </div>
@@ -223,8 +222,12 @@
           <div class="component-pill">ServQueue STOMP</div>
           <div class="component-pill">ServCache</div>
           <div class="component-pill">ServCron</div>
+          <div class="component-pill">ServDB</div>
+          <div class="component-pill">ServAuth</div>
+          <div class="component-pill">ServMail</div>
+          <div class="component-pill">ServFlow</div>
         </div>
-        <p>Self-hosted S3 storage with semantic search, STOMP messaging with WASM transforms, distributed cache with Redis backend, and leader-elected scheduling.</p>
+        <p>Self-hosted S3 storage with semantic search, STOMP messaging with WASM transforms, distributed cache, leader-elected scheduling, database proxy, identity provider, notifications, and workflow orchestration.</p>
       </div>
       <div class="arch-card glass-card reveal">
         <div class="card-glow orange"></div>
@@ -244,7 +247,7 @@
     <div class="arch-diagram-container glass-card reveal">
       <h3 style="text-align:center;margin-bottom:1rem;font-size:1.4rem;font-weight:700;">Traffic & Control Flow</h3>
       <p style="text-align:center;color:var(--text-muted);font-size:0.82rem;margin-bottom:2rem;">All services connected via <code>SERVVERSE_DISCOVERY</code> — OTel traces propagated end-to-end</p>
-      <img src="arch-diagram.svg" alt="Complete Servverse architecture diagram showing all 12 services across 4 layers: Developer tools, Platform and networking, Infrastructure data stores, and Observability" class="arch-svg" style="width:100%;max-width:960px;height:auto;" loading="lazy">
+      <img src="arch-diagram.svg" alt="Complete Servverse architecture diagram showing all 16 services across 4 layers: Developer tools, Platform and networking, Infrastructure data stores, and Observability" class="arch-svg" style="width:100%;max-width:960px;height:auto;" loading="lazy">
     </div>
   </section>
 
@@ -281,9 +284,9 @@
             <li><strong>Infrastructure Primitives:</strong> <code>route</code>, <code>broker</code>, <code>store</code>, <code>cache</code>, <code>ai</code> — declare what you need.</li>
             <li><strong>Incremental Compilation:</strong> Hash-based caching skips codegen when source is unchanged. Instant rebuilds.</li>
             <li><strong>`serv dev` — One Command:</strong> Start the full local stack (Store, Queue, Cache, Gate) + hot-reload in a single command.</li>
-            <li><strong>Client SDK Generation:</strong> Compile <code>.srv</code> files to typed TypeScript, Python, Go clients.</li>
-            <li><strong>OpenAPI 3.1:</strong> Auto-generate specs with <code>serv docs generate</code>. Streaming via <code>stream</code>/<code>yield</code>.</li>
-            <li><strong>Actor Concurrency:</strong> Fire-and-forget <code>spawn</code> with worker pool limits. Pipe operator <code>|></code> for data flows.</li>
+            <li><strong>Type System:</strong> Structs, interfaces, enums, generics with constraints, null safety (<code>T?</code>), and union types.</li>
+            <li><strong>AI-Native:</strong> <code>ai.complete()</code>, <code>ai.chat()</code>, <code>ai.embed()</code> + agent declarations with MCP tool bindings.</li>
+            <li><strong>Concurrency:</strong> Fire-and-forget <code>spawn</code> with worker pool limits. <code>async</code>/<code>await</code> with parallel fan-out.</li>
           </ul>
         </div>
         <div class="tab-panel" id="panel-servgate">
@@ -342,7 +345,7 @@
         </div>
         <div class="tab-panel" id="panel-servconsole">
           <h3>ServConsole — Observability Dashboard</h3>
-          <p class="panel-desc">Premium glassmorphic control pane for monitoring, configuring, and tracing the Servverse. All features 100% complete.</p>
+          <p class="panel-desc">Unified glassmorphic control plane for monitoring, configuring, and tracing the Servverse ecosystem.</p>
           <ul class="feature-list">
             <li><strong>Custom Dashboard Builder:</strong> Drag-and-drop metric widgets (numbers, charts, tables, status). Save and share per team.</li>
             <li><strong>AI Agent Observatory:</strong> Real-time MCP tool call metrics, token cost calculators, and safety/PII guard alerts.</li>
@@ -408,7 +411,7 @@
           <ul class="feature-list">
             <li><strong>OIDC/OAuth2 Provider:</strong> Standard OAuth2 token endpoint (<code>POST /oauth/token</code>) supporting the <code>client_credentials</code> grant flow.</li>
             <li><strong>Password Lockout Security:</strong> Automated account suspension for 5 minutes after 3 consecutive invalid credentials.</li>
-            <li><strong>Self-Service Reset Resets:</strong> Secure token recovery generation and confirmation validator flows.</li>
+            <li><strong>Self-Service Password Reset:</strong> Secure token recovery generation and confirmation validator flows.</li>
             <li><strong>Serv-lang Builtin Integration:</strong> Compiled compiler support for <code>auth.register()</code>, <code>auth.login()</code>, and <code>auth.currentUser()</code>.</li>
           </ul>
         </div>
@@ -672,7 +675,7 @@
         <a href="#blog">Blog</a>
         <a href="mailto:servverse@gmail.com?subject=Inquiry" style="color:#a855f7;">Contact Support</a>
       </div>
-      <p class="footer-copy">© 2026 Servverse. Open source under Apache 2.0. Built by Yuvaraj.</p>
+      <p class="footer-copy">© 2026 Servverse. Open source under AGPLv3. Built by Yuvaraj.</p>
     </div>
   </footer>
 
