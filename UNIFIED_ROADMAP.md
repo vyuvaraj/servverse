@@ -300,8 +300,8 @@ To transition the Servverse ecosystem from local/sandbox stage to enterprise pro
 | **🌐 DevOps & Infrastructure** | 3 | 3 | 0 | **100%** | ████████████████████ |
 | **📋 API Versioning & Scaling** | 1 | 1 | 0 | **100%** | ████████████████████ |
 | **📟 Diagnostics & Operations** | 1 | 1 | 0 | **100%** | ████████████████████ |
-| **🚀 Next-Level Core Enhancements** | 4 | 1 | 3 | **25%** | █████░░░░░░░░░░░░░░░░ |
-| **TOTAL WORK** | **13** | **10** | **3** | **77%** | ███████████████░░░░░ |
+| **🚀 Next-Level Core Enhancements** | 4 | 2 | 2 | **50%** | ██████████░░░░░░░░░░ |
+| **TOTAL WORK** | **13** | **11** | **2** | **84%** | █████████████████░░░ |
 
 ---
 
@@ -358,7 +358,7 @@ To transition the Servverse ecosystem from local/sandbox stage to enterprise pro
 
 ### 🚀 Next-Level Core Enhancements (Pending)
 
-| CORE.4 | **Unified Application Block DSL** — Support declaring complete application boundaries containing auth, database, queue, api, and workflow components | Serv-lang | High |
+| CORE.4 | **Unified Application Block DSL** — ✅ Added support for logical namespaces enclosing server, db, and API declarations via `app` block syntax | Serv-lang | High |
 | CORE.5 | **First-Class Ecosystem Standard Library (std/*)** — ✅ Native built-in standard library bindings for auth, database, queue, and cache to eliminate boilerplate code | Serv-lang | High |
 | CORE.6 | **Built-in Multi-Agent AI Framework** — First-class support for AI agents, memory, tools, RAG, and MCP schemas in `serv-lang` | Serv-lang | High |
 | ARCH.9 | **Unified Distributed Runtime (Serv Runtime)** — Host agent encapsulating service discovery, retries, configurations, and telemetry dynamically | ServMesh, ServShared | High |
