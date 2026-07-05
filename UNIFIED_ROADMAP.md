@@ -360,7 +360,7 @@ To transition the Servverse ecosystem from local/sandbox stage to enterprise pro
 
 | CORE.4 | **Unified Application Block DSL** — ✅ Added support for logical namespaces enclosing server, db, and API declarations via `app` block syntax | Serv-lang | High |
 | CORE.5 | **First-Class Ecosystem Standard Library (std/*)** — ✅ Native built-in standard library bindings for auth, database, queue, and cache to eliminate boilerplate code | Serv-lang | High |
-| CORE.6 | **Built-in Multi-Agent AI Framework** — First-class support for AI agents, memory, tools, RAG, and MCP schemas in `serv-lang` | Serv-lang | High |
+| CORE.6 | **Built-in Multi-Agent AI Framework** — ✅ First-class support for AI agents, memory, tools, RAG, and MCP schemas in `serv-lang` via `agent` block declarations | Serv-lang | High |
 | ARCH.9 | **Unified Distributed Runtime (Serv Runtime)** — Host agent encapsulating service discovery, retries, configurations, and telemetry dynamically | ServMesh, ServShared | High |
 
 ---
