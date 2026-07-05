@@ -86,17 +86,18 @@ jobs:
           build_component() {
             local name="$1"
             local dir="$2"
+            local target="${3:-.}"
             if [ -d "$dir" ]; then
               echo "Building $name..."
               cd "$dir"
-              go build -ldflags "-s -w -X main.version=$VERSION" -o "../servverse/${OUTDIR}/${name}${{ matrix.ext }}" . 2>/dev/null || echo "  WARN: $name build failed"
+              go build -ldflags "-s -w -X main.version=$VERSION" -o "../servverse/${OUTDIR}/${name}${{ matrix.ext }}" "$target" 2>/dev/null || echo "  WARN: $name build failed"
               cd "../servverse"
             fi
           }
 
           build_component "serv" "../Serv-lang"
           build_component "servgate" "../ServGate"
-          build_component "servstore" "../ServStore"
+          build_component "servstore" "../ServStore" "./cmd/servstore/"
           build_component "servqueue" "../ServQueue"
           build_component "servconsole" "../ServConsole"
           build_component "servcache" "../ServCache"
