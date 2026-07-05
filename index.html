@@ -516,17 +516,19 @@
           <div class="window-dot red"></div>
           <div class="window-dot yellow"></div>
           <div class="window-dot green"></div>
-          <span class="window-title">Full Stack (Docker Compose)</span>
+          <span class="window-title">One-Line Install (All Binaries)</span>
         </div>
         <div class="terminal-body">
-          <p class="cmd-line"><span class="prompt">$</span> git clone https://github.com/vyuvaraj/servverse.git</p>
-          <p class="cmd-line"><span class="prompt">$</span> cd servverse</p>
-          <p class="cmd-line"><span class="prompt">$</span> podman compose up --build</p>
+          <p class="cmd-line"><span class="prompt"># Windows (PowerShell)</span></p>
+          <p class="cmd-line"><span class="prompt">$</span> irm https://raw.githubusercontent.com/vyuvaraj/servverse/main/scripts/install.ps1 | iex</p>
+          <p class="cmd-line">&nbsp;</p>
+          <p class="cmd-line"><span class="prompt"># macOS / Linux</span></p>
+          <p class="cmd-line"><span class="prompt">$</span> curl -fsSL https://raw.githubusercontent.com/vyuvaraj/servverse/main/scripts/install.sh | sh</p>
           <p class="output-line">&nbsp;</p>
-          <p class="output-line">Building ServStore, ServQueue, ServGate...</p>
-          <p class="output-line">Building ServCache, ServCron, ServMesh...</p>
-          <p class="output-line">Building ServConsole, ServRegistry, ServTunnel...</p>
-          <p class="output-line success">✓ All 12 services running (ports 8080-8090, 8443)</p>
+          <p class="output-line success">✓ Installed 17 binaries to ~/.servverse/bin/</p>
+          <p class="cmd-line">&nbsp;</p>
+          <p class="cmd-line"><span class="prompt">$</span> servverse up</p>
+          <p class="output-line success">✓ All 16 services running</p>
         </div>
       </div>
       <div class="terminal glass-card reveal">
@@ -534,7 +536,7 @@
           <div class="window-dot red"></div>
           <div class="window-dot yellow"></div>
           <div class="window-dot green"></div>
-          <span class="window-title">Just the Language</span>
+          <span class="window-title">Just the Language (Compiler Only)</span>
         </div>
         <div class="terminal-body">
           <p class="cmd-line"><span class="prompt"># Windows (Scoop)</span></p>
@@ -553,9 +555,10 @@
     <div class="ports-ref glass-card reveal">
       <h4>One-Command Dev Stack</h4>
       <div class="terminal-body" style="padding:1rem 1.5rem; margin-bottom:1.5rem;">
-        <p class="cmd-line"><span class="prompt">$</span> serv dev main.srv --services all</p>
-        <p class="output-line success">✓ ServStore :8081 | ServQueue :8082 | ServCache :8086 | ServGate :8080</p>
-        <p class="output-line success">✓ Hot-reload active — editing main.srv rebuilds instantly</p>
+        <p class="cmd-line"><span class="prompt">$</span> servverse up --only servgate,servstore,servqueue,servconsole</p>
+        <p class="output-line success">✓ ServGate :8080 | ServStore :8081 | ServQueue :8082 | ServConsole :8083</p>
+        <p class="cmd-line"><span class="prompt">$</span> servverse status</p>
+        <p class="output-line success">✓ 4 services healthy</p>
       </div>
       <h4>Service Ports at a Glance</h4>
       <div class="ports-grid">
@@ -563,18 +566,18 @@
         <div class="port-item"><span class="port-name">ServStore</span><code>:8081</code></div>
         <div class="port-item"><span class="port-name">ServQueue</span><code>:8082</code></div>
         <div class="port-item"><span class="port-name">ServConsole</span><code>:8083</code></div>
-        <div class="port-item"><span class="port-name">ServTunnel</span><code>:8443</code></div>
-        <div class="port-item"><span class="port-name">ServCloud</span><code>:8085</code></div>
-        <div class="port-item"><span class="port-name">ServCache</span><code>:8086</code></div>
-        <div class="port-item"><span class="port-name">ServCron</span><code>:8087</code></div>
+        <div class="port-item"><span class="port-name">ServCache</span><code>:8084</code></div>
+        <div class="port-item"><span class="port-name">ServCron</span><code>:8085</code></div>
+        <div class="port-item"><span class="port-name">ServCloud</span><code>:8086</code></div>
+        <div class="port-item"><span class="port-name">ServMesh</span><code>:8087</code></div>
         <div class="port-item"><span class="port-name">ServRegistry</span><code>:8088</code></div>
-        <div class="port-item"><span class="port-name">ServMesh</span><code>:8089</code></div>
+        <div class="port-item"><span class="port-name">ServDocs</span><code>:8089</code></div>
         <div class="port-item"><span class="port-name">ServTrace</span><code>:8090</code></div>
         <div class="port-item"><span class="port-name">ServMail</span><code>:8094</code></div>
         <div class="port-item"><span class="port-name">ServFlow</span><code>:8096</code></div>
         <div class="port-item"><span class="port-name">ServDB</span><code>:8097</code></div>
         <div class="port-item"><span class="port-name">ServAuth</span><code>:8098</code></div>
-        <div class="port-item"><span class="port-name">Jaeger UI</span><code>:16686</code></div>
+        <div class="port-item"><span class="port-name">ServTunnel</span><code>:8443</code></div>
       </div>
     </div>
   </section>
