@@ -191,6 +191,10 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | DX.24 | **`serv playground` web IDE** — Hosted browser-based editor: write → compile → run → see output. WASM compilation target | Serv-lang | 🟢 Low | [ ] |
 | DX.25 | **Cross-service config propagation** — Central `.serv/config.yaml` propagated to all services on `serv deploy` | Serv-lang, ServCloud | 🟡 Medium | [ ] |
 | DX.26 | **`serv dev` terminal dashboard** — k9s-style TUI showing routes, recent requests, errors, build status, connected services health | Serv-lang | 🟡 Medium | [ ] |
+| DX.27 | **ServConsole Monolithic Router Decoupling** — Refactor proxy and UI logic out of ServConsole main handlers into dedicated service proxies (`pkg/proxy/`) | ServConsole | 🟡 Medium | [ ] |
+| DX.28 | **Serv-lang Codegen Modularization** — Break monolithic codegen switch statements in `codegen_stmt.go` and `codegen_expr.go` into targeted AST Visitor code generators | Serv-lang | 🟡 Medium | [ ] |
+| DX.29 | **ServShared Middleware De-bloating** — Refactor the bloated `ServShared/middleware.go` file into structured subfiles inside `pkg/middleware/` | ServShared | 🟡 Medium | [ ] |
+
 
 ---
 
