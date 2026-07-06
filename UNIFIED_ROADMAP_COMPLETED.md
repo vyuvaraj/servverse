@@ -127,6 +127,7 @@ This document preserves the archived history of completed items migrated from `U
 - **Hot-Reloading Dev Server (DX.15)** — Watcher running local tests, hot-reloading code, and refreshing the console.
 - **AI-Powered Scaffolder (DX.11)** — Natural language scaffolding generator (`serv create "<prompt>"`).
 - **Declarative Schema Migrations (DX.14)** — Native `table` DSL in `.srv` files with `@primary`, `@unique`, `@autoincrement`, `@required`, `@default` annotations. Compiler auto-generates `CREATE TABLE` SQL; `serv migrate` diffs and applies schema changes (CREATE + ALTER TABLE ADD COLUMN).
+- **Distributed Lock Manager (CORE.8)** — TTL-based in-memory lock store (`ServMesh/pkg/lock`) with Acquire/Release/Extend/Status/List. Mounted into ServMesh as `/api/lock/*` HTTP endpoints. `ServShared` provides the `DistributedLocker` interface, `HTTPLockClient`, `WithLock`, `WithLockRetry` helpers, and `NoOpLocker` for tests. 20 tests pass (13 unit + 7 HTTP).
 
 ---
 
