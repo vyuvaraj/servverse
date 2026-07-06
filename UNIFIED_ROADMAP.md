@@ -138,6 +138,8 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | EE.18 | **Diagnostics terminal** | ServConsole `handleDiagnosticExec` | OSS: disabled (security risk). EE: interactive exec with audit log | [ ] |
 | EE.19 | **Multi-environment management** | ServConsole `handleEnvironments`, `handleSelectEnvironment` | OSS: single environment. EE: dev/staging/prod with config promotion | [ ] |
 | EE.20 | **Deployment rollback** | ServConsole `handleRollback` | OSS: view deploy history only. EE: one-click rollback via ServCloud | [ ] |
+| EE.21 | **EE Suffix Isolation** | Public Repositories (e.g. `ServShared/tenant_ee.go`) | Move all proprietary `_ee.go` files currently residing in public repos to the private `servverse-ee` repository, leaving only `_oss.go` stubs in the public domain. | [ ] |
+
 
 ---
 
