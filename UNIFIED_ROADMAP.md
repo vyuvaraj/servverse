@@ -216,6 +216,80 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 
 ---
 
+## Phase 14: AI-Native Ecosystem Deepening (Pending — 2027)
+
+> Servverse positions as an AI-native platform. These features extend AI capabilities across every layer — not just the language, but gateway, storage, messaging, observability, and operations.
+
+### Serv-lang (Compiler + Runtime)
+
+| # | Feature | Components | Priority | Status |
+|---|---------|-----------|----------|--------|
+| AI.10 | **RAG pipeline keyword** — `rag "servstore://docs" { embed: "openai", chunk: 512 }` declares retrieval-augmented generation as infrastructure. Auto-index on write, inject context on `ai.chat()` | Serv-lang, ServStore | 🔴 High | [ ] |
+| AI.11 | **Structured output (JSON mode)** — `ai.complete(prompt, schema: UserSchema)` forces LLM responses to conform to a Serv struct. Compiler validates schema at build time | Serv-lang | 🔴 High | [ ] |
+| AI.12 | **Streaming responses** — `ai.stream(prompt, fn(chunk) { conn.send(chunk) })` for server-sent event streaming. Currently `ai.chat()` blocks until complete | Serv-lang | 🔴 High | [ ] |
+| AI.13 | **Prompt template library** — `import "stdlib/prompts"` with variable injection, versioning, and A/B testing hooks | Serv-lang | 🟡 Medium | [ ] |
+| AI.14 | **AI eval framework** — `test "quality" { assert ai.eval(prompt, expected, threshold: 0.8) }` for LLM output quality testing in `serv test` | Serv-lang | 🟡 Medium | [ ] |
+
+### ServGate (AI Gateway)
+
+| # | Feature | Components | Priority | Status |
+|---|---------|-----------|----------|--------|
+| AI.15 | **Token budget enforcement per route** — Max tokens/cost per API key per day. Reject when exhausted. Dashboard burn rate | ServGate, ServConsole | 🔴 High | [ ] |
+| AI.16 | **Prompt versioning & A/B routing** — Route % of traffic to different system prompts. Track outcome quality per version | ServGate | 🟡 Medium | [ ] |
+| AI.17 | **Response quality scoring** — Auto-score LLM responses for hallucination risk via factual grounding check against RAG context | ServGate | 🟡 Medium | [ ] |
+| AI.18 | **Multi-model fallback chain** — `models: [gpt-4o-mini, gpt-4o, claude-3-5-sonnet]` — try next on failure/timeout | ServGate | 🟡 Medium | [ ] |
+| AI.19 | **Semantic rate limiting** — Rate limit by semantic similarity of requests, not just IP. Prevent same question rephrased 100 ways | ServGate | 🟢 Low | [ ] |
+
+### ServStore (AI Storage)
+
+| # | Feature | Components | Priority | Status |
+|---|---------|-----------|----------|--------|
+| AI.20 | **Conversational object query** — `GET /bucket?ask=<question>` generates embedding, searches, synthesizes answer (RAG on stored objects) | ServStore | 🟡 Medium | [ ] |
+| AI.21 | **Auto-summarization on upload** — Generate and store summaries as metadata on document upload. Browse-by-summary without downloading | ServStore | 🟡 Medium | [ ] |
+| AI.22 | **Similarity deduplication** — On upload, check if semantically similar document exists (cosine > 0.95). Warn or auto-deduplicate | ServStore | 🟢 Low | [ ] |
+| AI.23 | **Classification tags on ingest** — Auto-classify uploaded objects (invoices, contracts, logs, images) via lightweight model. Searchable tags | ServStore | 🟢 Low | [ ] |
+
+### ServQueue (AI Messaging)
+
+| # | Feature | Components | Priority | Status |
+|---|---------|-----------|----------|--------|
+| AI.24 | **Semantic message routing** — Route messages to subscribers based on content meaning: `subscribe "support" where ai.classify(msg) == "billing"` | ServQueue, Serv-lang | 🟡 Medium | [ ] |
+| AI.25 | **DLQ auto-summarization** — When messages pile up in DLQ, generate summary: "47 failed messages, mostly payment timeouts from US-East" | ServQueue, ServConsole | 🟢 Low | [ ] |
+| AI.26 | **Message pattern anomaly detection** — Learn normal throughput patterns. Alert on significant volume/content shifts | ServQueue, ServTrace | 🟡 Medium | [ ] |
+
+### ServConsole (AI Operations)
+
+| # | Feature | Components | Priority | Status |
+|---|---------|-----------|----------|--------|
+| AI.27 | **Natural language log search** — "Show errors from ServAuth where users couldn't login" → structured log query + filters | ServConsole | 🔴 High | [ ] |
+| AI.28 | **Incident root cause synthesis** — On alert: analyze deploys, config changes, correlated metrics, similar past incidents. One-paragraph hypothesis | ServConsole | 🔴 High | [ ] |
+| AI.29 | **Auto-generated runbooks** — Observe how operators respond to recurring alerts. After 3 manual resolutions, suggest automated runbook | ServConsole | 🟡 Medium | [ ] |
+| AI.30 | **Anomaly explanation** — When metric spikes, explain why: "Latency increased because ServDB pool hit max after deploy doubled query volume" | ServConsole, ServTrace | 🟡 Medium | [ ] |
+
+### ServAuth (AI Security)
+
+| # | Feature | Components | Priority | Status |
+|---|---------|-----------|----------|--------|
+| AI.31 | **Adaptive risk scoring** — Score login attempts: new device + unusual time + different geo = high risk → step-up to MFA | ServAuth | 🟡 Medium | [ ] |
+| AI.32 | **Credential stuffing detection** — Behavioral clustering to detect many IPs using same password list. Auto-block suspicious cohorts | ServAuth | 🟡 Medium | [ ] |
+
+### ServTrace (AI Observability)
+
+| # | Feature | Components | Priority | Status |
+|---|---------|-----------|----------|--------|
+| AI.33 | **Auto-correlate slow spans** — Identify root cause span and explain: "95% latency in ServDB query — missing index on order_date" | ServTrace, ServConsole | 🟡 Medium | [ ] |
+| AI.34 | **Predictive SLO breach** — Given current error rate trajectory, predict when SLO will be violated. "Error budget exhausted in 3 days" | ServTrace, ServConsole | 🟡 Medium | [ ] |
+
+### ServCron & ServFlow (AI Automation)
+
+| # | Feature | Components | Priority | Status |
+|---|---------|-----------|----------|--------|
+| AI.35 | **Smart scheduling** — Analyze job execution history (duration, resource usage, conflicts). Suggest optimal scheduling windows | ServCron | 🟢 Low | [ ] |
+| AI.36 | **AI decision steps in workflows** — `step "classify" { ai.classify(input, ["approve", "review", "reject"]) }` — AI-powered branching | ServFlow, Serv-lang | 🟡 Medium | [ ] |
+| AI.37 | **Workflow generation from description** — NL prompt → DAG definition: "receives order → validates payment → notifies warehouse → sends email" | ServFlow, Serv-lang | 🟢 Low | [ ] |
+
+---
+
 ## Appendix A: Cross-Service Runtime Dependency Diagram
 
 ```mermaid
