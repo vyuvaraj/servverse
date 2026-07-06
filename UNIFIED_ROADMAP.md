@@ -197,7 +197,9 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | LANG.6 | **Hot module replacement for stdlib** — Override stdlib modules with `serv install <module>@version` without compiler upgrade | Serv-lang, ServRegistry | 🟢 Low | [ ] |
 | LANG.7 | **Security scanning** — `serv audit --deps` outputs SARIF for CI; scans compiled dependency CVEs | Serv-lang | 🟡 Medium | [ ] |
 | LANG.8 | **Interface satisfaction checking** — Compile-time verification that structs implement declared interfaces | Serv-lang | 🟡 Medium | [ ] |
+| LANG.9 | **Native Service Mesh Declarations (`mesh`)** — Compiler-supported `mesh` keyword to define routing policies, circuit breakers, and automatic client bindings directly in `.srv` | Serv-lang, ServMesh | 🔴 High | [ ] |
 | CORE.9 | **Event Sourcing & CQRS Framework** — Native event-sourced projection engines using ServQueue and ServStore | Serv-lang, ServQueue, ServStore | 🔴 High | [ ] |
+
 | CORE.10 | **ServStore CDN mode** — Edge caching layer with Cache-Control headers and Cloudflare/Fastly origin pull | ServStore | 🟢 Low | [ ] |
 
 ---
