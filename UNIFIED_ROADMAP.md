@@ -154,8 +154,9 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 |---|------|--------|-------------|--------|
 | DOC.5 | **LANGUAGE_GUIDE.md rewrite** | Large | Add all missing features: structs, interfaces, enums, generics, AI agents, MCP tools, table DSL, typed params, null safety, `?` operator, optional chaining, spread, slice expressions, collection/string methods, extern fn | [ ] |
 | DOC.6 | **builtins.md update** | Medium | Add `ai.complete()`, `ai.chat()`, `ai.embed()`, `auth.*` helpers, `store.*` advanced ops, `broker.*` DLQ/delayed, `atomic.*`, `channel.*` | [ ] |
-| DOC.7 | **cli.md update** | Small | Add `serv create`, `serv migrate`, `serv dev`, `serv doctor`, `serv deploy`, `serv add`, `serv audit`, `serv debug`, `serv generate`, `serv packages` | [ ] |
-| DOC.8 | **stdlib.md completion** | Small | Document remaining 2 modules; add usage examples for each module category | [ ] |
+| DOC.7 | **cli.md update** | Small | ✅ Add `serv create`, `serv migrate`, `serv dev`, `serv doctor`, `serv deploy`, `serv add`, `serv audit`, `serv debug`, `serv generate`, `serv packages` | [x] |
+| DOC.8 | **stdlib.md completion** | Small | ✅ Document remaining 2 modules; add usage examples for each module category | [x] |
+
 
 ### Ecosystem Component Documentation
 
@@ -163,8 +164,9 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 |---|------|--------|-------------|--------|
 | DOC.9 | **Component catalog rewrite** | Medium | Rewrite `docs/components/README.md` — update all statuses from "🔴 Not Started" to actual state, remove aspirational 30-component framing, reflect 15 real services | [ ] |
 | DOC.10 | **Component docs rewrite (all 15)** | Large | Replace pre-implementation design specs with actual API reference: endpoints, configuration (env vars/flags), port allocations, healthcheck paths, example usage | [ ] |
-| DOC.11 | **RUNTIME_DEPENDENCIES.md update** | Medium | Full 15-service dependency graph (currently only shows 4 newer services). Include ServGate↔ServStore, ServMesh interactions, ServCron↔ServQueue | [ ] |
-| DOC.12 | **DOCKER_GUIDE.md update** | Small | Add ServAuth, ServDB, ServMail, ServFlow to directory structure and compose examples | [ ] |
+| DOC.11 | **RUNTIME_DEPENDENCIES.md update** | Medium | ✅ Full 15-service dependency graph (currently only shows 4 newer services). Include ServGate↔ServStore, ServMesh interactions, ServCron↔ServQueue | [x] |
+| DOC.12 | **DOCKER_GUIDE.md update** | Small | ✅ Add ServAuth, ServDB, ServMail, ServFlow to directory structure and compose examples | [x] |
+
 
 ### Operational Documentation (New)
 
@@ -174,7 +176,7 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | DOC.14 | **Runbooks** | Medium | Operational runbooks: service restart procedures, backup/restore, scaling, log investigation, incident response templates | [ ] |
 | DOC.15 | **Troubleshooting guide** | Medium | Common issues and solutions: connectivity failures, auth token problems, OTel not reporting, build failures, migration conflicts | [ ] |
 | DOC.16 | **Security hardening guide** | Medium | TLS setup, JWT key rotation, mTLS configuration, secret management best practices, network policies | [ ] |
-| DOC.17 | **Architecture decision records** | Small | Document key design choices: why Go codegen, why WASM for transforms, why library-level mesh, why ServStore over external S3 | [ ] |
+| DOC.17 | **Architecture decision records** | Small | ✅ Document key design choices: why Go codegen, why library-level mesh, why ServStore over external S3 | [x] |
 
 ---
 

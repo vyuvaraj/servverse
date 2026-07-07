@@ -134,6 +134,12 @@ This document preserves the archived history of completed items migrated from `U
 - **ServAuth Monolithic Codebase Split (DX.31)** — Refactored user store storage and TOTP authentication checks out of monolithic main packages.
 - **ServFlow Component Separation (DX.32)** — Partitioned workflow compilers, engine executors, checkpoint serialization interfaces, and API handlers.
 - **EE Suffix Isolation (EE.21)** — Isolated multi-tenant `tenant_ee.go` code blocks by moving them from public `ServShared` repo to private `servverse-ee` repository.
+- **CLI Reference Update (DOC.7)** — Added definitions for `serv dev`, `serv doctor`, `serv deploy`, `serv status`, and `serv packages` to [cli.md](file:///c:/Mine/try/serv/Serv-lang/docs/cli.md).
+- **Stdlib Documentation (DOC.8)** — Expanded `stdlib.md` with usage instructions and code blocks for circuit breakers, semaphores, logging, and audit flows.
+- **Runtime Dependency Matrix (DOC.11)** — Formulated [RUNTIME_DEPENDENCIES.md](file:///c:/Mine/try/serv/docs/RUNTIME_DEPENDENCIES.md) documenting port configurations and service interactions.
+- **Docker Deployment Guide (DOC.12)** — Formulated [DOCKER_GUIDE.md](file:///c:/Mine/try/serv/docs/DOCKER_GUIDE.md) mapping orchestrator setup compose specifications.
+- **Architecture Decision Records (DOC.17)** — Structured [ADR.md](file:///c:/Mine/try/serv/docs/ADR.md) documenting language, database persistence, and registry choices.
+
 
 ---
 
