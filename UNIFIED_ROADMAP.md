@@ -74,8 +74,8 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 
 | # | Feature | Components | Priority | Status |
 |---|---------|-----------|----------|--------|
-| UC.1 | **Full 15-service discovery** — Add CLI flags + `ServDiscovery` fields for ServMesh, ServCron, ServCloud, ServCache, ServRegistry, ServDocs | ServConsole | 🔴 High | [ ] |
-| UC.2 | **Unified health aggregation** — `/api/status` and alert loop monitor ALL connected services, not just 4 | ServConsole | 🔴 High | [ ] |
+| UC.1 | **Full 15-service discovery** — Add CLI flags + `ServDiscovery` fields for ServMesh, ServCron, ServCloud, ServCache, ServRegistry; full reverse proxies at `/api/proxy/{mesh,cron,cache,registry,cloud}/`; all 14 services applied back from `SERVVERSE_DISCOVERY` override | ServConsole | 🔴 High | ✅ `9df19eb` |
+| UC.2 | **Unified health aggregation** — `/api/status` and alert loop monitor ALL 14 connected services, not just 4; `handleDevServices` covers all 14 | ServConsole | 🔴 High | ✅ `9df19eb` |
 | UC.3 | **ServMesh panel** — Service registry, circuit breaker states, mTLS cert expiry, routing rules, canary weights | ServConsole, ServMesh | 🟡 Medium | [ ] |
 | UC.4 | **ServCron panel** — Scheduled jobs, next 5 runs, execution history, failure counts, visual cron builder | ServConsole, ServCron | 🟡 Medium | [ ] |
 | UC.5 | **ServCache panel** — Per-namespace keys, hit/miss ratios, memory pressure, eviction rates, hot keys | ServConsole, ServCache | 🟡 Medium | [ ] |
@@ -122,7 +122,7 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 
 | # | Feature | Current Location | OSS Stub Behavior | Status |
 |---|---------|-----------------|-------------------|--------|
-| EE.10 | **Multi-tenant resource isolation** | ServShared `TenantMiddleware`, `IsolateTopic`, `IsolateDBPool`, `IsolateBucket` | OSS: single "default" tenant only, middleware passes through. EE: full tenant verification + isolation | [ ] |
+| EE.10 | **Multi-tenant resource isolation** | ServShared `TenantMiddleware`, `IsolateTopic`, `IsolateDBPool`, `IsolateBucket` | OSS: single "default" tenant only, middleware passes through. EE: full tenant verification + isolation | ✅ `f2bd3a5` (ServShared), `6838b98` (servverse-ee) |
 | EE.11 | **ServStore federation** | ServStore `pkg/s3/api.go` (federation rules, cross-cluster routing, proxy) | OSS: single-cluster only. EE: multi-cluster namespace federation | [ ] |
 | EE.12 | **ServQueue federation** | ServQueue (cross-cluster event mirroring) | OSS: single-cluster. EE: geo-distributed topic mirroring | [ ] |
 | EE.13 | **SLO tracking & error budgets** | ServConsole `handleSLO` + `pkg/incidents/` | OSS: return 403 EE required. EE: full SLO dashboard | [ ] |
