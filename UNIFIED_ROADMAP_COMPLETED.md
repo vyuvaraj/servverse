@@ -144,6 +144,12 @@ This document preserves the archived history of completed items migrated from `U
 - **Operational Runbooks (DOC.14)** — Formulated [RUNBOOKS.md](file:///c:/Mine/try/serv/servverse-repo/docs/RUNBOOKS.md) mapping out recovery and diagnostics patterns.
 - **Troubleshooting Guide (DOC.15)** — Formulated [TROUBLESHOOTING.md](file:///c:/Mine/try/serv/servverse-repo/docs/TROUBLESHOOTING.md) detailing resolution flows for common failures.
 - **Security Hardening Guide (DOC.16)** — Formulated [SECURITY_HARDENING.md](file:///c:/Mine/try/serv/servverse-repo/docs/SECURITY_HARDENING.md) describing production mTLS, logging sanitizers, and token rotation security.
+- **Language Guide (DOC.5)** — Extended the [language-reference.md](file:///c:/Mine/try/serv/Serv-lang/docs/language-reference.md) specifying table declarations, locks, RAG indices, and event listeners.
+- **Component Docs API (DOC.10)** — Documented endpoints, ports, configuration variables, and usage references in [components/README.md](file:///c:/Mine/try/serv/servverse-repo/docs/components/README.md).
+- **Configuration Reference (DOC.13)** — Created [CONFIGURATION_REFERENCE.md](file:///c:/Mine/try/serv/servverse-repo/docs/CONFIGURATION_REFERENCE.md) listing ports, data paths, and variables for all services.
+- **E2E Integration Command (DX.18)** — Configured `serv doctor --integration` subcommand inside the CLI package to run diagnostics checks.
+- **Ecosystem Upgrade Command (DX.22)** — Formulated the `serv upgrade` subcommand executing version validation outputs.
+
 
 
 ---

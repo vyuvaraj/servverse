@@ -151,21 +151,8 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 
 | # | Item | Effort | Description | Status |
 |---|------|--------|-------------|--------|
-| DOC.5 | **LANGUAGE_GUIDE.md rewrite** | Large | Add all missing features: structs, interfaces, enums, generics, AI agents, MCP tools, table DSL, typed params, null safety, `?` operator, optional chaining, spread, slice expressions, collection/string methods, extern fn | [ ] |
-
-
-### Ecosystem Component Documentation
-
-| # | Item | Effort | Description | Status |
-|---|------|--------|-------------|--------|
-| DOC.10 | **Component docs rewrite (all 15)** | Large | Replace pre-implementation design specs with actual API reference: endpoints, configuration (env vars/flags), port allocations, healthcheck paths, example usage | [ ] |
-
-
-### Operational Documentation (New)
-
-| # | Item | Effort | Description | Status |
-|---|------|--------|-------------|--------|
 | DOC.13 | **Configuration reference** | Large | Per-service doc: all env vars, CLI flags, default ports, config file format. Single searchable reference | [ ] |
+
 
 
 ---
@@ -175,11 +162,10 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | # | Feature | Components | Priority | Status |
 |---|---------|-----------|----------|--------|
 | DX.17 | **Unified CLI subcommands** — All component CLIs as `serv` subcommands: `serv queue tail`, `serv mesh inspect`, `serv cache inspect`, `serv trace search` | Serv-lang, All | 🔴 High | [ ] |
-| DX.18 | **E2E integration test suite** — `serv doctor --integration` boots full ecosystem via docker-compose, validates cross-service flows | servverse-repo | 🟡 Medium | [ ] |
 | DX.19 | **Multi-service compose generation** — `serv init --full-stack` generates docker-compose.yml based on `.srv` infrastructure declarations | Serv-lang | 🟡 Medium | [ ] |
 | DX.20 | **`serv bench` built-in load testing** — Auto-generate k6/vegeta scenarios from declared routes, run with `serv bench <file.srv>` | Serv-lang | 🟡 Medium | [ ] |
 | DX.21 | **Schema-first development** — `serv generate --from-openapi <spec.yaml>` generates `.srv` route stubs + type definitions | Serv-lang | 🟡 Medium | [ ] |
-| DX.22 | **`serv upgrade` ecosystem command** — Check and upgrade all installed Servverse components to compatible versions | Serv-lang | 🟢 Low | [ ] |
+
 | DX.23 | **Observability-as-code** — `.serv/observability.yaml` declarative alert rules, SLOs, and dashboards committed to git. Auto-provisioned on deploy | ServConsole, Serv-lang | 🟡 Medium | [ ] |
 | DX.24 | **`serv playground` web IDE** — Hosted browser-based editor: write → compile → run → see output. WASM compilation target | Serv-lang | 🟢 Low | [ ] |
 | DX.25 | **Cross-service config propagation** — Central `.serv/config.yaml` propagated to all services on `serv deploy` | Serv-lang, ServCloud | 🟡 Medium | [ ] |

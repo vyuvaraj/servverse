@@ -24,7 +24,28 @@ This catalog outlines all 15 operational services of the Servverse ecosystem and
 * **ServCache**: Redis connection caching wrapper.
 * **ServShared**: Shared middleware library.
 
-### 5. Developer Control
-* **ServConsole**: Operational UI dashboard.
-* **ServDocs**: In-console embedded compiler documentation browser.
-* **Serv-lang**: AST compiler compiler target.
+## Core Component Reference APIs
+
+### ServGate
+- **Endpoints**: Matches routes configured in `config.json`.
+- **Admin**: `GET /api/routes` - lists current active paths.
+- **Port**: `8080`
+
+### ServStore
+- **Endpoints**:
+  - `PUT /buckets/{name}/{object}` - uploads file payload.
+  - `GET /buckets/{name}/{object}` - downloads file payload.
+- **Port**: `8081`
+
+### ServAuth
+- **Endpoints**:
+  - `POST /oauth/token` - authenticates credentials and returns JWT.
+  - `GET /oauth/keys` - returns JWKS active rotation keys.
+- **Port**: `8098`
+
+### ServMesh
+- **Endpoints**:
+  - `POST /api/register` - registers node instances.
+  - `POST /api/heartbeat` - heartbeats keepalive.
+- **Port**: `8089`
+
