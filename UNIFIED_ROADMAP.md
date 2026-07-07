@@ -138,7 +138,6 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | EE.18 | **Diagnostics terminal** | ServConsole `handleDiagnosticExec` | OSS: disabled (security risk). EE: interactive exec with audit log | [ ] |
 | EE.19 | **Multi-environment management** | ServConsole `handleEnvironments`, `handleSelectEnvironment` | OSS: single environment. EE: dev/staging/prod with config promotion | [ ] |
 | EE.20 | **Deployment rollback** | ServConsole `handleRollback` | OSS: view deploy history only. EE: one-click rollback via ServCloud | [ ] |
-| EE.21 | **EE Suffix Isolation** | Public Repositories (e.g. `ServShared/tenant_ee.go`) | ✅ Move all proprietary `_ee.go` files currently residing in public repos to the private `servverse-ee` repository, leaving only `_oss.go` stubs in the public domain. | [x] |
 
 
 
@@ -153,21 +152,13 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | # | Item | Effort | Description | Status |
 |---|------|--------|-------------|--------|
 | DOC.5 | **LANGUAGE_GUIDE.md rewrite** | Large | Add all missing features: structs, interfaces, enums, generics, AI agents, MCP tools, table DSL, typed params, null safety, `?` operator, optional chaining, spread, slice expressions, collection/string methods, extern fn | [ ] |
-| DOC.6 | **builtins.md update** | Medium | ✅ Add `ai.complete()`, `ai.chat()`, `ai.embed()`, `auth.*` helpers, `store.*` advanced ops, `broker.*` DLQ/delayed, `atomic.*`, `channel.*` | [x] |
-| DOC.7 | **cli.md update** | Small | ✅ Add `serv create`, `serv migrate`, `serv dev`, `serv doctor`, `serv deploy`, `serv add`, `serv audit`, `serv debug`, `serv generate`, `serv packages` | [x] |
-| DOC.8 | **stdlib.md completion** | Small | ✅ Document remaining 2 modules; add usage examples for each module category | [x] |
-
 
 
 ### Ecosystem Component Documentation
 
 | # | Item | Effort | Description | Status |
 |---|------|--------|-------------|--------|
-| DOC.9 | **Component catalog rewrite** | Medium | ✅ Rewrite `docs/components/README.md` — update all statuses from "🔴 Not Started" to actual state, remove aspirational 30-component framing, reflect 15 real services | [x] |
 | DOC.10 | **Component docs rewrite (all 15)** | Large | Replace pre-implementation design specs with actual API reference: endpoints, configuration (env vars/flags), port allocations, healthcheck paths, example usage | [ ] |
-| DOC.11 | **RUNTIME_DEPENDENCIES.md update** | Medium | ✅ Full 15-service dependency graph (currently only shows 4 newer services). Include ServGate↔ServStore, ServMesh interactions, ServCron↔ServQueue | [x] |
-| DOC.12 | **DOCKER_GUIDE.md update** | Small | ✅ Add ServAuth, ServDB, ServMail, ServFlow to directory structure and compose examples | [x] |
-
 
 
 ### Operational Documentation (New)
@@ -175,10 +166,6 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | # | Item | Effort | Description | Status |
 |---|------|--------|-------------|--------|
 | DOC.13 | **Configuration reference** | Large | Per-service doc: all env vars, CLI flags, default ports, config file format. Single searchable reference | [ ] |
-| DOC.14 | **Runbooks** | Medium | ✅ Operational runbooks: service restart procedures, backup/restore, scaling, log investigation, incident response templates | [x] |
-| DOC.15 | **Troubleshooting guide** | Medium | ✅ Common issues and solutions: connectivity failures, auth token problems, OTel not reporting, build failures, migration conflicts | [x] |
-| DOC.16 | **Security hardening guide** | Medium | ✅ TLS setup, JWT key rotation, mTLS configuration, secret management best practices, network policies | [x] |
-| DOC.17 | **Architecture decision records** | Small | ✅ Document key design choices: why Go codegen, why library-level mesh, why ServStore over external S3 | [x] |
 
 
 ---
@@ -197,12 +184,8 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | DX.24 | **`serv playground` web IDE** — Hosted browser-based editor: write → compile → run → see output. WASM compilation target | Serv-lang | 🟢 Low | [ ] |
 | DX.25 | **Cross-service config propagation** — Central `.serv/config.yaml` propagated to all services on `serv deploy` | Serv-lang, ServCloud | 🟡 Medium | [ ] |
 | DX.26 | **`serv dev` terminal dashboard** — k9s-style TUI showing routes, recent requests, errors, build status, connected services health | Serv-lang | 🟡 Medium | [ ] |
-| DX.27 | **ServConsole Monolithic Router Decoupling** — ✅ Refactor proxy and UI logic out of ServConsole main handlers into dedicated service proxies (`pkg/proxy/`) | ServConsole | 🟡 Medium | [x] |
-| DX.28 | **Serv-lang Codegen Modularization** — ✅ Break monolithic codegen switch statements in `codegen_stmt.go` and `codegen_expr.go` into targeted AST Visitor code generators | Serv-lang | 🟡 Medium | [x] |
-| DX.29 | **ServShared Middleware De-bloating** — ✅ Refactor the bloated `ServShared/middleware.go` file into structured subfiles inside `pkg/middleware/` | ServShared | 🟡 Medium | [x] |
 | DX.30 | **ServGate Proxy Handler Decoupling** — Break down the massive 2,000-line `handler.go` in ServGate into separate routing, load-balancing, and transformation pipeline filters | ServGate | 🔴 High | [ ] |
-| DX.31 | **ServAuth Monolithic Codebase Split** — ✅ Refactor database storage, JWT parsing, and TOTP MFA flows out of ServAuth's monolithic `main.go` into clean modular subpackages | ServAuth | 🟡 Medium | [x] |
-| DX.32 | **ServFlow Component Separation** — ✅ Decouple workflow execution engines, DAG analyzers, state managers, and handlers in ServFlow to prevent namespace cluttering | ServFlow | 🟡 Medium | [x] |
+
 
 
 
