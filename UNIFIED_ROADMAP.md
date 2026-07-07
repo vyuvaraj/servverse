@@ -194,6 +194,10 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | DX.27 | **ServConsole Monolithic Router Decoupling** — Refactor proxy and UI logic out of ServConsole main handlers into dedicated service proxies (`pkg/proxy/`) | ServConsole | 🟡 Medium | [ ] |
 | DX.28 | **Serv-lang Codegen Modularization** — Break monolithic codegen switch statements in `codegen_stmt.go` and `codegen_expr.go` into targeted AST Visitor code generators | Serv-lang | 🟡 Medium | [ ] |
 | DX.29 | **ServShared Middleware De-bloating** — Refactor the bloated `ServShared/middleware.go` file into structured subfiles inside `pkg/middleware/` | ServShared | 🟡 Medium | [ ] |
+| DX.30 | **ServGate Proxy Handler Decoupling** — Break down the massive 2,000-line `handler.go` in ServGate into separate routing, load-balancing, and transformation pipeline filters | ServGate | 🔴 High | [ ] |
+| DX.31 | **ServAuth Monolithic Codebase Split** — Refactor database storage, JWT parsing, and TOTP MFA flows out of ServAuth's monolithic `main.go` into clean modular subpackages | ServAuth | 🟡 Medium | [ ] |
+| DX.32 | **ServFlow Component Separation** — Decouple workflow execution engines, DAG analyzers, state managers, and handlers in ServFlow to prevent namespace cluttering | ServFlow | 🟡 Medium | [ ] |
+
 
 
 ---
