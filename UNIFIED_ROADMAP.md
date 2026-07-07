@@ -76,11 +76,11 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 |---|---------|-----------|----------|--------|
 | UC.1 | **Full 15-service discovery** — Add CLI flags + `ServDiscovery` fields for ServMesh, ServCron, ServCloud, ServCache, ServRegistry; full reverse proxies at `/api/proxy/{mesh,cron,cache,registry,cloud}/`; all 14 services applied back from `SERVVERSE_DISCOVERY` override | ServConsole | 🔴 High | ✅ `9df19eb` |
 | UC.2 | **Unified health aggregation** — `/api/status` and alert loop monitor ALL 14 connected services, not just 4; `handleDevServices` covers all 14 | ServConsole | 🔴 High | ✅ `9df19eb` |
-| UC.3 | **ServMesh panel** — Service registry, circuit breaker states, mTLS cert expiry, routing rules, canary weights | ServConsole, ServMesh | 🟡 Medium | [ ] |
+| UC.3 | **ServMesh panel** — Service registry, circuit breaker states, mTLS cert expiry, routing rules, canary weights | ServConsole, ServMesh | 🟡 Medium | ✅ `682092b` (ServMesh), `9ae33a8` (ServConsole) |
 | UC.4 | **ServCron panel** — Scheduled jobs, next 5 runs, execution history, failure counts, visual cron builder | ServConsole, ServCron | 🟡 Medium | ✅ `ffa8745` |
 | UC.5 | **ServCache panel** — Per-namespace keys, hit/miss ratios, memory pressure, eviction rates, hot keys | ServConsole, ServCache | 🟡 Medium | ✅ `ffa8745` |
 | UC.6 | **ServCloud panel consolidation** — Full proxy with resource quotas, scaling, deploy previews | ServConsole, ServCloud | 🟢 Low | [ ] |
-| UC.7 | **ServRegistry panel** — Published packages, download stats, dependency trees, license warnings | ServConsole, ServRegistry | 🟡 Medium | [ ] |
+| UC.7 | **ServRegistry panel** — Published packages, download stats, dependency trees, license warnings | ServConsole, ServRegistry | 🟡 Medium | ✅ `9ae33a8` |
 | UC.8 | **ServDocs embedding** — Generated documentation browser within console documentation tab | ServConsole, ServDocs | 🟢 Low | [ ] |
 
 ### 11.2 Cross-Service Intelligence
