@@ -139,6 +139,11 @@ This document preserves the archived history of completed items migrated from `U
 - **Runtime Dependency Matrix (DOC.11)** — Formulated [RUNTIME_DEPENDENCIES.md](file:///c:/Mine/try/serv/docs/RUNTIME_DEPENDENCIES.md) documenting port configurations and service interactions.
 - **Docker Deployment Guide (DOC.12)** — Formulated [DOCKER_GUIDE.md](file:///c:/Mine/try/serv/docs/DOCKER_GUIDE.md) mapping orchestrator setup compose specifications.
 - **Architecture Decision Records (DOC.17)** — Structured [ADR.md](file:///c:/Mine/try/serv/docs/ADR.md) documenting language, database persistence, and registry choices.
+- **Builtins Documentation (DOC.6)** — Expanded [builtins.md](file:///c:/Mine/try/serv/Serv-lang/docs/builtins.md) to document modern `ai.*` and `auth.*` functions.
+- **Component Catalog Rewrite (DOC.9)** — Rewrote [docs/components/README.md](file:///c:/Mine/try/serv/servverse-repo/docs/components/README.md) to accurately represent the current 15 operational services.
+- **Operational Runbooks (DOC.14)** — Formulated [RUNBOOKS.md](file:///c:/Mine/try/serv/servverse-repo/docs/RUNBOOKS.md) mapping out recovery and diagnostics patterns.
+- **Troubleshooting Guide (DOC.15)** — Formulated [TROUBLESHOOTING.md](file:///c:/Mine/try/serv/servverse-repo/docs/TROUBLESHOOTING.md) detailing resolution flows for common failures.
+- **Security Hardening Guide (DOC.16)** — Formulated [SECURITY_HARDENING.md](file:///c:/Mine/try/serv/servverse-repo/docs/SECURITY_HARDENING.md) describing production mTLS, logging sanitizers, and token rotation security.
 
 
 ---
