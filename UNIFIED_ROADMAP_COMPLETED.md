@@ -128,6 +128,12 @@ This document preserves the archived history of completed items migrated from `U
 - **AI-Powered Scaffolder (DX.11)** — Natural language scaffolding generator (`serv create "<prompt>"`).
 - **Declarative Schema Migrations (DX.14)** — Native `table` DSL in `.srv` files with `@primary`, `@unique`, `@autoincrement`, `@required`, `@default` annotations. Compiler auto-generates `CREATE TABLE` SQL; `serv migrate` diffs and applies schema changes (CREATE + ALTER TABLE ADD COLUMN).
 - **Distributed Lock Manager (CORE.8)** — TTL-based in-memory lock store (`ServMesh/pkg/lock`) with Acquire/Release/Extend/Status/List. Mounted into ServMesh as `/api/lock/*` HTTP endpoints. `ServShared` provides the `DistributedLocker` interface, `HTTPLockClient`, `WithLock`, `WithLockRetry` helpers, and `NoOpLocker` for tests. 20 tests pass (13 unit + 7 HTTP).
+- **ServConsole Decoupling (DX.27)** — Refactored monolithic console routing and service proxies into modular handlers inside `pkg/proxy/`.
+- **Serv-lang Codegen Modularization (DX.28)** — Split giant statement/expression codegen switch statements from codegen.go into dedicated AST Visitor blocks.
+- **ServShared Middleware De-bloating (DX.29)** — Monolithic `middleware.go` split into individual files (`auth.go`, `tenant.go`, `trace.go`, `log.go`) inside the `pkg/middleware` package.
+- **ServAuth Monolithic Codebase Split (DX.31)** — Refactored user store storage and TOTP authentication checks out of monolithic main packages.
+- **ServFlow Component Separation (DX.32)** — Partitioned workflow compilers, engine executors, checkpoint serialization interfaces, and API handlers.
+- **EE Suffix Isolation (EE.21)** — Isolated multi-tenant `tenant_ee.go` code blocks by moving them from public `ServShared` repo to private `servverse-ee` repository.
 
 ---
 
