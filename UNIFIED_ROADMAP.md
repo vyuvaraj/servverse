@@ -231,15 +231,15 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | # | Feature | Type | Components | Priority | Status |
 |---|---------|------|------------|----------|--------|
 | AI.20 | **Conversational object query** — `GET /bucket?ask=<question>` generates embedding, searches, synthesizes answer (RAG on stored objects) | OSS | ServStore | 🟡 Medium | ✅ `be9f8d1` |
-| AI.21 | **Auto-summarization on upload** — Generate and store summaries as metadata on document upload. Browse-by-summary without downloading | OSS | ServStore | 🟡 Medium | [ ] |
-| AI.22 | **Similarity deduplication** — On upload, check if semantically similar document exists (cosine > 0.95). Warn or auto-deduplicate | OSS | ServStore | 🟢 Low | [ ] |
+| AI.21 | **Auto-summarization on upload** — Generate and store summaries as metadata on document upload. Browse-by-summary without downloading | OSS | ServStore | 🟡 Medium | ✅ `ef2aea4` |
+| AI.22 | **Similarity deduplication** — On upload, check if semantically similar document exists (cosine > 0.95). Warn or auto-deduplicate | OSS | ServStore | 🟢 Low | ✅ `ef2aea4` |
 | AI.23 | **Classification tags on ingest** — Auto-classify uploaded objects (invoices, contracts, logs, images) via lightweight model. Searchable tags | OSS | ServStore | 🟢 Low | [ ] |
 
 ### ServQueue (AI Messaging)
 
 | # | Feature | Type | Components | Priority | Status |
 |---|---------|------|------------|----------|--------|
-| AI.24 | **Semantic message routing** — Route messages to subscribers based on content meaning: `subscribe "support" where ai.classify(msg) == "billing"` | OSS | ServQueue, Serv-lang | 🟡 Medium | [ ] |
+| AI.24 | **Semantic message routing** — Route messages to subscribers based on content meaning: `subscribe "support" where ai.classify(msg) == "billing"` | OSS | ServQueue, Serv-lang | 🟡 Medium | ✅ `272d863` |
 | AI.25 | **DLQ auto-summarization** — When messages pile up in DLQ, generate summary: "47 failed messages, mostly payment timeouts from US-East" | EE | ServQueue, ServConsole | 🟢 Low | [ ] |
 | AI.26 | **Message pattern anomaly detection** — Learn normal throughput patterns. Alert on significant volume/content shifts | EE | ServQueue, ServTrace | 🟡 Medium | [ ] |
 
