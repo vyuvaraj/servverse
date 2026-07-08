@@ -191,11 +191,11 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | LANG.7 | **Security scanning** — `serv audit --deps` outputs SARIF for CI; scans compiled dependency CVEs | Serv-lang | 🟡 Medium | ✅ `853ab5c` (SARIF output support) |
 | LANG.8 | **Interface satisfaction checking** — Compile-time verification that structs implement declared interfaces | Serv-lang | 🟡 Medium | ✅ `853ab5c` (compile-time checker) |
 | LANG.9 | **Native Service Mesh Declarations (`mesh`)** — Compiler-supported `mesh` keyword to define routing policies, circuit breakers, and automatic client bindings directly in `.srv` | Serv-lang, ServMesh | 🔴 High | ✅ `b969282` |
-| LANG.10 | **First-Class Storage Buckets (`bucket`)** — Native AST keyword/block syntax to bind, configure, and interact with ServStore S3 storage natively (`bucket media { path "..." }` and `media.put(file)`) | Serv-lang, ServStore | 🟡 Medium | [ ] |
+| LANG.10 | **First-Class Storage Buckets (`bucket`)** — Native AST keyword/block syntax to bind, configure, and interact with ServStore S3 storage natively (`bucket media { path "..." }` and `media.put(file)`) | Serv-lang, ServStore | 🟡 Medium | ✅ `059ec47` |
 | LANG.11 | **Declarative Event Handlers (`on`)** — Compiler syntactic sugar for message broker subscriptions using event handlers (`on "user.signup" (event) { ... }`) backing onto ServQueue | Serv-lang, ServQueue | 🔴 High | ✅ `b969282` |
 | LANG.12 | **Native Distributed Locking (`lock` block)** — Syntactic scope-level lock management (`lock "mutex-key" { ... }`) utilizing the ServLock backend with automatic scope-deferred release | Serv-lang, ServMesh | 🔴 High | ✅ `b969282` (built-in lock block syntax) |
-| LANG.13 | **Integrated Gateway Routing (`gate`)** — Declarative gateway ingress, mapping parameters, and dynamic CORS/rate-limiting block mapping mapped directly to ServGate | Serv-lang, ServGate | 🟡 Medium | [ ] |
-| LANG.14 | **Declarative Scheduled Workloads (`job`)** — Dedicated AST job declarations (`job cleanup every 1h { ... }`) natively compiling into ServCron runtime registrations | Serv-lang, ServCron | 🟡 Medium | [ ] |
+| LANG.13 | **Integrated Gateway Routing (`gate`)** — Declarative gateway ingress, mapping parameters, and dynamic CORS/rate-limiting block mapping mapped directly to ServGate | Serv-lang, ServGate | 🟡 Medium | ✅ `059ec47` |
+| LANG.14 | **Declarative Scheduled Workloads (`job`)** — Dedicated AST job declarations (`job cleanup every 1h { ... }`) natively compiling into ServCron runtime registrations | Serv-lang, ServCron | 🟡 Medium | ✅ `059ec47` |
 | CORE.9 | **Event Sourcing & CQRS Framework** — Native event-sourced projection engines using ServQueue and ServStore | Serv-lang, ServQueue, ServStore | 🔴 High | [ ] |
 | CORE.10 | **ServStore CDN mode** — Edge caching layer with Cache-Control headers and Cloudflare/Fastly origin pull | ServStore | 🟢 Low | [ ] |
 
