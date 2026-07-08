@@ -210,11 +210,11 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 
 | # | Feature | Type | Components | Priority | Status |
 |---|---------|------|------------|----------|--------|
-| AI.10 | **RAG pipeline keyword** — `rag "servstore://docs" { embed: "openai", chunk: 512 }` declares retrieval-augmented generation as infrastructure. Auto-index on write, inject context on `ai.chat()` | OSS | Serv-lang, ServStore | 🔴 High | [ ] |
+| AI.10 | **RAG pipeline keyword** — `rag "servstore://docs" { embed: "openai", chunk: 512 }` declares retrieval-augmented generation as infrastructure. Auto-index on write, inject context on `ai.chat()` | OSS | Serv-lang, ServStore | 🔴 High | ✅ `2f5f28a` |
 | AI.11 | **Structured output (JSON mode)** — `ai.complete(prompt, schema: UserSchema)` forces LLM responses to conform to a Serv struct. Compiler validates schema at build time | OSS | Serv-lang | 🔴 High | ✅ `fd90df6` |
 | AI.12 | **Streaming responses** — `ai.stream(prompt, fn(chunk) { conn.send(chunk) })` for server-sent event streaming. Currently `ai.chat()` blocks until complete | OSS | Serv-lang | 🔴 High | ✅ `fd90df6` |
-| AI.13 | **Prompt template library** — `import "stdlib/prompts"` with variable injection, versioning, and A/B testing hooks | OSS | Serv-lang | 🟡 Medium | [ ] |
-| AI.14 | **AI eval framework** — `test "quality" { assert ai.eval(prompt, expected, threshold: 0.8) }` for LLM output quality testing in `serv test` | OSS | Serv-lang | 🟡 Medium | [ ] |
+| AI.13 | **Prompt template library** — `import "stdlib/prompts"` with variable injection, versioning, and A/B testing hooks | OSS | Serv-lang | 🟡 Medium | ✅ `2f5f28a` |
+| AI.14 | **AI eval framework** — `test "quality" { assert ai.eval(prompt, expected, threshold: 0.8) }` for LLM output quality testing in `serv test` | OSS | Serv-lang | 🟡 Medium | ✅ `2f5f28a` |
 
 ### ServGate (AI Gateway)
 
@@ -223,14 +223,14 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | AI.15 | **Token budget enforcement per route** — Max tokens/cost per API key per day. Reject when exhausted. Dashboard burn rate | EE | ServGate, ServConsole | 🔴 High | [ ] |
 | AI.16 | **Prompt versioning & A/B routing** — Route % of traffic to different system prompts. Track outcome quality per version | EE | ServGate | 🟡 Medium | [ ] |
 | AI.17 | **Response quality scoring** — Auto-score LLM responses for hallucination risk via factual grounding check against RAG context | EE | ServGate | 🟡 Medium | [ ] |
-| AI.18 | **Multi-model fallback chain** — `models: [gpt-4o-mini, gpt-4o, claude-3-5-sonnet]` — try next on failure/timeout | OSS | ServGate | 🟡 Medium | [ ] |
+| AI.18 | **Multi-model fallback chain** — `models: [gpt-4o-mini, gpt-4o, claude-3-5-sonnet]` — try next on failure/timeout | OSS | ServGate | 🟡 Medium | ✅ `86f0dee` |
 | AI.19 | **Semantic rate limiting** — Rate limit by semantic similarity of requests, not just IP. Prevent same question rephrased 100 ways | EE | ServGate | 🟢 Low | [ ] |
 
 ### ServStore (AI Storage)
 
 | # | Feature | Type | Components | Priority | Status |
 |---|---------|------|------------|----------|--------|
-| AI.20 | **Conversational object query** — `GET /bucket?ask=<question>` generates embedding, searches, synthesizes answer (RAG on stored objects) | OSS | ServStore | 🟡 Medium | [ ] |
+| AI.20 | **Conversational object query** — `GET /bucket?ask=<question>` generates embedding, searches, synthesizes answer (RAG on stored objects) | OSS | ServStore | 🟡 Medium | ✅ `be9f8d1` |
 | AI.21 | **Auto-summarization on upload** — Generate and store summaries as metadata on document upload. Browse-by-summary without downloading | OSS | ServStore | 🟡 Medium | [ ] |
 | AI.22 | **Similarity deduplication** — On upload, check if semantically similar document exists (cosine > 0.95). Warn or auto-deduplicate | OSS | ServStore | 🟢 Low | [ ] |
 | AI.23 | **Classification tags on ingest** — Auto-classify uploaded objects (invoices, contracts, logs, images) via lightweight model. Searchable tags | OSS | ServStore | 🟢 Low | [ ] |
