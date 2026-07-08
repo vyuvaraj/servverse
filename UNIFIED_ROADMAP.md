@@ -86,11 +86,11 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 
 | # | Feature | Type | Components | Priority | Status |
 |---|---------|------|------------|----------|--------|
-| AI.15 | **Token budget enforcement per route** — Max tokens/cost per API key per day. Reject when exhausted. Dashboard burn rate | EE | ServGate, ServConsole | 🔴 High | ✅ `179bc43`/`2682b2a` |
-| AI.16 | **Prompt versioning & A/B routing** — Route % of traffic to different system prompts. Track outcome quality per version | EE | ServGate | 🟡 Medium | ✅ `179bc43`/`2682b2a` |
-| AI.17 | **Response quality scoring** — Auto-score LLM responses for hallucination risk via factual grounding check against RAG context | EE | ServGate | 🟡 Medium | ✅ `179bc43`/`2682b2a` |
+| AI.15 | **Token budget enforcement per route** — Max tokens/cost per API key per day. Reject when exhausted. Dashboard burn rate | EE | ServGate, ServConsole | 🔴 High | ✅ `b172cf1`/`f684827` |
+| AI.16 | **Prompt versioning & A/B routing** — Route % of traffic to different system prompts. Track outcome quality per version | EE | ServGate | 🟡 Medium | ✅ `b172cf1`/`f684827` |
+| AI.17 | **Response quality scoring** — Auto-score LLM responses for hallucination risk via factual grounding check against RAG context | EE | ServGate | 🟡 Medium | ✅ `b172cf1`/`f684827` |
 | AI.18 | **Multi-model fallback chain** — `models: [gpt-4o-mini, gpt-4o, claude-3-5-sonnet]` — try next on failure/timeout | OSS | ServGate | 🟡 Medium | ✅ `86f0dee` |
-| AI.19 | **Semantic rate limiting** — Rate limit by semantic similarity of requests, not just IP. Prevent same question rephrased 100 ways | EE | ServGate | 🟢 Low | ✅ `179bc43`/`2682b2a` |
+| AI.19 | **Semantic rate limiting** — Rate limit by semantic similarity of requests, not just IP. Prevent same question rephrased 100 ways | EE | ServGate | 🟢 Low | ✅ `b172cf1`/`f684827` |
 
 ### ServStore (AI Storage)
 
