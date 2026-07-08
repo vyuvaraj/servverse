@@ -55,7 +55,7 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | CORE.8 | **Distributed Lock Manager (`ServLock`)** — ✅ TTL-based lock store in `ServMesh/pkg/lock`; `/api/lock/{acquire,release,extend,status,list}` HTTP API; `DistributedLocker` interface + `HTTPLockClient` + `WithLock`/`WithLockRetry` helpers in `ServShared` | ServMesh, ServShared | High |
 | SEC.17 | **Unified Dynamic Policy Enforcement (`ServPolicy`)** — Declarative schema-based security, data, and rate policy engine | All Services | Medium |
 | API.8 | **Ecosystem-Wide Schema Registry** — Schema broker validating DTOs across REST requests, STOMP messages, and S3 payloads | ServRegistry, ServGate | High |
-| OPS.17 | **Chaos Fault Injection Middleware** — Inject transport latencies, connection drops, and queue dropouts dynamically in development | ServMesh, ServShared | Medium |
+| OPS.17 | **Chaos Fault Injection Middleware** — ✅ Inject transport latencies, connection drops, and queue dropouts dynamically in development | ServMesh, ServShared | Medium |
 | AI.10 | **Self-Defending AI WAF** — Semantic proxy engine protecting routes against prompt injection, API abuse, and access anomalies | ServGate | High |
 | AI.11 | **Semantic Rate Limiter** — Intrinsic token and semantic similarity limits preventing cost exhaustion attacks on LLM routes | ServGate, ServShared | Medium |
 | AI.12 | **Semantic DLQ Triaging** — Agentic dead-letter queue handlers analyzing message errors, classifying fault patterns, and requeuing patches | ServQueue, ServShared | High |
@@ -79,9 +79,9 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | UC.3 | **ServMesh panel** — Service registry, circuit breaker states, mTLS cert expiry, routing rules, canary weights | ServConsole, ServMesh | 🟡 Medium | ✅ `682092b` (ServMesh), `9ae33a8` (ServConsole) |
 | UC.4 | **ServCron panel** — Scheduled jobs, next 5 runs, execution history, failure counts, visual cron builder | ServConsole, ServCron | 🟡 Medium | ✅ `ffa8745` |
 | UC.5 | **ServCache panel** — Per-namespace keys, hit/miss ratios, memory pressure, eviction rates, hot keys | ServConsole, ServCache | 🟡 Medium | ✅ `ffa8745` |
-| UC.6 | **ServCloud panel consolidation** — Full proxy with resource quotas, scaling, deploy previews | ServConsole, ServCloud | 🟢 Low | [ ] |
+| UC.6 | **ServCloud panel consolidation** — Full proxy with resource quotas, scaling, deploy previews | ServConsole, ServCloud | 🟢 Low | ✅ `f4b8327` |
 | UC.7 | **ServRegistry panel** — Published packages, download stats, dependency trees, license warnings | ServConsole, ServRegistry | 🟡 Medium | ✅ `9ae33a8` |
-| UC.8 | **ServDocs embedding** — Generated documentation browser within console documentation tab | ServConsole, ServDocs | 🟢 Low | [ ] |
+| UC.8 | **ServDocs embedding** — Generated documentation browser within console documentation tab | ServConsole, ServDocs | 🟢 Low | ✅ `f4b8327` |
 
 ### 11.2 Cross-Service Intelligence
 
