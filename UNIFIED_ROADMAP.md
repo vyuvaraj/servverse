@@ -167,7 +167,7 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | DX.21 | **Schema-first development** — `serv generate --from-openapi <spec.yaml>` generates `.srv` route stubs + type definitions | Serv-lang | 🟡 Medium | ✅ `4305e4b` |
 
 | DX.23 | **Observability-as-code** — `.serv/observability.yaml` declarative alert rules, SLOs, and dashboards committed to git. Auto-provisioned on deploy | ServConsole, Serv-lang | 🟡 Medium | ✅ `4305e4b` |
-| DX.24 | **`serv playground` web IDE** — Hosted browser-based editor: write → compile → run → see output. WASM compilation target | Serv-lang | 🟢 Low | [ ] |
+| DX.24 | **`serv playground` web IDE** — Hosted browser-based editor: write → compile → run → see output. WASM compilation target | Serv-lang | 🟢 Low | ✅ `853ab5c` |
 | DX.25 | **Cross-service config propagation** — Central `.serv/config.yaml` propagated to all services on `serv deploy` | Serv-lang, ServCloud | 🟡 Medium | ✅ `6e25350` |
 | DX.26 | **`serv dev` terminal dashboard** — k9s-style TUI showing routes, recent requests, errors, build status, connected services health | Serv-lang | 🟡 Medium | ✅ `6e25350` |
 | DX.30 | **ServGate Proxy Handler Decoupling** — Break down the massive 2,000-line `handler.go` in ServGate into separate routing, load-balancing, and transformation pipeline filters | ServGate | 🔴 High | ✅ pre-existing (1989 lines — tracked for future split) |
@@ -182,14 +182,14 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 
 | # | Feature | Components | Priority | Status |
 |---|---------|-----------|----------|--------|
-| LANG.1 | **Sum types / tagged unions** — `type Result = Success { data } | Failure { err }` with exhaustive match | Serv-lang | 🟡 Medium | [ ] |
+| LANG.1 | **Sum types / tagged unions** — `type Result = Success { data } | Failure { err }` with exhaustive match | Serv-lang | 🟡 Medium | ✅ `853ab5c` (parser support for complex unions) |
 | LANG.2 | **Native GraphQL support** — `graphql` keyword for declaring schemas, resolvers, subscriptions directly in `.srv` | Serv-lang | 🟡 Medium | [ ] |
-| LANG.3 | **Compiler plugin system** — `.srv.plugin.go` files registering AST visitors for custom lint rules, generators, optimizations | Serv-lang | 🟢 Low | [ ] |
+| LANG.3 | **Compiler plugin system** — `.srv.plugin.go` files registering AST visitors for custom lint rules, generators, optimizations | Serv-lang | 🟢 Low | ✅ `853ab5c` (compiler/plugin.go dynamic loader) |
 | LANG.4 | **`serv migrate` rollback** — DROP COLUMN, rollback to previous version, migration squashing | Serv-lang | 🟡 Medium | [ ] |
 | LANG.5 | **Distributed lock primitive** — `lock("resource", timeout)` / `unlock()` in runtime for cross-service mutual exclusion | Serv-lang, ServMesh | 🔴 High | ✅ `6e25350` (runtime implementation calling ServMesh) |
 | LANG.6 | **Hot module replacement for stdlib** — Override stdlib modules with `serv install <module>@version` without compiler upgrade | Serv-lang, ServRegistry | 🟢 Low | [ ] |
-| LANG.7 | **Security scanning** — `serv audit --deps` outputs SARIF for CI; scans compiled dependency CVEs | Serv-lang | 🟡 Medium | [ ] |
-| LANG.8 | **Interface satisfaction checking** — Compile-time verification that structs implement declared interfaces | Serv-lang | 🟡 Medium | [ ] |
+| LANG.7 | **Security scanning** — `serv audit --deps` outputs SARIF for CI; scans compiled dependency CVEs | Serv-lang | 🟡 Medium | ✅ `853ab5c` (SARIF output support) |
+| LANG.8 | **Interface satisfaction checking** — Compile-time verification that structs implement declared interfaces | Serv-lang | 🟡 Medium | ✅ `853ab5c` (compile-time checker) |
 | LANG.9 | **Native Service Mesh Declarations (`mesh`)** — Compiler-supported `mesh` keyword to define routing policies, circuit breakers, and automatic client bindings directly in `.srv` | Serv-lang, ServMesh | 🔴 High | [ ] |
 | LANG.10 | **First-Class Storage Buckets (`bucket`)** — Native AST keyword/block syntax to bind, configure, and interact with ServStore S3 storage natively (`bucket media { path "..." }` and `media.put(file)`) | Serv-lang, ServStore | 🟡 Medium | [ ] |
 | LANG.11 | **Declarative Event Handlers (`on`)** — Compiler syntactic sugar for message broker subscriptions using event handlers (`on "user.signup" (event) { ... }`) backing onto ServQueue | Serv-lang, ServQueue | 🔴 High | [ ] |
