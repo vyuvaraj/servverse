@@ -256,15 +256,15 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 
 | # | Feature | Components | Priority | Status |
 |---|---------|-----------|----------|--------|
-| AI.31 | **Adaptive risk scoring** — Score login attempts: new device + unusual time + different geo = high risk → step-up to MFA | ServAuth | 🟡 Medium | [ ] |
-| AI.32 | **Credential stuffing detection** — Behavioral clustering to detect many IPs using same password list. Auto-block suspicious cohorts | ServAuth | 🟡 Medium | [ ] |
+| AI.31 | **Adaptive risk scoring** — Score login attempts: new device + unusual time + different geo = high risk → step-up to MFA | ServAuth | 🟡 Medium | ✅ `750d4cd` |
+| AI.32 | **Credential stuffing detection** — Behavioral clustering to detect many IPs using same password list. Auto-block suspicious cohorts | ServAuth | 🟡 Medium | ✅ `750d4cd` |
 
 ### ServTrace (AI Observability)
 
 | # | Feature | Components | Priority | Status |
 |---|---------|-----------|----------|--------|
-| AI.33 | **Auto-correlate slow spans** — Identify root cause span and explain: "95% latency in ServDB query — missing index on order_date" | ServTrace, ServConsole | 🟡 Medium | [ ] |
-| AI.34 | **Predictive SLO breach** — Given current error rate trajectory, predict when SLO will be violated. "Error budget exhausted in 3 days" | ServTrace, ServConsole | 🟡 Medium | [ ] |
+| AI.33 | **Auto-correlate slow spans** — Identify root cause span and explain: "95% latency in ServDB query — missing index on order_date" | ServTrace, ServConsole | 🟡 Medium | ✅ `cc6c13c` |
+| AI.34 | **Predictive SLO breach** — Given current error rate trajectory, predict when SLO will be violated. "Error budget exhausted in 3 days" | ServTrace, ServConsole | 🟡 Medium | ✅ `cc6c13c` |
 
 ### ServCron & ServFlow (AI Automation)
 
