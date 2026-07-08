@@ -123,8 +123,8 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | # | Feature | Current Location | OSS Stub Behavior | Status |
 |---|---------|-----------------|-------------------|--------|
 | EE.10 | **Multi-tenant resource isolation** | ServShared `TenantMiddleware`, `IsolateTopic`, `IsolateDBPool`, `IsolateBucket` | OSS: single "default" tenant only, middleware passes through. EE: full tenant verification + isolation | ✅ `f2bd3a5` (ServShared), `6838b98` (servverse-ee) |
-| EE.11 | **ServStore federation** | ServStore `pkg/s3/api.go` (federation rules, cross-cluster routing, proxy) | OSS: single-cluster only. EE: multi-cluster namespace federation | [ ] |
-| EE.12 | **ServQueue federation** | ServQueue (cross-cluster event mirroring) | OSS: single-cluster. EE: geo-distributed topic mirroring | [ ] |
+| EE.11 | **ServStore federation** | ServStore `pkg/s3/api.go` (federation rules, cross-cluster routing, proxy) | OSS: single-cluster only. EE: multi-cluster namespace federation | ✅ `federation_ee.go` / `federation_oss.go` |
+| EE.12 | **ServQueue federation** | ServQueue (cross-cluster event mirroring) | OSS: single-cluster. EE: geo-distributed topic mirroring | ✅ `federation_ee.go` / `federation_oss.go` |
 | EE.13 | **SLO tracking & error budgets** | ServConsole `handleSLO` + `pkg/incidents/` | OSS: return 403 EE required. EE: full SLO dashboard | [ ] |
 | EE.14 | **Cost estimation panel** | ServConsole `handleCostEstimation` | OSS: return 403. EE: infrastructure cost projections | [ ] |
 
