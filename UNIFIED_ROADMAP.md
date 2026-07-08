@@ -87,7 +87,7 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 
 | # | Feature | Components | Priority | Status |
 |---|---------|-----------|----------|--------|
-| UC.9 | **End-to-end request flow visualization** — Full lifecycle: Client → Gate → Backend → Queue → Store across all 15 services in one timeline | ServConsole, ServTrace | 🔴 High | [ ] |
+| UC.9 | **End-to-end request flow visualization** — Full lifecycle: Client → Gate → Backend → Queue → Store across all 15 services in one timeline | ServConsole, ServTrace | 🔴 High | ✅ `645167a` |
 | UC.10 | **Ecosystem dependency matrix** — Auto-generated runtime dependency map from OTel traces, interactive call volume/latency per edge | ServConsole, ServTrace | 🟡 Medium | ✅ `949dfce` |
 | UC.11 | **Unified configuration editor** — Central panel for cross-service config: rate limits, TTLs, schedules, routing — all validated in one place | ServConsole, All | 🟡 Medium | ✅ `6c40f66` |
 | UC.12 | **Cross-service log correlation** — Click any trace_id → chronological log lines from all services with that trace_id | ServConsole, All | 🟡 Medium | ✅ `be1a0c1` |
@@ -98,7 +98,7 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | # | Feature | Components | Priority | Status |
 |---|---------|-----------|----------|--------|
 | UC.14 | **Capacity planning view** — Aggregate resource metrics, project growth trends, alert on approaching limits | ServConsole, ServCloud | 🟡 Medium | ✅ `949dfce` |
-| UC.15 | **Change correlation engine** — Overlay deploys + config changes + incidents on unified timeline, correlate "what changed" with "what broke" | ServConsole, ServCloud, ServTrace | 🔴 High | [ ] |
+| UC.15 | **Change correlation engine** — Overlay deploys + config changes + incidents on unified timeline, correlate "what changed" with "what broke" | ServConsole, ServCloud, ServTrace | 🔴 High | ✅ `645167a` |
 | UC.16 | **Service comparison mode** — Side-by-side: latency, throughput, error rate, resources. For canary validation | ServConsole | 🟢 Low | ✅ `be1a0c1` |
 | UC.17 | **Ecosystem startup orchestrator** — `serv console --start-all` boots services in dependency order, waits for health, opens dashboard | ServConsole, All | 🟡 Medium | ✅ `be1a0c1` |
 | UC.18 | **Unified API documentation portal** — Aggregate all service OpenAPI specs into single interactive portal | ServConsole, ServDocs, ServGate | 🟡 Medium | ✅ `be1a0c1` |
@@ -107,7 +107,7 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 
 | # | Feature | Components | Priority | Status |
 |---|---------|-----------|----------|--------|
-| UC.19 | **AI root cause analysis** — On alert: correlate deploys, config changes, dependency failures, past incidents. Ranked hypotheses | ServConsole | 🟡 Medium | [ ] |
+| UC.19 | **AI root cause analysis** — On alert: correlate deploys, config changes, dependency failures, past incidents. Ranked hypotheses | ServConsole (EE) | 🟡 Medium | ✅ `645167a` (EE) |
 | UC.20 | **Natural language operations query** — "Show failed requests in last hour touching ServDB" → trace + log + error aggregation | ServConsole | 🟢 Low | [ ] |
 | UC.21 | **Predictive alerting** — Trend-based prediction: disk full in 3 days, cert expiring, approaching rate limits | ServConsole, ServTrace | 🟡 Medium | [ ] |
 | UC.22 | **Automated incident playbooks** — Detect alert patterns → auto-execute runbook: scale pool, route to replica, notify on-call | ServConsole | 🟡 Medium | [ ] |
