@@ -106,14 +106,14 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | # | Feature | Type | Components | Priority | Status |
 |---|---------|------|------------|----------|--------|
 | AI.24 | **Semantic message routing** — Route messages to subscribers based on content meaning: `subscribe "support" where ai.classify(msg) == "billing"` | OSS | ServQueue, Serv-lang | 🟡 Medium | ✅ `272d863` |
-| AI.25 | **DLQ auto-summarization** — When messages pile up in DLQ, generate summary: "47 failed messages, mostly payment timeouts from US-East" | EE | ServQueue, ServConsole | 🟢 Low | [ ] |
-| AI.26 | **Message pattern anomaly detection** — Learn normal throughput patterns. Alert on significant volume/content shifts | EE | ServQueue, ServTrace | 🟡 Medium | [ ] |
+| AI.25 | **DLQ auto-summarization** — When messages pile up in DLQ, generate summary: "47 failed messages, mostly payment timeouts from US-East" | EE | ServQueue, ServConsole | 🟢 Low | ✅ `30db3e1`/`73239ee` |
+| AI.26 | **Message pattern anomaly detection** — Learn normal throughput patterns. Alert on significant volume/content shifts | EE | ServQueue, ServTrace | 🟡 Medium | ✅ `30db3e1`/`73239ee` |
 
 ### ServConsole (AI Operations)
 
 | # | Feature | Type | Components | Priority | Status |
 |---|---------|------|------------|----------|--------|
-| AI.27 | **Natural language log search** — "Show errors from ServAuth where users couldn't login" → structured log query + filters | EE | ServConsole | 🔴 High | [ ] |
+| AI.27 | **Natural language log search** — "Show errors from ServAuth where users couldn't login" → structured log query + filters | EE | ServConsole | 🔴 High | ✅ `bb4f7ab`/`73239ee` |
 | AI.28 | **Incident root cause synthesis** — On alert: analyze deploys, config changes, correlated metrics, similar past incidents. One-paragraph hypothesis | EE | ServConsole | 🔴 High | [ ] |
 | AI.29 | **Auto-generated runbooks** — Observe how operators respond to recurring alerts. After 3 manual resolutions, suggest automated runbook | EE | ServConsole | 🟡 Medium | [ ] |
 | AI.30 | **Anomaly explanation** — When metric spikes, explain why: "Latency increased because ServDB pool hit max after deploy doubled query volume" | EE | ServConsole, ServTrace | 🟡 Medium | [ ] |
@@ -137,8 +137,8 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | # | Feature | Type | Components | Priority | Status |
 |---|---------|------|------------|----------|--------|
 | AI.35 | **Smart scheduling** — Analyze job execution history (duration, resource usage, conflicts). Suggest optimal scheduling windows | OSS | ServCron | 🟢 Low | ✅ `b5a9da6` |
-| AI.36 | **AI decision steps in workflows** — `step "classify" { ai.classify(input, ["approve", "review", "reject"]) }` — AI-powered branching | OSS | ServFlow, Serv-lang | 🟡 Medium | [ ] |
-| AI.37 | **Workflow generation from description** — NL prompt → DAG definition: "receives order → validates payment → notifies warehouse → sends email" | OSS | ServFlow, Serv-lang | 🟢 Low | [ ] |
+| AI.36 | **AI decision steps in workflows** — `step "classify" { ai.classify(input, ["approve", "review", "reject"]) }` — AI-powered branching | OSS | ServFlow, Serv-lang | 🟡 Medium | ✅ `ae91d05` |
+| AI.37 | **Workflow generation from description** — NL prompt → DAG definition: "receives order → validates payment → notifies warehouse → sends email" | OSS | ServFlow, Serv-lang | 🟢 Low | ✅ `ae91d05` |
 
 ---
 
