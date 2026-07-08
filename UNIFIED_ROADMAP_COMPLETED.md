@@ -173,3 +173,88 @@ This document preserves the archived history of completed items migrated from `U
 ### 🚀 Enterprise Build Pipeline
 - **Commercial CLI Builder (EE.1)** — Configured private CI pipeline with dynamic EE code overlays.
 - **Licensed Artifact Verification (EE.2)** — Cryptographic HMAC-SHA256 license check enforced on Enterprise panels startup.
+
+---
+
+## Phase 11: ServConsole — True Unified Dashboard (Completed)
+
+### 11.1 Integration Completeness
+- UC.1: **Full 15-service discovery** — Add CLI flags + `ServDiscovery` fields for ServMesh, ServCron, etc. (`9df19eb`)
+- UC.2: **Unified health aggregation** — Health loop monitors all connected services (`9df19eb`)
+- UC.3: **ServMesh panel** — Registry, circuit breaker states (`9ae33a8`)
+- UC.4: **ServCron panel** — Scheduled jobs builder and history (`ffa8745`)
+- UC.5: **ServCache panel** — Hit/miss ratios, key inspection (`ffa8745`)
+- UC.6: **ServCloud panel consolidation** — Resource quotas proxy (`f4b8327`)
+- UC.7: **ServRegistry panel** — Download stats, package warnings (`9ae33a8`)
+- UC.8: **ServDocs embedding** — Render documentation in dashboard (`f4b8327`)
+
+### 11.2 Cross-Service Intelligence
+- UC.9: **End-to-end request flow visualization** — Timeline visualization (`645167a`)
+- UC.10: **Ecosystem dependency matrix** — Runtime dependency map (`949dfce`)
+- UC.11: **Unified configuration editor** — Central config panel (`6c40f66`)
+- UC.12: **Cross-service log correlation** — Trace_id logs correlation (`be1a0c1`)
+- UC.13: **Ecosystem upgrade dashboard** — Version alignment checks (`949dfce`)
+
+### 11.3 Operational Intelligence
+- UC.14: **Capacity planning view** — Trend projections (`949dfce`)
+- UC.15: **Change correlation engine** — Incident timeline overlays (`645167a`)
+- UC.16: **Service comparison mode** — Latency, CPU canary compare (`be1a0c1`)
+- UC.17: **Ecosystem startup orchestrator** — Dependency boot orchestrator (`be1a0c1`)
+- UC.18: **Unified API documentation portal** — Interactive spec portals (`be1a0c1`)
+
+### 11.4 AI-Powered Operations
+- UC.19: **AI root cause analysis** — Root cause hypotheses generator (`645167a`)
+- UC.20: **Natural language operations query** — Incident NL searches (`b8bc44b`)
+- UC.21: **Predictive alerting** — Trend warnings (`b8bc44b`)
+- UC.22: **Automated incident playbooks** — Pattern runbook trigger (`b8bc44b`)
+
+---
+
+## Phase 11.6: OSS/EE Feature Boundary Enforcement (Completed)
+
+- EE.10: **Multi-tenant resource isolation** (`f2bd3a5`)
+- EE.11: **ServStore federation** (`federation_ee.go` / `federation_oss.go`)
+- EE.12: **ServQueue federation** (`federation_ee.go` / `federation_oss.go`)
+- EE.13: **SLO tracking & error budgets** (`enterprise_ee.go` / `enterprise_oss.go`)
+- EE.14: **Cost estimation panel** (`enterprise_oss.go`)
+- EE.15: **Runbook automation** (`enterprise_oss.go`)
+- EE.16: **Custom dashboard builder** (`enterprise_oss.go`)
+- EE.17: **Infrastructure provisioning** (`enterprise_oss.go`)
+- EE.18: **Diagnostics terminal** (`enterprise_oss.go`)
+- EE.19: **Multi-environment management** (`enterprise_oss.go`)
+- EE.20: **Deployment rollback** (`enterprise_oss.go`)
+
+---
+
+## Phase 12: Ecosystem-Wide Developer Experience (Completed)
+
+- DX.17: **Unified CLI subcommands** (`cc091ac`)
+- DX.19: **Multi-service compose generation** (`cc091ac`)
+- DX.20: **`serv bench` load testing** (`4305e4b`)
+- DX.21: **Schema-first development** (`4305e4b`)
+- DX.23: **Observability-as-code** (`4305e4b`)
+- DX.24: **`serv playground` IDE** (`853ab5c`)
+- DX.25: **Cross-service config propagation** (`6e25350`)
+- DX.26: **`serv dev` terminal dashboard** (`6e25350`)
+
+---
+
+## Phase 13: Language & Runtime Evolution (Completed)
+
+- LANG.1: **Sum types / tagged unions** (`853ab5c`)
+- LANG.2: **Native GraphQL support** (`23638ba`)
+- LANG.3: **Compiler plugin system** (`853ab5c`)
+- LANG.4: **`serv migrate` rollback** (`23638ba`)
+- LANG.5: **Distributed lock primitive** (`6e25350`)
+- LANG.6: **Hot module replacement for stdlib** (`23638ba`)
+- LANG.7: **Security scanning** (`853ab5c`)
+- LANG.8: **Interface satisfaction checking** (`853ab5c`)
+- LANG.9: **Native Service Mesh Declarations** (`b969282`)
+- LANG.10: **First-Class Storage Buckets** (`059ec47`)
+- LANG.11: **Declarative Event Handlers** (`b969282`)
+- LANG.12: **Native Distributed Locking** (`b969282`)
+- LANG.13: **Integrated Gateway Routing** (`059ec47`)
+- LANG.14: **Declarative Scheduled Workloads** (`059ec47`)
+- CORE.9: **Event Sourcing & CQRS Framework** (`23638ba`)
+- CORE.10: **ServStore CDN mode** (`c6dfec9`)
+
