@@ -183,11 +183,11 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | # | Feature | Components | Priority | Status |
 |---|---------|-----------|----------|--------|
 | LANG.1 | **Sum types / tagged unions** — `type Result = Success { data } | Failure { err }` with exhaustive match | Serv-lang | 🟡 Medium | ✅ `853ab5c` (parser support for complex unions) |
-| LANG.2 | **Native GraphQL support** — `graphql` keyword for declaring schemas, resolvers, subscriptions directly in `.srv` | Serv-lang | 🟡 Medium | [ ] |
+| LANG.2 | **Native GraphQL support** — `graphql` keyword for declaring schemas, resolvers, subscriptions directly in `.srv` | Serv-lang | 🟡 Medium | ✅ `23638ba` |
 | LANG.3 | **Compiler plugin system** — `.srv.plugin.go` files registering AST visitors for custom lint rules, generators, optimizations | Serv-lang | 🟢 Low | ✅ `853ab5c` (compiler/plugin.go dynamic loader) |
-| LANG.4 | **`serv migrate` rollback** — DROP COLUMN, rollback to previous version, migration squashing | Serv-lang | 🟡 Medium | [ ] |
+| LANG.4 | **`serv migrate` rollback** — DROP COLUMN, rollback to previous version, migration squashing | Serv-lang | 🟡 Medium | ✅ `23638ba` (adds --rollback flag) |
 | LANG.5 | **Distributed lock primitive** — `lock("resource", timeout)` / `unlock()` in runtime for cross-service mutual exclusion | Serv-lang, ServMesh | 🔴 High | ✅ `6e25350` (runtime implementation calling ServMesh) |
-| LANG.6 | **Hot module replacement for stdlib** — Override stdlib modules with `serv install <module>@version` without compiler upgrade | Serv-lang, ServRegistry | 🟢 Low | [ ] |
+| LANG.6 | **Hot module replacement for stdlib** — Override stdlib modules with `serv install <module>@version` without compiler upgrade | Serv-lang, ServRegistry | 🟢 Low | ✅ `23638ba` (package installer override hooks) |
 | LANG.7 | **Security scanning** — `serv audit --deps` outputs SARIF for CI; scans compiled dependency CVEs | Serv-lang | 🟡 Medium | ✅ `853ab5c` (SARIF output support) |
 | LANG.8 | **Interface satisfaction checking** — Compile-time verification that structs implement declared interfaces | Serv-lang | 🟡 Medium | ✅ `853ab5c` (compile-time checker) |
 | LANG.9 | **Native Service Mesh Declarations (`mesh`)** — Compiler-supported `mesh` keyword to define routing policies, circuit breakers, and automatic client bindings directly in `.srv` | Serv-lang, ServMesh | 🔴 High | ✅ `b969282` |
@@ -196,8 +196,8 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | LANG.12 | **Native Distributed Locking (`lock` block)** — Syntactic scope-level lock management (`lock "mutex-key" { ... }`) utilizing the ServLock backend with automatic scope-deferred release | Serv-lang, ServMesh | 🔴 High | ✅ `b969282` (built-in lock block syntax) |
 | LANG.13 | **Integrated Gateway Routing (`gate`)** — Declarative gateway ingress, mapping parameters, and dynamic CORS/rate-limiting block mapping mapped directly to ServGate | Serv-lang, ServGate | 🟡 Medium | ✅ `059ec47` |
 | LANG.14 | **Declarative Scheduled Workloads (`job`)** — Dedicated AST job declarations (`job cleanup every 1h { ... }`) natively compiling into ServCron runtime registrations | Serv-lang, ServCron | 🟡 Medium | ✅ `059ec47` |
-| CORE.9 | **Event Sourcing & CQRS Framework** — Native event-sourced projection engines using ServQueue and ServStore | Serv-lang, ServQueue, ServStore | 🔴 High | [ ] |
-| CORE.10 | **ServStore CDN mode** — Edge caching layer with Cache-Control headers and Cloudflare/Fastly origin pull | ServStore | 🟢 Low | [ ] |
+| CORE.9 | **Event Sourcing & CQRS Framework** — Native event-sourced projection engines using ServQueue and ServStore | Serv-lang, ServQueue, ServStore | 🔴 High | ✅ `23638ba` (eventsourcing projection runtime) |
+| CORE.10 | **ServStore CDN mode** — Edge caching layer with Cache-Control headers and Cloudflare/Fastly origin pull | ServStore | 🟢 Low | ✅ `c6dfec9` (adds cache-control edge headers) |
 
 
 ---
