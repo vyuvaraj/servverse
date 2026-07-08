@@ -211,8 +211,8 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | # | Feature | Components | Priority | Status |
 |---|---------|-----------|----------|--------|
 | AI.10 | **RAG pipeline keyword** — `rag "servstore://docs" { embed: "openai", chunk: 512 }` declares retrieval-augmented generation as infrastructure. Auto-index on write, inject context on `ai.chat()` | Serv-lang, ServStore | 🔴 High | [ ] |
-| AI.11 | **Structured output (JSON mode)** — `ai.complete(prompt, schema: UserSchema)` forces LLM responses to conform to a Serv struct. Compiler validates schema at build time | Serv-lang | 🔴 High | [ ] |
-| AI.12 | **Streaming responses** — `ai.stream(prompt, fn(chunk) { conn.send(chunk) })` for server-sent event streaming. Currently `ai.chat()` blocks until complete | Serv-lang | 🔴 High | [ ] |
+| AI.11 | **Structured output (JSON mode)** — `ai.complete(prompt, schema: UserSchema)` forces LLM responses to conform to a Serv struct. Compiler validates schema at build time | Serv-lang | 🔴 High | ✅ `fd90df6` |
+| AI.12 | **Streaming responses** — `ai.stream(prompt, fn(chunk) { conn.send(chunk) })` for server-sent event streaming. Currently `ai.chat()` blocks until complete | Serv-lang | 🔴 High | ✅ `fd90df6` |
 | AI.13 | **Prompt template library** — `import "stdlib/prompts"` with variable injection, versioning, and A/B testing hooks | Serv-lang | 🟡 Medium | [ ] |
 | AI.14 | **AI eval framework** — `test "quality" { assert ai.eval(prompt, expected, threshold: 0.8) }` for LLM output quality testing in `serv test` | Serv-lang | 🟡 Medium | [ ] |
 
