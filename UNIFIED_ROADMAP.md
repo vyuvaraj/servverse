@@ -108,9 +108,9 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | # | Feature | Components | Priority | Status |
 |---|---------|-----------|----------|--------|
 | UC.19 | **AI root cause analysis** — On alert: correlate deploys, config changes, dependency failures, past incidents. Ranked hypotheses | ServConsole (EE) | 🟡 Medium | ✅ `645167a` (EE) |
-| UC.20 | **Natural language operations query** — "Show failed requests in last hour touching ServDB" → trace + log + error aggregation | ServConsole | 🟢 Low | [ ] |
-| UC.21 | **Predictive alerting** — Trend-based prediction: disk full in 3 days, cert expiring, approaching rate limits | ServConsole, ServTrace | 🟡 Medium | [ ] |
-| UC.22 | **Automated incident playbooks** — Detect alert patterns → auto-execute runbook: scale pool, route to replica, notify on-call | ServConsole | 🟡 Medium | [ ] |
+| UC.20 | **Natural language operations query** — "Show failed requests in last hour touching ServDB" → trace + log + error aggregation | ServConsole | 🟢 Low | ✅ `b8bc44b` |
+| UC.21 | **Predictive alerting** — Trend-based prediction: disk full in 3 days, cert expiring, approaching rate limits | ServConsole, ServTrace | 🟡 Medium | ✅ `b8bc44b` |
+| UC.22 | **Automated incident playbooks** — Detect alert patterns → auto-execute runbook: scale pool, route to replica, notify on-call | ServConsole | 🟡 Medium | ✅ `b8bc44b` |
 
 ---
 
