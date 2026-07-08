@@ -86,11 +86,11 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 
 | # | Feature | Type | Components | Priority | Status |
 |---|---------|------|------------|----------|--------|
-| AI.15 | **Token budget enforcement per route** — Max tokens/cost per API key per day. Reject when exhausted. Dashboard burn rate | EE | ServGate, ServConsole | 🔴 High | ✅ `079f626` |
-| AI.16 | **Prompt versioning & A/B routing** — Route % of traffic to different system prompts. Track outcome quality per version | EE | ServGate | 🟡 Medium | ✅ `079f626` |
-| AI.17 | **Response quality scoring** — Auto-score LLM responses for hallucination risk via factual grounding check against RAG context | EE | ServGate | 🟡 Medium | ✅ `079f626` |
+| AI.15 | **Token budget enforcement per route** — Max tokens/cost per API key per day. Reject when exhausted. Dashboard burn rate | EE | ServGate, ServConsole | 🔴 High | ✅ `179bc43`/`2682b2a` |
+| AI.16 | **Prompt versioning & A/B routing** — Route % of traffic to different system prompts. Track outcome quality per version | EE | ServGate | 🟡 Medium | ✅ `179bc43`/`2682b2a` |
+| AI.17 | **Response quality scoring** — Auto-score LLM responses for hallucination risk via factual grounding check against RAG context | EE | ServGate | 🟡 Medium | ✅ `179bc43`/`2682b2a` |
 | AI.18 | **Multi-model fallback chain** — `models: [gpt-4o-mini, gpt-4o, claude-3-5-sonnet]` — try next on failure/timeout | OSS | ServGate | 🟡 Medium | ✅ `86f0dee` |
-| AI.19 | **Semantic rate limiting** — Rate limit by semantic similarity of requests, not just IP. Prevent same question rephrased 100 ways | EE | ServGate | 🟢 Low | ✅ `079f626` |
+| AI.19 | **Semantic rate limiting** — Rate limit by semantic similarity of requests, not just IP. Prevent same question rephrased 100 ways | EE | ServGate | 🟢 Low | ✅ `179bc43`/`2682b2a` |
 
 ### ServStore (AI Storage)
 
@@ -199,3 +199,11 @@ graph TD
 | **ServTunnel** | 🟢 Production | ⚪ N/A | 🟡 Medium | 🟢 Production | 🟢 Production | 🟡 Medium | 🟢 Full proxy + panel | **Stable** |
 | **ServRegistry**| 🟢 Production | 🟢 Production | 🟡 Medium | 🟡 Medium | 🟡 Medium | 🟡 Medium | 🔴 No integration | **Stable** |
 | **ServDocs** | 🟡 Medium | ⚪ N/A | ⚪ N/A | ⚪ N/A | 🟡 Medium | 🟢 Production | 🔴 No integration | **Beta** |
+
+---
+
+## Appendix C: Architectural Policy for OSS/EE Boundaries
+
+All commercial enterprise features (**EE**) must have their core logic and implementations located exclusively inside the private `servverse-ee` repository. 
+The open-source core repositories (such as `ServGate`, `ServStore`, etc.) must only expose clean interfaces, hooks, or config fields. The implementation of these hooks in the open-source code must use build-tagged placeholders (`//go:build !enterprise`), while the actual commercial code resides under the corresponding directories in `servverse-ee` and is built with `//go:build enterprise`.
+
