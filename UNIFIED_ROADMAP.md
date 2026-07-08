@@ -86,11 +86,11 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 
 | # | Feature | Type | Components | Priority | Status |
 |---|---------|------|------------|----------|--------|
-| AI.15 | **Token budget enforcement per route** — Max tokens/cost per API key per day. Reject when exhausted. Dashboard burn rate | EE | ServGate, ServConsole | 🔴 High | [ ] |
-| AI.16 | **Prompt versioning & A/B routing** — Route % of traffic to different system prompts. Track outcome quality per version | EE | ServGate | 🟡 Medium | [ ] |
-| AI.17 | **Response quality scoring** — Auto-score LLM responses for hallucination risk via factual grounding check against RAG context | EE | ServGate | 🟡 Medium | [ ] |
+| AI.15 | **Token budget enforcement per route** — Max tokens/cost per API key per day. Reject when exhausted. Dashboard burn rate | EE | ServGate, ServConsole | 🔴 High | ✅ `079f626` |
+| AI.16 | **Prompt versioning & A/B routing** — Route % of traffic to different system prompts. Track outcome quality per version | EE | ServGate | 🟡 Medium | ✅ `079f626` |
+| AI.17 | **Response quality scoring** — Auto-score LLM responses for hallucination risk via factual grounding check against RAG context | EE | ServGate | 🟡 Medium | ✅ `079f626` |
 | AI.18 | **Multi-model fallback chain** — `models: [gpt-4o-mini, gpt-4o, claude-3-5-sonnet]` — try next on failure/timeout | OSS | ServGate | 🟡 Medium | ✅ `86f0dee` |
-| AI.19 | **Semantic rate limiting** — Rate limit by semantic similarity of requests, not just IP. Prevent same question rephrased 100 ways | EE | ServGate | 🟢 Low | [ ] |
+| AI.19 | **Semantic rate limiting** — Rate limit by semantic similarity of requests, not just IP. Prevent same question rephrased 100 ways | EE | ServGate | 🟢 Low | ✅ `079f626` |
 
 ### ServStore (AI Storage)
 
@@ -136,7 +136,7 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 
 | # | Feature | Type | Components | Priority | Status |
 |---|---------|------|------------|----------|--------|
-| AI.35 | **Smart scheduling** — Analyze job execution history (duration, resource usage, conflicts). Suggest optimal scheduling windows | OSS | ServCron | 🟢 Low | [ ] |
+| AI.35 | **Smart scheduling** — Analyze job execution history (duration, resource usage, conflicts). Suggest optimal scheduling windows | OSS | ServCron | 🟢 Low | ✅ `b5a9da6` |
 | AI.36 | **AI decision steps in workflows** — `step "classify" { ai.classify(input, ["approve", "review", "reject"]) }` — AI-powered branching | OSS | ServFlow, Serv-lang | 🟡 Medium | [ ] |
 | AI.37 | **Workflow generation from description** — NL prompt → DAG definition: "receives order → validates payment → notifies warehouse → sends email" | OSS | ServFlow, Serv-lang | 🟢 Low | [ ] |
 
