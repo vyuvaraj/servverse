@@ -163,10 +163,10 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 |---|---------|-----------|----------|--------|
 | DX.17 | **Unified CLI subcommands** — All component CLIs as `serv` subcommands: `serv queue tail`, `serv mesh inspect`, `serv cache inspect`, `serv trace search` | Serv-lang, All | 🔴 High | ✅ `cc091ac` |
 | DX.19 | **Multi-service compose generation** — `serv init --full-stack` generates docker-compose.yml based on `.srv` infrastructure declarations | Serv-lang | 🟡 Medium | ✅ `cc091ac` |
-| DX.20 | **`serv bench` built-in load testing** — Auto-generate k6/vegeta scenarios from declared routes, run with `serv bench <file.srv>` | Serv-lang | 🟡 Medium | [ ] |
-| DX.21 | **Schema-first development** — `serv generate --from-openapi <spec.yaml>` generates `.srv` route stubs + type definitions | Serv-lang | 🟡 Medium | [ ] |
+| DX.20 | **`serv bench` built-in load testing** — Auto-generate k6/vegeta scenarios from declared routes, run with `serv bench <file.srv>` | Serv-lang | 🟡 Medium | ✅ `4305e4b` |
+| DX.21 | **Schema-first development** — `serv generate --from-openapi <spec.yaml>` generates `.srv` route stubs + type definitions | Serv-lang | 🟡 Medium | ✅ `4305e4b` |
 
-| DX.23 | **Observability-as-code** — `.serv/observability.yaml` declarative alert rules, SLOs, and dashboards committed to git. Auto-provisioned on deploy | ServConsole, Serv-lang | 🟡 Medium | [ ] |
+| DX.23 | **Observability-as-code** — `.serv/observability.yaml` declarative alert rules, SLOs, and dashboards committed to git. Auto-provisioned on deploy | ServConsole, Serv-lang | 🟡 Medium | ✅ `4305e4b` |
 | DX.24 | **`serv playground` web IDE** — Hosted browser-based editor: write → compile → run → see output. WASM compilation target | Serv-lang | 🟢 Low | [ ] |
 | DX.25 | **Cross-service config propagation** — Central `.serv/config.yaml` propagated to all services on `serv deploy` | Serv-lang, ServCloud | 🟡 Medium | [ ] |
 | DX.26 | **`serv dev` terminal dashboard** — k9s-style TUI showing routes, recent requests, errors, build status, connected services health | Serv-lang | 🟡 Medium | [ ] |
