@@ -126,18 +126,18 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | EE.11 | **ServStore federation** | ServStore `pkg/s3/api.go` (federation rules, cross-cluster routing, proxy) | OSS: single-cluster only. EE: multi-cluster namespace federation | ✅ `federation_ee.go` / `federation_oss.go` |
 | EE.12 | **ServQueue federation** | ServQueue (cross-cluster event mirroring) | OSS: single-cluster. EE: geo-distributed topic mirroring | ✅ `federation_ee.go` / `federation_oss.go` |
 | EE.13 | **SLO tracking & error budgets** | ServConsole `handleSLO` + `pkg/incidents/` | OSS: return 403 EE required. EE: full SLO dashboard | ✅ `enterprise_ee.go` / `enterprise_oss.go` |
-| EE.14 | **Cost estimation panel** | ServConsole `handleCostEstimation` | OSS: return 403. EE: infrastructure cost projections | [ ] |
+| EE.14 | **Cost estimation panel** | ServConsole `handleCostEstimation` | OSS: return 403. EE: infrastructure cost projections | ✅ `enterprise_oss.go` |
 
 ### Next Sprint (Medium EE Value)
 
 | # | Feature | Current Location | OSS Stub Behavior | Status |
 |---|---------|-----------------|-------------------|--------|
-| EE.15 | **Runbook automation** | ServConsole `handleRunbooks`, `handleExecuteRunbook` | OSS: read-only runbook list (no execute). EE: full auto-execute | [ ] |
-| EE.16 | **Custom dashboard builder** | ServConsole `handleDashboards` | OSS: fixed default dashboard. EE: drag-and-drop custom dashboards | [ ] |
-| EE.17 | **Infrastructure provisioning** | ServConsole `handleProvisionStore`, `handleProvisionQueue` | OSS: read-only view. EE: create/delete buckets/topics from console | [ ] |
-| EE.18 | **Diagnostics terminal** | ServConsole `handleDiagnosticExec` | OSS: disabled (security risk). EE: interactive exec with audit log | [ ] |
-| EE.19 | **Multi-environment management** | ServConsole `handleEnvironments`, `handleSelectEnvironment` | OSS: single environment. EE: dev/staging/prod with config promotion | [ ] |
-| EE.20 | **Deployment rollback** | ServConsole `handleRollback` | OSS: view deploy history only. EE: one-click rollback via ServCloud | [ ] |
+| EE.15 | **Runbook automation** | ServConsole `handleRunbooks`, `handleExecuteRunbook` | OSS: read-only runbook list (no execute). EE: full auto-execute | ✅ `enterprise_oss.go` |
+| EE.16 | **Custom dashboard builder** | ServConsole `handleDashboards` | OSS: fixed default dashboard. EE: drag-and-drop custom dashboards | ✅ `enterprise_oss.go` |
+| EE.17 | **Infrastructure provisioning** | ServConsole `handleProvisionStore`, `handleProvisionQueue` | OSS: read-only view. EE: create/delete buckets/topics from console | ✅ `enterprise_oss.go` |
+| EE.18 | **Diagnostics terminal** | ServConsole `handleDiagnosticExec` | OSS: disabled (security risk). EE: interactive exec with audit log | ✅ `enterprise_oss.go` |
+| EE.19 | **Multi-environment management** | ServConsole `handleEnvironments`, `handleSelectEnvironment` | OSS: single environment. EE: dev/staging/prod with config promotion | ✅ `enterprise_oss.go` |
+| EE.20 | **Deployment rollback** | ServConsole `handleRollback` | OSS: view deploy history only. EE: one-click rollback via ServCloud | ✅ `enterprise_oss.go` |
 
 
 
