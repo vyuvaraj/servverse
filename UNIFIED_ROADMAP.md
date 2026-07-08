@@ -88,16 +88,16 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | # | Feature | Components | Priority | Status |
 |---|---------|-----------|----------|--------|
 | UC.9 | **End-to-end request flow visualization** — Full lifecycle: Client → Gate → Backend → Queue → Store across all 15 services in one timeline | ServConsole, ServTrace | 🔴 High | [ ] |
-| UC.10 | **Ecosystem dependency matrix** — Auto-generated runtime dependency map from OTel traces, interactive call volume/latency per edge | ServConsole, ServTrace | 🟡 Medium | [ ] |
+| UC.10 | **Ecosystem dependency matrix** — Auto-generated runtime dependency map from OTel traces, interactive call volume/latency per edge | ServConsole, ServTrace | 🟡 Medium | ✅ `949dfce` |
 | UC.11 | **Unified configuration editor** — Central panel for cross-service config: rate limits, TTLs, schedules, routing — all validated in one place | ServConsole, All | 🟡 Medium | [ ] |
 | UC.12 | **Cross-service log correlation** — Click any trace_id → chronological log lines from all services with that trace_id | ServConsole, All | 🟡 Medium | ✅ `be1a0c1` |
-| UC.13 | **Ecosystem upgrade dashboard** — Current versions vs latest from ServRegistry, incompatibility warnings, one-click upgrade via ServCloud | ServConsole, ServRegistry, ServCloud | 🟡 Medium | [ ] |
+| UC.13 | **Ecosystem upgrade dashboard** — Current versions vs latest from ServRegistry, incompatibility warnings, one-click upgrade via ServCloud | ServConsole, ServRegistry, ServCloud | 🟡 Medium | ✅ `949dfce` |
 
 ### 11.3 Operational Intelligence
 
 | # | Feature | Components | Priority | Status |
 |---|---------|-----------|----------|--------|
-| UC.14 | **Capacity planning view** — Aggregate resource metrics, project growth trends, alert on approaching limits | ServConsole, ServCloud | 🟡 Medium | [ ] |
+| UC.14 | **Capacity planning view** — Aggregate resource metrics, project growth trends, alert on approaching limits | ServConsole, ServCloud | 🟡 Medium | ✅ `949dfce` |
 | UC.15 | **Change correlation engine** — Overlay deploys + config changes + incidents on unified timeline, correlate "what changed" with "what broke" | ServConsole, ServCloud, ServTrace | 🔴 High | [ ] |
 | UC.16 | **Service comparison mode** — Side-by-side: latency, throughput, error rate, resources. For canary validation | ServConsole | 🟢 Low | ✅ `be1a0c1` |
 | UC.17 | **Ecosystem startup orchestrator** — `serv console --start-all` boots services in dependency order, waits for health, opens dashboard | ServConsole, All | 🟡 Medium | ✅ `be1a0c1` |
