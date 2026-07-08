@@ -89,7 +89,7 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 |---|---------|-----------|----------|--------|
 | UC.9 | **End-to-end request flow visualization** — Full lifecycle: Client → Gate → Backend → Queue → Store across all 15 services in one timeline | ServConsole, ServTrace | 🔴 High | [ ] |
 | UC.10 | **Ecosystem dependency matrix** — Auto-generated runtime dependency map from OTel traces, interactive call volume/latency per edge | ServConsole, ServTrace | 🟡 Medium | ✅ `949dfce` |
-| UC.11 | **Unified configuration editor** — Central panel for cross-service config: rate limits, TTLs, schedules, routing — all validated in one place | ServConsole, All | 🟡 Medium | [ ] |
+| UC.11 | **Unified configuration editor** — Central panel for cross-service config: rate limits, TTLs, schedules, routing — all validated in one place | ServConsole, All | 🟡 Medium | ✅ `6c40f66` |
 | UC.12 | **Cross-service log correlation** — Click any trace_id → chronological log lines from all services with that trace_id | ServConsole, All | 🟡 Medium | ✅ `be1a0c1` |
 | UC.13 | **Ecosystem upgrade dashboard** — Current versions vs latest from ServRegistry, incompatibility warnings, one-click upgrade via ServCloud | ServConsole, ServRegistry, ServCloud | 🟡 Medium | ✅ `949dfce` |
 
