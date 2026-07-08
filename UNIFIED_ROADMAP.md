@@ -116,7 +116,7 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | AI.27 | **Natural language log search** — "Show errors from ServAuth where users couldn't login" → structured log query + filters | EE | ServConsole | 🔴 High | ✅ `bb4f7ab`/`73239ee` |
 | AI.28 | **Incident root cause synthesis** — On alert: analyze deploys, config changes, correlated metrics, similar past incidents. One-paragraph hypothesis | EE | ServConsole | 🔴 High | ✅ `bdb622b`/`1ce6503` |
 | AI.29 | **Auto-generated runbooks** — Observe how operators respond to recurring alerts. After 3 manual resolutions, suggest automated runbook | EE | ServConsole | 🟡 Medium | ✅ `bdb622b`/`1ce6503` |
-| AI.30 | **Anomaly explanation** — When metric spikes, explain why: "Latency increased because ServDB pool hit max after deploy doubled query volume" | EE | ServConsole, ServTrace | 🟡 Medium | [ ] |
+| AI.30 | **Anomaly explanation** — When metric spikes, explain why: "Latency increased because ServDB pool hit max after deploy doubled query volume" | EE | ServConsole, ServTrace | 🟡 Medium | ✅ `2dc52d5`/`ff1320e` |
 
 ### ServAuth (AI Security)
 
