@@ -75,9 +75,9 @@ The following items are compiled from individual component roadmaps and represen
 - [ ] **Persistent Tunnels** — Keep tunnels alive across client restarts with session resumption.
 - [ ] **Custom Domain Mapping** — Map production domains to local tunnels for realistic testing.
 - [ ] **Request Recording & Replay** — Record all requests through tunnel, replay them later for debugging.
-- [ ] **Bandwidth Throttling** — Simulate slow networks (3G, satellite) for mobile testing.
-- [ ] **Request Diff Mode** — Show a colored diff between the proxied request and original, highlighting header mutations, body modifications or injected WASM transforms.
-- [ ] **Tunnel Config-as-Code** — Declare tunnel rules in `.serv/tunnel.yaml` (name, auth, subdomain, filters).
+- [x] **Bandwidth Throttling** — Simulate slow networks (3G, satellite) for mobile testing. [July 9, 2026]
+- [x] **Request Diff Mode** — Show a colored diff between the proxied request and original, highlighting header mutations, body modifications or injected WASM transforms. [July 9, 2026]
+- [x] **Tunnel Config-as-Code** — Declare tunnel rules in `.serv/tunnel.yaml` (name, auth, subdomain, filters). [July 9, 2026]
 
 ---
 
