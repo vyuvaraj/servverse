@@ -213,23 +213,55 @@ This document preserves the archived history of completed items for Phases 11 th
 
 ## Phase 15: Component Backlog & Future Enhancements (Completed Items)
 
-### 📥 ServQueue
-- **Dead Letter Queue Inspector (DX.S9)** — Added `serv queue dlq inspect <topic>` command with payload preview, retry count, and error cause, supporting `--replay` flag to requeue messages back to their source topics. Added GET `/api/v1/topics/{topic}/dlq` endpoint to fetch & decode DLQ entries from the WAL.
-
 ### 📄 ServDocs
-- **`serv docs serve --watch`** — File watcher that regenerates docs on `.srv` file changes. Integrated with a build server that injects a Server-Sent Events (SSE) live-reload script into the generated HTML.
-- **Type Schema Rendering** — Renders struct definitions as expandable schema tables directly within route documentation dynamically using a pre-serialized JSON schema map.
-- **Client-side Full-text Search** — Implements an advanced, high-performance client-side search indexing system with real-time matching, text highlighting via `<mark>` elements, dynamic result counts, and automated sidebar navigation filtering.
-- **Code examples in docs** — Generates interactive code panels for cURL, Go, and JavaScript Fetch dynamically using schema payload extraction. [July 9, 2026]
-- **Versioned docs** — Supports multi-version API documentation side-by-side with a header version selector dropdown. [July 9, 2026]
+- **Middleware chain documentation** — Show which middleware applies to which routes with order. [July 9, 2026]
+- **Code examples in docs** — Include `.srv` usage examples alongside route documentation. [July 9, 2026]
+- **Versioned docs** — Generate docs per git tag; host multiple versions side-by-side. [July 9, 2026]
+- **`serv docs serve --watch`** — File watcher that regenerates docs on `.srv` file changes. Integrated with a build server that injects a Server-Sent Events (SSE) live-reload script into the generated HTML. [July 9, 2026]
+- **Type Schema Rendering** — Renders struct definitions as expandable schema tables directly within route documentation dynamically using a pre-serialized JSON schema map. [July 9, 2026]
+- **Client-side Full-text Search** — Implements an advanced, high-performance client-side search indexing system with real-time matching, text highlighting via `<mark>` elements, dynamic result counts, and automated sidebar navigation filtering. [July 9, 2026]
 
 ### 🛡️ ServGate
 - **GitOps Config Sync** — Pulls configuration updates automatically via webhook, validating route rules and signature authentication (supporting GitHub signature and GitLab tokens). [July 9, 2026]
 - **Auto TLS Let's Encrypt** — Provisions certs automatically for comma-separated list of domains with a self-signed fallback mechanism for local development. [July 9, 2026]
 
+### 🌐 ServMesh
+- **Rate Limiting per Service Pair** — Client-side token-bucket rate limiting keyed on `caller/callee` identity; returns HTTP 429 on exhaustion. [July 9, 2026]
+- **Service Versioning & Header Routing** — Route requests to specific versions via `X-Service-Version` header; falls back to full pool if version not found. [July 9, 2026]
+- **Health-Aware Load Balancing** — OTel-feedback weighted routing; clients push metrics via `POST /api/health-metrics`; `GET /api/topology` exposes aggregated health state per instance. [July 9, 2026]
+- **gRPC Support** — Extend the resolver and circuit breaker to handle gRPC connections natively. [July 9, 2026]
+- **Local Dev Service Mesh** — One-command `serv mesh up` that starts a local registry + resolver with zero config for fast developer iteration. [July 9, 2026]
+- **Mesh Topology CLI** — `go run ./cmd/inspect/` shows live table of services, instances, latency, error rate, and health state. Supports `--watch` auto-refresh and `--service` filter. [July 9, 2026]
+
+### 📦 ServRegistry
+- **Private Namespace Support** — Scoped package namespaces (`@org/package`) with access control lists. [July 9, 2026]
+- **Mirror & Offline Cache** — Local proxy mode that caches the public registry to a ServStore bucket; enables air-gapped builds. [July 9, 2026]
+- **Provenance Attestation** — Record build provenance (commit SHA, CI run ID, builder identity) alongside the package; verify with `serv verify --attestation`. [July 9, 2026]
+
+### 🔍 ServTrace
+- **Trace Sampling Strategies** — Head-based and tail-based sampling with configurable rates per service. [July 9, 2026]
+- **Trace Comparison** — Compare two traces side-by-side to identify regression causes. [July 9, 2026]
+- **Retention Policies** — Configurable TTL per service. Auto-archive old traces to ServStore. [July 9, 2026]
+- **Distributed Context Baggage** — Propagate custom key-value pairs across service boundaries via trace context. [July 9, 2026]
+- **Continuous Profiling Integration** — Link pprof CPU/memory profiles to trace spans; surface hot-path profiles in the ServConsole waterfall view. [July 9, 2026]
+- **Adaptive Sampling Rate** — Dynamically raise sampling rate when error rate spikes and lower it when traffic is healthy. [July 9, 2026]
+
+### 🚇 ServTunnel
+- **Multi-relay federation** — Distribute tunnels across regions. [July 9, 2026]
+- **Usage analytics and billing integration** — Integrated usage tracking. [July 9, 2026]
+- **Enterprise features** — SSO, audit logging, IP allowlists. [July 9, 2026]
+- **Team Collaboration** — Share tunnel access with team members via token-based invite links. [July 9, 2026]
+- **Persistent Tunnels** — Keep tunnels alive across client restarts with session resumption. [July 9, 2026]
+- **Custom Domain Mapping** — Map production domains to local tunnels for realistic testing. [July 9, 2026]
+- **Request Recording & Replay** — Record all requests through tunnel, replay them later for debugging. [July 9, 2026]
+- **Bandwidth Throttling** — Simulate slow networks (3G, satellite) for mobile testing. [July 9, 2026]
+- **Request Diff Mode** — Show a colored diff between the proxied request and original, highlighting header mutations, body modifications or injected WASM transforms. [July 9, 2026]
+- **Tunnel Config-as-Code** — Declare tunnel rules in `.serv/tunnel.yaml` (name, auth, subdomain, filters). [July 9, 2026]
+
 ### 🗄️ ServDB
-- **Connection Draining** — Gracefully drains database connection pools during rolling deploys/SIGTERM. Implemented a shutdown sequence that stops background cleaner routines and waits for all active in-flight database queries to finish before closing connection pools.
-- **Multi-region Query Routing** — Routes `SELECT` queries to specific geo-local replica pools based on the `X-Region` request header (supporting e.g. `--region-replicas` CLI option), defaulting back to the standard replica pool if the region pool is missing.
+- **Connection Draining** — Gracefully drains database connection pools during rolling deploys/SIGTERM. Implemented a shutdown sequence that stops background cleaner routines and waits for all active in-flight database queries to finish before closing connection pools. [July 9, 2026]
+- **Multi-region Query Routing** — Routes `SELECT` queries to specific geo-local replica pools based on the `X-Region` request header (supporting e.g. `--region-replicas` CLI option), defaulting back to the standard replica pool if the region pool is missing. [July 9, 2026]
 
 ### 📥 ServQueue
 - **Topic Schema Linting** — Static analyzer in compiler verifying message payloads against topic schemas at compile time. [July 9, 2026]
+- **Dead Letter Queue Inspector (DX.S9)** — Added `serv queue dlq inspect <topic>` command with payload preview, retry count, and error cause, supporting `--replay` flag to requeue messages back to their source topics. Added GET `/api/v1/topics/{topic}/dlq` endpoint to fetch & decode DLQ entries from the WAL. [July 9, 2026]
