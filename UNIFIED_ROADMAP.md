@@ -31,10 +31,6 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 
 The following items are compiled from individual component roadmaps and represent pending backlog features:
 
-### 🗄️ ServDB
-- [ ] **Connection Draining** — Gracefully drain connections during rolling deploys; wait for in-flight queries before closing.
-- [ ] **Multi-region Query Routing** — Route reads to geo-local replicas based on request origin metadata.
-
 ### 📄 ServDocs
 - [ ] **Type schema rendering** — Render struct/interface definitions as expandable schema tables in HTML.
 - [ ] **Middleware chain documentation** — Show which middleware applies to which routes with order.

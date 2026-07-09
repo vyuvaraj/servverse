@@ -218,3 +218,7 @@ This document preserves the archived history of completed items for Phases 11 th
 
 ### 📄 ServDocs
 - **`serv docs serve --watch`** — File watcher that regenerates docs on `.srv` file changes. Integrated with a build server that injects a Server-Sent Events (SSE) live-reload script into the generated HTML.
+
+### 🗄️ ServDB
+- **Connection Draining** — Gracefully drains database connection pools during rolling deploys/SIGTERM. Implemented a shutdown sequence that stops background cleaner routines and waits for all active in-flight database queries to finish before closing connection pools.
+- **Multi-region Query Routing** — Routes `SELECT` queries to specific geo-local replica pools based on the `X-Region` request header (supporting e.g. `--region-replicas` CLI option), defaulting back to the standard replica pool if the region pool is missing.
