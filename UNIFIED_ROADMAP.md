@@ -56,8 +56,8 @@ The following items are compiled from individual component roadmaps and represen
 
 ### 📦 ServRegistry
 - [x] **Private Namespace Support** — Scoped package namespaces (`@org/package`) with access control lists. [July 9, 2026]
-- [ ] **Mirror & Offline Cache** — Local proxy mode that caches the public registry to a ServStore bucket; enables air-gapped builds.
-- [ ] **Provenance Attestation** — Record build provenance (commit SHA, CI run ID, builder identity) alongside the package; verify with `serv verify --attestation`.
+- [x] **Mirror & Offline Cache** — Local proxy mode that caches the public registry to a ServStore bucket; enables air-gapped builds. [July 9, 2026]
+- [x] **Provenance Attestation** — Record build provenance (commit SHA, CI run ID, builder identity) alongside the package; verify with `serv verify --attestation`. [July 9, 2026]
 
 ### 🔍 ServTrace
 - [x] **Trace Sampling Strategies** — Head-based and tail-based sampling with configurable rates per service. [July 9, 2026]
@@ -74,7 +74,7 @@ The following items are compiled from individual component roadmaps and represen
 - [ ] **Team Collaboration** — Share tunnel access with team members via token-based invite links.
 - [ ] **Persistent Tunnels** — Keep tunnels alive across client restarts with session resumption.
 - [ ] **Custom Domain Mapping** — Map production domains to local tunnels for realistic testing.
-- [ ] **Request Recording & Replay** — Record all requests through tunnel, replay them later for debugging.
+- [x] **Request Recording & Replay** — Record all requests through tunnel, replay them later for debugging. [July 9, 2026]
 - [x] **Bandwidth Throttling** — Simulate slow networks (3G, satellite) for mobile testing. [July 9, 2026]
 - [x] **Request Diff Mode** — Show a colored diff between the proxied request and original, highlighting header mutations, body modifications or injected WASM transforms. [July 9, 2026]
 - [x] **Tunnel Config-as-Code** — Declare tunnel rules in `.serv/tunnel.yaml` (name, auth, subdomain, filters). [July 9, 2026]
