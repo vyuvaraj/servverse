@@ -25,7 +25,8 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 | **Phase 14: AI-Native Ecosystem** | 28 | 28 | 0 | **100%** | ████████████████████ |
 | **Phase 16: Operational Hardening & Production Readiness** | 18 | 18 | 0 | **100%** | ████████████████████ |
 | **Phase 17: Zero-Trust Clustering & Edge Serverless** | 8 | 0 | 8 | **0%** | ░░░░░░░░░░░░░░░░░░░0 |
-| **TOTAL ECOSYSTEM WORK** | **169** | **161** | **8** | **95%** | ███████████████████░ |
+| **Phase 18: OSS-to-EE Boundary Alignment & Refactoring** | 6 | 0 | 6 | **0%** | ░░░░░░░░░░░░░░░░░░░0 |
+| **TOTAL ECOSYSTEM WORK** | **175** | **161** | **14** | **92%** | ██████████████████░░ |
 
 ---
 
@@ -156,6 +157,24 @@ The following initiative targets next-generation architectural enhancements to e
 ### ⚡ Edge Serverless & Code Execution
 - [ ] **WASM Edge Compilation** — Compile Serv-lang code modules directly to WebAssembly components for zero-cold-start hosting on Wasmtime.
 - [ ] **AI Observability Pipelines** — Enable automatic scaling triggers and query cache rule mutations via ServConsole observability hooks.
+
+---
+
+## Phase 18: OSS-to-EE Boundary Alignment & Refactoring (Backlog)
+
+Refactor existing commercial capability implementations out of the open-source (OSS) core repositories and migrate their core logic into the private `servverse-ee` repository overlay using build-tagged (`//go:build enterprise`) hooks:
+
+### 📦 ServStore & ServQueue
+- [ ] **KMS Enterprise Separation** — Migrate AWS KMS, Google Cloud KMS, and HashiCorp Vault implementations to EE, leaving only simple local key encryption in OSS.
+- [ ] **mTLS Enforcement Hooks** — Restrict client certificate authentication and PKI mappings to the EE broker overlay.
+
+### 🛡️ ServAuth & ServDB
+- [ ] **Session & Audit Log Isolation** — Move account lockout history, security audit trail generators, and remote session revocation control logic to EE.
+- [ ] **Database Replication Topologies** — Restrict replica pool routing, read/write splitting, and dynamic failover state machines to EE.
+
+### 📧 ServMail & 🔄 ServFlow
+- [ ] **DKIM Signing Delegation** — Delegate outbound DKIM header signing and SPF alignment checks to EE.
+- [ ] **Distributed Saga Checkpoints** — Separate distributed database state persistence from local file-based (`.state`) saga checkpoints.
 
 ---
 
