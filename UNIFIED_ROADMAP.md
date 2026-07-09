@@ -58,9 +58,9 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | OPS.17 | **Chaos Fault Injection Middleware** — ✅ Inject transport latencies, connection drops, and queue dropouts dynamically in development | ServMesh, ServShared | Medium |
 | AI.10 | **Self-Defending AI WAF** — Semantic proxy engine protecting routes against prompt injection, API abuse, and access anomalies | ServGate | High |
 | AI.11 | **Semantic Rate Limiter** — Intrinsic token and semantic similarity limits preventing cost exhaustion attacks on LLM routes | ServGate, ServShared | Medium |
-| AI.12 | **Semantic DLQ Triaging** — Agentic dead-letter queue handlers analyzing message errors, classifying fault patterns, and requeuing patches | ServQueue, ServShared | High |
+| AI.12 | **Semantic DLQ Triaging** — ✅ Agentic dead-letter queue handlers analyzing message errors, classifying fault patterns, and requeuing patches | ServQueue, ServShared | High | `9bf7cc1` |
 | AI.13 | **Automatic Vectorization Pipeline** — Native storage pipeline automatically generating vector embeddings on S3 object uploads | ServStore, ServDB | Medium |
-| AI.14 | **Self-Healing Observability Loop** — Agent-led trace monitoring, root-cause diagnostics, and automatic rollback on telemetry alerts | ServTrace, ServCloud | High |
+| AI.14 | **Self-Healing Observability Loop** — ✅ Agent-led trace monitoring, root-cause diagnostics, and automatic rollback on telemetry alerts | ServTrace, ServCloud | High | `0dfb28e` |
 | AI.15 | **Natural Language Operational Tracing** — Context-aware query system summarizing service-wide incidents from trace logs | ServConsole, ServTrace | Medium |
 
 
