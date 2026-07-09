@@ -220,7 +220,16 @@ This document preserves the archived history of completed items for Phases 11 th
 - **`serv docs serve --watch`** — File watcher that regenerates docs on `.srv` file changes. Integrated with a build server that injects a Server-Sent Events (SSE) live-reload script into the generated HTML.
 - **Type Schema Rendering** — Renders struct definitions as expandable schema tables directly within route documentation dynamically using a pre-serialized JSON schema map.
 - **Client-side Full-text Search** — Implements an advanced, high-performance client-side search indexing system with real-time matching, text highlighting via `<mark>` elements, dynamic result counts, and automated sidebar navigation filtering.
+- **Code examples in docs** — Generates interactive code panels for cURL, Go, and JavaScript Fetch dynamically using schema payload extraction. [July 9, 2026]
+- **Versioned docs** — Supports multi-version API documentation side-by-side with a header version selector dropdown. [July 9, 2026]
+
+### 🛡️ ServGate
+- **GitOps Config Sync** — Pulls configuration updates automatically via webhook, validating route rules and signature authentication (supporting GitHub signature and GitLab tokens). [July 9, 2026]
+- **Auto TLS Let's Encrypt** — Provisions certs automatically for comma-separated list of domains with a self-signed fallback mechanism for local development. [July 9, 2026]
 
 ### 🗄️ ServDB
 - **Connection Draining** — Gracefully drains database connection pools during rolling deploys/SIGTERM. Implemented a shutdown sequence that stops background cleaner routines and waits for all active in-flight database queries to finish before closing connection pools.
 - **Multi-region Query Routing** — Routes `SELECT` queries to specific geo-local replica pools based on the `X-Region` request header (supporting e.g. `--region-replicas` CLI option), defaulting back to the standard replica pool if the region pool is missing.
+
+### 📥 ServQueue
+- **Topic Schema Linting** — Static analyzer in compiler verifying message payloads against topic schemas at compile time. [July 9, 2026]

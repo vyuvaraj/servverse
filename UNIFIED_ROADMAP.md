@@ -33,26 +33,29 @@ The following items are compiled from individual component roadmaps and represen
 
 ### 📄 ServDocs
 - [x] **Middleware chain documentation** — Show which middleware applies to which routes with order. [July 9, 2026]
-- [ ] **Code examples in docs** — Include `.srv` usage examples alongside route documentation.
-- [ ] **Versioned docs** — Generate docs per git tag; host multiple versions side-by-side.
+- [x] **Code examples in docs** — Include `.srv` usage examples alongside route documentation. [July 9, 2026]
+- [x] **Versioned docs** — Generate docs per git tag; host multiple versions side-by-side. [July 9, 2026]
 
 ### 🛡️ ServGate
-- [ ] **GitOps Config Sync** — Git repository webhooks to automatically re-sync gateway routes.
-- [ ] **Auto TLS Let's Encrypt** — Integrated ACME client for automated certificate provisioning.
+- [x] **GitOps Config Sync** — Git repository webhooks to automatically re-sync gateway routes. [July 9, 2026]
+- [x] **Auto TLS Let's Encrypt** — Integrated ACME client for automated certificate provisioning. [July 9, 2026]
 
 ### 🌐 ServMesh
 - [x] **Rate Limiting per Service Pair** — Client-side token-bucket rate limiting keyed on `caller/callee` identity; returns HTTP 429 on exhaustion. [July 9, 2026]
 - [x] **Service Versioning & Header Routing** — Route requests to specific versions via `X-Service-Version` header; falls back to full pool if version not found. [July 9, 2026]
 - [x] **Health-Aware Load Balancing** — OTel-feedback weighted routing; clients push metrics via `POST /api/health-metrics`; `GET /api/topology` exposes aggregated health state per instance. [July 9, 2026]
-- [ ] **gRPC Support** — Extend the resolver and circuit breaker to handle gRPC connections natively.
-- [ ] **Local Dev Service Mesh** — One-command `serv mesh up` that starts a local registry + resolver with zero config for fast developer iteration.
+- [x] **gRPC Support** — Extend the resolver and circuit breaker to handle gRPC connections natively. [July 9, 2026]
+- [x] **Local Dev Service Mesh** — One-command `serv mesh up` that starts a local registry + resolver with zero config for fast developer iteration. [July 9, 2026]
 - [x] **Mesh Topology CLI** — `go run ./cmd/inspect/` shows live table of services, instances, latency, error rate, and health state. Supports `--watch` auto-refresh and `--service` filter. [July 9, 2026]
 
-### 📥 ServQueue
-- [ ] **Topic Schema Linting** — `serv lint` validates topic publish/subscribe schemas against the schema registry before deploy, catching mismatches at build time.
+### 📄 ServDocs
+- [x] **Middleware chain documentation** — Show which middleware applies to which routes with order. [July 9, 2026]
+
+### 🛡️ ServGate
+- [x] **GitOps Config Sync** — Git repository webhooks to automatically re-sync gateway routes. [July 9, 2026]
 
 ### 📦 ServRegistry
-- [ ] **Private Namespace Support** — Scoped package namespaces (`@org/package`) with access control lists.
+- [x] **Private Namespace Support** — Scoped package namespaces (`@org/package`) with access control lists. [July 9, 2026]
 - [ ] **Mirror & Offline Cache** — Local proxy mode that caches the public registry to a ServStore bucket; enables air-gapped builds.
 - [ ] **Provenance Attestation** — Record build provenance (commit SHA, CI run ID, builder identity) alongside the package; verify with `serv verify --attestation`.
 
