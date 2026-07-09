@@ -32,11 +32,9 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 The following items are compiled from individual component roadmaps and represent pending backlog features:
 
 ### 📄 ServDocs
-- [ ] **Type schema rendering** — Render struct/interface definitions as expandable schema tables in HTML.
 - [ ] **Middleware chain documentation** — Show which middleware applies to which routes with order.
 - [ ] **Code examples in docs** — Include `.srv` usage examples alongside route documentation.
 - [ ] **Versioned docs** — Generate docs per git tag; host multiple versions side-by-side.
-- [ ] **Search** — Client-side full-text search across generated documentation.
 
 ### 🛡️ ServGate
 - [ ] **GitOps Config Sync** — Git repository webhooks to automatically re-sync gateway routes.

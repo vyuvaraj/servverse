@@ -218,6 +218,8 @@ This document preserves the archived history of completed items for Phases 11 th
 
 ### 📄 ServDocs
 - **`serv docs serve --watch`** — File watcher that regenerates docs on `.srv` file changes. Integrated with a build server that injects a Server-Sent Events (SSE) live-reload script into the generated HTML.
+- **Type Schema Rendering** — Renders struct definitions as expandable schema tables directly within route documentation dynamically using a pre-serialized JSON schema map.
+- **Client-side Full-text Search** — Implements an advanced, high-performance client-side search indexing system with real-time matching, text highlighting via `<mark>` elements, dynamic result counts, and automated sidebar navigation filtering.
 
 ### 🗄️ ServDB
 - **Connection Draining** — Gracefully drains database connection pools during rolling deploys/SIGTERM. Implemented a shutdown sequence that stops background cleaner routines and waits for all active in-flight database queries to finish before closing connection pools.
