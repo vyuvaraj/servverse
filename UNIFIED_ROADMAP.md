@@ -23,7 +23,8 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 | **Phase 12: Dual-Licensing & EE Split** | 19 | 19 | 0 | **100%** | ████████████████████ |
 | **Phase 13: Language & Runtime Evolution**| 18 | 18 | 0 | **100%** | ████████████████████ |
 | **Phase 14: AI-Native Ecosystem** | 28 | 28 | 0 | **100%** | ████████████████████ |
-| **TOTAL ECOSYSTEM WORK** | **143** | **143** | **0** | **100%** | ████████████████████ |
+| **Phase 16: Operational Hardening & Production Readiness** | 9 | 0 | 9 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
+| **TOTAL ECOSYSTEM WORK** | **152** | **143** | **9** | **94%** | ██████████████████░░ |
 
 ---
 
@@ -92,6 +93,48 @@ graph TD
 | **ServTunnel** | 🟢 Production | ⚪ N/A | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Full proxy + panel | **Production-Ready** |
 | **ServRegistry**| 🟢 Production | 🟢 Production | 🟢 Production | 🟡 Medium | 🟢 Production | 🟢 Production | 🟢 Full panel | **Production-Ready** |
 | **ServDocs** | 🟢 Production | ⚪ N/A | ⚪ N/A | ⚪ N/A | 🟢 Production | 🟢 Production | 🟢 Embedded | **Production-Ready** |
+
+---
+
+## Phase 16: Operational Hardening & Production Readiness (Pending)
+
+The following backlog tasks target upgrading remaining components from **Stable** to **Production-Ready** by hardening their security, persistence, and observability layers:
+
+### 📦 ServStore
+- [ ] **KMS Envelope Encryption** — Implement envelope encryption via AWS KMS / Google Cloud KMS for stored S3 objects to secure sensitive file payloads.
+- [ ] **OTel Performance Instrumentation** — Add OpenTelemetry metric tracking for S3 upload/download latency, throughput, and error budgets.
+
+### 📥 ServQueue
+- [ ] **mTLS Client Verification** — Enforce client certificate authentication (mTLS) for publishers and subscribers on enterprise topics.
+- [ ] **Prometheus Queue Lag Metrics** — Export message consumer lag, queue depth, and processing latency directly to Prometheus endpoints.
+
+### 💻 ServConsole
+- [ ] **Persistent Session Storage** — Implement PostgreSQL/Sqlite-based persistent storage for user sessions to ensure session survivability.
+- [ ] **Frontend Playwright E2E Tests** — Set up Playwright automated browser tests to validate critical UI flows and charts.
+
+### ⚡ ServCache
+- [ ] **Redis/Memcached Protocol TLS** — Support native TLS encryption for all Redis and Memcached client connections.
+- [ ] **OTel Cache Metrics** — Export cache hit/miss ratio, memory fragmentation, and key eviction counts to central OTel collectors.
+
+### ⏰ ServCron
+- [ ] **API RBAC Enforcement** — Enforce Role-Based Access Control on job builder and trigger APIs, requiring admin privilege to register new crons.
+- [ ] **Execution Syslog Integration** — Direct cron job stdout, exit statuses, and durations to syslog or central log drains.
+
+### 🛡️ ServAuth
+- [ ] **Persistent Token Storage** — Store issued refresh tokens in a database to enable remote token revocation and active session audits.
+- [ ] **Auth Audit Logs** — Generate structured JSON audit trails for all authentication events, login failures, and MFA setups.
+
+### 🗄️ ServDB
+- [ ] **mTLS Connection Checks** — Support mutual TLS verification for all database client connections.
+- [ ] **Pool Connection Stats** — Export connection pool usage, active/idle count, and wait duration metrics.
+
+### 📧 ServMail
+- [ ] **DKIM Outbound Signatures** — Add support for automated DKIM signature headers and SPF verification checks.
+- [ ] **Disk Queue Persistence** — Save outgoing mail queues to disk to prevent email loss during server restarts or crashes.
+
+### 🔄 ServFlow
+- [ ] **Saga State DB Storage** — Persist saga states, transaction steps, and rollback progress in a distributed database instead of memory.
+- [ ] **Flow Latency telemetry** — Add OTel spans tracking execution duration for each step and overall workflow success rates.
 
 ---
 
