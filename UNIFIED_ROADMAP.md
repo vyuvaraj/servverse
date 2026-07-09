@@ -71,9 +71,9 @@ The following items are compiled from individual component roadmaps and represen
 - [ ] **Multi-relay federation** — Distribute tunnels across regions.
 - [ ] **Usage analytics and billing integration** — Integrated usage tracking.
 - [ ] **Enterprise features** — SSO, audit logging, IP allowlists.
-- [ ] **Team Collaboration** — Share tunnel access with team members via token-based invite links.
-- [ ] **Persistent Tunnels** — Keep tunnels alive across client restarts with session resumption.
-- [ ] **Custom Domain Mapping** — Map production domains to local tunnels for realistic testing.
+- [x] **Team Collaboration** — Share tunnel access with team members via token-based invite links. [July 9, 2026]
+- [x] **Persistent Tunnels** — Keep tunnels alive across client restarts with session resumption. [July 9, 2026]
+- [x] **Custom Domain Mapping** — Map production domains to local tunnels for realistic testing. [July 9, 2026]
 - [x] **Request Recording & Replay** — Record all requests through tunnel, replay them later for debugging. [July 9, 2026]
 - [x] **Bandwidth Throttling** — Simulate slow networks (3G, satellite) for mobile testing. [July 9, 2026]
 - [x] **Request Diff Mode** — Show a colored diff between the proxied request and original, highlighting header mutations, body modifications or injected WASM transforms. [July 9, 2026]
