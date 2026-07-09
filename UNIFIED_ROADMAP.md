@@ -56,7 +56,6 @@ The following items are compiled from individual component roadmaps and represen
 - [ ] **Mesh Topology CLI** — `servmesh inspect` command showing live service-to-service call graph, circuit breaker states, and latency distribution.
 
 ### 📥 ServQueue
-- [ ] **Dead Letter Queue Inspector** — `servqueue dlq inspect <topic>` lists DLQ messages with payload preview, retry count, and error cause; supports `--replay` flag.
 - [ ] **Topic Schema Linting** — `serv lint` validates topic publish/subscribe schemas against the schema registry before deploy, catching mismatches at build time.
 
 ### 📦 ServRegistry

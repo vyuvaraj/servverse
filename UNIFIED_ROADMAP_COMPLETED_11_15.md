@@ -208,3 +208,10 @@ This document preserves the archived history of completed items for Phases 11 th
 - **Smart scheduling (AI.35)** — Analyze job execution history (duration, resource usage, conflicts). Suggest optimal scheduling windows.
 - **AI decision steps in workflows (AI.36)** — `step "classify" { ai.classify(input, ["approve", "review", "reject"]) }` — AI-powered branching.
 - **Workflow generation from description (AI.37)** — NL prompt → DAG definition: "receives order → validates payment → notifies warehouse → sends email".
+
+---
+
+## Phase 15: Component Backlog & Future Enhancements (Completed Items)
+
+### 📥 ServQueue
+- **Dead Letter Queue Inspector (DX.S9)** — Added `serv queue dlq inspect <topic>` command with payload preview, retry count, and error cause, supporting `--replay` flag to requeue messages back to their source topics. Added GET `/api/v1/topics/{topic}/dlq` endpoint to fetch & decode DLQ entries from the WAL.
