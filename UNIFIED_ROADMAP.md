@@ -60,9 +60,9 @@ The following items are compiled from individual component roadmaps and represen
 - [ ] **Provenance Attestation** — Record build provenance (commit SHA, CI run ID, builder identity) alongside the package; verify with `serv verify --attestation`.
 
 ### 🔍 ServTrace
-- [ ] **Trace Sampling Strategies** — Head-based and tail-based sampling with configurable rates per service.
-- [ ] **Trace Comparison** — Compare two traces side-by-side to identify regression causes.
-- [ ] **Retention Policies** — Configurable TTL per service. Auto-archive old traces to ServStore.
+- [x] **Trace Sampling Strategies** — Head-based and tail-based sampling with configurable rates per service. [July 9, 2026]
+- [x] **Trace Comparison** — Compare two traces side-by-side to identify regression causes. [July 9, 2026]
+- [x] **Retention Policies** — Configurable TTL per service. Auto-archive old traces to ServStore. [July 9, 2026]
 - [ ] **Distributed Context Baggage** — Propagate custom key-value pairs across service boundaries via trace context.
 - [ ] **Continuous Profiling Integration** — Link pprof CPU/memory profiles to trace spans; surface hot-path profiles in the ServConsole waterfall view.
 - [ ] **Adaptive Sampling Rate** — Dynamically raise sampling rate when error rate spikes and lower it when traffic is healthy.
