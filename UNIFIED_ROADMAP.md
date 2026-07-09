@@ -24,7 +24,8 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 | **Phase 13: Language & Runtime Evolution**| 18 | 18 | 0 | **100%** | ████████████████████ |
 | **Phase 14: AI-Native Ecosystem** | 28 | 28 | 0 | **100%** | ████████████████████ |
 | **Phase 16: Operational Hardening & Production Readiness** | 18 | 17 | 1 | **94%** | ███████████████████░ |
-| **TOTAL ECOSYSTEM WORK** | **161** | **160** | **1 | **99%** | ████████████████████ |
+| **Phase 17: Zero-Trust Clustering & Edge Serverless** | 8 | 0 | 8 | **0%** | ░░░░░░░░░░░░░░░░░░░0 |
+| **TOTAL ECOSYSTEM WORK** | **169** | **160** | **9** | **94%** | ███████████████████░ |
 
 ---
 
@@ -135,6 +136,26 @@ The following backlog tasks target upgrading remaining components from **Stable*
 ### 🔄 ServFlow
 - [x] **Saga State DB Storage** — Persist saga states, transaction steps, and rollback progress in a distributed database instead of memory. [July 9, 2026]
 - [ ] **Flow Latency telemetry** — Add OTel spans tracking execution duration for each step and overall workflow success rates.
+
+---
+
+## Phase 17: Zero-Trust Clustering & Edge Serverless Evolution (Backlog)
+
+The following initiative targets next-generation architectural enhancements to enable secure multi-tenant cloud hosting, resilient storage guarantees, and edge computing:
+
+### 🛡️ zero-Trust Mesh & Gateway Resilience
+- [ ] **Distributed Rate-Limiting Backend** — Extend ServGate to support dynamic Redis/Valkey rate-limiting stores instead of in-memory maps.
+- [ ] **Inter-Service Mesh mTLS** — Enforce automatic mutual TLS client verification for all inter-service mesh routes inside ServMesh.
+- [ ] **Secure Enclave Isolation** — Add process execution support within secure enclaves (e.g. AWS Nitro Enclaves, Intel SGX).
+
+### 📦 S3 Durability & Pool Auto-Recovery
+- [ ] **Write-Ahead Logging (WAL)** — Add WAL and fsync safety limits to ServStore S3 layers to prevent dirty writes during unexpected node shutdowns.
+- [ ] **Connection Pool Leak Recovery** — Add automatic timeout reaping for deadlocked connection leases in ServDB pools.
+- [ ] **LRU Cache Key Eviction** — Implement thread-safe Least Recently Used (LRU) key evictions in ServCache memory stores.
+
+### ⚡ Edge Serverless & Code Execution
+- [ ] **WASM Edge Compilation** — Compile Serv-lang code modules directly to WebAssembly components for zero-cold-start hosting on Wasmtime.
+- [ ] **AI Observability Pipelines** — Enable automatic scaling triggers and query cache rule mutations via ServConsole observability hooks.
 
 ---
 
