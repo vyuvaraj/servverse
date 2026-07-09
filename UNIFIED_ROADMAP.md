@@ -41,8 +41,8 @@ The following items are compiled from individual component roadmaps and represen
 - [ ] **Auto TLS Let's Encrypt** — Integrated ACME client for automated certificate provisioning.
 
 ### 🌐 ServMesh
-- [ ] **Rate Limiting per Service Pair** — Client-side rate limiting based on caller/callee identity (not just global).
-- [ ] **Service Versioning & Header Routing** — Route requests to specific versions based on `X-Service-Version` header. Blue/green at service mesh level.
+- [x] **Rate Limiting per Service Pair** — Client-side token-bucket rate limiting keyed on `caller/callee` identity; returns HTTP 429 on exhaustion. [July 9, 2026]
+- [x] **Service Versioning & Header Routing** — Route requests to specific versions via `X-Service-Version` header; falls back to full pool if version not found. [July 9, 2026]
 - [ ] **Health-Aware Load Balancing** — Weight routing based on real-time latency/error-rate feedback from OTel spans.
 - [ ] **gRPC Support** — Extend the resolver and circuit breaker to handle gRPC connections natively.
 - [ ] **Local Dev Service Mesh** — One-command `serv mesh up` that starts a local registry + resolver with zero config for fast developer iteration.
