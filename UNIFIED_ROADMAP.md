@@ -56,10 +56,10 @@ Phase 10 targets commercialization, natural language app generation, round-trip 
 | SEC.17 | **Unified Dynamic Policy Enforcement (`ServPolicy`)** — Declarative schema-based security, data, and rate policy engine | All Services | Medium |
 | API.8 | **Ecosystem-Wide Schema Registry** — ✅ Schema broker validating DTOs across REST requests, STOMP messages, and S3 payloads | ServRegistry, ServGate | High | `2400535` |
 | OPS.17 | **Chaos Fault Injection Middleware** — ✅ Inject transport latencies, connection drops, and queue dropouts dynamically in development | ServMesh, ServShared | Medium |
-| AI.10 | **Self-Defending AI WAF** — Semantic proxy engine protecting routes against prompt injection, API abuse, and access anomalies | ServGate | High |
+| AI.10 | **Self-Defending AI WAF** — ✅ Semantic proxy engine protecting routes against prompt injection, API abuse, and access anomalies | ServGate | High | `5395488` |
 | AI.11 | **Semantic Rate Limiter** — Intrinsic token and semantic similarity limits preventing cost exhaustion attacks on LLM routes | ServGate, ServShared | Medium |
 | AI.12 | **Semantic DLQ Triaging** — ✅ Agentic dead-letter queue handlers analyzing message errors, classifying fault patterns, and requeuing patches | ServQueue, ServShared | High | `9bf7cc1` |
-| AI.13 | **Automatic Vectorization Pipeline** — Native storage pipeline automatically generating vector embeddings on S3 object uploads | ServStore, ServDB | Medium |
+| AI.13 | **Automatic Vectorization Pipeline** — ✅ Native storage pipeline automatically generating vector embeddings on S3 object uploads | ServStore, ServDB | Medium | `08fcf1d` |
 | AI.14 | **Self-Healing Observability Loop** — ✅ Agent-led trace monitoring, root-cause diagnostics, and automatic rollback on telemetry alerts | ServTrace, ServCloud | High | `0dfb28e` |
 | AI.15 | **Natural Language Operational Tracing** — Context-aware query system summarizing service-wide incidents from trace logs | ServConsole, ServTrace | Medium |
 
