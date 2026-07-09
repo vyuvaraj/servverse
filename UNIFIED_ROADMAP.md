@@ -27,9 +27,62 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 
 ---
 
-## Phase 15: Next Gen Vision (Pending)
+## Phase 15: Component Backlog & Future Enhancements (Pending)
 
-Future extension initiatives and advanced cross-platform integrations are currently being scoped.
+The following items are compiled from individual component roadmaps and represent pending backlog features:
+
+### 🗄️ ServDB
+- [ ] **Connection Draining** — Gracefully drain connections during rolling deploys; wait for in-flight queries before closing.
+- [ ] **Multi-region Query Routing** — Route reads to geo-local replicas based on request origin metadata.
+
+### 📄 ServDocs
+- [ ] **Type schema rendering** — Render struct/interface definitions as expandable schema tables in HTML.
+- [ ] **Middleware chain documentation** — Show which middleware applies to which routes with order.
+- [ ] **Code examples in docs** — Include `.srv` usage examples alongside route documentation.
+- [ ] **Versioned docs** — Generate docs per git tag; host multiple versions side-by-side.
+- [ ] **Search** — Client-side full-text search across generated documentation.
+- [ ] **`serv docs serve --watch`** — File watcher that regenerates docs on `.srv` file changes.
+
+### 🛡️ ServGate
+- [ ] **GitOps Config Sync** — Git repository webhooks to automatically re-sync gateway routes.
+- [ ] **Auto TLS Let's Encrypt** — Integrated ACME client for automated certificate provisioning.
+
+### 🌐 ServMesh
+- [ ] **Rate Limiting per Service Pair** — Client-side rate limiting based on caller/callee identity (not just global).
+- [ ] **Service Versioning & Header Routing** — Route requests to specific versions based on `X-Service-Version` header. Blue/green at service mesh level.
+- [ ] **Health-Aware Load Balancing** — Weight routing based on real-time latency/error-rate feedback from OTel spans.
+- [ ] **gRPC Support** — Extend the resolver and circuit breaker to handle gRPC connections natively.
+- [ ] **Local Dev Service Mesh** — One-command `serv mesh up` that starts a local registry + resolver with zero config for fast developer iteration.
+- [ ] **Mesh Topology CLI** — `servmesh inspect` command showing live service-to-service call graph, circuit breaker states, and latency distribution.
+
+### 📥 ServQueue
+- [ ] **Dead Letter Queue Inspector** — `servqueue dlq inspect <topic>` lists DLQ messages with payload preview, retry count, and error cause; supports `--replay` flag.
+- [ ] **Topic Schema Linting** — `serv lint` validates topic publish/subscribe schemas against the schema registry before deploy, catching mismatches at build time.
+
+### 📦 ServRegistry
+- [ ] **Private Namespace Support** — Scoped package namespaces (`@org/package`) with access control lists.
+- [ ] **Mirror & Offline Cache** — Local proxy mode that caches the public registry to a ServStore bucket; enables air-gapped builds.
+- [ ] **Provenance Attestation** — Record build provenance (commit SHA, CI run ID, builder identity) alongside the package; verify with `serv verify --attestation`.
+
+### 🔍 ServTrace
+- [ ] **Trace Sampling Strategies** — Head-based and tail-based sampling with configurable rates per service.
+- [ ] **Trace Comparison** — Compare two traces side-by-side to identify regression causes.
+- [ ] **Retention Policies** — Configurable TTL per service. Auto-archive old traces to ServStore.
+- [ ] **Distributed Context Baggage** — Propagate custom key-value pairs across service boundaries via trace context.
+- [ ] **Continuous Profiling Integration** — Link pprof CPU/memory profiles to trace spans; surface hot-path profiles in the ServConsole waterfall view.
+- [ ] **Adaptive Sampling Rate** — Dynamically raise sampling rate when error rate spikes and lower it when traffic is healthy.
+
+### 🚇 ServTunnel
+- [ ] **Multi-relay federation** — Distribute tunnels across regions.
+- [ ] **Usage analytics and billing integration** — Integrated usage tracking.
+- [ ] **Enterprise features** — SSO, audit logging, IP allowlists.
+- [ ] **Team Collaboration** — Share tunnel access with team members via token-based invite links.
+- [ ] **Persistent Tunnels** — Keep tunnels alive across client restarts with session resumption.
+- [ ] **Custom Domain Mapping** — Map production domains to local tunnels for realistic testing.
+- [ ] **Request Recording & Replay** — Record all requests through tunnel, replay them later for debugging.
+- [ ] **Bandwidth Throttling** — Simulate slow networks (3G, satellite) for mobile testing.
+- [ ] **Request Diff Mode** — Show a colored diff between the proxied request and original, highlighting header mutations, body modifications or injected WASM transforms.
+- [ ] **Tunnel Config-as-Code** — Declare tunnel rules in `.serv/tunnel.yaml` (name, auth, subdomain, filters).
 
 ---
 
