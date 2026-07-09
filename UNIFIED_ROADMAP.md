@@ -32,7 +32,7 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 The following items are compiled from individual component roadmaps and represent pending backlog features:
 
 ### 📄 ServDocs
-- [ ] **Middleware chain documentation** — Show which middleware applies to which routes with order.
+- [x] **Middleware chain documentation** — Show which middleware applies to which routes with order. [July 9, 2026]
 - [ ] **Code examples in docs** — Include `.srv` usage examples alongside route documentation.
 - [ ] **Versioned docs** — Generate docs per git tag; host multiple versions side-by-side.
 
