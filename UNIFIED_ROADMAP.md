@@ -70,7 +70,7 @@ The following items are compiled from individual component roadmaps and represen
 ### 🚇 ServTunnel
 - [x] **Multi-relay federation** — Distribute tunnels across regions. [July 9, 2026]
 - [x] **Usage analytics and billing integration** — Integrated usage tracking. [July 9, 2026]
-- [ ] **Enterprise features** — SSO, audit logging, IP allowlists.
+- [x] **Enterprise features** — SSO, audit logging, IP allowlists. [July 9, 2026]
 - [x] **Team Collaboration** — Share tunnel access with team members via token-based invite links. [July 9, 2026]
 - [x] **Persistent Tunnels** — Keep tunnels alive across client restarts with session resumption. [July 9, 2026]
 - [x] **Custom Domain Mapping** — Map production domains to local tunnels for realistic testing. [July 9, 2026]
