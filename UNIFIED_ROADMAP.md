@@ -41,7 +41,6 @@ The following items are compiled from individual component roadmaps and represen
 - [ ] **Code examples in docs** — Include `.srv` usage examples alongside route documentation.
 - [ ] **Versioned docs** — Generate docs per git tag; host multiple versions side-by-side.
 - [ ] **Search** — Client-side full-text search across generated documentation.
-- [ ] **`serv docs serve --watch`** — File watcher that regenerates docs on `.srv` file changes.
 
 ### 🛡️ ServGate
 - [ ] **GitOps Config Sync** — Git repository webhooks to automatically re-sync gateway routes.

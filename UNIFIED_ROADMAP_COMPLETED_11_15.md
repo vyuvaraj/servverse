@@ -215,3 +215,6 @@ This document preserves the archived history of completed items for Phases 11 th
 
 ### 📥 ServQueue
 - **Dead Letter Queue Inspector (DX.S9)** — Added `serv queue dlq inspect <topic>` command with payload preview, retry count, and error cause, supporting `--replay` flag to requeue messages back to their source topics. Added GET `/api/v1/topics/{topic}/dlq` endpoint to fetch & decode DLQ entries from the WAL.
+
+### 📄 ServDocs
+- **`serv docs serve --watch`** — File watcher that regenerates docs on `.srv` file changes. Integrated with a build server that injects a Server-Sent Events (SSE) live-reload script into the generated HTML.
