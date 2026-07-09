@@ -23,8 +23,8 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 | **Phase 12: Dual-Licensing & EE Split** | 19 | 19 | 0 | **100%** | ████████████████████ |
 | **Phase 13: Language & Runtime Evolution**| 18 | 18 | 0 | **100%** | ████████████████████ |
 | **Phase 14: AI-Native Ecosystem** | 28 | 28 | 0 | **100%** | ████████████████████ |
-| **Phase 16: Operational Hardening & Production Readiness** | 18 | 14 | 4 | **78%** | ████████████████░░░░ |
-| **TOTAL ECOSYSTEM WORK** | **161** | **157** | **4** | **97%** | ███████████████████░ |
+| **Phase 16: Operational Hardening & Production Readiness** | 18 | 17 | 1 | **94%** | ███████████████████░ |
+| **TOTAL ECOSYSTEM WORK** | **161** | **160** | **1 | **99%** | ████████████████████ |
 
 ---
 
@@ -126,14 +126,14 @@ The following backlog tasks target upgrading remaining components from **Stable*
 
 ### 🗄️ ServDB
 - [x] **mTLS Connection Checks** — Support mutual TLS verification for all database client connections. [July 9, 2026]
-- [ ] **Pool Connection Stats** — Export connection pool usage, active/idle count, and wait duration metrics.
+- [x] **Pool Connection Stats** — Export connection pool usage, active/idle count, and wait duration metrics. [July 9, 2026]
 
 ### 📧 ServMail
 - [x] **DKIM Outbound Signatures** — Add support for automated DKIM signature headers and SPF verification checks. [July 9, 2026]
-- [ ] **Disk Queue Persistence** — Save outgoing mail queues to disk to prevent email loss during server restarts or crashes.
+- [x] **Disk Queue Persistence** — Save outgoing mail queues to disk to prevent email loss during server restarts or crashes. [July 9, 2026]
 
 ### 🔄 ServFlow
-- [ ] **Saga State DB Storage** — Persist saga states, transaction steps, and rollback progress in a distributed database instead of memory.
+- [x] **Saga State DB Storage** — Persist saga states, transaction steps, and rollback progress in a distributed database instead of memory. [July 9, 2026]
 - [ ] **Flow Latency telemetry** — Add OTel spans tracking execution duration for each step and overall workflow success rates.
 
 ---
