@@ -43,10 +43,10 @@ The following items are compiled from individual component roadmaps and represen
 ### 🌐 ServMesh
 - [x] **Rate Limiting per Service Pair** — Client-side token-bucket rate limiting keyed on `caller/callee` identity; returns HTTP 429 on exhaustion. [July 9, 2026]
 - [x] **Service Versioning & Header Routing** — Route requests to specific versions via `X-Service-Version` header; falls back to full pool if version not found. [July 9, 2026]
-- [ ] **Health-Aware Load Balancing** — Weight routing based on real-time latency/error-rate feedback from OTel spans.
+- [x] **Health-Aware Load Balancing** — OTel-feedback weighted routing; clients push metrics via `POST /api/health-metrics`; `GET /api/topology` exposes aggregated health state per instance. [July 9, 2026]
 - [ ] **gRPC Support** — Extend the resolver and circuit breaker to handle gRPC connections natively.
 - [ ] **Local Dev Service Mesh** — One-command `serv mesh up` that starts a local registry + resolver with zero config for fast developer iteration.
-- [ ] **Mesh Topology CLI** — `servmesh inspect` command showing live service-to-service call graph, circuit breaker states, and latency distribution.
+- [x] **Mesh Topology CLI** — `go run ./cmd/inspect/` shows live table of services, instances, latency, error rate, and health state. Supports `--watch` auto-refresh and `--service` filter. [July 9, 2026]
 
 ### 📥 ServQueue
 - [ ] **Topic Schema Linting** — `serv lint` validates topic publish/subscribe schemas against the schema registry before deploy, catching mismatches at build time.
