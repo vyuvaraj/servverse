@@ -68,8 +68,8 @@ The following items are compiled from individual component roadmaps and represen
 - [x] **Adaptive Sampling Rate** — Dynamically raise sampling rate when error rate spikes and lower it when traffic is healthy. [July 9, 2026]
 
 ### 🚇 ServTunnel
-- [ ] **Multi-relay federation** — Distribute tunnels across regions.
-- [ ] **Usage analytics and billing integration** — Integrated usage tracking.
+- [x] **Multi-relay federation** — Distribute tunnels across regions. [July 9, 2026]
+- [x] **Usage analytics and billing integration** — Integrated usage tracking. [July 9, 2026]
 - [ ] **Enterprise features** — SSO, audit logging, IP allowlists.
 - [x] **Team Collaboration** — Share tunnel access with team members via token-based invite links. [July 9, 2026]
 - [x] **Persistent Tunnels** — Keep tunnels alive across client restarts with session resumption. [July 9, 2026]
