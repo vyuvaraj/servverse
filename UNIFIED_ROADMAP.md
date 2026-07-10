@@ -196,7 +196,7 @@ Develop the next generation of scale and performance capabilities inside the `se
 | QC.7 | **Codegen unit tests** | Serv-lang | Test generated Go output for each statement/expression type. Verify correct type inference, native ops emission | [x] |
 | QC.8 | **Lexer edge-case tests** | Serv-lang | Unicode identifiers, unterminated strings, nested interpolation, malformed numbers | [x] |
 | QC.9 | **Semantic analysis tests** | Serv-lang | Type mismatch detection, unused variables, unreachable code, missing returns — all analyzers | [x] |
-| QC.10 | **LSP test coverage** | Serv-lang | Completion, hover, go-to-definition, diagnostics — protocol-level tests against sample .srv files | [ ] |
+| QC.10 | **LSP test coverage** | Serv-lang | Completion, hover, go-to-definition, diagnostics — protocol-level tests against sample .srv files | [x] |
 
 ### 🟡 Service Test Hardening
 
