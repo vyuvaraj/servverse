@@ -28,7 +28,7 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 | **Phase 17: Zero-Trust Clustering & Edge Serverless** | 8 | 8 | 0 | **100%** | ████████████████████ |
 | **Phase 18: OSS-to-EE Boundary Alignment & Refactoring** | 6 | 6 | 0 | **100%** | ████████████████████ |
 | **Phase 19: Component Maturity Alignment** | 7 | 7 | 0 | **100%** | ████████████████████ |
-| **Phase 20: OSS-to-EE Refactoring & Enterprise Migrations** | 6 | 2 | 4 | **33%** | ██████░░░░░░░░░░░░░░ |
+| **Phase 20: OSS-to-EE Refactoring & Enterprise Migrations** | 6 | 3 | 3 | **50%** | ██████████░░░░░░░░░░ |
 | **Phase 21: Enterprise Ecosystem Scale & Next-Gen** | 6 | 0 | 6 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
 | **Phase 22: Quality, Credibility & Code Health** | 20 | 8 | 12 | **40%** | ████████░░░░░░░░░░░░ |
 | **Phase 23: Developer Adoption & Growth** | 14 | 0 | 14 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
@@ -152,7 +152,7 @@ Refactor the following advanced OSS capabilities into clean, build-tagged hooks,
 - [ ] **Saga Parallel Coordinator** — Refactor concurrent execution paths, DAG forks, and complex compensating workflows in Saga engines to the enterprise overlay.
 
 ### 📧 ServMail & ⏰ ServCron
-- [ ] **Dynamic HTML Templates** — Separate the Go template engine compilation, MJML layout transpilation, and variable-bound rendering into the enterprise tag.
+- [x] **Dynamic HTML Templates** — Separate the Go template engine compilation, MJML layout transpilation, and variable-bound rendering into the enterprise tag. [July 10, 2026]
 - [ ] **Clustered Leader Election** — Extract distributed leader election and consensus-backed job execution scheduling for Cron clusters into the enterprise overlay.
 
 ### 🤖 AI-Native Features (Ungated — Move to EE)
