@@ -23,7 +23,7 @@ every 1h {
     // Seed initial values so the dashboard has data immediately
     log.info("[Pipeline Daemon] Updating pipeline cache...")
     
-    let repos = ["ServGate", "ServConsole", "ServStore", "ServQueue", "ServAuth", "ServDB", "ServTrace", "Serv-lang", "servverse-ee", "ServMesh", "ServCron", "ServCache", "ServDocs", "ServMail", "ServRegistry"]
+    let repos = ["ServGate", "ServConsole", "ServStore", "ServQueue", "ServAuth", "ServPool", "ServTrace", "Serv-lang", "servverse-ee", "ServMesh", "ServCron", "ServCache", "ServDocs", "ServMail", "ServRegistry"]
     for r in repos {
         // Query database to see if it exists
         let exists = db.query("SELECT repo FROM pipelines WHERE repo = ?", r)
@@ -42,7 +42,7 @@ every 1h {
 every 5m {
     log.info("[Pipeline Daemon] Polling GitHub Actions API for pipeline updates...")
     
-    let repos = ["ServGate", "ServConsole", "ServStore", "ServQueue", "ServAuth", "ServDB", "ServTrace", "Serv-lang", "servverse-ee", "ServMesh", "ServCron", "ServCache", "ServDocs", "ServMail", "ServRegistry"]
+    let repos = ["ServGate", "ServConsole", "ServStore", "ServQueue", "ServAuth", "ServPool", "ServTrace", "Serv-lang", "servverse-ee", "ServMesh", "ServCron", "ServCache", "ServDocs", "ServMail", "ServRegistry"]
     for r in repos {
         let apiURL = "https://api.github.com/repos/vyuvaraj/" + r + "/actions/runs?per_page=1"
         
