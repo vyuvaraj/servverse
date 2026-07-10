@@ -207,8 +207,8 @@ Develop the next generation of scale and performance capabilities inside the `se
 
 | # | Item | Component | Description | Status |
 |---|------|-----------|-------------|--------|
-| QC.17 | **Performance regression CI gate** | servverse-repo | Wire verify_perf_sla.py into CI workflow. Block merges that degrade p99 beyond threshold | [ ] |
-| QC.18 | **Backward compatibility CI gate** | servverse-repo | Wire check_backward_compat.go into CI. Detect breaking API changes before merge | [ ] |
+| QC.17 | **Performance regression CI gate** | servverse-repo | Wire verify_perf_sla.py into CI workflow. Block merges that degrade p99 beyond threshold | [x] |
+| QC.18 | **Backward compatibility CI gate** | servverse-repo | Wire check_backward_compat.go into CI. Detect breaking API changes before merge | [x] |
 | QC.19 | **Test coverage threshold** | All repos | Enforce minimum 60% statement coverage via CI. Fail builds below threshold | [ ] |
 | QC.20 | **API consistency linter** | All repos | Verify all services use /api/v1/ prefix, standardized error format, deprecation headers | [ ] |
 
