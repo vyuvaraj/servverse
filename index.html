@@ -592,16 +592,35 @@
       </div>
     </div>
   </section>
+  <!-- Blog Section -->
+  <section id="blog" class="section alt-bg">
+    <div class="section-header reveal">
+      <h2>Technical Deep Dives</h2>
+      <p>Architectural reviews, design decisions, and hands-on developer guides.</p>
+    </div>
+    
+    <!-- Search Bar -->
+    <div class="reveal" style="max-width: 500px; margin: 0 auto 1.5rem auto; padding: 0 1rem;">
+      <input type="text" id="blog-search" placeholder="Search articles by title or keyword..." 
+             style="width: 100%; padding: 0.8rem 1.2rem; border-radius: 12px; background: rgba(25, 28, 45, 0.4); border: 1px solid var(--border-glass); color: #fff; font-family: inherit; font-size: 0.95rem; outline: none; transition: border-color 0.3s;" />
+    </div>
 
-    <div class="blog-filters reveal" style="max-width: 1200px; margin: 0 auto 2rem auto; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+    <!-- Filters -->
+    <div class="blog-filters reveal" style="max-width: 1200px; margin: 0 auto 2rem auto; display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; padding: 0 1rem;">
       <button class="btn btn-secondary filter-btn active" data-filter="all">All</button>
       <button class="btn btn-secondary filter-btn" data-filter="Tutorial">Tutorials</button>
       <button class="btn btn-secondary filter-btn" data-filter="Ecosystem">Ecosystem</button>
       <button class="btn btn-secondary filter-btn" data-filter="Infrastructure">Infrastructure</button>
       <button class="btn btn-secondary filter-btn" data-filter="Platform Layer">Platform</button>
     </div>
+
     <div class="blog-grid" id="blog-grid-container">
       <!-- Dynamic blog posts rendered by JS -->
+    </div>
+
+    <!-- Load More Button -->
+    <div class="reveal" style="text-align: center; margin-top: 3rem;">
+      <button id="load-more-btn" class="btn btn-primary" style="display: none;">Show More Articles</button>
     </div>
   </section>
 
@@ -701,9 +720,11 @@
       });
     });
 
-    // Dynamic Blog Post Loader & Filter
+    // Dynamic Blog Post Loader, Search & Pagination
     async function loadBlogPosts() {
       const container = document.getElementById('blog-grid-container');
+      const searchInput = document.getElementById('blog-search');
+      const loadMoreBtn = document.getElementById('load-more-btn');
       if (!container) return;
 
       try {
@@ -711,8 +732,32 @@
         if (!response.ok) throw new Error('Failed to fetch blog posts manifest');
         const posts = await response.json();
 
-        function renderPosts(filteredPosts) {
-          container.innerHTML = filteredPosts.map(post => `
+        let currentFilter = 'all';
+        let searchQuery = '';
+        let visibleCount = 6;
+
+        function getFilteredPosts() {
+          return posts.filter(post => {
+            const matchesFilter = currentFilter === 'all' || post.badge === currentFilter;
+            const matchesSearch = searchQuery === '' || 
+              post.title.toLowerCase().includes(searchQuery) || 
+              post.excerpt.toLowerCase().includes(searchQuery) ||
+              post.badge.toLowerCase().includes(searchQuery);
+            return matchesFilter && matchesSearch;
+          });
+        }
+
+        function render() {
+          const filtered = getFilteredPosts();
+          const toRender = filtered.slice(0, visibleCount);
+
+          if (toRender.length === 0) {
+            container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); margin: 3rem 0;">No articles found matching your criteria.</p>`;
+            loadMoreBtn.style.display = 'none';
+            return;
+          }
+
+          container.innerHTML = toRender.map(post => `
             <a href="blog.html?post=${post.slug}" class="blog-card glass-card visible">
               <div class="blog-badge ${post.badgeColor || 'purple'}">${post.badge}</div>
               <h3 class="blog-title">${post.title}</h3>
@@ -720,26 +765,47 @@
               <span class="blog-read-more">Read Article →</span>
             </a>
           `).join('');
+
+          // Show or hide load more button
+          if (filtered.length > visibleCount) {
+            loadMoreBtn.style.display = 'inline-block';
+          } else {
+            loadMoreBtn.style.display = 'none';
+          }
         }
 
-        // Initial render
-        renderPosts(posts);
+        // Search Input listener
+        if (searchInput) {
+          searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value.toLowerCase().trim();
+            visibleCount = 6; // Reset visible count on search
+            render();
+          });
+        }
 
-        // Filter button functionality
+        // Filter buttons listener
         document.querySelectorAll('.filter-btn').forEach(btn => {
           btn.addEventListener('click', () => {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            const filter = btn.dataset.filter;
-            if (filter === 'all') {
-              renderPosts(posts);
-            } else {
-              const filtered = posts.filter(p => p.badge === filter);
-              renderPosts(filtered);
-            }
+            currentFilter = btn.dataset.filter;
+            visibleCount = 6; // Reset visible count on filter switch
+            render();
           });
         });
+
+        // Load More button listener
+        if (loadMoreBtn) {
+          loadMoreBtn.addEventListener('click', () => {
+            visibleCount += 6;
+            render();
+          });
+        }
+
+        // Initial render
+        render();
+
       } catch (err) {
         console.error('Error loading blog posts:', err);
         container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">Failed to load articles.</p>`;
