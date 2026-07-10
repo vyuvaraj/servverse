@@ -45,7 +45,7 @@ This creates the following structure:
 
 ```
 my-api/
-├── main.serv          # Entry point
+├── main.srv          # Entry point
 ├── services/          # Service definitions
 ├── models/            # Data models
 ├── serv.yaml          # Project config
@@ -56,7 +56,7 @@ my-api/
 
 ## Step 2: Define Your First Service
 
-Open `services/user.serv` and add:
+Open `services/user.srv` and add:
 
 ```serv
 import store

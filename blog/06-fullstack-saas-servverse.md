@@ -39,14 +39,14 @@ Plus our custom **AppService** written in Serv-lang.
 taskflow/
 ├── app/
 │   ├── services/
-│   │   ├── task.serv
-│   │   ├── project.serv
-│   │   ├── comment.serv
-│   │   └── notification.serv
+│   │   ├── task.srv
+│   │   ├── project.srv
+│   │   ├── comment.srv
+│   │   └── notification.srv
 │   ├── models/
-│   │   ├── user.serv
-│   │   ├── project.serv
-│   │   └── task.serv
+│   │   ├── user.srv
+│   │   ├── project.srv
+│   │   └── task.srv
 │   └── serv.yaml
 ├── config/
 │   ├── servgate.yaml
@@ -58,7 +58,7 @@ taskflow/
 
 ## Step 1: Define the Data Models
 
-`app/models/task.serv`:
+`app/models/task.srv`:
 ```serv
 model Project {
   id:          string   @id
@@ -100,7 +100,7 @@ model Comment {
 
 ## Step 2: Define the Services
 
-`app/services/task.serv`:
+`app/services/task.srv`:
 ```serv
 import store
 import cache
@@ -251,7 +251,7 @@ mail:
 
 ## Step 4: Set Up Scheduled Jobs
 
-`app/services/notification.serv`:
+`app/services/notification.srv`:
 ```serv
 import cron
 import queue
@@ -296,7 +296,7 @@ cron.schedule("0 * * * *", "overdue-check") {
 
 ## Step 5: Wire Up Email Notifications
 
-`app/services/notification.serv` (continued):
+`app/services/notification.srv` (continued):
 ```serv
 import mail
 
