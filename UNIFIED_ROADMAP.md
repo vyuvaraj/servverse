@@ -83,25 +83,30 @@ graph TD
 
 ## Appendix B: Component Maturity Matrix
 
-| Component | API Contract | Persistence | Security | Observability | Tests | Docs | Console Integration | Overall Maturity |
-|-----------|--------------|-------------|----------|---------------|-------|------|---------------------|------------------|
-| **Serv-lang** | 🟢 Production | ⚪ N/A | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | ⚪ N/A | **Production-Ready** |
-| **ServGate** | 🟢 Production | ⚪ N/A | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Full proxy + panel | **Production-Ready** |
-| **ServMesh** | 🟢 Production | ⚪ N/A | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Full panel | **Production-Ready** |
-| **ServCloud** | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Full panel | **Production-Ready** |
-| **ServTrace** | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Full proxy + panel | **Production-Ready** |
-| **ServStore** | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Full proxy + panel | **Production-Ready** |
-| **ServQueue** | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Full proxy + panel | **Production-Ready** |
-| **ServConsole** | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | ⚪ Self | **Production-Ready** |
-| **ServCache** | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Full panel | **Production-Ready** |
-| **ServCron** | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Full panel | **Production-Ready** |
-| **ServAuth** | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Full proxy + panel | **Production-Ready** |
-| **ServDB** | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Full proxy + panel | **Production-Ready** |
-| **ServMail** | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Full proxy + panel | **Production-Ready** |
-| **ServFlow** | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Full panel | **Production-Ready** |
-| **ServTunnel** | 🟢 Production | ⚪ N/A | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Full proxy + panel | **Production-Ready** |
-| **ServRegistry**| 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Production | 🟢 Full panel | **Production-Ready** |
-| **ServDocs** | 🟢 Production | ⚪ N/A | ⚪ N/A | ⚪ N/A | 🟢 Production | 🟢 Production | 🟢 Embedded | **Production-Ready** |
+> Updated July 10, 2026 — based on actual code metrics (line counts, test coverage, pkg structure, standalone viability).
+
+| Component | API Contract | Persistence | Security | Observability | Tests | Code Structure | Standalone | Overall |
+|-----------|--------------|-------------|----------|---------------|-------|----------------|-----------|---------|
+| **Serv-lang** | 🟢 Stable | ⚪ N/A | 🟢 Stable | 🟢 OTel | 🟢 87 funcs, 7 compiler test files | 🟢 Split: compiler/, runtime/, lsp/, stdlib/ | ⚪ N/A | **Production** |
+| **ServStore** | 🟢 S3-compat | 🟢 Pebble+Raft | 🟢 SigV4+TLS+OIDC | 🟢 OTel | 🟢 78 funcs / 47 files | 🟢 cmd/ + pkg/ (8 packages) | 🟢 A+ Fully independent | **Production** |
+| **ServGate** | 🟢 REST+WASM | ⚪ Config file | 🟢 JWT+mTLS+ACME | 🟢 OTel | 🟢 46 funcs / 6 files | 🟢 pkg/proxy, pkg/wasm, pkg/otel | 🟢 A- needs config.json | **Production** |
+| **ServQueue** | 🟢 STOMP+REST | 🟢 WAL+S3 tier | 🟢 TLS+token auth | 🟢 OTel | 🟢 28 funcs / 6 files | 🟢 pkg/broker, pkg/stomp, pkg/web | 🟢 A Zero-config | **Production** |
+| **ServMesh** | 🟢 REST | ⚪ In-memory | 🟢 mTLS+JWT | 🟢 OTel | 🟢 34 funcs / 3 files | 🟢 pkg/registry, pkg/client | 🟡 B+ needs multiple services | **Production** |
+| **ServConsole** | 🟢 REST+WS | 🟡 SQLite | 🟢 OIDC+RBAC | 🟢 OTel | 🟡 34 funcs (needs 70+) | 🟢 12 packages extracted | ⚪ Aggregator by design | **Stable** |
+| **ServTrace** | 🟢 OTLP/HTTP | 🟢 ServStore tier | 🟡 Basic auth | 🟢 Self-traces | 🟡 13 funcs / 4 files | 🟡 pkg/server, pkg/store | 🟢 A- OTLP collector | **Stable** |
+| **ServCache** | 🟢 REST | 🟢 Redis/memory | 🟡 Token auth | 🟢 OTel | 🔴 8 funcs / 1 file | 🟡 pkg/ exists but thin | 🟡 B+ standalone cache | **Stable** |
+| **ServCron** | 🟢 REST | 🟢 ServStore+Redis | 🟡 JWT | 🟢 OTel | 🟡 10 funcs / 2 files | 🟡 pkg/ thin | 🟡 B needs --standalone | **Stable** |
+| **ServCloud** | 🟢 REST | 🟡 In-memory | 🟡 JWT | 🟢 OTel | 🔴 7 funcs / 1 file | 🟡 Flat | 🟡 B Serv-specific | **Stable** |
+| **ServTunnel** | 🟢 WS+REST | ⚪ In-memory | 🟢 TLS+token+rate | 🟢 OTel | 🟢 34 funcs / 4 files | 🟢 Clean structure | 🟢 A- generic tunnel | **Production** |
+| **ServAuth** | 🟢 OAuth2/OIDC | 🟢 ServStore | 🟢 bcrypt+AES+MFA | 🟢 OTel | 🟡 11 funcs / 1 file | 🔴 1,381 line main.go | 🟡 B needs --standalone | **Stable** |
+| **ServDB** | 🟢 REST | 🟡 Proxied | 🟡 JWT | 🟢 OTel | 🟡 10 funcs / 1 file | 🔴 No pkg/ structure | 🟡 B thin docs | **Beta** |
+| **ServMail** | 🟢 REST | 🟢 ServStore | 🟡 JWT | 🟢 OTel | 🟡 10 funcs / 1 file | 🟡 pkg/ exists | 🟡 B- needs --standalone | **Stable** |
+| **ServFlow** | 🟢 REST | 🟢 ServStore+local | 🟡 JWT | 🟢 OTel | 🟡 11 funcs / 1 file | 🟢 pkg/engine, pkg/handlers, pkg/storage | 🔴 C+ Coupled to ServStore | **Stable** |
+| **ServRegistry** | 🟢 REST | 🟢 ServStore | 🟡 JWT+signing | 🟢 OTel | 🟡 11 funcs / 2 files | 🔴 1,363 line main.go | 🔴 C+ Coupled to ServStore | **Stable** |
+| **ServDocs** | 🟡 REST | ⚪ N/A | ⚪ None | ⚪ None | 🔴 5 funcs / 1 file | 🔴 No pkg/ structure | 🟡 B+ .srv-specific | **Beta** |
+| **ServShared** | 🟢 Go library | ⚪ N/A | 🟢 JWT+mTLS | 🟢 OTel init | 🟢 30 funcs / 9 files | 🟢 Clean module | ⚪ Library | **Production** |
+
+**Legend:** 🟢 Good | 🟡 Adequate | 🔴 Needs work | ⚪ Not applicable
 
 ---
 
