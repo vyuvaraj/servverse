@@ -30,10 +30,10 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 | **Phase 19: Component Maturity Alignment** | 7 | 7 | 0 | **100%** | ████████████████████ |
 | **Phase 20: OSS-to-EE Refactoring & Enterprise Migrations** | 6 | 0 | 6 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
 | **Phase 21: Enterprise Ecosystem Scale & Next-Gen** | 6 | 0 | 6 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
-| **Phase 22: Quality, Credibility & Code Health** | 20 | 7 | 13 | **35%** | ███████░░░░░░░░░░░░░ |
+| **Phase 22: Quality, Credibility & Code Health** | 20 | 8 | 12 | **40%** | ████████░░░░░░░░░░░░ |
 | **Phase 23: Developer Adoption & Growth** | 14 | 0 | 14 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
 | **Phase 24: Standalone Component Independence** | 20 | 0 | 20 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
-| **TOTAL ECOSYSTEM WORK** | **248** | **189** | **59** | **76%** | ███████████████░░░░░ |
+| **TOTAL ECOSYSTEM WORK** | **248** | **190** | **58** | **77%** | ███████████████░░░░░ |
 
 ---
 
@@ -185,7 +185,7 @@ Develop the next generation of scale and performance capabilities inside the `se
 | QC.1 | **ServConsole main.go decomposition** | ServConsole | 4,885 lines → target <200. Extract into: pkg/proxy/, pkg/ws/, pkg/tabs/, pkg/alerts/, pkg/auth/, pkg/provision/, pkg/topology/, pkg/dashboards/ | [x] |
 | QC.2 | **ServAuth main.go decomposition** | ServAuth | 1,381 lines → target <100. Extract: pkg/handlers/, pkg/oauth/, pkg/mfa/, pkg/kms/, pkg/sessions/ | [x] |
 | QC.3 | **ServRegistry main.go decomposition** | ServRegistry | 1,363 lines → target <100. Extract: pkg/registry/, pkg/resolution/, pkg/web/, pkg/signing/ | [x] |
-| QC.4 | **ServDB package structure** | ServDB | Add pkg/pool/, pkg/routing/, pkg/analytics/, pkg/migration/ — currently flat | [ ] |
+| QC.4 | **ServDB package structure** | ServDB | Add pkg/pool/, pkg/routing/, pkg/analytics/, pkg/migration/ — currently flat | [x] |
 | QC.5 | **ServDocs package structure** | ServDocs | Add pkg/parser/, pkg/generator/, pkg/openapi/ — currently flat | [ ] |
 
 ### 🔴 Compiler Test Coverage
@@ -314,6 +314,142 @@ Develop the next generation of scale and performance capabilities inside the `se
 | SA.18 | **STOMP client compatibility guide** | ServQueue | Show examples with stomp.py, Spring STOMP, go-stomp, stompjs (browser) | [ ] |
 | SA.19 | **Generic proxy configuration guide** | ServGate | Show use as a standalone gateway for Express/Flask/Spring backends — no WASM required | [ ] |
 | SA.20 | **OpenTelemetry integration guide** | ServTrace | Show how to point any OTel SDK (Go, Python, Node) at ServTrace — works as a lightweight Jaeger replacement | [ ] |
+
+---
+
+## Phase 25: Component Depth & Production Hardening (Pending)
+
+> **Philosophy shift:** Breadth is complete. This phase is about making each component genuinely battle-tested — correctness proofs, failure recovery, performance baselines, and edge-case coverage. No new features. Only depth.
+
+### Serv-lang (Compiler)
+
+| # | Item | Category | Description | Status |
+|---|------|----------|-------------|--------|
+| D.1 | **Error recovery in parser** | Robustness | Implement panic-mode recovery to report multiple errors per file (currently stops at first) | [ ] |
+| D.2 | **Incremental compilation** | Performance | Only re-codegen changed functions via dependency graph tracking | [ ] |
+| D.3 | **Source maps for debugging** | DX | Map generated Go lines back to .srv source for meaningful stack traces | [ ] |
+| D.4 | **Type checker completeness** | Correctness | Verify all struct field access, method calls, generic instantiation at compile time | [ ] |
+| D.5 | **Fuzzing harness** | Quality | `go test -fuzz` for lexer (malformed input), parser (random tokens), codegen (type edges) | [ ] |
+| D.6 | **LSP: cross-file go-to-definition** | DX | Add import resolution and cross-module symbol lookup | [ ] |
+| D.7 | **LSP: rename symbol** | DX | Rename across all importing files | [ ] |
+| D.8 | **Compiler benchmarks in CI** | Performance | Track compile time per example. Gate: no regression >10% | [ ] |
+
+### ServStore (Object Storage)
+
+| # | Item | Category | Description | Status |
+|---|------|----------|-------------|--------|
+| D.9 | **S3 compliance test suite** | Compatibility | Run official [ceph/s3-tests](https://github.com/ceph/s3-tests) against ServStore. Track pass rate | [ ] |
+| D.10 | **CAS garbage collection** | Reliability | Background GC sweep for CAS blocks with zero references. Safety checks before deletion | [ ] |
+| D.11 | **Throughput benchmarks** | Performance | Max sustained write RPS, read latency at 1K concurrent, erasure coding overhead measurement | [ ] |
+| D.12 | **Chaos testing: node kill during replication** | Resilience | Kill nodes during writes, inject partitions during Raft elections. Verify data integrity post-recovery | [ ] |
+| D.13 | **Memory profiling: large multipart uploads** | Performance | Profile heap during >1GB uploads. Eliminate unnecessary buffer copies | [ ] |
+| D.14 | **Quota enforcement under concurrent writes** | Correctness | Race condition testing on bucket quota accounting | [ ] |
+
+### ServGate (API Gateway)
+
+| # | Item | Category | Description | Status |
+|---|------|----------|-------------|--------|
+| D.15 | **10K concurrent connections benchmark** | Performance | Establish: max RPS, p99 latency, memory per connection. Compare vs Nginx | [ ] |
+| D.16 | **WASM cold-start measurement** | Performance | First-request latency with/without module cache. Target: <5ms | [ ] |
+| D.17 | **Circuit breaker state transition tests** | Correctness | Verify closed→open→half-open under exact failure thresholds. No false trips | [ ] |
+| D.18 | **Rate limiter burst accuracy** | Correctness | Test sliding window at 10K RPS. Verify ≤1% over-admission | [ ] |
+| D.19 | **Config reload: zero dropped requests** | Reliability | Prove no 502s during route changes under active traffic | [ ] |
+| D.20 | **WebSocket proxy 24h stability** | Reliability | Long-running WS connections. Verify no memory leaks, reconnection works | [ ] |
+
+### ServQueue (Message Broker)
+
+| # | Item | Category | Description | Status |
+|---|------|----------|-------------|--------|
+| D.21 | **FIFO ordering proof** | Correctness | Numbered sequence with concurrent publishers. Verify order within partition | [ ] |
+| D.22 | **WAL corruption recovery** | Resilience | Truncate WAL mid-write, restart. Verify recovery without data loss beyond last flush | [ ] |
+| D.23 | **Consumer group rebalancing** | Correctness | Add/remove consumers during flow. Verify no duplicates, no lost messages | [ ] |
+| D.24 | **Backpressure memory bound** | Performance | Slow consumer: verify memory stays bounded, publisher gets 429 at threshold | [ ] |
+| D.25 | **Exactly-once dedup accuracy** | Correctness | Publish same ID 1000x within window. Verify exactly 1 delivery | [ ] |
+| D.26 | **Throughput benchmark** | Performance | Messages/sec for 1KB, 64KB, 1MB payloads. Single node + 3-node cluster | [ ] |
+
+### ServConsole (Dashboard)
+
+| # | Item | Category | Description | Status |
+|---|------|----------|-------------|--------|
+| D.27 | **Package-level unit tests (all 12 packages)** | Quality | Each package needs 5+ tests: alerts, auth, topology, dashboards, provision, tabs, ws | [ ] |
+| D.28 | **WebSocket reconnection handling** | Reliability | Client disconnect + server restart → auto-reconnect without data loss | [ ] |
+| D.29 | **50 concurrent dashboard users** | Correctness | Verify no state corruption in shared alert/log buffers | [ ] |
+| D.30 | **Memory profiling: 100K traces ingested** | Performance | Verify ring buffer eviction actually works, memory stays bounded | [ ] |
+
+### ServCache (Cache)
+
+| # | Item | Category | Description | Status |
+|---|------|----------|-------------|--------|
+| D.31 | **TTL eviction timing accuracy** | Correctness | Verify expiry is accurate to ±100ms under load | [ ] |
+| D.32 | **Redis failover fallback** | Resilience | Kill Redis mid-operation. Verify fallback to in-memory without crash | [ ] |
+| D.33 | **100-goroutine stress test** | Correctness | Concurrent get/set/delete on overlapping keys. No panics, no stale reads | [ ] |
+| D.34 | **Namespace isolation proof** | Security | Verify Tenant A cannot read Tenant B's keys via direct API | [ ] |
+
+### ServCron (Scheduler)
+
+| # | Item | Category | Description | Status |
+|---|------|----------|-------------|--------|
+| D.35 | **Missed execution catch-up** | Reliability | Stop leader 10 min. Resume. Verify catch-up fires missed intervals correctly | [ ] |
+| D.36 | **Split-brain leader election** | Correctness | Two nodes believe they're leader. Verify only one executes (Redis SETNX) | [ ] |
+| D.37 | **Cron edge cases** | Correctness | Feb 29, DST transitions, "last day of month", "nearest weekday". Compare with cron.guru | [ ] |
+
+### ServAuth (Identity)
+
+| # | Item | Category | Description | Status |
+|---|------|----------|-------------|--------|
+| D.38 | **Brute force resistance** | Security | Verify lockout at exact threshold. Test timing attack resistance on login | [ ] |
+| D.39 | **Token refresh race condition** | Correctness | Two concurrent refresh with same token. Only one succeeds | [ ] |
+| D.40 | **Session revocation propagation** | Correctness | Revoke → next request fails immediately (not cached for TTL) | [ ] |
+| D.41 | **TOTP time-drift tolerance** | Correctness | Accept t-1, t, t+1. Reject t-2, t+2 | [ ] |
+
+### ServFlow (Workflows)
+
+| # | Item | Category | Description | Status |
+|---|------|----------|-------------|--------|
+| D.42 | **Checkpoint recovery accuracy** | Resilience | Kill mid-workflow. Restart resumes from exact last checkpoint | [ ] |
+| D.43 | **Saga compensation ordering** | Correctness | Fail at step 5/7. Compensations fire 5→4→3→2→1 | [ ] |
+| D.44 | **DAG cycle detection** | Correctness | Circular dependency → immediate rejection with clear error | [ ] |
+| D.45 | **Approval + timeout race** | Correctness | Approve at exactly timeout boundary. Deterministic outcome | [ ] |
+
+### ServTrace (Tracing)
+
+| # | Item | Category | Description | Status |
+|---|------|----------|-------------|--------|
+| D.46 | **Span ingestion throughput** | Performance | Max spans/sec before drop. Target: 10K/sec single node | [ ] |
+| D.47 | **Out-of-order trace reconstruction** | Correctness | 20 spans arriving out of order → correct tree | [ ] |
+| D.48 | **Cold tier retrieval latency** | Performance | Archive → query. Target: <500ms | [ ] |
+
+### ServTunnel (Dev Tunneling)
+
+| # | Item | Category | Description | Status |
+|---|------|----------|-------------|--------|
+| D.49 | **500MB file upload through tunnel** | Reliability | No corruption, no timeout, bounded memory | [ ] |
+| D.50 | **100 simultaneous tunnels** | Performance | Measure relay latency degradation | [ ] |
+| D.51 | **Network flap reconnection (100x in 60s)** | Resilience | No leaked connections on relay side | [ ] |
+
+### ServDB (Database Proxy)
+
+| # | Item | Category | Description | Status |
+|---|------|----------|-------------|--------|
+| D.52 | **Pool exhaustion and recovery** | Resilience | Exhaust connections. Wait queue works. New requests succeed after return | [ ] |
+| D.53 | **Read/write routing accuracy** | Correctness | Mixed workload. 100% correct routing (no writes to replica) | [ ] |
+| D.54 | **Connection leak detection** | Reliability | Client never closes. Pool reclaims after timeout | [ ] |
+
+### ServMail (Notifications)
+
+| # | Item | Category | Description | Status |
+|---|------|----------|-------------|--------|
+| D.55 | **Template rendering: missing variables** | Robustness | Graceful error, not panic, when template var is absent | [ ] |
+| D.56 | **DLQ retry exponential backoff** | Correctness | 5 failures → retry intervals match 1s, 2s, 4s, 8s, 16s | [ ] |
+| D.57 | **Per-recipient rate limiter** | Correctness | 100 emails, 10/min limit. Exactly 10 delivered per minute | [ ] |
+
+### ServRegistry (Packages)
+
+| # | Item | Category | Description | Status |
+|---|------|----------|-------------|--------|
+| D.58 | **Semver resolution correctness** | Correctness | Complex constraints vs npm semver output. 100% match | [ ] |
+| D.59 | **Signature tamper detection** | Security | Modified tarball → install rejects with "signature mismatch" | [ ] |
+| D.60 | **Concurrent publish race** | Correctness | Two clients, same version. Exactly one wins, other gets 409 | [ ] |
 
 ---
 
