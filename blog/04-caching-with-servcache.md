@@ -42,6 +42,8 @@ curl http://localhost:8082/health
 
 ## Step 2: Basic Operations via REST API
 
+> 💡 **Note:** While we showcase the **REST API** using standard `curl` commands below for ease of demonstration, ServCache also exposes a high-performance **gRPC** interface for low-overhead client access within your service grid.
+
 ### Set a Value
 
 ```bash

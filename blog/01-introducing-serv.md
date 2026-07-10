@@ -34,7 +34,10 @@ The Servverse is the full collection of these components:
 | **ServRegistry** | Service registry and discovery |
 | **ServConsole** | Unified admin dashboard |
 
-These aren't thin wrappers. Each one is a complete implementation with persistence, clustering support, a REST/gRPC API, and production-ready observability.
+These aren't thin wrappers. Each one is a complete implementation with persistence, clustering support, and production-ready observability. 
+
+### ⚡ REST and gRPC Dual-Support
+Every component in the ecosystem natively supports **both** REST/JSON endpoints and high-performance **gRPC** interfaces. Throughout this blog series, we focus on **REST API** examples to keep things highly readable and easy to test with basic commands (like `curl`). However, in production environments, services can communicate with each other over gRPC streams for lower latency and lower payload overhead.
 
 ---
 
