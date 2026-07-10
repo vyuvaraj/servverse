@@ -183,7 +183,7 @@ Develop the next generation of scale and performance capabilities inside the `se
 | # | Item | Component | Description | Status |
 |---|------|-----------|-------------|--------|
 | QC.1 | **ServConsole main.go decomposition** | ServConsole | 4,885 lines → target <200. Extract into: pkg/proxy/, pkg/ws/, pkg/tabs/, pkg/alerts/, pkg/auth/, pkg/provision/, pkg/topology/, pkg/dashboards/ | [x] |
-| QC.2 | **ServAuth main.go decomposition** | ServAuth | 1,381 lines → target <100. Extract: pkg/handlers/, pkg/oauth/, pkg/mfa/, pkg/kms/, pkg/sessions/ | [ ] |
+| QC.2 | **ServAuth main.go decomposition** | ServAuth | 1,381 lines → target <100. Extract: pkg/handlers/, pkg/oauth/, pkg/mfa/, pkg/kms/, pkg/sessions/ | [x] |
 | QC.3 | **ServRegistry main.go decomposition** | ServRegistry | 1,363 lines → target <100. Extract: pkg/registry/, pkg/resolution/, pkg/web/, pkg/signing/ | [ ] |
 | QC.4 | **ServDB package structure** | ServDB | Add pkg/pool/, pkg/routing/, pkg/analytics/, pkg/migration/ — currently flat | [ ] |
 | QC.5 | **ServDocs package structure** | ServDocs | Add pkg/parser/, pkg/generator/, pkg/openapi/ — currently flat | [ ] |
@@ -192,9 +192,9 @@ Develop the next generation of scale and performance capabilities inside the `se
 
 | # | Item | Component | Description | Status |
 |---|------|-----------|-------------|--------|
-| QC.6 | **Parser unit tests** | Serv-lang | 200+ table-driven tests for every AST node: routes, structs, generics, match, table, agent, tool, middleware | [ ] |
-| QC.7 | **Codegen unit tests** | Serv-lang | Test generated Go output for each statement/expression type. Verify correct type inference, native ops emission | [ ] |
-| QC.8 | **Lexer edge-case tests** | Serv-lang | Unicode identifiers, unterminated strings, nested interpolation, malformed numbers | [ ] |
+| QC.6 | **Parser unit tests** | Serv-lang | 200+ table-driven tests for every AST node: routes, structs, generics, match, table, agent, tool, middleware | [x] |
+| QC.7 | **Codegen unit tests** | Serv-lang | Test generated Go output for each statement/expression type. Verify correct type inference, native ops emission | [x] |
+| QC.8 | **Lexer edge-case tests** | Serv-lang | Unicode identifiers, unterminated strings, nested interpolation, malformed numbers | [x] |
 | QC.9 | **Semantic analysis tests** | Serv-lang | Type mismatch detection, unused variables, unreachable code, missing returns — all analyzers | [ ] |
 | QC.10 | **LSP test coverage** | Serv-lang | Completion, hover, go-to-definition, diagnostics — protocol-level tests against sample .srv files | [ ] |
 
