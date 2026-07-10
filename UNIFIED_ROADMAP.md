@@ -28,7 +28,7 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 | **Phase 17: Zero-Trust Clustering & Edge Serverless** | 8 | 8 | 0 | **100%** | ████████████████████ |
 | **Phase 18: OSS-to-EE Boundary Alignment & Refactoring** | 6 | 6 | 0 | **100%** | ████████████████████ |
 | **Phase 19: Component Maturity Alignment** | 7 | 7 | 0 | **100%** | ████████████████████ |
-| **Phase 20: OSS-to-EE Refactoring & Enterprise Migrations** | 6 | 4 | 2 | **67%** | █████████████░░░░░░░ |
+| **Phase 20: OSS-to-EE Refactoring & Enterprise Migrations** | 6 | 5 | 1 | **83%** | ████████████████░░░░ |
 | **Phase 21: Enterprise Ecosystem Scale & Next-Gen** | 6 | 0 | 6 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
 | **Phase 22: Quality, Credibility & Code Health** | 20 | 8 | 12 | **40%** | ████████░░░░░░░░░░░░ |
 | **Phase 23: Developer Adoption & Growth** | 14 | 0 | 14 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
@@ -148,7 +148,7 @@ Refactor the following advanced OSS capabilities into clean, build-tagged hooks,
 - [x] **Social OAuth Provider Hooks** — Extract third-party social OAuth integrations (Google, GitHub, GitLab) out of OSS, replacing them with generic pluggable enterprise authentication hooks. [July 10, 2026]
 
 ### 🗄️ ServPool & 🔄 ServFlow
-- [ ] **Query Routing Optimizer** — Move the dynamic read/write splitting parser and query-caching optimization layer into the enterprise overlay, leaving OSS with a simple direct pool dispatcher.
+- [x] **Query Routing Optimizer** — Move the dynamic read/write splitting parser and query-caching optimization layer into the enterprise overlay, leaving OSS with a simple direct pool dispatcher. [July 10, 2026]
 - [ ] **Saga Parallel Coordinator** — Refactor concurrent execution paths, DAG forks, and complex compensating workflows in Saga engines to the enterprise overlay.
 
 ### 📧 ServMail & ⏰ ServCron
