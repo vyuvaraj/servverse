@@ -32,7 +32,7 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 | **Phase 21: Enterprise Ecosystem Scale & Next-Gen** | 6 | 0 | 6 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
 | **Phase 22: Quality, Credibility & Code Health** | 20 | 8 | 12 | **40%** | ████████░░░░░░░░░░░░ |
 | **Phase 23: Developer Adoption & Growth** | 14 | 0 | 14 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
-| **Phase 24: Standalone Component Independence** | 20 | 7 | 13 | **35%** | ███████░░░░░░░░░░░░░ |
+| **Phase 24: Standalone Component Independence** | 20 | 11 | 9 | **55%** | ███████████░░░░░░░░░ |
 | **Phase 25: Component Depth & Production Hardening** | 60 | 0 | 60 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
 | **TOTAL ECOSYSTEM WORK** | **318** | **190** | **128** | **60%** | ████████████░░░░░░░░ |
 
@@ -308,10 +308,10 @@ Develop the next generation of scale and performance capabilities inside the `se
 |---|------|-----------|-------------|--------|
 | SA.5 | **Default config placeholder** | ServGate | Change `config.json` default target from `localhost:8081` to `http://httpbin.org/anything` or empty with comment | [x] |
 | SA.6 | **Document STOMP defaults** | ServQueue | README must prominently show: default user=`admin`, pass=`secret`, ports 61613 (STOMP) + 8082 (HTTP) | [ ] |
-| SA.7 | **Standalone mode flag** | ServFlow | `--standalone` disables ServStore persistence, uses local `.state/` directory only. Suppress startup warnings about store connection | [ ] |
-| SA.8 | **Standalone mode flag** | ServCron | `--standalone` disables ServStore job persistence, uses local SQLite or in-memory. Already has Redis fallback to standalone leader | [ ] |
-| SA.9 | **Standalone mode flag** | ServMail | `--standalone` disables ServStore template storage, uses local `./templates/` directory with file-based templates | [ ] |
-| SA.10 | **Standalone mode flag** | ServRegistry | `--standalone` disables ServStore backend, uses local filesystem `./packages/` directory for tarball storage | [ ] |
+| SA.7 | **Standalone mode flag** | ServFlow | `--standalone` disables ServStore persistence, uses local `.state/` directory only. Suppress startup warnings about store connection | [x] |
+| SA.8 | **Standalone mode flag** | ServCron | `--standalone` disables ServStore job persistence, uses local SQLite or in-memory. Already has Redis fallback to standalone leader | [x] |
+| SA.9 | **Standalone mode flag** | ServMail | `--standalone` disables ServStore template storage, uses local `./templates/` directory with file-based templates | [x] |
+| SA.10 | **Standalone mode flag** | ServRegistry | `--standalone` disables ServStore backend, uses local filesystem `./packages/` directory for tarball storage | [x] |
 | SA.11 | **Standalone mode flag** | ServAuth | `--standalone` disables ServStore user persistence, uses local SQLite at `./data/auth.db` | [x] |
 | SA.12 | **README: standalone trace collector** | ServTrace | Document how to use as a standalone OTLP collector for any Go/Node/Python service (not just Servverse) | [ ] |
 | SA.13 | **README: standalone tunnel** | ServTunnel | Document use case: "expose any local service to internet" without mentioning Servverse ecosystem | [ ] |
