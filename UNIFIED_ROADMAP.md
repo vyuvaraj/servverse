@@ -184,7 +184,7 @@ Develop the next generation of scale and performance capabilities inside the `se
 |---|------|-----------|-------------|--------|
 | QC.1 | **ServConsole main.go decomposition** | ServConsole | 4,885 lines → target <200. Extract into: pkg/proxy/, pkg/ws/, pkg/tabs/, pkg/alerts/, pkg/auth/, pkg/provision/, pkg/topology/, pkg/dashboards/ | [x] |
 | QC.2 | **ServAuth main.go decomposition** | ServAuth | 1,381 lines → target <100. Extract: pkg/handlers/, pkg/oauth/, pkg/mfa/, pkg/kms/, pkg/sessions/ | [x] |
-| QC.3 | **ServRegistry main.go decomposition** | ServRegistry | 1,363 lines → target <100. Extract: pkg/registry/, pkg/resolution/, pkg/web/, pkg/signing/ | [ ] |
+| QC.3 | **ServRegistry main.go decomposition** | ServRegistry | 1,363 lines → target <100. Extract: pkg/registry/, pkg/resolution/, pkg/web/, pkg/signing/ | [x] |
 | QC.4 | **ServDB package structure** | ServDB | Add pkg/pool/, pkg/routing/, pkg/analytics/, pkg/migration/ — currently flat | [ ] |
 | QC.5 | **ServDocs package structure** | ServDocs | Add pkg/parser/, pkg/generator/, pkg/openapi/ — currently flat | [ ] |
 
