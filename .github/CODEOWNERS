@@ -1,0 +1,17 @@
+# Central CODEOWNERS configuration for Servverse ecosystem
+# Enforces mandatory reviewer approval for critical paths
+
+# Default code owners (fallback)
+*       @vyuvaraj
+
+# CI/CD Workflows & Gates
+/.github/workflows/    @vyuvaraj @servverse/ci-maintainers
+/scripts/               @vyuvaraj @servverse/ci-maintainers
+
+# Documentation & Specifications
+/docs/                  @vyuvaraj @servverse/docs-team
+/*.md                   @vyuvaraj @servverse/docs-team
+
+# Architecture & Dependency Specs
+/go.mod                 @vyuvaraj @servverse/core-architects
+/go.sum                 @vyuvaraj @servverse/core-architects
