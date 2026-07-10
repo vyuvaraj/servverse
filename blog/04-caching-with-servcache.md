@@ -253,7 +253,7 @@ In benchmarks on a t3.medium (2 vCPU, 4 GB RAM):
 
 Caching helps with read performance. But for async workflows and service decoupling, you need a message queue. In the next post, we build an event-driven microservice architecture with **ServQueue**.
 
-➡️ [Event-Driven Microservices with ServQueue](./05-event-driven-servqueue.md)
+➡️ [Event-Driven Microservices with ServQueue](blog.html?post=05-event-driven-servqueue)
 
 ---
 

@@ -225,7 +225,7 @@ In 10 minutes, you went from zero to:
 
 In the next post, we go deeper into **ServGate** — the API gateway that sits in front of all your services, handling routing, rate limiting, and auth forwarding.
 
-➡️ [Building a Production API Gateway with ServGate](./03-api-gateway-servgate.md)
+➡️ [Building a Production API Gateway with ServGate](blog.html?post=03-api-gateway-servgate)
 
 ---
 

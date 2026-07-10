@@ -489,11 +489,11 @@ This series covered the entire Servverse developer journey:
 
 | Post | Topic |
 |------|-------|
-| [1 — Introducing Serv](./01-introducing-serv.md) | Ecosystem overview |
-| [2 — Serv-lang in 10 min](./02-getting-started-serv-lang.md) | First service |
-| [3 — ServGate](./03-api-gateway-servgate.md) | API gateway deep dive |
-| [4 — ServCache](./04-caching-with-servcache.md) | Distributed caching |
-| [5 — ServQueue](./05-event-driven-servqueue.md) | Event-driven architecture |
+| [1 — Introducing Serv](blog.html?post=01-introducing-serv) | Ecosystem overview |
+| [2 — Serv-lang in 10 min](blog.html?post=02-getting-started-serv-lang) | First service |
+| [3 — ServGate](blog.html?post=03-api-gateway-servgate) | API gateway deep dive |
+| [4 — ServCache](blog.html?post=04-caching-with-servcache) | Distributed caching |
+| [5 — ServQueue](blog.html?post=05-event-driven-servqueue) | Event-driven architecture |
 | **6 — Full-Stack SaaS** | **This post** |
 
 ---

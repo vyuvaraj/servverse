@@ -257,7 +257,7 @@ docker run -d -p 9000:9000 ghcr.io/vyuvaraj/servconsole:latest \
 
 Now that traffic flows through your gateway, we need to make sure responses are fast. In the next post, we explore **ServCache** and distributed caching strategies for high-traffic APIs.
 
-➡️ [Distributed Caching Made Simple with ServCache](./04-caching-with-servcache.md)
+➡️ [Distributed Caching Made Simple with ServCache](blog.html?post=04-caching-with-servcache)
 
 ---
 

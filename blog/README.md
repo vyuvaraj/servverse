@@ -8,12 +8,12 @@ A collection of hands-on tutorials and deep-dive articles for building productio
 
 | # | Title | Topic | Reading Time |
 |---|-------|-------|-------------|
-| 1 | [Introducing Serv: The Modular Backend Ecosystem](./01-introducing-serv.md) | Overview | ~6 min |
-| 2 | [Getting Started with Serv-lang in 10 Minutes](./02-getting-started-serv-lang.md) | Serv-lang basics | ~10 min |
-| 3 | [Building a Production API Gateway with ServGate](./03-api-gateway-servgate.md) | ServGate deep dive | ~12 min |
-| 4 | [Distributed Caching Made Simple with ServCache](./04-caching-with-servcache.md) | ServCache patterns | ~10 min |
-| 5 | [Event-Driven Microservices with ServQueue](./05-event-driven-servqueue.md) | Queue & messaging | ~12 min |
-| 6 | [Full-Stack SaaS in Under an Hour with Servverse](./06-fullstack-saas-servverse.md) | End-to-end tutorial | ~20 min |
+| 1 | [Introducing Serv: The Modular Backend Ecosystem](blog.html?post=01-introducing-serv) | Overview | ~6 min |
+| 2 | [Getting Started with Serv-lang in 10 Minutes](blog.html?post=02-getting-started-serv-lang) | Serv-lang basics | ~10 min |
+| 3 | [Building a Production API Gateway with ServGate](blog.html?post=03-api-gateway-servgate) | ServGate deep dive | ~12 min |
+| 4 | [Distributed Caching Made Simple with ServCache](blog.html?post=04-caching-with-servcache) | ServCache patterns | ~10 min |
+| 5 | [Event-Driven Microservices with ServQueue](blog.html?post=05-event-driven-servqueue) | Queue & messaging | ~12 min |
+| 6 | [Full-Stack SaaS in Under an Hour with Servverse](blog.html?post=06-fullstack-saas-servverse) | End-to-end tutorial | ~20 min |
 
 ---
 

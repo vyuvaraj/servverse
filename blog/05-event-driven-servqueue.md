@@ -248,7 +248,7 @@ curl -X POST http://localhost:8083/subscriptions \
 
 We've covered gateway, caching, and messaging. In the final post, we tie everything together and build a complete SaaS application using 8+ Servverse components in under an hour.
 
-➡️ [Full-Stack SaaS in Under an Hour with Servverse](./06-fullstack-saas-servverse.md)
+➡️ [Full-Stack SaaS in Under an Hour with Servverse](blog.html?post=06-fullstack-saas-servverse)
 
 ---
 

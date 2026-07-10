@@ -100,7 +100,7 @@ Your backend infrastructure is live. No YAML manifests. No Helm charts.
 
 In the next post, we'll write our first service using **Serv-lang** and see how it compiles, deploys, and routes in under 10 minutes.
 
-➡️ [Getting Started with Serv-lang in 10 Minutes](./02-getting-started-serv-lang.md)
+➡️ [Getting Started with Serv-lang in 10 Minutes](blog.html?post=02-getting-started-serv-lang)
 
 ---
 
