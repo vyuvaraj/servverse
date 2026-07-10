@@ -12,7 +12,7 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 - For completed details of Phases 1 to 5: Refer to the git history and repository CHANGELOG.
 - For completed details of Phases 6 to 10: See [UNIFIED_ROADMAP_COMPLETED_6_10.md](file:///c:/Mine/try/serv/servverse-repo/UNIFIED_ROADMAP_COMPLETED_6_10.md).
 - For completed details of Phases 11 to 15: See [UNIFIED_ROADMAP_COMPLETED_11_15.md](file:///c:/Mine/try/serv/servverse-repo/UNIFIED_ROADMAP_COMPLETED_11_15.md).
-- For completed details of Phase 16: See [UNIFIED_ROADMAP_COMPLETED_16.md](file:///c:/Mine/try/serv/servverse-repo/UNIFIED_ROADMAP_COMPLETED_16.md).
+- For completed details of Phase 16-19: See [UNIFIED_ROADMAP_COMPLETED_16_20.md](file:///c:/Mine/try/serv/servverse-repo/UNIFIED_ROADMAP_COMPLETED_16_20.md).
 
 ### Completion Tracker
 
@@ -28,7 +28,9 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 | **Phase 17: Zero-Trust Clustering & Edge Serverless** | 8 | 8 | 0 | **100%** | ████████████████████ |
 | **Phase 18: OSS-to-EE Boundary Alignment & Refactoring** | 6 | 6 | 0 | **100%** | ████████████████████ |
 | **Phase 19: Component Maturity Alignment** | 7 | 7 | 0 | **100%** | ████████████████████ |
-| **TOTAL ECOSYSTEM WORK** | **182** | **182** | **0** | **100%** | ████████████████████ |
+| **Phase 20: OSS-to-EE Refactoring & Enterprise Migrations** | 6 | 0 | 6 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
+| **Phase 21: Enterprise Ecosystem Scale & Next-Gen** | 6 | 0 | 6 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
+| **TOTAL ECOSYSTEM WORK** | **194** | **182** | **12** | **94%** | ██████████████████░░ |
 
 ---
 
@@ -127,6 +129,43 @@ All backlog tasks for Phase 19 have been fully completed, verified, and archived
 - For completed details of Phase 19: See [UNIFIED_ROADMAP_COMPLETED_16_20.md](file:///c:/Mine/try/serv/servverse-repo/UNIFIED_ROADMAP_COMPLETED_16_20.md).
 
 ---
+
+## Phase 20: OSS-to-EE Refactoring & Enterprise Migrations
+
+Refactor the following advanced OSS capabilities into clean, build-tagged hooks, migrating their enterprise implementations to the private `servverse-ee` overlay:
+
+### 🛡️ ServAuth & 💻 ServConsole
+- [ ] **MFA TOTP Engine Separation** — Move the MFA TOTP generator, secret storage, and validator logic into the enterprise tag, leaving OSS with basic password authentication.
+- [ ] **Social OAuth Provider Hooks** — Extract third-party social OAuth integrations (Google, GitHub, GitLab) out of OSS, replacing them with generic pluggable enterprise authentication hooks.
+
+### 🗄️ ServDB & 🔄 ServFlow
+- [ ] **Query Routing Optimizer** — Move the dynamic read/write splitting parser and query-caching optimization layer into the enterprise overlay, leaving OSS with a simple direct pool dispatcher.
+- [ ] **Saga Parallel Coordinator** — Refactor concurrent execution paths, DAG forks, and complex compensating workflows in Saga engines to the enterprise overlay.
+
+### 📧 ServMail & ⏰ ServCron
+- [ ] **Dynamic HTML Templates** — Separate the Go template engine compilation, MJML layout transpilation, and variable-bound rendering into the enterprise tag.
+- [ ] **Clustered Leader Election** — Extract distributed leader election and consensus-backed job execution scheduling for Cron clusters into the enterprise overlay.
+
+---
+
+## Phase 21: Enterprise Ecosystem Scale & Next-Gen Capabilities
+
+Develop the next generation of scale and performance capabilities inside the `servverse-ee` commercial overlay:
+
+### 🛡️ ServGate & ⚡ ServCache
+- [ ] **Hardware SSL Offloading** — Implement SSL/TLS session hardware acceleration using cryptographic co-processors and specialized NIC offloading (e.g. QAT).
+- [ ] **Vector Search Acceleration** — Introduce GPU-accelerated HNSW indexing and SIMD vector optimization (AVX-512) for semantic cache query rules.
+
+### 📦 ServStore & 📥 ServQueue
+- [ ] **Intelligent Data Tiering** — Implement auto-tiering policies that move cold/unaccessed storage blocks to AWS Glacier or local tape backups transparently.
+- [ ] **Zero-Copy Disk Serialization** — Upgrade message WAL writes to utilize direct ring buffers and `sendfile` system calls to maximize broker performance.
+
+### 💻 ServConsole & 🔄 ServFlow
+- [ ] **Real-Time Visual DAG Designer** — Build a drag-and-drop workflow builder in the console that generates valid Serv-lang flow representation schemas.
+- [ ] **Predictive AI Scaling Predictors** — Implement telemetry-driven AI scaling triggers that predict queue depth and preemptively spawn runner clusters.
+
+---
+
 
 ## Appendix C: Architectural Policy for OSS/EE Boundaries
 
