@@ -28,12 +28,13 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 | **Phase 17: Zero-Trust Clustering & Edge Serverless** | 8 | 8 | 0 | **100%** | ████████████████████ |
 | **Phase 18: OSS-to-EE Boundary Alignment & Refactoring** | 6 | 6 | 0 | **100%** | ████████████████████ |
 | **Phase 19: Component Maturity Alignment** | 7 | 7 | 0 | **100%** | ████████████████████ |
-| **Phase 20: OSS-to-EE Refactoring & Enterprise Migrations** | 6 | 0 | 6 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
+| **Phase 20: OSS-to-EE Refactoring & Enterprise Migrations** | 16 | 0 | 16 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
 | **Phase 21: Enterprise Ecosystem Scale & Next-Gen** | 6 | 0 | 6 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
 | **Phase 22: Quality, Credibility & Code Health** | 20 | 8 | 12 | **40%** | ████████░░░░░░░░░░░░ |
 | **Phase 23: Developer Adoption & Growth** | 14 | 0 | 14 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
 | **Phase 24: Standalone Component Independence** | 20 | 0 | 20 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
-| **TOTAL ECOSYSTEM WORK** | **248** | **190** | **58** | **77%** | ███████████████░░░░░ |
+| **Phase 25: Component Depth & Production Hardening** | 60 | 0 | 60 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
+| **TOTAL ECOSYSTEM WORK** | **318** | **190** | **128** | **60%** | ████████████░░░░░░░░ |
 
 ---
 
@@ -153,6 +154,18 @@ Refactor the following advanced OSS capabilities into clean, build-tagged hooks,
 ### 📧 ServMail & ⏰ ServCron
 - [ ] **Dynamic HTML Templates** — Separate the Go template engine compilation, MJML layout transpilation, and variable-bound rendering into the enterprise tag.
 - [ ] **Clustered Leader Election** — Extract distributed leader election and consensus-backed job execution scheduling for Cron clusters into the enterprise overlay.
+
+### 🤖 AI-Native Features (Ungated — Move to EE)
+- [ ] **EE.21: Semantic API Caching** (ServGate) — Move embedding-based cache logic to `ai_ee.go`; OSS always returns cache-miss.
+- [ ] **EE.22: Cost-Aware LLM Routing** (ServGate) — Move model selection/fallback logic to `ai_ee.go`; OSS routes to single default model only.
+- [ ] **EE.23: Auto-Scaling Engine** (ServCloud) — Move `autoscale.go` behind build tag; OSS has no auto-scaling capability.
+- [ ] **EE.24: Cold Tier Archival** (ServTrace) — Move ServStore archival logic behind build tag; OSS keeps traces in-memory ring buffer only.
+- [ ] **EE.25: Anomaly Explanation** (ServTrace) — Move `handleExplainAnomaly` behind build tag; OSS returns 403 EE required.
+- [ ] **EE.26: SLO Breach Prediction** (ServTrace) — Move `handleSloBreachPredict` behind build tag; OSS returns 403 EE required.
+- [ ] **EE.27: Multi-Relay Federation** (ServTunnel) — Move federation peer routing behind build tag; OSS is single-relay only.
+- [ ] **EE.28: Credential Stuffing Detection** (ServAuth) — Move stuffing detection behind build tag; OSS has basic lockout only.
+- [ ] **EE.29: Predictive Alerts** (ServConsole) — Move `HandlePredictiveAlerts` behind build tag; OSS returns 403 EE required.
+- [ ] **EE.30: Semantic Message Routing** (ServQueue) — Move semantic classification routing behind build tag; OSS uses exact topic match only.
 
 ---
 
