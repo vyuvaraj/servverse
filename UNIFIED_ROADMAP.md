@@ -163,7 +163,7 @@ Refactor the following advanced OSS capabilities into clean, build-tagged hooks,
 - [ ] **EE.25: Anomaly Explanation** (ServTrace) — Move `handleExplainAnomaly` behind build tag; OSS returns 403 EE required.
 - [ ] **EE.26: SLO Breach Prediction** (ServTrace) — Move `handleSloBreachPredict` behind build tag; OSS returns 403 EE required.
 - [ ] **EE.27: Multi-Relay Federation** (ServTunnel) — Move federation peer routing behind build tag; OSS is single-relay only.
-- [ ] **EE.28: Credential Stuffing Detection** (ServAuth) — Move stuffing detection behind build tag; OSS has basic lockout only.
+- [x] **EE.28: Credential Stuffing Detection** (ServAuth) — Move stuffing detection behind build tag; OSS has basic lockout only. [July 10, 2026]
 - [ ] **EE.29: Predictive Alerts** (ServConsole) — Move `HandlePredictiveAlerts` behind build tag; OSS returns 403 EE required.
 - [ ] **EE.30: Semantic Message Routing** (ServQueue) — Move semantic classification routing behind build tag; OSS uses exact topic match only.
 
