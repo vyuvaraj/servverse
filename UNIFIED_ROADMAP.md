@@ -202,7 +202,7 @@ Develop the next generation of scale and performance capabilities inside the `se
 
 | # | Item | Component | Description | Status |
 |---|------|-----------|-------------|--------|
-| QC.11 | **ServCache tests** | ServCache | Expand from 8 → 40+ test functions: TTL expiry, concurrent access, namespace isolation, Redis failover | [ ] |
+| QC.11 | **ServCache tests** | ServCache | Expand from 8 → 40+ test functions: TTL expiry, concurrent access, namespace isolation, Redis failover | [x] |
 | QC.12 | **ServCloud tests** | ServCloud | Expand from 7 → 30+ test functions: deploy lifecycle, port allocation, health monitoring, rollback | [ ] |
 | QC.13 | **ServDocs tests** | ServDocs | Expand from 5 → 25+ test functions: parser accuracy, OpenAPI output validation, multi-file support | [x] |
 | QC.14 | **ServPool tests** | ServPool | Expand from 10 → 35+ test functions: pool exhaustion, read/write routing, slow query detection, cache integration | [ ] |
