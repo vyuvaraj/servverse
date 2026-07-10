@@ -169,6 +169,41 @@
         `;
         articleBody.insertBefore(metaDiv, articleBody.children[1]);
 
+        // Add Next/Previous links dynamically
+        try {
+          const manifestResponse = await fetch('blog/posts.json');
+          if (manifestResponse.ok) {
+            const posts = await manifestResponse.json();
+            const currentIndex = posts.findIndex(p => p.slug === safePostName);
+            if (currentIndex !== -1) {
+              const prevPost = posts[currentIndex - 1];
+              const nextPost = posts[currentIndex + 1];
+              
+              if (prevPost || nextPost) {
+                const navDiv = document.createElement('div');
+                navDiv.className = 'blog-navigation';
+                navDiv.style.display = 'flex';
+                navDiv.style.justify = 'space-between';
+                navDiv.style.marginTop = '3rem';
+                navDiv.style.paddingTop = '1.5rem';
+                navDiv.style.borderTop = '1px solid var(--border-glass)';
+                
+                navDiv.innerHTML = `
+                  <div style="flex: 1; text-align: left;">
+                    ${prevPost ? `<span style="font-size:0.8rem; color:var(--text-muted);">PREVIOUS</span><br/><a href="blog.html?post=${prevPost.slug}" style="font-weight:600; text-decoration:none; color:var(--primary);">← ${prevPost.title}</a>` : ''}
+                  </div>
+                  <div style="flex: 1; text-align: right;">
+                    ${nextPost ? `<span style="font-size:0.8rem; color:var(--text-muted);">NEXT</span><br/><a href="blog.html?post=${nextPost.slug}" style="font-weight:600; text-decoration:none; color:var(--primary);">${nextPost.title} →</a>` : ''}
+                  </div>
+                `;
+                articleBody.appendChild(navDiv);
+              }
+            }
+          }
+        } catch (manifestErr) {
+          console.warn('Failed to load next/prev navigation:', manifestErr);
+        }
+
       } catch (err) {
         console.error('Blog load error:', err);
         if (window.location.protocol === 'file:') {

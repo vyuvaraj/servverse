@@ -1,12 +1,26 @@
-# PowerShell script to create and push release tag v0.2.0 for modified repositories
+# PowerShell script to create and push release tag v0.2.0 for all repositories
 
 $repos = @(
+    "Serv-lang",
+    "ServGate",
+    "ServStore",
+    "ServQueue",
+    "ServConsole",
+    "ServCache",
+    "ServMesh",
+    "ServCron",
     "ServCloud",
+    "ServTrace",
+    "ServTunnel",
+    "ServAuth",
     "ServPool",
     "ServMail",
     "ServFlow",
+    "ServRegistry",
+    "ServShared",
     "ServDocs",
-    "ServCache",
+    "servverse-ee",
+    "servverse-operator",
     "servverse-repo"
 )
 
@@ -14,7 +28,7 @@ $tag = "v0.2.0"
 $message = "Release v0.2.0"
 
 Write-Host "==================================================" -ForegroundColor Cyan
-Write-Host "Tagging and pushing release $tag to origin..." -ForegroundColor Cyan
+Write-Host "Tagging and pushing release $tag to all origins..." -ForegroundColor Cyan
 Write-Host "==================================================" -ForegroundColor Cyan
 
 foreach ($repo in $repos) {
@@ -32,7 +46,7 @@ foreach ($repo in $repos) {
         Write-Host "Processing repository: $repo..." -ForegroundColor Yellow
         Push-Location $repoPath
         try {
-            # Delete tag locally and remotely if it somehow exists (idempotency)
+            # Delete tag locally and remotely if it exists
             git tag -d $tag 2>$null
             git push --delete origin $tag 2>$null
 
@@ -48,4 +62,4 @@ foreach ($repo in $repos) {
     }
 }
 
-Write-Host "Release tagging complete!" -ForegroundColor Green
+Write-Host "All repositories release tagging complete!" -ForegroundColor Green
