@@ -58,3 +58,81 @@ subscribe "orders.new" (msg) {
     processOrder(msg)
 }
 ```
+
+## STOMP Protocol Reference
+
+### 1. Connect
+Establishes a connection session with the broker.
+```text
+CONNECT
+accept-version:1.2
+host:localhost
+login:admin
+passcode:password
+
+^@
+```
+**Response Frame:**
+```text
+CONNECTED
+version:1.2
+session:sess-94812b...
+
+^@
+```
+
+### 2. Send Message
+Publishes a message to a specific topic.
+```text
+SEND
+destination:/topic/orders.new
+content-type:application/json
+content-length:27
+
+{"id":"order-101","val":99}
+^@
+```
+
+### 3. Subscribe
+Subscribes to a message queue or topic.
+```text
+SUBSCRIBE
+id:sub-0
+destination:/topic/orders.new
+ack:client-individual
+
+^@
+```
+
+---
+
+## Operational Recovery Runbook
+
+### Playbook 1: Write-Ahead Log (WAL) Corruption Recovery
+If the broker fails to boot due to checksum errors in the Write-Ahead Log:
+1. **Locate WAL Files**: Navigate to the partition WAL store:
+   ```bash
+   cd /var/lib/servqueue/wal
+   ```
+2. **Scan and Recover**: Run the log repair tool to isolate corrupted sectors and truncate the WAL to the last valid transaction:
+   ```bash
+   servqueue-tool repair-wal --wal-dir . --out-dir ./recovered_wal
+   ```
+3. **Roll Forward**: Restart the service. It will automatically re-index the WAL:
+   ```bash
+   servqueue-server --wal-dir ./recovered_wal
+   ```
+
+### Playbook 2: Dead Letter Queue (DLQ) Purging and Re-routing
+If message delivery consistently fails and fills up the DLQ:
+1. **Identify the Failure Cause**: Query the schema validation registry or trace log to identify why consumers rejected the payload:
+   ```bash
+   curl -X GET http://localhost:8082/api/v1/dlq/errors
+   ```
+2. **Re-route DLQ Messages**: Once consumer issues are resolved, re-enqueue DLQ messages into the active queue:
+   ```bash
+   curl -X POST http://localhost:8082/api/v1/dlq/requeue \
+     -d '{"topic":"orders.new","limit":100}' \
+     -H "Authorization: Bearer admin-token"
+   ```
+
