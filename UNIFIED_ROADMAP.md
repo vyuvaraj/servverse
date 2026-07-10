@@ -195,7 +195,7 @@ Develop the next generation of scale and performance capabilities inside the `se
 | QC.6 | **Parser unit tests** | Serv-lang | 200+ table-driven tests for every AST node: routes, structs, generics, match, table, agent, tool, middleware | [x] |
 | QC.7 | **Codegen unit tests** | Serv-lang | Test generated Go output for each statement/expression type. Verify correct type inference, native ops emission | [x] |
 | QC.8 | **Lexer edge-case tests** | Serv-lang | Unicode identifiers, unterminated strings, nested interpolation, malformed numbers | [x] |
-| QC.9 | **Semantic analysis tests** | Serv-lang | Type mismatch detection, unused variables, unreachable code, missing returns — all analyzers | [ ] |
+| QC.9 | **Semantic analysis tests** | Serv-lang | Type mismatch detection, unused variables, unreachable code, missing returns — all analyzers | [x] |
 | QC.10 | **LSP test coverage** | Serv-lang | Completion, hover, go-to-definition, diagnostics — protocol-level tests against sample .srv files | [ ] |
 
 ### 🟡 Service Test Hardening
