@@ -284,8 +284,8 @@ Develop the next generation of scale and performance capabilities inside the `se
 
 | # | Item | Description | Status |
 |---|------|-------------|--------|
-| SA.1 | **ServShared version tag** | Publish ServShared as `v1.0.0` proper tag (not pseudo-versions). Enables external Go projects to `go get` it cleanly | [ ] |
-| SA.2 | **Docker one-liner in all READMEs** | Every component README starts with: `docker run -p PORT:PORT ghcr.io/vyuvaraj/<service>:latest` — zero friction trial | [ ] |
+| SA.1 | **ServShared version tag** | Publish ServShared as `v1.0.0` proper tag (not pseudo-versions). Enables external Go projects to `go get` it cleanly | [x] |
+| SA.2 | **Docker one-liner in all READMEs** | Every component README starts with: `docker run -p PORT:PORT ghcr.io/vyuvaraj/<service>:latest` — zero friction trial | [x] |
 | SA.3 | **`--standalone` flag convention** | Components that optionally use other Serv services should support `--standalone` that disables all ecosystem integrations and uses local-only fallbacks | [ ] |
 | SA.4 | **Standalone quickstart section** | Each README gets a "Use Without Servverse" section showing minimum setup with zero other services | [ ] |
 
