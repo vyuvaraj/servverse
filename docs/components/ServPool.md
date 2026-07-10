@@ -1,10 +1,10 @@
-# ServDB — Database Proxy & Connection Pooler
+# ServPool — Database Connection Pooler & Query Router
 
-> **Status:** 🟡 Stable | **Port:** 8097 | **Repository:** [ServDB](https://github.com/vyuvaraj/ServDB)
+> **Status:** 🟡 Stable | **Port:** 8097 | **Repository:** [ServPool](https://github.com/vyuvaraj/ServPool)
 
 ## Overview
 
-ServDB is a database proxy with connection pooling, read/write query routing, slow query detection, multi-dialect support (SQLite, PostgreSQL, Oracle, MongoDB), and query caching via ServCache for frequently executed queries.
+ServPool is a database proxy with connection pooling, read/write query routing, slow query detection, multi-dialect support (SQLite, PostgreSQL, Oracle, MongoDB), and query caching via ServCache for frequently executed queries.
 
 ## Key Features
 
@@ -22,8 +22,8 @@ ServDB is a database proxy with connection pooling, read/write query routing, sl
 | Variable | Description | Default |
 |----------|-------------|---------|
 | `PORT` | HTTP listen port | `8097` |
-| `SERVDB_PRIMARY_DSN` | Primary database connection string | (required) |
-| `SERVDB_REPLICA_DSN` | Read replica connection string | (optional) |
+| `ServPool_PRIMARY_DSN` | Primary database connection string | (required) |
+| `ServPool_REPLICA_DSN` | Read replica connection string | (optional) |
 | `SERVCACHE_URL` | ServCache URL for query caching | (optional) |
 | `SERV_OTLP_ENDPOINT` | OTel collector URL | (disabled) |
 
@@ -39,5 +39,5 @@ ServDB is a database proxy with connection pooling, read/write query routing, sl
 ## Serv-lang Integration
 
 ```srv
-database "servdb://pool/mydb"
+database "ServPool://pool/mydb"
 ```

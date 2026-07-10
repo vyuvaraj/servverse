@@ -50,7 +50,7 @@ services:
       interval: 10s
 
   serv-db:
-    image: servverse/servdb:latest
+    image: servverse/ServPool:latest
     ports:
       - "8097:8097"
     environment:

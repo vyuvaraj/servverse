@@ -201,7 +201,7 @@ services:
       - "8083:8083"
     environment:
       - SERV_OTLP_ENDPOINT=http://servtrace:8090
-      - SERVVERSE_DISCOVERY={"gate":"http://servgate:8080","store":"http://servstore:8081","queue":"http://servqueue:8082","cache":"http://servcache:8086","cron":"http://servcron:8087","mesh":"http://servmesh:8089","cloud":"http://servcloud:8085","tunnel":"http://servtunnel:8443","trace":"http://servtrace:8090","registry":"http://servregistry:8088","otlp_endpoint":"http://jaeger:4318","auth":"http://servauth:8098","db":"http://servdb:8097","mail":"http://servmail:8094","flow":"http://servflow:8096"}
+      - SERVVERSE_DISCOVERY={"gate":"http://servgate:8080","store":"http://servstore:8081","queue":"http://servqueue:8082","cache":"http://servcache:8086","cron":"http://servcron:8087","mesh":"http://servmesh:8089","cloud":"http://servcloud:8085","tunnel":"http://servtunnel:8443","trace":"http://servtrace:8090","registry":"http://servregistry:8088","otlp_endpoint":"http://jaeger:4318","auth":"http://servauth:8098","db":"http://ServPool:8097","mail":"http://servmail:8094","flow":"http://servflow:8096"}
     networks:
       - servverse-net
     depends_on:
@@ -257,7 +257,7 @@ services:
       - "8098:8098"
     environment:
       - SERV_OTLP_ENDPOINT=http://servtrace:8090
-      - SERVVERSE_DISCOVERY={"gate":"http://servgate:8080","store":"http://servstore:8081","queue":"http://servqueue:8082","cache":"http://servcache:8086","cron":"http://servcron:8087","mesh":"http://servmesh:8089","cloud":"http://servcloud:8085","tunnel":"http://servtunnel:8443","trace":"http://servtrace:8090","registry":"http://servregistry:8088","otlp_endpoint":"http://jaeger:4318","auth":"http://servauth:8098","db":"http://servdb:8097","mail":"http://servmail:8094","flow":"http://servflow:8096"}
+      - SERVVERSE_DISCOVERY={"gate":"http://servgate:8080","store":"http://servstore:8081","queue":"http://servqueue:8082","cache":"http://servcache:8086","cron":"http://servcron:8087","mesh":"http://servmesh:8089","cloud":"http://servcloud:8085","tunnel":"http://servtunnel:8443","trace":"http://servtrace:8090","registry":"http://servregistry:8088","otlp_endpoint":"http://jaeger:4318","auth":"http://servauth:8098","db":"http://ServPool:8097","mail":"http://servmail:8094","flow":"http://servflow:8096"}
     networks:
       - servverse-net
     depends_on:
@@ -271,15 +271,15 @@ services:
       timeout: 3s
       retries: 5
 
-  # 14. ServDB — Database Connection Pool Manager
-  servdb:
+  # 14. ServPool — Database Connection Pool Manager
+  ServPool:
     build:
-      context: ../ServDB
+      context: ../ServPool
     ports:
       - "8097:8097"
     environment:
       - SERV_OTLP_ENDPOINT=http://servtrace:8090
-      - SERVVERSE_DISCOVERY={"gate":"http://servgate:8080","store":"http://servstore:8081","queue":"http://servqueue:8082","cache":"http://servcache:8086","cron":"http://servcron:8087","mesh":"http://servmesh:8089","cloud":"http://servcloud:8085","tunnel":"http://servtunnel:8443","trace":"http://servtrace:8090","registry":"http://servregistry:8088","otlp_endpoint":"http://jaeger:4318","auth":"http://servauth:8098","db":"http://servdb:8097","mail":"http://servmail:8094","flow":"http://servflow:8096"}
+      - SERVVERSE_DISCOVERY={"gate":"http://servgate:8080","store":"http://servstore:8081","queue":"http://servqueue:8082","cache":"http://servcache:8086","cron":"http://servcron:8087","mesh":"http://servmesh:8089","cloud":"http://servcloud:8085","tunnel":"http://servtunnel:8443","trace":"http://servtrace:8090","registry":"http://servregistry:8088","otlp_endpoint":"http://jaeger:4318","auth":"http://servauth:8098","db":"http://ServPool:8097","mail":"http://servmail:8094","flow":"http://servflow:8096"}
     networks:
       - servverse-net
     depends_on:
@@ -301,7 +301,7 @@ services:
       - "8094:8094"
     environment:
       - SERV_OTLP_ENDPOINT=http://servtrace:8090
-      - SERVVERSE_DISCOVERY={"gate":"http://servgate:8080","store":"http://servstore:8081","queue":"http://servqueue:8082","cache":"http://servcache:8086","cron":"http://servcron:8087","mesh":"http://servmesh:8089","cloud":"http://servcloud:8085","tunnel":"http://servtunnel:8443","trace":"http://servtrace:8090","registry":"http://servregistry:8088","otlp_endpoint":"http://jaeger:4318","auth":"http://servauth:8098","db":"http://servdb:8097","mail":"http://servmail:8094","flow":"http://servflow:8096"}
+      - SERVVERSE_DISCOVERY={"gate":"http://servgate:8080","store":"http://servstore:8081","queue":"http://servqueue:8082","cache":"http://servcache:8086","cron":"http://servcron:8087","mesh":"http://servmesh:8089","cloud":"http://servcloud:8085","tunnel":"http://servtunnel:8443","trace":"http://servtrace:8090","registry":"http://servregistry:8088","otlp_endpoint":"http://jaeger:4318","auth":"http://servauth:8098","db":"http://ServPool:8097","mail":"http://servmail:8094","flow":"http://servflow:8096"}
     networks:
       - servverse-net
     depends_on:
@@ -323,7 +323,7 @@ services:
       - "8096:8096"
     environment:
       - SERV_OTLP_ENDPOINT=http://servtrace:8090
-      - SERVVERSE_DISCOVERY={"gate":"http://servgate:8080","store":"http://servstore:8081","queue":"http://servqueue:8082","cache":"http://servcache:8086","cron":"http://servcron:8087","mesh":"http://servmesh:8089","cloud":"http://servcloud:8085","tunnel":"http://servtunnel:8443","trace":"http://servtrace:8090","registry":"http://servregistry:8088","otlp_endpoint":"http://jaeger:4318","auth":"http://servauth:8098","db":"http://servdb:8097","mail":"http://servmail:8094","flow":"http://servflow:8096"}
+      - SERVVERSE_DISCOVERY={"gate":"http://servgate:8080","store":"http://servstore:8081","queue":"http://servqueue:8082","cache":"http://servcache:8086","cron":"http://servcron:8087","mesh":"http://servmesh:8089","cloud":"http://servcloud:8085","tunnel":"http://servtunnel:8443","trace":"http://servtrace:8090","registry":"http://servregistry:8088","otlp_endpoint":"http://jaeger:4318","auth":"http://servauth:8098","db":"http://ServPool:8097","mail":"http://servmail:8094","flow":"http://servflow:8096"}
     networks:
       - servverse-net
     depends_on:

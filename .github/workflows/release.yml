@@ -66,7 +66,7 @@ jobs:
       - name: Checkout all component repos
         run: |
           cd ..
-          repos=(Serv-lang ServGate ServStore ServQueue ServConsole ServCache ServMesh ServCron ServCloud ServTrace ServTunnel ServAuth ServDB ServMail ServFlow ServRegistry)
+          repos=(Serv-lang ServGate ServStore ServQueue ServConsole ServCache ServMesh ServCron ServCloud ServTrace ServTunnel ServAuth ServPool ServMail ServFlow ServRegistry)
           for repo in "${repos[@]}"; do
             git clone --depth 1 --branch ${{ github.ref_name }} https://github.com/vyuvaraj/${repo}.git 2>/dev/null || \
             git clone --depth 1 https://github.com/vyuvaraj/${repo}.git
@@ -107,7 +107,7 @@ jobs:
           build_component "servtrace" "../ServTrace"
           build_component "servtunnel" "../ServTunnel"
           build_component "servauth" "../ServAuth"
-          build_component "servdb" "../ServDB"
+          build_component "ServPool" "../ServPool"
           build_component "servmail" "../ServMail"
           build_component "servflow" "../ServFlow"
           build_component "servregistry" "../ServRegistry"

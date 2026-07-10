@@ -14,7 +14,7 @@ graph TD
 
     subgraph Service Layer
         Auth[ServAuth]
-        DB[ServDB]
+        DB[ServPool]
         Mail[ServMail]
         Flow[ServFlow]
     end

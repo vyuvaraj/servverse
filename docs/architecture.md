@@ -11,7 +11,7 @@
 │  ServGate │ ServMesh │ ServCloud │ ServTunnel │ ServConsole          │
 ├─────────────────────────────────────────────────────────────────────┤
 │                     INFRASTRUCTURE LAYER                            │
-│  ServStore │ ServQueue │ ServCache │ ServDB │ ServAuth               │
+│  ServStore │ ServQueue │ ServCache │ ServPool │ ServAuth               │
 │  ServMail  │ ServCron  │ ServFlow                                   │
 ├─────────────────────────────────────────────────────────────────────┤
 │                     FOUNDATION                                      │
@@ -31,7 +31,7 @@ graph TD
     Services -->|persist| ServStore
     Services -->|enqueue| ServQueue
     Services -->|cache| ServCache
-    Services -->|query| ServDB
+    Services -->|query| ServPool
     Services -->|authenticate| ServAuth
     Services -->|notify| ServMail
     Services -->|schedule| ServCron
@@ -51,7 +51,7 @@ graph TD
     ServConsole -->|aggregates| ServQueue
     ServConsole -->|aggregates| ServTrace
     ServConsole -->|aggregates| ServAuth
-    ServConsole -->|aggregates| ServDB
+    ServConsole -->|aggregates| ServPool
     ServConsole -->|aggregates| ServMail
     ServConsole -->|aggregates| ServFlow
     ServConsole -->|aggregates| ServTunnel

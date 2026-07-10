@@ -22,7 +22,7 @@ This document contains design logs outlining key architectural decisions in the 
 
 ## ADR 003: Store-Backed Persistent State Adapters
 **Status**: Accepted  
-**Context**: Services like `ServAuth`, `ServDB`, and `ServFlow` require persistent state journals but running dedicated databases increases service complexity.
+**Context**: Services like `ServAuth`, `ServPool`, and `ServFlow` require persistent state journals but running dedicated databases increases service complexity.
 **Decision**: Bind state adapters directly to the `ServStore` S3 storage API to write state checkpoints as JSON blobs.
 **Consequences**:
 * Simple persistence pattern with zero database dependency overhead.

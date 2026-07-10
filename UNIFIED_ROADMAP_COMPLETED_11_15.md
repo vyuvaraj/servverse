@@ -21,7 +21,7 @@ This document preserves the archived history of completed items for Phases 11 th
 
 ### 🧪 Testing & Quality Gaps
 - **ServDocs test suite (TQ.1)** — Table-driven OpenAPI tests for parser, generator, and OpenAPI output validation.
-- **ServDB migration.go real implementation (TQ.2)** — Real migration executor, table tracking, and rollback.
+- **ServPool migration.go real implementation (TQ.2)** — Real migration executor, table tracking, and rollback.
 - **ServFlow .state file gitignore (TQ.3)** — Cleaned committed state files and ignored `.state` files.
 - **Property-based tests for critical paths (TQ.4)** — Added property-based fuzz test for token verification, S3 signature verification, and encryption/decryption roundtrips.
 - **Load test baselines for all services (TQ.5)** — Added `load_test_baseline.go` script with SLA validations.
@@ -37,7 +37,7 @@ This document preserves the archived history of completed items for Phases 11 th
 ### 🔗 Integration Depth
 - **ServConsole topology auto-discovery (INT.1)** — Parse OTel trace spans to auto-build service dependency graph.
 - **Serv-lang → ServAuth native keyword (INT.2)** — Support `servauth://` connection string with native APIs.
-- **Serv-lang → ServDB proxy keyword (INT.3)** — `database "servdb://"` routes through ServDB pooler.
+- **Serv-lang → ServPool proxy keyword (INT.3)** — `database "ServPool://"` routes through ServPool pooler.
 - **Serv-lang → ServMail notify keyword (INT.4)** — Support `notify "servmail://"` with `notify.send()` API.
 - **ServQueue stream processing DSL (INT.5)** — `stream "orders" |> filter(...) |> window(5m) |> count()`.
 - **ServCron → ServQueue job chaining (INT.6)** — Trigger next job by publishing to topic on completion.
@@ -201,7 +201,7 @@ This document preserves the archived history of completed items for Phases 11 th
 - **Credential stuffing detection (AI.32)** — Behavioral clustering to detect many IPs using same password list. Auto-block suspicious cohorts.
 
 ### ServTrace (AI Observability)
-- **Auto-correlate slow spans (AI.33)** — Identify root cause span and explain: "95% latency in ServDB query — missing index on order_date".
+- **Auto-correlate slow spans (AI.33)** — Identify root cause span and explain: "95% latency in ServPool query — missing index on order_date".
 - **Predictive SLO breach (AI.34)** — Given current error rate trajectory, predict when SLO will be violated. "Error budget exhausted in 3 days".
 
 ### ServCron & ServFlow (AI Automation)
@@ -258,7 +258,7 @@ This document preserves the archived history of completed items for Phases 11 th
 - **Request Diff Mode** — Show a colored diff between the proxied request and original, highlighting header mutations, body modifications or injected WASM transforms. [July 9, 2026]
 - **Tunnel Config-as-Code** — Declare tunnel rules in `.serv/tunnel.yaml` (name, auth, subdomain, filters). [July 9, 2026]
 
-### 🗄️ ServDB
+### 🗄️ ServPool
 - **Connection Draining** — Gracefully drains database connection pools during rolling deploys/SIGTERM. Implemented a shutdown sequence that stops background cleaner routines and waits for all active in-flight database queries to finish before closing connection pools. [July 9, 2026]
 - **Multi-region Query Routing** — Routes `SELECT` queries to specific geo-local replica pools based on the `X-Region` request header (supporting e.g. `--region-replicas` CLI option), defaulting back to the standard replica pool if the region pool is missing. [July 9, 2026]
 

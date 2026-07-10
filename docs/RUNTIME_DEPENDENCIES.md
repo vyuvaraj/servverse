@@ -22,7 +22,7 @@ graph TD
     ServMeshInstances -->|Schedules Workloads| ServCron[ServCron Scheduler]
     ServMeshInstances -->|Invokes Pipelines| ServFlow[ServFlow Workflow Engine]
     ServMeshInstances -->|Writes telemetry| ServTrace[ServTrace OTel Collector]
-    ServMeshInstances -->|Queries Data| ServDB[ServDB SQL Proxy Manager]
+    ServMeshInstances -->|Queries Data| ServPool[ServPool SQL Proxy Manager]
     ServMeshInstances -->|Caches Responses| ServCache[ServCache Redis Wrapper]
     ServMeshInstances -->|Sends Emails| ServMail[ServMail SMTP Agent]
     
@@ -46,7 +46,7 @@ graph TD
 | `8090` | `ServTrace` | HTTP/gRPC | OpenTelemetry Collector |
 | `8094` | `ServMail` | HTTP | Transactional Mail Agent |
 | `8096` | `ServFlow` | HTTP | DAG Workflow Engine |
-| `8097` | `ServDB` | HTTP | SQL Persistence Proxy |
+| `8097` | `ServPool` | HTTP | SQL Persistence Proxy |
 | `8098` | `ServAuth` | HTTP | Identity and MFA provider |
 | `8443` | `ServTunnel` | HTTPS | Tunnel and Let's Encrypt Ingress |
 

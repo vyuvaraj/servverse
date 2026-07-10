@@ -54,7 +54,7 @@ var defaultServices = []Service{
 	{Name: "ServTrace", Binary: "servtrace", Port: 8090},
 	{Name: "ServMail", Binary: "servmail", Port: 8094},
 	{Name: "ServFlow", Binary: "servflow", Port: 8096},
-	{Name: "ServDB", Binary: "servdb", Port: 8097},
+	{Name: "ServPool", Binary: "ServPool", Port: 8097},
 	{Name: "ServAuth", Binary: "servauth", Port: 8098},
 	{Name: "ServTunnel", Binary: "servtunnel", Port: 8443},
 }
@@ -420,10 +420,10 @@ services:
       SERVSTORE_URL: "http://localhost:8081"
       SERVQUEUE_URL: "http://localhost:8082"
 
-  servdb:
+  ServPool:
     port: 8097
     env:
-      SERVDB_PRIMARY_DSN: "sqlite://./data/servdb.db"
+      ServPool_PRIMARY_DSN: "sqlite://./data/ServPool.db"
 
   servauth:
     port: 8098

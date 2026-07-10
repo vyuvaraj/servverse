@@ -32,7 +32,7 @@ All backlog tasks targeting the upgrade of remaining components from **Stable** 
 - **Persistent Token Storage** — Store issued refresh tokens in a database to enable remote token revocation and active session audits. [July 9, 2026]
 - **Auth Audit Logs** — Generate structured JSON audit trails for all authentication events, login failures, and MFA setups. [July 9, 2026]
 
-### 🗄️ ServDB
+### 🗄️ ServPool
 - **mTLS Connection Checks** — Support mutual TLS verification for all database client connections. [July 9, 2026]
 - **Pool Connection Stats** — Export connection pool usage, active/idle count, and wait duration metrics. [July 9, 2026]
 
@@ -57,7 +57,7 @@ All zero-trust security mesh, serverless compilation, and resilient caching enha
 
 ### 📦 S3 Durability & Pool Auto-Recovery
 - **Write-Ahead Logging (WAL)** — Add WAL and fsync safety limits to ServStore S3 layers to prevent dirty writes during unexpected node shutdowns. [July 10, 2026]
-- **Connection Pool Leak Recovery** — Add automatic timeout reaping for deadlocked connection leases in ServDB pools. [July 10, 2026]
+- **Connection Pool Leak Recovery** — Add automatic timeout reaping for deadlocked connection leases in ServPool pools. [July 10, 2026]
 - **LRU Cache Key Eviction** — Implement thread-safe Least Recently Used (LRU) key evictions in ServCache memory stores. [July 10, 2026]
 
 ### ⚡ Edge Serverless & Code Execution
@@ -74,7 +74,7 @@ All commercial dual-license segmentation and hook separation boundaries:
 - **KMS Enterprise Separation** — Migrate AWS KMS, Google Cloud KMS, and HashiCorp Vault implementations to EE, leaving only simple local key encryption in OSS. [July 10, 2026]
 - **mTLS Enforcement Hooks** — Restrict client certificate authentication and PKI mappings to the EE broker overlay. [July 10, 2026]
 
-### 🛡️ ServAuth & ServDB
+### 🛡️ ServAuth & ServPool
 - **Session & Audit Log Isolation** — Move account lockout history, security audit trail generators, and remote session revocation control logic to EE. [July 10, 2026]
 - **Database Replication Topologies** — Restrict replica pool routing, read/write splitting, and dynamic failover state machines to EE. [July 10, 2026]
 
@@ -96,7 +96,7 @@ All final component hardening, documentation, and unit test alignment tasks:
 - **High-Availability Session Stores** — Upgrade local session stores to support clustered database replication backends. [July 10, 2026]
 - **Playwright Test Matrix** — Expand Playwright browser test coverage to cover user permissions and custom widgets. [July 10, 2026]
 
-### 🛡️ ServAuth, 🗄️ ServDB, & 📧 ServMail
+### 🛡️ ServAuth, 🗄️ ServPool, & 📧 ServMail
 - **E2E Trace Validation** — Verify spans propagate seamlessly through the Auth IDP, DB connection proxy, and Mail delivery pipelines. [July 10, 2026]
 - **Persistent Audits Schema** — Implement long-term structured schemas and storage retention options for audit logs and mail event queues. [July 10, 2026]
 

@@ -29,7 +29,7 @@ $components = @(
     @("servtrace",    "../ServTrace",     "."),
     @("servtunnel",   "../ServTunnel",    "."),
     @("servauth",     "../ServAuth",      "."),
-    @("servdb",       "../ServDB",        "."),
+    @("ServPool",       "../ServPool",        "."),
     @("servmail",     "../ServMail",      "."),
     @("servflow",     "../ServFlow",      "."),
     @("servregistry", "../ServRegistry",  ".")

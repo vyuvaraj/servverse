@@ -1,6 +1,6 @@
 # Serv Unified Ecosystem Roadmap & Architect Analysis
 
-> Single source of truth for the **Serv** ecosystem: Serv-lang, ServGate, ServStore, ServQueue, ServConsole, ServCache, ServMesh, ServCron, ServCloud, ServTrace, ServTunnel, ServAuth, ServDB, ServMail, ServFlow, and the Servverse vision.  
+> Single source of truth for the **Serv** ecosystem: Serv-lang, ServGate, ServStore, ServQueue, ServConsole, ServCache, ServMesh, ServCron, ServCloud, ServTrace, ServTunnel, ServAuth, ServPool, ServMail, ServFlow, and the Servverse vision.  
 > Last updated: July 9, 2026
 
 ---
@@ -99,7 +99,7 @@ graph TD
 | **ServCloud** | 🟢 REST | 🟡 In-memory | 🟡 JWT | 🟢 OTel | 🔴 7 funcs / 1 file | 🟡 Flat | 🟡 B Serv-specific | **Stable** |
 | **ServTunnel** | 🟢 WS+REST | ⚪ In-memory | 🟢 TLS+token+rate | 🟢 OTel | 🟢 34 funcs / 4 files | 🟢 Clean structure | 🟢 A- generic tunnel | **Production** |
 | **ServAuth** | 🟢 OAuth2/OIDC | 🟢 ServStore | 🟢 bcrypt+AES+MFA | 🟢 OTel | 🟡 11 funcs / 1 file | 🔴 1,381 line main.go | 🟡 B needs --standalone | **Stable** |
-| **ServDB** | 🟢 REST | 🟡 Proxied | 🟡 JWT | 🟢 OTel | 🟡 10 funcs / 1 file | 🔴 No pkg/ structure | 🟡 B thin docs | **Beta** |
+| **ServPool** | 🟢 REST | 🟡 Proxied | 🟡 JWT | 🟢 OTel | 🟡 10 funcs / 1 file | 🔴 No pkg/ structure | 🟡 B thin docs | **Beta** |
 | **ServMail** | 🟢 REST | 🟢 ServStore | 🟡 JWT | 🟢 OTel | 🟡 10 funcs / 1 file | 🟡 pkg/ exists | 🟡 B- needs --standalone | **Stable** |
 | **ServFlow** | 🟢 REST | 🟢 ServStore+local | 🟡 JWT | 🟢 OTel | 🟡 11 funcs / 1 file | 🟢 pkg/engine, pkg/handlers, pkg/storage | 🔴 C+ Coupled to ServStore | **Stable** |
 | **ServRegistry** | 🟢 REST | 🟢 ServStore | 🟡 JWT+signing | 🟢 OTel | 🟡 11 funcs / 2 files | 🔴 1,363 line main.go | 🔴 C+ Coupled to ServStore | **Stable** |
@@ -146,7 +146,7 @@ Refactor the following advanced OSS capabilities into clean, build-tagged hooks,
 - [ ] **MFA TOTP Engine Separation** — Move the MFA TOTP generator, secret storage, and validator logic into the enterprise tag, leaving OSS with basic password authentication.
 - [ ] **Social OAuth Provider Hooks** — Extract third-party social OAuth integrations (Google, GitHub, GitLab) out of OSS, replacing them with generic pluggable enterprise authentication hooks.
 
-### 🗄️ ServDB & 🔄 ServFlow
+### 🗄️ ServPool & 🔄 ServFlow
 - [ ] **Query Routing Optimizer** — Move the dynamic read/write splitting parser and query-caching optimization layer into the enterprise overlay, leaving OSS with a simple direct pool dispatcher.
 - [ ] **Saga Parallel Coordinator** — Refactor concurrent execution paths, DAG forks, and complex compensating workflows in Saga engines to the enterprise overlay.
 
@@ -185,8 +185,8 @@ Develop the next generation of scale and performance capabilities inside the `se
 | QC.1 | **ServConsole main.go decomposition** | ServConsole | 4,885 lines → target <200. Extract into: pkg/proxy/, pkg/ws/, pkg/tabs/, pkg/alerts/, pkg/auth/, pkg/provision/, pkg/topology/, pkg/dashboards/ | [x] |
 | QC.2 | **ServAuth main.go decomposition** | ServAuth | 1,381 lines → target <100. Extract: pkg/handlers/, pkg/oauth/, pkg/mfa/, pkg/kms/, pkg/sessions/ | [x] |
 | QC.3 | **ServRegistry main.go decomposition** | ServRegistry | 1,363 lines → target <100. Extract: pkg/registry/, pkg/resolution/, pkg/web/, pkg/signing/ | [x] |
-| QC.4 | **ServDB package structure** | ServDB | Add pkg/pool/, pkg/routing/, pkg/analytics/, pkg/migration/ — currently flat | [x] |
-| QC.5 | **ServDocs package structure** | ServDocs | Add pkg/parser/, pkg/generator/, pkg/openapi/ — currently flat | [ ] |
+| QC.4 | **ServPool package structure** | ServPool | Add pkg/pool/, pkg/routing/, pkg/analytics/, pkg/migration/ — currently flat | [x] |
+| QC.5 | **ServDocs package structure** | ServDocs | Add pkg/parser/, pkg/generator/, pkg/openapi/ — currently flat | [x] |
 
 ### 🔴 Compiler Test Coverage
 
@@ -205,7 +205,7 @@ Develop the next generation of scale and performance capabilities inside the `se
 | QC.11 | **ServCache tests** | ServCache | Expand from 8 → 40+ test functions: TTL expiry, concurrent access, namespace isolation, Redis failover | [ ] |
 | QC.12 | **ServCloud tests** | ServCloud | Expand from 7 → 30+ test functions: deploy lifecycle, port allocation, health monitoring, rollback | [ ] |
 | QC.13 | **ServDocs tests** | ServDocs | Expand from 5 → 25+ test functions: parser accuracy, OpenAPI output validation, multi-file support | [ ] |
-| QC.14 | **ServDB tests** | ServDB | Expand from 10 → 35+ test functions: pool exhaustion, read/write routing, slow query detection, cache integration | [ ] |
+| QC.14 | **ServPool tests** | ServPool | Expand from 10 → 35+ test functions: pool exhaustion, read/write routing, slow query detection, cache integration | [ ] |
 | QC.15 | **ServMail tests** | ServMail | Expand from 10 → 30+ test functions: template rendering errors, DLQ retry, rate limiting, multi-channel | [ ] |
 | QC.16 | **ServFlow tests** | ServFlow | Expand from 11 → 35+ test functions: DAG cycle detection, concurrent approval race, saga compensation, checkpoint recovery | [ ] |
 
@@ -272,7 +272,7 @@ Develop the next generation of scale and performance capabilities inside the `se
 | ServMesh | B+ | A | Only useful with multiple services |
 | ServCron | B | A | Defaults to ServStore for persistence |
 | ServAuth | B | A | ServShared deeply integrated for persistence |
-| ServDB | B | A | No external service deps but thin docs |
+| ServPool | B | A | No external service deps but thin docs |
 | ServCloud | B | A- | Only useful for deploying Serv services |
 | ServMail | B- | A | Requires ServStore for template storage |
 | ServFlow | C+ | B+ | Hard dependency on ServStore for state |
@@ -304,7 +304,7 @@ Develop the next generation of scale and performance capabilities inside the `se
 | SA.13 | **README: standalone tunnel** | ServTunnel | Document use case: "expose any local service to internet" without mentioning Servverse ecosystem | [ ] |
 | SA.14 | **README: generic cache service** | ServCache | Document as a standalone REST cache (Redis alternative for dev). Show curl examples without ecosystem context | [ ] |
 | SA.15 | **Remove hardcoded cluster address** | ServCache | Replace `localhost:8083` self-address with configurable `--advertise-addr` flag | [ ] |
-| SA.16 | **README: generic DB proxy** | ServDB | Document as a standalone connection pooler for PostgreSQL/SQLite (like PgBouncer alternative) | [ ] |
+| SA.16 | **README: generic DB proxy** | ServPool | Document as a standalone connection pooler for PostgreSQL/SQLite (like PgBouncer alternative) | [ ] |
 
 ### 🟡 Protocol & Integration Guides
 
@@ -427,7 +427,7 @@ Develop the next generation of scale and performance capabilities inside the `se
 | D.50 | **100 simultaneous tunnels** | Performance | Measure relay latency degradation | [ ] |
 | D.51 | **Network flap reconnection (100x in 60s)** | Resilience | No leaked connections on relay side | [ ] |
 
-### ServDB (Database Proxy)
+### ServPool (Database Proxy)
 
 | # | Item | Category | Description | Status |
 |---|------|----------|-------------|--------|

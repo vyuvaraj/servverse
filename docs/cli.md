@@ -240,7 +240,7 @@ Start the full development environment with hot-reload and infrastructure servic
 serv dev [file.srv] [--services all]
 ```
 
-Starts ServDB, ServCache, ServQueue, and ServMesh locally, then watches `.srv`
+Starts ServPool, ServCache, ServQueue, and ServMesh locally, then watches `.srv`
 files for changes and reloads the compiled service automatically.
 
 ## Runtime Flags

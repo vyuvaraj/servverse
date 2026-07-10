@@ -41,7 +41,7 @@
 | [ServTrace](components/ServTrace.md) | Tracing — OTLP ingestion, waterfall UI, anomaly detection |
 | [ServTunnel](components/ServTunnel.md) | Tunneling — WebSocket relay, request inspection, subdomain routing |
 | [ServAuth](components/ServAuth.md) | Identity — OAuth2/OIDC, MFA, RBAC, social login |
-| [ServDB](components/ServDB.md) | Database Proxy — pooling, routing, query analytics |
+| [ServPool](components/ServPool.md) | Database Proxy — pooling, routing, query analytics |
 | [ServMail](components/ServMail.md) | Notifications — SMTP, Slack, SMS, templates |
 | [ServFlow](components/ServFlow.md) | Workflows — DAG execution, sagas, approval gates |
 | [ServRegistry](components/ServRegistry.md) | Packages — semver resolution, signing, ServStore backend |
@@ -78,6 +78,6 @@
 | ServTrace | 8090 | HTTP (OTLP) |
 | ServMail | 8094 | HTTP |
 | ServFlow | 8096 | HTTP |
-| ServDB | 8097 | HTTP |
+| ServPool | 8097 | HTTP |
 | ServAuth | 8098 | HTTP |
 | ServTunnel | 8443 | WebSocket |

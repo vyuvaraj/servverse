@@ -10,7 +10,7 @@ This catalog outlines all 15 operational services of the Servverse ecosystem and
 
 ### 2. Identity & Persistence
 * **ServAuth**: OIDC token issuer, key-rotations, and TOTP MFA provider.
-* **ServDB**: SQL database proxy manager (SQLite, Postgres, Oracle).
+* **ServPool**: SQL database proxy manager (SQLite, Postgres, Oracle).
 * **ServStore**: S3-compatible persistent object store.
 
 ### 3. Messaging & Workloads
