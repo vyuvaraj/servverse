@@ -158,8 +158,8 @@ The following 11 enterprise features were separated from the open-source reposit
 
 - [x] **EE.21: Semantic API Caching** (ServGate) — Move embedding-based cache logic to `ai_ee.go`; OSS always returns cache-miss. [July 11, 2026]
 - [x] **EE.22: Cost-Aware LLM Routing** (ServGate) — Move model selection/fallback logic to `ai_ee.go`; OSS routes to single default model only. [July 11, 2026]
-- [ ] **EE.24: Cold Tier Archival** (ServTrace) — Move ServStore archival logic behind build tag; OSS keeps traces in-memory ring buffer only.
-- [ ] **EE.26: SLO Breach Prediction** (ServTrace) — Move `handleSloBreachPredict` behind build tag; OSS returns 403 EE required.
+- [x] **EE.24: Cold Tier Archival** (ServTrace) — Move ServStore archival logic behind build tag; OSS keeps traces in-memory ring buffer only. [July 11, 2026]
+- [x] **EE.26: SLO Breach Prediction** (ServTrace) — Move `handleSloBreachPredict` behind build tag; OSS returns 403 EE required. [July 11, 2026]
 
 - For fully completed details of other Phase 20 items: See [UNIFIED_ROADMAP_COMPLETED_16_20.md](file:///c:/Mine/try/serv/servverse-repo/UNIFIED_ROADMAP_COMPLETED_16_20.md).
 
