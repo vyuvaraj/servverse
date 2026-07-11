@@ -146,8 +146,8 @@ The following 11 enterprise features were separated from the open-source reposit
 ### 🛡️ ServAuth & 💻 ServConsole
 - [x] **MFA TOTP Engine Separation** — Move the MFA TOTP generator, secret storage, and validator logic into the enterprise tag, leaving OSS with basic password authentication. [July 11, 2026]
 - [x] **Social OAuth Provider Hooks** — Extract third-party social OAuth integrations (Google, GitHub, GitLab) out of OSS, replacing them with generic pluggable enterprise authentication hooks. [July 11, 2026]
-- [ ] **EE.28: Credential Stuffing Detection** — Move stuffing detection behind build tag; OSS has basic lockout only.
-- [ ] **EE.29: Predictive Alerts** — Move `HandlePredictiveAlerts` behind build tag; OSS returns 403 EE required.
+- [x] **EE.28: Credential Stuffing Detection** — Move stuffing detection behind build tag; OSS has basic lockout only. [July 11, 2026]
+- [x] **EE.29: Predictive Alerts** — Move `HandlePredictiveAlerts` behind build tag; OSS returns 403 EE required. [July 11, 2026]
 
 ### 🔄 ServFlow
 - [ ] **Saga Parallel Coordinator** — Refactor concurrent execution paths, DAG forks, and complex compensating workflows in Saga engines to the enterprise overlay.
