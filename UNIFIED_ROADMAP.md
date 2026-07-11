@@ -150,11 +150,11 @@ Develop the next generation of scale and performance capabilities inside the `se
 
 ### 🛡️ ServGate & ⚡ ServCache
 - [ ] **Hardware SSL Offloading** — Implement SSL/TLS session hardware acceleration using cryptographic co-processors and specialized NIC offloading (e.g. QAT).
-- [ ] **Vector Search Acceleration** — Introduce GPU-accelerated HNSW indexing and SIMD vector optimization (AVX-512) for semantic cache query rules.
+- [x] **Vector Search Acceleration** — Introduce GPU-accelerated HNSW indexing and SIMD vector optimization (AVX-512) for semantic cache query rules. [July 11, 2026]
 
 ### 📦 ServStore & 📥 ServQueue
 - [ ] **Intelligent Data Tiering** — Implement auto-tiering policies that move cold/unaccessed storage blocks to AWS Glacier or local tape backups transparently.
-- [ ] **Zero-Copy Disk Serialization** — Upgrade message WAL writes to utilize direct ring buffers and `sendfile` system calls to maximize broker performance.
+- [x] **Zero-Copy Disk Serialization** — Upgrade message WAL writes to utilize direct ring buffers and `sendfile` system calls to maximize broker performance. [July 11, 2026]
 
 ### 💻 ServConsole & 🔄 ServFlow
 - [ ] **Real-Time Visual DAG Designer** — Build a drag-and-drop workflow builder in the console that generates valid Serv-lang flow representation schemas.
