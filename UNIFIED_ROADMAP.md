@@ -196,6 +196,19 @@ All backlog tasks for Phase 24 have been fully completed, verified, and archived
 
 ---
 
+## Phase 24.1: Standalone Hardening to A+ (Pending)
+
+Optimize remaining standalone components to completely eliminate ecosystem coupling and achieve perfect `A+` standalone ratings:
+
+| # | Item | Component | Description | Status |
+|---|------|-----------|-------------|--------|
+| SA.21 | **Multi-Backend State Storage** | ServFlow | Support SQLite/PostgreSQL/MySQL state persistence in standalone mode instead of raw `.state/` directories | [ ] |
+| SA.22 | **S3 & OCI Package Registry Backend** | ServRegistry | Add S3/MinIO and OCI registry storage adapters for package tarball uploads in standalone mode | [ ] |
+| SA.23 | **Consul, etcd, & DNS-SD Adapters** | ServMesh | Support etcd, Consul, and SRV record lookups for standalone service discovery | [ ] |
+| SA.24 | **Generic Process & Container Support** | ServCloud | Support managing arbitrary binaries (PM2 replacement) and Docker containers natively | [ ] |
+
+---
+
 ## Phase 25: Component Depth & Production Hardening (Pending)
 
 > **Philosophy shift:** Breadth is complete. This phase is about making each component genuinely battle-tested — correctness proofs, failure recovery, performance baselines, and edge-case coverage. No new features. Only depth.
