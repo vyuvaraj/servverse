@@ -160,11 +160,11 @@ Refactor the following advanced OSS capabilities into clean, build-tagged hooks,
 - [ ] **EE.22: Cost-Aware LLM Routing** (ServGate) — Move model selection/fallback logic to `ai_ee.go`; OSS routes to single default model only.
 - [ ] **EE.23: Auto-Scaling Engine** (ServCloud) — Move `autoscale.go` behind build tag; OSS has no auto-scaling capability.
 - [ ] **EE.24: Cold Tier Archival** (ServTrace) — Move ServStore archival logic behind build tag; OSS keeps traces in-memory ring buffer only.
-- [ ] **EE.25: Anomaly Explanation** (ServTrace) — Move `handleExplainAnomaly` behind build tag; OSS returns 403 EE required.
-- [ ] **EE.26: SLO Breach Prediction** (ServTrace) — Move `handleSloBreachPredict` behind build tag; OSS returns 403 EE required.
+- [x] **EE.25: Anomaly Explanation** (ServTrace) — Move `handleExplainAnomaly` behind build tag; OSS returns 403 EE required. [July 11, 2026]
+- [x] **EE.26: SLO Breach Prediction** (ServTrace) — Move `handleSloBreachPredict` behind build tag; OSS returns 403 EE required. [July 11, 2026]
 - [ ] **EE.27: Multi-Relay Federation** (ServTunnel) — Move federation peer routing behind build tag; OSS is single-relay only.
 - [x] **EE.28: Credential Stuffing Detection** (ServAuth) — Move stuffing detection behind build tag; OSS has basic lockout only. [July 10, 2026]
-- [ ] **EE.29: Predictive Alerts** (ServConsole) — Move `HandlePredictiveAlerts` behind build tag; OSS returns 403 EE required.
+- [x] **EE.29: Predictive Alerts** (ServConsole) — Move `HandlePredictiveAlerts` behind build tag; OSS returns 403 EE required. [July 11, 2026]
 - [ ] **EE.30: Semantic Message Routing** (ServQueue) — Move semantic classification routing behind build tag; OSS uses exact topic match only.
 
 ---
