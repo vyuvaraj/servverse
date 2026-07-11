@@ -156,9 +156,8 @@ The following 11 enterprise features were separated from the open-source reposit
 - [ ] **Dynamic HTML Templates** — Separate the Go template engine compilation, MJML layout transpilation, and variable-bound rendering into the enterprise tag.
 - [ ] **Clustered Leader Election** — Extract distributed leader election and consensus-backed job execution scheduling for Cron clusters into the enterprise overlay.
 
-### 🤖 AI-Native Features
-- [ ] **EE.21: Semantic API Caching** (ServGate) — Move embedding-based cache logic to `ai_ee.go`; OSS always returns cache-miss.
-- [ ] **EE.22: Cost-Aware LLM Routing** (ServGate) — Move model selection/fallback logic to `ai_ee.go`; OSS routes to single default model only.
+- [x] **EE.21: Semantic API Caching** (ServGate) — Move embedding-based cache logic to `ai_ee.go`; OSS always returns cache-miss. [July 11, 2026]
+- [x] **EE.22: Cost-Aware LLM Routing** (ServGate) — Move model selection/fallback logic to `ai_ee.go`; OSS routes to single default model only. [July 11, 2026]
 - [ ] **EE.24: Cold Tier Archival** (ServTrace) — Move ServStore archival logic behind build tag; OSS keeps traces in-memory ring buffer only.
 - [ ] **EE.26: SLO Breach Prediction** (ServTrace) — Move `handleSloBreachPredict` behind build tag; OSS returns 403 EE required.
 
