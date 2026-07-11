@@ -133,5 +133,23 @@
     "badgeColor": "green",
     "date": "2026-07-08",
     "readingTime": "10 min"
+  },
+  {
+    "slug": "servauth-medium-article",
+    "title": "Secure Identity & Access Management with ServAuth",
+    "excerpt": "Designing an identity server with JWKS, TOTP MFA, Social OAuth, and stuffing detection.",
+    "badge": "Identity",
+    "badgeColor": "purple",
+    "date": "2026-07-11",
+    "readingTime": "8 min"
+  },
+  {
+    "slug": "servmail-cron-medium-article",
+    "title": "Scheduled Jobs & Reliable Mail Queues: ServCron and ServMail",
+    "excerpt": "Distributed leader elections, execution locks, disk-backed queues, and DKIM signing.",
+    "badge": "Asynchronous",
+    "badgeColor": "blue",
+    "date": "2026-07-11",
+    "readingTime": "7 min"
   }
 ]
