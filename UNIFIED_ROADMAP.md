@@ -483,7 +483,7 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 | # | Feature | Why It Differentiates | Status |
 |---|---------|---------------------|--------|
 | CD.40 | **Language-native lock syntax** — `lock("resource", 30s) { ... }` is a keyword, compiler ensures unlock on all exit paths | Redis locks require manual lock/unlock discipline. ServLock is syntax | ✅ Exists |
-| CD.41 | **Fencing token support** — Auto-generated monotonic tokens prevent split-brain stale writes | Redis Redlock has no fencing. ServLock enforces it at protocol level | [ ] Needs implementation |
+| CD.41 | **Fencing token support** — Auto-generated monotonic tokens prevent split-brain stale writes | Redis Redlock has no fencing. ServLock enforces it at protocol level | ✅ Exists |
 
 ### ServRegistry vs npm/crates.io/pkg.go.dev
 *Competitors: npm registry, crates.io, Go module proxy, PyPI*
