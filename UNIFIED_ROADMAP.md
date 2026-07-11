@@ -175,7 +175,7 @@ All backlog tasks for Phase 22 have been fully completed, verified, and archived
 | AG.6 | **Contributing guide (CONTRIBUTING.md)** | All repos | Code style, PR process, how to add a stdlib module, how to write a WASM plugin | [x] |
 | AG.7 | **Good-first-issue labels** | All repos | Tag 20+ approachable issues for new contributors | [x] |
 | AG.8 | **Monthly release cadence** | servverse-repo | Predictable versioning: v0.2.0, v0.3.0 with changelogs. Builds trust | [x] |
-| AG.9 | **Blog post series** | servverse-repo | "Building X with Serv" tutorials: REST API, scheduled worker, event pipeline, AI agent | [ ] |
+| AG.9 | **Blog post series** | servverse-repo | "Building X with Serv" tutorials: REST API, scheduled worker, event pipeline, AI agent | [x] |
 
 ### 🟡 Enterprise Readiness
 
