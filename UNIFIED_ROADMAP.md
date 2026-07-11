@@ -246,7 +246,7 @@ All backlog tasks for Phase 22 have been fully completed, verified, and archived
 |---|------|-----------|-------------|--------|
 | SA.17 | **S3 client compatibility guide** | ServStore | Show examples with aws-cli, boto3, mc (MinIO client), s3cmd, rclone | [x] |
 | SA.18 | **STOMP client compatibility guide** | ServQueue | Show examples with stomp.py, Spring STOMP, go-stomp, stompjs (browser) | [x] |
-| SA.19 | **Generic proxy configuration guide** | ServGate | Show use as a standalone gateway for Express/Flask/Spring backends — no WASM required | [ ] |
+| SA.19 | **Generic proxy configuration guide** | ServGate | Show use as a standalone gateway for Express/Flask/Spring backends — no WASM required | [x] |
 | SA.20 | **OpenTelemetry integration guide** | ServTrace | Show how to point any OTel SDK (Go, Python, Node) at ServTrace — works as a lightweight Jaeger replacement | [x] |
 
 ---
