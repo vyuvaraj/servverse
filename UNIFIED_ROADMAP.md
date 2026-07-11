@@ -34,8 +34,8 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 | **Phase 23: Developer Adoption & Growth** | 14 | 6 | 8 | **43%** | ████████░░░░░░░░░░░░ |
 | **Phase 24: Standalone Component Independence** | 20 | 16 | 4 | **80%** | ████████████████░░░░ |
 | **Phase 25: Component Depth & Production Hardening** | 60 | 0 | 60 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
-| **Phase 26: Competitive Differentiation** | 45 | 0 | 45 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
-| **TOTAL ECOSYSTEM WORK** | **363** | **252** | **111** | **69%** | █████████████░░░░░░░ |
+| **Phase 26: Competitive Differentiation** | 45 | 33 | 12 | **73%** | ██████████████░░░░░░ |
+| **TOTAL ECOSYSTEM WORK** | **363** | **285** | **78** | **78%** | ███████████████░░░░░ |
 
 ---
 
@@ -349,153 +349,157 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 ## Phase 26: Competitive Differentiation (Pending)
 
 > **Goal:** Each component should have 2-3 features that no direct competitor offers. This is what makes people choose Servverse over established alternatives.
+>
+> **NOTE:** Items marked ✅ are already implemented and should be highlighted in marketing/docs. Items marked [ ] need building.
+>
+> **Status:** 33 already exist (marketing/documentation task), 12 need implementation.
 
 ### Serv-lang vs Go/TypeScript/Rust
 *Competitors: Go (raw), Deno, Bun, Rust+Axum*
 
-| # | Feature | Why It Differentiates |
-|---|---------|---------------------|
-| CD.1 | **Infrastructure-as-syntax** — `broker`, `store`, `cache`, `ai` are keywords, not library imports. Compile error if misconfigured | No other language makes infrastructure a first-class citizen |
-| CD.2 | **AI code generation feedback loop** — `serv create "prompt"` generates code, `serv test` validates it, `serv create --fix` repairs failures automatically | No compiler has built-in AI repair cycle |
-| CD.3 | **Compile-time service contract validation** — If route declares `-> User`, compiler verifies the response shape matches the struct at build time | TypeScript has this at type level but not for HTTP responses |
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.1 | **Infrastructure-as-syntax** — `broker`, `store`, `cache`, `ai` are keywords, not library imports. Compile error if misconfigured | No other language makes infrastructure a first-class citizen | ✅ Exists |
+| CD.2 | **AI code generation feedback loop** — `serv create "prompt"` generates code, `serv test` validates it, `serv create --fix` repairs failures automatically | No compiler has built-in AI repair cycle | ⚠️ `serv create` exists, `--fix` loop needs building |
+| CD.3 | **Compile-time service contract validation** — If route declares `-> User`, compiler verifies the response shape matches the struct at build time | TypeScript has this at type level but not for HTTP responses | [ ] Needs implementation |
 
 ### ServGate vs Kong/Envoy/Traefik
 *Competitors: Kong, Envoy, Traefik, AWS API Gateway*
 
-| # | Feature | Why It Differentiates |
-|---|---------|---------------------|
-| CD.4 | **WASM middleware hot-swap during live traffic** — Zero-downtime middleware deploys at request boundary, not pod restart | Envoy needs full pod restart for filter changes |
-| CD.5 | **MCP (AI agent) native traffic type** — Understands JSON-RPC tool calls, per-agent rate limiting, token cost tracking | No gateway understands AI agent protocols natively |
-| CD.6 | **Policy-as-code → WASM compilation** — Write human-readable `.policy` files, compile to native-speed WASM | OPA/Rego is interpreted. ServGate compiles policies |
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.4 | **WASM middleware hot-swap during live traffic** — Zero-downtime middleware deploys at request boundary, not pod restart | Envoy needs full pod restart for filter changes | ✅ Exists |
+| CD.5 | **MCP (AI agent) native traffic type** — Understands JSON-RPC tool calls, per-agent rate limiting, token cost tracking | No gateway understands AI agent protocols natively | ✅ Exists |
+| CD.6 | **Policy-as-code → WASM compilation** — Write human-readable `.policy` files, compile to native-speed WASM | OPA/Rego is interpreted. ServGate compiles policies | ✅ Exists |
 
 ### ServStore vs MinIO/S3/Ceph
 *Competitors: MinIO, AWS S3, Ceph, TurboBuffer*
 
-| # | Feature | Why It Differentiates |
-|---|---------|---------------------|
-| CD.7 | **Compute-near-data (WASM transforms on stored objects)** — Resize images, convert formats, validate data server-side with zero cold start | No other storage engine executes user code on objects in-process |
-| CD.8 | **Semantic search built into storage** — Upload a document → auto-embedded → queryable by meaning in the same API call | AWS S3 Vectors is separate. ServStore unifies store+search |
-| CD.9 | **Time-travel queries with temporal API** — `GET /bucket/key?at=2026-07-01T14:00:00Z` returns exact state at that moment | S3 versioning requires listing all versions manually |
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.7 | **Compute-near-data (WASM transforms on stored objects)** — Resize images, convert formats, validate data server-side with zero cold start | No other storage engine executes user code on objects in-process | ✅ Exists |
+| CD.8 | **Semantic search built into storage** — Upload a document → auto-embedded → queryable by meaning in the same API call | AWS S3 Vectors is separate. ServStore unifies store+search | ✅ Exists |
+| CD.9 | **Time-travel queries with temporal API** — `GET /bucket/key?at=2026-07-01T14:00:00Z` returns exact state at that moment | S3 versioning requires listing all versions manually | ✅ Exists |
 
 ### ServQueue vs Kafka/RabbitMQ/NATS
 *Competitors: Kafka, RabbitMQ, NATS, Pulsar, Redis Streams*
 
-| # | Feature | Why It Differentiates |
-|---|---------|---------------------|
-| CD.10 | **Inline WASM transforms in the message path** — Filter, enrich, route messages inside the broker without external processors | No broker runs arbitrary user code in the message pipeline |
-| CD.11 | **Single binary: STOMP + HTTP + WASM + WAL + Raft** — One file, zero dependencies. Kafka = JVM + ZooKeeper. RabbitMQ = Erlang | Unmatched operational simplicity |
-| CD.12 | **Language-native protocol** — `broker "servqueue://host"` in Serv compiles to zero-config STOMP client with auto-auth and tracing | Every other broker needs SDK import + manual configuration |
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.10 | **Inline WASM transforms in the message path** — Filter, enrich, route messages inside the broker without external processors | No broker runs arbitrary user code in the message pipeline | ✅ Exists |
+| CD.11 | **Single binary: STOMP + HTTP + WASM + WAL + Raft** — One file, zero dependencies. Kafka = JVM + ZooKeeper. RabbitMQ = Erlang | Unmatched operational simplicity | ✅ Exists |
+| CD.12 | **Language-native protocol** — `broker "servqueue://host"` in Serv compiles to zero-config STOMP client with auto-auth and tracing | Every other broker needs SDK import + manual configuration | ✅ Exists |
 
 ### ServConsole vs Grafana/Datadog/Portainer
 *Competitors: Grafana, Datadog, Portainer, ArgoCD*
 
-| # | Feature | Why It Differentiates |
-|---|---------|---------------------|
-| CD.13 | **Ecosystem-native zero-config observability** — All Serv services auto-report metrics. No exporters, no scrape configs, no dashboard imports | Grafana needs Prometheus + exporters + dashboards configured per service |
-| CD.14 | **Bidirectional control plane** — Not just observe: create buckets, deploy services, hot-swap middleware, execute runbooks FROM the dashboard | Grafana/Datadog are read-only. ServConsole is an operations plane |
-| CD.15 | **AI-powered incident correlation** — Alert fires → auto-correlates deploys, config changes, upstream failures → generates hypothesis | Datadog has this but at enterprise pricing. ServConsole is self-hosted |
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.13 | **Ecosystem-native zero-config observability** — All Serv services auto-report metrics. No exporters, no scrape configs, no dashboard imports | Grafana needs Prometheus + exporters + dashboards configured per service | ✅ Exists |
+| CD.14 | **Bidirectional control plane** — Not just observe: create buckets, deploy services, hot-swap middleware, execute runbooks FROM the dashboard | Grafana/Datadog are read-only. ServConsole is an operations plane | ✅ Exists (EE) |
+| CD.15 | **AI-powered incident correlation** — Alert fires → auto-correlates deploys, config changes, upstream failures → generates hypothesis | Datadog has this but at enterprise pricing. ServConsole is self-hosted | ✅ Exists (EE) |
 
 ### ServTrace vs Jaeger/Tempo/Zipkin
 *Competitors: Jaeger, Grafana Tempo, Zipkin, SigNoz*
 
-| # | Feature | Why It Differentiates |
-|---|---------|---------------------|
-| CD.16 | **Single binary, zero dependencies** — No Elasticsearch, no Cassandra, no Kafka. One Go binary with in-memory + cold tier | Jaeger needs Elasticsearch/Cassandra. Tempo needs S3 + memcached |
-| CD.17 | **Compiler-linked source mapping** — Trace spans map back to `.srv` source lines, not generated Go code | No other tracing backend understands the source language |
-| CD.18 | **Natural language trace query** — "Show me slow requests to ServAuth in the last hour" → structured query | No open-source tracer has NL search |
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.16 | **Single binary, zero dependencies** — No Elasticsearch, no Cassandra, no Kafka. One Go binary with in-memory + cold tier | Jaeger needs Elasticsearch/Cassandra. Tempo needs S3 + memcached | ✅ Exists |
+| CD.17 | **Compiler-linked source mapping** — Trace spans map back to `.srv` source lines, not generated Go code | No other tracing backend understands the source language | [ ] Needs implementation (source map integration) |
+| CD.18 | **Natural language trace query** — "Show me slow requests to ServAuth in the last hour" → structured query | No open-source tracer has NL search | ✅ Exists (EE) |
 
 ### ServCache vs Redis/Memcached/Dragonfly
 *Competitors: Redis, Memcached, Dragonfly, Valkey, KeyDB*
 
-| # | Feature | Why It Differentiates |
-|---|---------|---------------------|
-| CD.19 | **Auto-namespace isolation per service** — Services sharing one cache instance can't see each other's keys. Zero-config tenant safety | Redis requires manual key prefixing discipline |
-| CD.20 | **Language-native `cached fn` syntax** — Declare cache behavior at the function level, compiler generates the get/set/invalidation code | No cache system integrates at the language/compiler level |
-| CD.21 | **Read-through/write-behind with ServPool** — Automatic DB synchronization patterns without application code | Redis requires custom lua scripts or app-level orchestration |
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.19 | **Auto-namespace isolation per service** — Services sharing one cache instance can't see each other's keys. Zero-config tenant safety | Redis requires manual key prefixing discipline | ✅ Exists |
+| CD.20 | **Language-native `cached fn` syntax** — Declare cache behavior at the function level, compiler generates the get/set/invalidation code | No cache system integrates at the language/compiler level | [ ] Needs implementation (compiler feature) |
+| CD.21 | **Read-through/write-behind with ServPool** — Automatic DB synchronization patterns without application code | Redis requires custom lua scripts or app-level orchestration | ✅ Exists |
 
 ### ServMesh vs Istio/Linkerd/Consul Connect
 *Competitors: Istio, Linkerd, Consul Connect, Cilium*
 
-| # | Feature | Why It Differentiates |
-|---|---------|---------------------|
-| CD.22 | **Library-level, no sidecars** — Runs inside the binary via custom HTTP transport. Zero CPU/memory overhead of sidecar proxies | Istio/Linkerd = Envoy sidecar per pod. ServMesh = embedded library |
-| CD.23 | **`serv://` URL scheme in the language** — Inter-service calls are syntax: `http.get("serv://user-service/users/123")` | No other mesh integrates at the language level |
-| CD.24 | **Sub-millisecond service resolution** — In-process cache, no network hop to control plane for each request | Istio routes through Envoy sidecar (added network hop per call) |
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.22 | **Library-level, no sidecars** — Runs inside the binary via custom HTTP transport. Zero CPU/memory overhead of sidecar proxies | Istio/Linkerd = Envoy sidecar per pod. ServMesh = embedded library | ✅ Exists |
+| CD.23 | **`serv://` URL scheme in the language** — Inter-service calls are syntax: `http.get("serv://user-service/users/123")` | No other mesh integrates at the language level | ✅ Exists |
+| CD.24 | **Sub-millisecond service resolution** — In-process cache, no network hop to control plane for each request | Istio routes through Envoy sidecar (added network hop per call) | ✅ Exists |
 
 ### ServFlow vs Temporal/Cadence/Step Functions
 *Competitors: Temporal, Cadence, AWS Step Functions, Airflow*
 
-| # | Feature | Why It Differentiates |
-|---|---------|---------------------|
-| CD.25 | **Native language syntax for workflows** — `workflow "name" { step "x" { ... } }` in .srv files. Compiler validates DAG at build time | Temporal uses Go/Java SDKs. Step Functions uses JSON. ServFlow uses language syntax |
-| CD.26 | **Time-travel workflow replay** — Debug by stepping through execution history: see state at each checkpoint | Temporal has event history but no interactive replay visualization |
-| CD.27 | **Single binary with embedded state** — No external database required. State persists to local files or ServStore | Temporal = server + database + workers. ServFlow = one binary |
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.25 | **Native language syntax for workflows** — `workflow "name" { step "x" { ... } }` in .srv files. Compiler validates DAG at build time | Temporal uses Go/Java SDKs. Step Functions uses JSON. ServFlow uses language syntax | [ ] Keyword exists but full compiler integration pending |
+| CD.26 | **Time-travel workflow replay** — Debug by stepping through execution history: see state at each checkpoint | Temporal has event history but no interactive replay visualization | ✅ Exists |
+| CD.27 | **Single binary with embedded state** — No external database required. State persists to local files or ServStore | Temporal = server + database + workers. ServFlow = one binary | ✅ Exists |
 
 ### ServTunnel vs ngrok/Cloudflare Tunnel
 *Competitors: ngrok, Cloudflare Tunnel, Tailscale Funnel, localtunnel*
 
-| # | Feature | Why It Differentiates |
-|---|---------|---------------------|
-| CD.28 | **OTel trace propagation through the tunnel** — Incoming webhook requests automatically get trace context injected | No tunnel service preserves distributed tracing context |
-| CD.29 | **Request inspection with REST API** — Scriptable inspection: `GET /api/inspect` returns captured requests for CI/CD test automation | ngrok's inspection is proprietary dashboard, not API-accessible |
-| CD.30 | **Self-hosted relay (zero vendor lock-in)** — Run your own relay server. No usage limits, no accounts, no billing | ngrok/Cloudflare = SaaS with limits. ServTunnel = your infrastructure |
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.28 | **OTel trace propagation through the tunnel** — Incoming webhook requests automatically get trace context injected | No tunnel service preserves distributed tracing context | ✅ Exists |
+| CD.29 | **Request inspection with REST API** — Scriptable inspection: `GET /api/inspect` returns captured requests for CI/CD test automation | ngrok's inspection is proprietary dashboard, not API-accessible | ✅ Exists |
+| CD.30 | **Self-hosted relay (zero vendor lock-in)** — Run your own relay server. No usage limits, no accounts, no billing | ngrok/Cloudflare = SaaS with limits. ServTunnel = your infrastructure | ✅ Exists |
 
 ### ServAuth vs Auth0/Keycloak/Supabase Auth
 *Competitors: Auth0, Keycloak, Supabase Auth, Firebase Auth, Clerk*
 
-| # | Feature | Why It Differentiates |
-|---|---------|---------------------|
-| CD.31 | **Single binary, embedded in your stack** — No Java (Keycloak), no SaaS pricing (Auth0). One Go binary | Keycloak = JVM + PostgreSQL. Auth0 = per-MAU pricing |
-| CD.32 | **Language-native auth primitives** — `auth.register()`, `auth.login()`, `auth.currentUser()` are builtins | Every other auth system requires SDK import + initialization |
-| CD.33 | **Ecosystem-integrated identity** — JWT issued by ServAuth works across all Serv services automatically via ServShared | Auth0 tokens need per-service validation configuration |
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.31 | **Single binary, embedded in your stack** — No Java (Keycloak), no SaaS pricing (Auth0). One Go binary | Keycloak = JVM + PostgreSQL. Auth0 = per-MAU pricing | ✅ Exists |
+| CD.32 | **Language-native auth primitives** — `auth.register()`, `auth.login()`, `auth.currentUser()` are builtins | Every other auth system requires SDK import + initialization | ✅ Exists |
+| CD.33 | **Ecosystem-integrated identity** — JWT issued by ServAuth works across all Serv services automatically via ServShared | Auth0 tokens need per-service validation configuration | ✅ Exists |
 
 ### ServCron vs Traditional Cron/Kubernetes CronJobs
 *Competitors: system cron, K8s CronJobs, Airflow scheduler*
 
-| # | Feature | Why It Differentiates |
-|---|---------|---------------------|
-| CD.34 | **Language-native scheduling** — `every 5m { ... }` and `cron "0 9 * * MON-FRI" { ... }` are syntax, not config files | No scheduler integrates at the language level |
-| CD.35 | **Distributed leader election built-in** — Multi-replica deployments automatically elect one runner. No ZooKeeper/etcd | K8s CronJobs can duplicate if misconfigured. ServCron guarantees once |
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.34 | **Language-native scheduling** — `every 5m { ... }` and `cron "0 9 * * MON-FRI" { ... }` are syntax, not config files | No scheduler integrates at the language level | ✅ Exists |
+| CD.35 | **Distributed leader election built-in** — Multi-replica deployments automatically elect one runner. No ZooKeeper/etcd | K8s CronJobs can duplicate if misconfigured. ServCron guarantees once | ✅ Exists |
 
 ### ServPool vs PgBouncer/ProxySQL/PgCat
 *Competitors: PgBouncer, ProxySQL, PgCat, Odyssey*
 
-| # | Feature | Why It Differentiates |
-|---|---------|---------------------|
-| CD.36 | **Multi-dialect proxy** — One pooler supports PostgreSQL, SQLite, Oracle, MongoDB simultaneously | PgBouncer = PostgreSQL only. ProxySQL = MySQL only. ServPool = all |
-| CD.37 | **Integrated query analytics and slow query detection** — No separate APM tool needed. Built-in query profiling with OTel spans | PgBouncer has zero observability. ServPool exports everything |
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.36 | **Multi-dialect proxy** — One pooler supports PostgreSQL, SQLite, Oracle, MongoDB simultaneously | PgBouncer = PostgreSQL only. ProxySQL = MySQL only. ServPool = all | ✅ Exists |
+| CD.37 | **Integrated query analytics and slow query detection** — No separate APM tool needed. Built-in query profiling with OTel spans | PgBouncer has zero observability. ServPool exports everything | ✅ Exists |
 
 ### ServMail vs SendGrid/Mailgun/SES
 *Competitors: SendGrid, Mailgun, AWS SES, Postmark, Resend*
 
-| # | Feature | Why It Differentiates |
-|---|---------|---------------------|
-| CD.38 | **Multi-channel in one service** — SMTP email + Slack + SMS + webhooks from a single API endpoint | SendGrid = email only. Need Twilio for SMS, Slack API separately |
-| CD.39 | **Language-native `notify()` syntax** — `notify("slack", msg)` is a builtin, not a library call | Every notification service requires SDK setup per channel |
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.38 | **Multi-channel in one service** — SMTP email + Slack + SMS + webhooks from a single API endpoint | SendGrid = email only. Need Twilio for SMS, Slack API separately | ✅ Exists |
+| CD.39 | **Language-native `notify()` syntax** — `notify("slack", msg)` is a builtin, not a library call | Every notification service requires SDK setup per channel | ✅ Exists |
 
 ### ServLock vs Redis SETNX/etcd/ZooKeeper
 *Competitors: Redis distributed locks, etcd leases, ZooKeeper recipes*
 
-| # | Feature | Why It Differentiates |
-|---|---------|---------------------|
-| CD.40 | **Language-native lock syntax** — `lock("resource", 30s) { ... }` is a keyword, compiler ensures unlock on all exit paths | Redis locks require manual lock/unlock discipline. ServLock is syntax |
-| CD.41 | **Fencing token support** — Auto-generated monotonic tokens prevent split-brain stale writes | Redis Redlock has no fencing. ServLock enforces it at protocol level |
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.40 | **Language-native lock syntax** — `lock("resource", 30s) { ... }` is a keyword, compiler ensures unlock on all exit paths | Redis locks require manual lock/unlock discipline. ServLock is syntax | ✅ Exists |
+| CD.41 | **Fencing token support** — Auto-generated monotonic tokens prevent split-brain stale writes | Redis Redlock has no fencing. ServLock enforces it at protocol level | [ ] Needs implementation |
 
 ### ServRegistry vs npm/crates.io/pkg.go.dev
 *Competitors: npm registry, crates.io, Go module proxy, PyPI*
 
-| # | Feature | Why It Differentiates |
-|---|---------|---------------------|
-| CD.42 | **Cryptographic package signing with verification** — Packages are signed on publish, verified on install. Supply chain security built-in | npm has no mandatory signing. crates.io has no signing at all |
-| CD.43 | **BFS dependency tree resolution with conflict detection** — Resolve entire dependency graph server-side before download | npm resolves client-side. ServRegistry resolves before any bytes transfer |
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.42 | **Cryptographic package signing with verification** — Packages are signed on publish, verified on install. Supply chain security built-in | npm has no mandatory signing. crates.io has no signing at all | ✅ Exists |
+| CD.43 | **BFS dependency tree resolution with conflict detection** — Resolve entire dependency graph server-side before download | npm resolves client-side. ServRegistry resolves before any bytes transfer | ✅ Exists |
 
 ### ServDocs vs Swagger/Redoc/Mintlify
 *Competitors: Swagger UI, Redoc, Mintlify, ReadMe.io*
 
-| # | Feature | Why It Differentiates |
-|---|---------|---------------------|
-| CD.44 | **Compiler-aware documentation** — Reads .srv source directly. No annotations, no comments, no OpenAPI spec writing. The code IS the documentation | Every other doc tool requires manual spec writing or annotation |
-| CD.45 | **Dual output (HTML + OpenAPI) from one parse** — Single command generates both interactive docs AND machine-readable spec | Swagger UI only renders existing specs. ServDocs generates them |
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.44 | **Compiler-aware documentation** — Reads .srv source directly. No annotations, no comments, no OpenAPI spec writing. The code IS the documentation | Every other doc tool requires manual spec writing or annotation | ✅ Exists |
+| CD.45 | **Dual output (HTML + OpenAPI) from one parse** — Single command generates both interactive docs AND machine-readable spec | Swagger UI only renders existing specs. ServDocs generates them | ✅ Exists |
 
 ---
 
