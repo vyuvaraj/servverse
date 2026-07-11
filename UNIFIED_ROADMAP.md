@@ -157,8 +157,8 @@ Develop the next generation of scale and performance capabilities inside the `se
 - [x] **Zero-Copy Disk Serialization** — Upgrade message WAL writes to utilize direct ring buffers and `sendfile` system calls to maximize broker performance. [July 11, 2026]
 
 ### 💻 ServConsole & 🔄 ServFlow
-- [ ] **Real-Time Visual DAG Designer** — Build a drag-and-drop workflow builder in the console that generates valid Serv-lang flow representation schemas.
-- [ ] **Predictive AI Scaling Predictors** — Implement telemetry-driven AI scaling triggers that predict queue depth and preemptively spawn runner clusters.
+- [x] **Real-Time Visual DAG Designer** — Build a drag-and-drop workflow builder in the console that generates valid Serv-lang flow representation schemas. [July 11, 2026]
+- [x] **Predictive AI Scaling Predictors** — Implement telemetry-driven AI scaling triggers that predict queue depth and preemptively spawn runner clusters. [July 11, 2026]
 
 ---
 
