@@ -139,10 +139,30 @@ All backlog tasks for Phase 19 have been fully completed, verified, and archived
 
 ---
 
-## Phase 20: OSS-to-EE Refactoring & Enterprise Migrations (Completed)
+## Phase 20: OSS-to-EE Refactoring & Enterprise Migrations (Incomplete / Pending)
 
-All backlog tasks for Phase 20 have been fully completed, verified, and archived.
-- For completed details of Phase 20: See [UNIFIED_ROADMAP_COMPLETED_16_20.md](file:///c:/Mine/try/serv/servverse-repo/UNIFIED_ROADMAP_COMPLETED_16_20.md).
+The following 11 enterprise features were separated from the open-source repository but are pending full implementation in the `servverse-ee` overlay repository:
+
+### 🛡️ ServAuth & 💻 ServConsole
+- [ ] **MFA TOTP Engine Separation** — Move the MFA TOTP generator, secret storage, and validator logic into the enterprise tag, leaving OSS with basic password authentication.
+- [ ] **Social OAuth Provider Hooks** — Extract third-party social OAuth integrations (Google, GitHub, GitLab) out of OSS, replacing them with generic pluggable enterprise authentication hooks.
+- [ ] **EE.28: Credential Stuffing Detection** — Move stuffing detection behind build tag; OSS has basic lockout only.
+- [ ] **EE.29: Predictive Alerts** — Move `HandlePredictiveAlerts` behind build tag; OSS returns 403 EE required.
+
+### 🔄 ServFlow
+- [ ] **Saga Parallel Coordinator** — Refactor concurrent execution paths, DAG forks, and complex compensating workflows in Saga engines to the enterprise overlay.
+
+### 📧 ServMail & ⏰ ServCron
+- [ ] **Dynamic HTML Templates** — Separate the Go template engine compilation, MJML layout transpilation, and variable-bound rendering into the enterprise tag.
+- [ ] **Clustered Leader Election** — Extract distributed leader election and consensus-backed job execution scheduling for Cron clusters into the enterprise overlay.
+
+### 🤖 AI-Native Features
+- [ ] **EE.21: Semantic API Caching** (ServGate) — Move embedding-based cache logic to `ai_ee.go`; OSS always returns cache-miss.
+- [ ] **EE.22: Cost-Aware LLM Routing** (ServGate) — Move model selection/fallback logic to `ai_ee.go`; OSS routes to single default model only.
+- [ ] **EE.24: Cold Tier Archival** (ServTrace) — Move ServStore archival logic behind build tag; OSS keeps traces in-memory ring buffer only.
+- [ ] **EE.26: SLO Breach Prediction** (ServTrace) — Move `handleSloBreachPredict` behind build tag; OSS returns 403 EE required.
+
+- For fully completed details of other Phase 20 items: See [UNIFIED_ROADMAP_COMPLETED_16_20.md](file:///c:/Mine/try/serv/servverse-repo/UNIFIED_ROADMAP_COMPLETED_16_20.md).
 
 ## Phase 21: Enterprise Ecosystem Scale & Next-Gen Capabilities
 

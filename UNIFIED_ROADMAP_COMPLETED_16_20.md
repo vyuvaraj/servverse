@@ -109,27 +109,13 @@ All final component hardening, documentation, and unit test alignment tasks:
 
 Refactored advanced OSS capabilities into clean, build-tagged hooks, migrating their enterprise implementations to the private `servverse-ee` overlay:
 
-### 🛡️ ServAuth & 💻 ServConsole
-- **MFA TOTP Engine Separation** — Move the MFA TOTP generator, secret storage, and validator logic into the enterprise tag, leaving OSS with basic password authentication. [July 10, 2026]
-- **Social OAuth Provider Hooks** — Extract third-party social OAuth integrations (Google, GitHub, GitLab) out of OSS, replacing them with generic pluggable enterprise authentication hooks. [July 10, 2026]
-- **EE.28: Credential Stuffing Detection** — Move stuffing detection behind build tag; OSS has basic lockout only. [July 10, 2026]
-- **EE.29: Predictive Alerts** — Move `HandlePredictiveAlerts` behind build tag; OSS returns 403 EE required. [July 11, 2026]
-
-### 🗄️ ServPool & 🔄 ServFlow
+### 🗄️ ServPool
 - **Query Routing Optimizer** — Move the dynamic read/write splitting parser and query-caching optimization layer into the enterprise overlay, leaving OSS with a simple direct pool dispatcher. [July 10, 2026]
-- **Saga Parallel Coordinator** — Refactor concurrent execution paths, DAG forks, and complex compensating workflows in Saga engines to the enterprise overlay. [July 10, 2026]
-
-### 📧 ServMail & ⏰ ServCron
-- **Dynamic HTML Templates** — Separate the Go template engine compilation, MJML layout transpilation, and variable-bound rendering into the enterprise tag. [July 10, 2026]
-- **Clustered Leader Election** — Extract distributed leader election and consensus-backed job execution scheduling for Cron clusters into the enterprise overlay. [July 10, 2026]
 
 ### 🤖 AI-Native Features (Ungated — Move to EE)
-- **EE.21: Semantic API Caching** (ServGate) — Move embedding-based cache logic to `ai_ee.go`; OSS always returns cache-miss. [July 11, 2026]
-- **EE.22: Cost-Aware LLM Routing** (ServGate) — Move model selection/fallback logic to `ai_ee.go`; OSS routes to single default model only. [July 11, 2026]
 - **EE.23: Auto-Scaling Engine** (ServCloud) — Move `autoscale.go` behind build tag; OSS has no auto-scaling capability. [July 11, 2026]
-- **EE.24: Cold Tier Archival** (ServTrace) — Move ServStore archival logic behind build tag; OSS keeps traces in-memory ring buffer only. [July 11, 2026]
 - **EE.25: Anomaly Explanation** (ServTrace) — Move `handleExplainAnomaly` behind build tag; OSS returns 403 EE required. [July 11, 2026]
-- **EE.26: SLO Breach Prediction** (ServTrace) — Move `handleSloBreachPredict` behind build tag; OSS returns 403 EE required. [July 11, 2026]
 - **EE.27: Multi-Relay Federation** (ServTunnel) — Move federation peer routing behind build tag; OSS is single-relay only. [July 11, 2026]
 - **EE.30: Semantic Message Routing** (ServQueue) — Move semantic classification routing behind build tag; OSS uses exact topic match only. [July 11, 2026]
+
 
