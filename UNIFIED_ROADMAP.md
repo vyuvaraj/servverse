@@ -34,8 +34,8 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 | **Phase 23: Developer Adoption & Growth** | 14 | 6 | 8 | **43%** | ████████░░░░░░░░░░░░ |
 | **Phase 24: Standalone Component Independence** | 20 | 16 | 4 | **80%** | ████████████████░░░░ |
 | **Phase 25: Component Depth & Production Hardening** | 60 | 0 | 60 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
-| **Phase 26: Competitive Differentiation** | 107 | 66 | 41 | **62%** | ████████████░░░░░░░░ |
-| **TOTAL ECOSYSTEM WORK** | **425** | **318** | **107** | **75%** | ███████████████░░░░░ |
+| **Phase 26: Competitive Differentiation** | 107 | 74 | 33 | **69%** | �������������������� |
+| **TOTAL ECOSYSTEM WORK** | **425** | **326** | **99** | **77%** | �������������������� |
 
 ---
 
@@ -601,7 +601,7 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 | CD.79 | **`serv create --fix`** — AI generates code, tests fail, compiler feeds errors back to AI, AI fixes. Automated repair loop until tests pass or max retries | Serv-lang | Cursor/Copilot suggest code. None auto-repair compile errors in a loop | [ ] |
 | CD.80 | **`cached fn` keyword** — `cached fn getUser(id) ttl 5m { return db.query(...) }` — compiler generates cache get/set/invalidation. No manual cache code | Serv-lang + ServCache | No language has cache-as-syntax. This is Serv's unique position | ✅ Exists |
 | CD.81 | **Migration dry-run with colored diff** — `serv migrate --dry-run` shows exact SQL (CREATE/ALTER/DROP) with green/red diff against live schema. No execution | Serv-lang | Rails has `rake db:migrate:status`. No compiled language has built-in diff preview | [ ] |
-| CD.82 | **Auto-generated typed HTTP clients** — `serv generate client --lang typescript` produces a fully typed client from route declarations. No OpenAPI intermediate step | Serv-lang | tRPC does this for TypeScript. Serv does it for any target language from .srv source | [ ] |
+| CD.82 | **Auto-generated typed HTTP clients** — `serv generate client --lang typescript` produces a fully typed client from route declarations. No OpenAPI intermediate step | Serv-lang | tRPC does this for TypeScript. Serv does it for any target language from .srv source | ? Exists |
 
 #### Gateway & Networking (Kong/Envoy will copy these)
 
@@ -616,23 +616,23 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 | # | Feature | Component | Why Urgent | Status |
 |---|---------|-----------|-----------|--------|
 | CD.86 | **Conversational object query** — `GET /bucket?ask=What documents discuss authentication?` — synthesizes an answer from stored documents (RAG in storage layer) | ServStore | AWS Q&A on S3 is separate service. ServStore has it built-in. First mover advantage | [ ] |
-| CD.87 | **Auto-summarize on upload** — Every uploaded document gets a 2-sentence summary stored as metadata. Enables "browse by summary" without downloading | ServStore | No storage engine generates summaries. Google Drive does this for Workspace. ServStore does for S3 | [ ] |
-| CD.88 | **Object similarity deduplication** — On upload, check if semantically similar document exists (cosine > 0.95). Warn or reject near-duplicates | ServStore | Google Drive detects exact duplicates. ServStore detects SEMANTIC duplicates | [ ] |
+| CD.87 | **Auto-summarize on upload** — Every uploaded document gets a 2-sentence summary stored as metadata. Enables "browse by summary" without downloading | ServStore | No storage engine generates summaries. Google Drive does this for Workspace. ServStore does for S3 | ? Exists |
+| CD.88 | **Object similarity deduplication** — On upload, check if semantically similar document exists (cosine > 0.95). Warn or reject near-duplicates | ServStore | Google Drive detects exact duplicates. ServStore detects SEMANTIC duplicates | ? Exists |
 
 #### Message Broker (Kafka/Pulsar will eventually add WASM)
 
 | # | Feature | Component | Why Urgent | Status |
 |---|---------|-----------|-----------|--------|
-| CD.89 | **Stream processing DSL** — `stream "orders" |> filter(o => o.total > 100) |> window(5m) |> count() |> publish("high-value")` — in .srv syntax | Serv-lang + ServQueue | Kafka Streams is Java. Flink is complex. Serv makes streaming a one-liner | [ ] |
-| CD.90 | **AI-powered message routing** — `subscribe "tickets" where ai.classify(msg) == "urgent"` — broker evaluates embedding model per message for routing | ServQueue | No broker has ML-based routing. When this ships, it's a category-defining feature | [ ] |
+| CD.89 | **Stream processing DSL** — `stream "orders" |> filter(o => o.total > 100) |> window(5m) |> count() |> publish("high-value")` — in .srv syntax | Serv-lang + ServQueue | Kafka Streams is Java. Flink is complex. Serv makes streaming a one-liner | ? Exists |
+| CD.90 | **AI-powered message routing** — `subscribe "tickets" where ai.classify(msg) == "urgent"` — broker evaluates embedding model per message for routing | ServQueue | No broker has ML-based routing. When this ships, it's a category-defining feature | ? Exists (EE) |
 | CD.91 | **Visual message flow in ServConsole** — Track a single message from publish → transform → DLQ → retry → consumer ack as an interactive timeline | ServQueue + ServConsole | Kafka has no message-level visibility. This makes debugging trivial | [ ] |
 
 #### Observability (Datadog will copy AI correlation)
 
 | # | Feature | Component | Why Urgent | Status |
 |---|---------|-----------|-----------|--------|
-| CD.92 | **Compiler-linked source mapping in traces** — Trace spans show `.srv` file + line number, not generated Go code. Click span → opens source in IDE | ServTrace + Serv-lang | No APM maps traces to DSL source. Only possible because Serv controls compiler + tracer | [ ] |
-| CD.93 | **Predictive capacity alerts** — "At current growth rate, ServStore disk will be full in 14 days" — based on trend analysis, not threshold | ServTrace + ServConsole | Datadog has forecasting. No self-hosted tool does. First OSS to ship this wins | [ ] |
+| CD.92 | **Compiler-linked source mapping in traces** — Trace spans show `.srv` file + line number, not generated Go code. Click span → opens source in IDE | ServTrace + Serv-lang | No APM maps traces to DSL source. Only possible because Serv controls compiler + tracer | ? Exists |
+| CD.93 | **Predictive capacity alerts** — "At current growth rate, ServStore disk will be full in 14 days" — based on trend analysis, not threshold | ServTrace + ServConsole | Datadog has forecasting. No self-hosted tool does. First OSS to ship this wins | ? Exists |
 | CD.94 | **Auto-generated incident postmortem** — After an alert resolves, auto-generate a structured postmortem: timeline, root cause, impact, remediation taken | ServConsole | PagerDuty has postmortems. No observability dashboard auto-generates them from trace data | [ ] |
 
 #### Workflows & Scheduling (Temporal will eventually simplify)
@@ -658,7 +658,7 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 | CD.101 | **Web Playground** — Write Serv code in browser → compile via WASM → run → see output. Zero install | Serv-lang | Go, Rust, Zig all have playgrounds. Serv needs one for adoption | [ ] |
 | CD.102 | **`serv bench <file.srv>`** — Auto-generates load tests from route declarations, runs them, reports p99/throughput | Serv-lang | No compiler auto-generates performance tests from source code | [ ] |
 | CD.103 | **Branch-based preview deployments** — Push a branch → ServCloud auto-deploys to unique URL → share with team for review | ServCloud | Vercel/Netlify pioneered this. Backend frameworks don't have it. ServCloud should | [ ] |
-| CD.104 | **`serv doctor --integration`** — Boots full ecosystem via docker-compose, runs cross-service smoke tests, reports health matrix | servverse-repo | No platform has a "test everything works together" command | [ ] |
+| CD.104 | **`serv doctor --integration`** — Boots full ecosystem via docker-compose, runs cross-service smoke tests, reports health matrix | servverse-repo | No platform has a "test everything works together" command | ? Exists |
 
 #### Cache & Lock (Redis will remain dominant — need clear differentiation)
 
