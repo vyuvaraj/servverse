@@ -224,14 +224,14 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 | D.4 | **Type checker completeness** | Correctness | Verify all struct field access, method calls, generic instantiation at compile time | ✅ Exists |
 | D.5 | **Fuzzing harness** | Quality | `go test -fuzz` for lexer (malformed input), parser (random tokens), codegen (type edges) | ✅ Exists |
 | D.6 | **LSP: cross-file go-to-definition** | DX | Add import resolution and cross-module symbol lookup | ✅ Exists |
-| D.7 | **LSP: rename symbol** | DX | Rename across all importing files | [ ] |
-| D.8 | **Compiler benchmarks in CI** | Performance | Track compile time per example. Gate: no regression >10% | [ ] |
+| D.7 | **LSP: rename symbol** | DX | Rename across all importing files | ✅ Exists |
+| D.8 | **Compiler benchmarks in CI** | Performance | Track compile time per example. Gate: no regression >10% | ✅ Exists |
 
 ### ServStore (Object Storage)
 
 | # | Item | Category | Description | Status |
 |---|------|----------|-------------|--------|
-| D.9 | **S3 compliance test suite** | Compatibility | Run official [ceph/s3-tests](https://github.com/ceph/s3-tests) against ServStore. Track pass rate | [ ] |
+| D.9 | **S3 compliance test suite** | Compatibility | Run official [ceph/s3-tests](https://github.com/ceph/s3-tests) against ServStore. Track pass rate | ✅ Exists |
 | D.10 | **CAS garbage collection** | Reliability | Background GC sweep for CAS blocks with zero references. Safety checks before deletion | [ ] |
 | D.11 | **Throughput benchmarks** | Performance | Max sustained write RPS, read latency at 1K concurrent, erasure coding overhead measurement | [ ] |
 | D.12 | **Chaos testing: node kill during replication** | Resilience | Kill nodes during writes, inject partitions during Raft elections. Verify data integrity post-recovery | [ ] |
