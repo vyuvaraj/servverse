@@ -256,16 +256,16 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 | D.21 | **FIFO ordering proof** | Correctness | Numbered sequence with concurrent publishers. Verify order within partition | ✅ Exists |
 | D.22 | **WAL corruption recovery** | Resilience | Truncate WAL mid-write, restart. Verify recovery without data loss beyond last flush | ✅ Exists |
 | D.23 | **Consumer group rebalancing** | Correctness | Add/remove consumers during flow. Verify no duplicates, no lost messages | ✅ Exists |
-| D.24 | **Backpressure memory bound** | Performance | Slow consumer: verify memory stays bounded, publisher gets 429 at threshold | [ ] |
-| D.25 | **Exactly-once dedup accuracy** | Correctness | Publish same ID 1000x within window. Verify exactly 1 delivery | [ ] |
-| D.26 | **Throughput benchmark** | Performance | Messages/sec for 1KB, 64KB, 1MB payloads. Single node + 3-node cluster | [ ] |
+| D.24 | **Backpressure memory bound** | Performance | Slow consumer: verify memory stays bounded, publisher gets 429 at threshold | ✅ Exists |
+| D.25 | **Exactly-once dedup accuracy** | Correctness | Publish same ID 1000x within window. Verify exactly 1 delivery | ✅ Exists |
+| D.26 | **Throughput benchmark** | Performance | Messages/sec for 1KB, 64KB, 1MB payloads. Single node + 3-node cluster | ✅ Exists |
 
 ### ServConsole (Dashboard)
 
 | # | Item | Category | Description | Status |
 |---|------|----------|-------------|--------|
-| D.27 | **Package-level unit tests (all 12 packages)** | Quality | Each package needs 5+ tests: alerts, auth, topology, dashboards, provision, tabs, ws | [ ] |
-| D.28 | **WebSocket reconnection handling** | Reliability | Client disconnect + server restart → auto-reconnect without data loss | [ ] |
+| D.27 | **Package-level unit tests (all 12 packages)** | Quality | Each package needs 5+ tests: alerts, auth, topology, dashboards, provision, tabs, ws | ✅ Exists |
+| D.28 | **WebSocket reconnection handling** | Reliability | Client disconnect + server restart → auto-reconnect without data loss | ✅ Exists |
 | D.29 | **50 concurrent dashboard users** | Correctness | Verify no state corruption in shared alert/log buffers | [ ] |
 | D.30 | **Memory profiling: 100K traces ingested** | Performance | Verify ring buffer eviction actually works, memory stays bounded | [ ] |
 
