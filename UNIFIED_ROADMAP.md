@@ -242,20 +242,20 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 
 | # | Item | Category | Description | Status |
 |---|------|----------|-------------|--------|
-| D.15 | **10K concurrent connections benchmark** | Performance | Establish: max RPS, p99 latency, memory per connection. Compare vs Nginx | [ ] |
-| D.16 | **WASM cold-start measurement** | Performance | First-request latency with/without module cache. Target: <5ms | [ ] |
+| D.15 | **10K concurrent connections benchmark** | Performance | Establish: max RPS, p99 latency, memory per connection. Compare vs Nginx | ✅ Exists |
+| D.16 | **WASM cold-start measurement** | Performance | First-request latency with/without module cache. Target: <5ms | ✅ Exists |
 | D.17 | **Circuit breaker state transition tests** | Correctness | Verify closed→open→half-open under exact failure thresholds. No false trips | ✅ Exists |
 | D.18 | **Rate limiter burst accuracy** | Correctness | Test sliding window at 10K RPS. Verify ≤1% over-admission | ✅ Exists |
 | D.19 | **Config reload: zero dropped requests** | Reliability | Prove no 502s during route changes under active traffic | ✅ Exists |
-| D.20 | **WebSocket proxy 24h stability** | Reliability | Long-running WS connections. Verify no memory leaks, reconnection works | [ ] |
+| D.20 | **WebSocket proxy 24h stability** | Reliability | Long-running WS connections. Verify no memory leaks, reconnection works | ✅ Exists |
 
 ### ServQueue (Message Broker)
 
 | # | Item | Category | Description | Status |
 |---|------|----------|-------------|--------|
 | D.21 | **FIFO ordering proof** | Correctness | Numbered sequence with concurrent publishers. Verify order within partition | ✅ Exists |
-| D.22 | **WAL corruption recovery** | Resilience | Truncate WAL mid-write, restart. Verify recovery without data loss beyond last flush | [ ] |
-| D.23 | **Consumer group rebalancing** | Correctness | Add/remove consumers during flow. Verify no duplicates, no lost messages | [ ] |
+| D.22 | **WAL corruption recovery** | Resilience | Truncate WAL mid-write, restart. Verify recovery without data loss beyond last flush | ✅ Exists |
+| D.23 | **Consumer group rebalancing** | Correctness | Add/remove consumers during flow. Verify no duplicates, no lost messages | ✅ Exists |
 | D.24 | **Backpressure memory bound** | Performance | Slow consumer: verify memory stays bounded, publisher gets 429 at threshold | [ ] |
 | D.25 | **Exactly-once dedup accuracy** | Correctness | Publish same ID 1000x within window. Verify exactly 1 delivery | [ ] |
 | D.26 | **Throughput benchmark** | Performance | Messages/sec for 1KB, 64KB, 1MB payloads. Single node + 3-node cluster | [ ] |
