@@ -361,7 +361,7 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 |---|---------|---------------------|--------|
 | CD.1 | **Infrastructure-as-syntax** — `broker`, `store`, `cache`, `ai` are keywords, not library imports. Compile error if misconfigured | No other language makes infrastructure a first-class citizen | ✅ Exists |
 | CD.2 | **AI code generation feedback loop** — `serv create "prompt"` generates code, `serv test` validates it, `serv create --fix` repairs failures automatically | No compiler has built-in AI repair cycle | ⚠️ `serv create` exists, `--fix` loop needs building |
-| CD.3 | **Compile-time service contract validation** — If route declares `-> User`, compiler verifies the response shape matches the struct at build time | TypeScript has this at type level but not for HTTP responses | [ ] Needs implementation |
+| CD.3 | **Compile-time service contract validation** — If route declares `-> User`, compiler verifies the response shape matches the struct at build time | TypeScript has this at type level but not for HTTP responses | ✅ Exists |
 
 ### ServGate vs Kong/Envoy/Traefik
 *Competitors: Kong, Envoy, Traefik, AWS API Gateway*
@@ -414,7 +414,7 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 | # | Feature | Why It Differentiates | Status |
 |---|---------|---------------------|--------|
 | CD.19 | **Auto-namespace isolation per service** — Services sharing one cache instance can't see each other's keys. Zero-config tenant safety | Redis requires manual key prefixing discipline | ✅ Exists |
-| CD.20 | **Language-native `cached fn` syntax** — Declare cache behavior at the function level, compiler generates the get/set/invalidation code | No cache system integrates at the language/compiler level | [ ] Needs implementation (compiler feature) |
+| CD.20 | **Language-native `cached fn` syntax** — Declare cache behavior at the function level, compiler generates the get/set/invalidation code | No cache system integrates at the language/compiler level | ✅ Exists |
 | CD.21 | **Read-through/write-behind with ServPool** — Automatic DB synchronization patterns without application code | Redis requires custom lua scripts or app-level orchestration | ✅ Exists |
 
 ### ServMesh vs Istio/Linkerd/Consul Connect
