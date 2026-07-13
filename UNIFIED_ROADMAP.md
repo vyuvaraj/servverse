@@ -244,9 +244,9 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 |---|------|----------|-------------|--------|
 | D.15 | **10K concurrent connections benchmark** | Performance | Establish: max RPS, p99 latency, memory per connection. Compare vs Nginx | [ ] |
 | D.16 | **WASM cold-start measurement** | Performance | First-request latency with/without module cache. Target: <5ms | [ ] |
-| D.17 | **Circuit breaker state transition tests** | Correctness | Verify closed→open→half-open under exact failure thresholds. No false trips | [ ] |
-| D.18 | **Rate limiter burst accuracy** | Correctness | Test sliding window at 10K RPS. Verify ≤1% over-admission | [ ] |
-| D.19 | **Config reload: zero dropped requests** | Reliability | Prove no 502s during route changes under active traffic | [ ] |
+| D.17 | **Circuit breaker state transition tests** | Correctness | Verify closed→open→half-open under exact failure thresholds. No false trips | ✅ Exists |
+| D.18 | **Rate limiter burst accuracy** | Correctness | Test sliding window at 10K RPS. Verify ≤1% over-admission | ✅ Exists |
+| D.19 | **Config reload: zero dropped requests** | Reliability | Prove no 502s during route changes under active traffic | ✅ Exists |
 | D.20 | **WebSocket proxy 24h stability** | Reliability | Long-running WS connections. Verify no memory leaks, reconnection works | [ ] |
 
 ### ServQueue (Message Broker)
