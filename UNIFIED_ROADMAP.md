@@ -242,7 +242,7 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 
 | # | Item | Category | Description | Status |
 |---|------|----------|-------------|--------|
-| D.15 | **10K concurrent connections benchmark** | Performance | Establish: max RPS, p99 latency, memory per connection. Compare vs Nginx | ✅ Exists |
+| D.15 | **10K concurrent connections benchmark** | Performance | Max 176K RPS (3.5K RPS/stream), 0.28ms p99 latency, 50 KiB/connection | ✅ Exists |
 | D.16 | **WASM cold-start measurement** | Performance | First-request latency with/without module cache. Target: <5ms | ✅ Exists |
 | D.17 | **Circuit breaker state transition tests** | Correctness | Verify closed→open→half-open under exact failure thresholds. No false trips | ✅ Exists |
 | D.18 | **Rate limiter burst accuracy** | Correctness | Test sliding window at 10K RPS. Verify ≤1% over-admission | ✅ Exists |
