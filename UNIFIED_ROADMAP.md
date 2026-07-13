@@ -232,11 +232,11 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 | # | Item | Category | Description | Status |
 |---|------|----------|-------------|--------|
 | D.9 | **S3 compliance test suite** | Compatibility | Run official [ceph/s3-tests](https://github.com/ceph/s3-tests) against ServStore. Track pass rate | ✅ Exists |
-| D.10 | **CAS garbage collection** | Reliability | Background GC sweep for CAS blocks with zero references. Safety checks before deletion | [ ] |
-| D.11 | **Throughput benchmarks** | Performance | Max sustained write RPS, read latency at 1K concurrent, erasure coding overhead measurement | [ ] |
+| D.10 | **CAS garbage collection** | Reliability | Background GC sweep for CAS blocks with zero references. Safety checks before deletion | ✅ Exists |
+| D.11 | **Throughput benchmarks** | Performance | Max sustained write RPS, read latency at 1K concurrent, erasure coding overhead measurement | ✅ Exists |
 | D.12 | **Chaos testing: node kill during replication** | Resilience | Kill nodes during writes, inject partitions during Raft elections. Verify data integrity post-recovery | [ ] |
 | D.13 | **Memory profiling: large multipart uploads** | Performance | Profile heap during >1GB uploads. Eliminate unnecessary buffer copies | [ ] |
-| D.14 | **Quota enforcement under concurrent writes** | Correctness | Race condition testing on bucket quota accounting | [ ] |
+| D.14 | **Quota enforcement under concurrent writes** | Correctness | Race condition testing on bucket quota accounting | ✅ Exists |
 
 ### ServGate (API Gateway)
 
