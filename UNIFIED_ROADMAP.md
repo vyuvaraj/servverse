@@ -360,7 +360,7 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 | # | Feature | Why It Differentiates | Status |
 |---|---------|---------------------|--------|
 | CD.1 | **Infrastructure-as-syntax** — `broker`, `store`, `cache`, `ai` are keywords, not library imports. Compile error if misconfigured | No other language makes infrastructure a first-class citizen | ✅ Exists |
-| CD.2 | **AI code generation feedback loop** — `serv create "prompt"` generates code, `serv test` validates it, `serv create --fix` repairs failures automatically | No compiler has built-in AI repair cycle | ⚠️ `serv create` exists, `--fix` loop needs building |
+| CD.2 | **AI code generation feedback loop** — `serv create "prompt"` generates code, `serv test` validates it, `serv create --fix` repairs failures automatically | No compiler has built-in AI repair cycle | ✅ Exists |
 | CD.3 | **Compile-time service contract validation** — If route declares `-> User`, compiler verifies the response shape matches the struct at build time | TypeScript has this at type level but not for HTTP responses | ✅ Exists |
 
 ### ServGate vs Kong/Envoy/Traefik
@@ -405,7 +405,7 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 | # | Feature | Why It Differentiates | Status |
 |---|---------|---------------------|--------|
 | CD.16 | **Single binary, zero dependencies** — No Elasticsearch, no Cassandra, no Kafka. One Go binary with in-memory + cold tier | Jaeger needs Elasticsearch/Cassandra. Tempo needs S3 + memcached | ✅ Exists |
-| CD.17 | **Compiler-linked source mapping** — Trace spans map back to `.srv` source lines, not generated Go code | No other tracing backend understands the source language | [ ] Needs implementation (source map integration) |
+| CD.17 | **Compiler-linked source mapping** — Trace spans map back to `.srv` source lines, not generated Go code | No other tracing backend understands the source language | ✅ Exists |
 | CD.18 | **Natural language trace query** — "Show me slow requests to ServAuth in the last hour" → structured query | No open-source tracer has NL search | ✅ Exists (EE) |
 
 ### ServCache vs Redis/Memcached/Dragonfly
@@ -431,7 +431,7 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 
 | # | Feature | Why It Differentiates | Status |
 |---|---------|---------------------|--------|
-| CD.25 | **Native language syntax for workflows** — `workflow "name" { step "x" { ... } }` in .srv files. Compiler validates DAG at build time | Temporal uses Go/Java SDKs. Step Functions uses JSON. ServFlow uses language syntax | [ ] Keyword exists but full compiler integration pending |
+| CD.25 | **Native language syntax for workflows** — `workflow "name" { step "x" { ... } }` in .srv files. Compiler validates DAG at build time | Temporal uses Go/Java SDKs. Step Functions uses JSON. ServFlow uses language syntax | ✅ Exists |
 | CD.26 | **Time-travel workflow replay** — Debug by stepping through execution history: see state at each checkpoint | Temporal has event history but no interactive replay visualization | ✅ Exists |
 | CD.27 | **Single binary with embedded state** — No external database required. State persists to local files or ServStore | Temporal = server + database + workers. ServFlow = one binary | ✅ Exists |
 
