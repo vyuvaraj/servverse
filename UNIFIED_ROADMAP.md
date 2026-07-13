@@ -234,8 +234,8 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 | D.9 | **S3 compliance test suite** | Compatibility | Run official [ceph/s3-tests](https://github.com/ceph/s3-tests) against ServStore. Track pass rate | ✅ Exists |
 | D.10 | **CAS garbage collection** | Reliability | Background GC sweep for CAS blocks with zero references. Safety checks before deletion | ✅ Exists |
 | D.11 | **Throughput benchmarks** | Performance | Max sustained write RPS, read latency at 1K concurrent, erasure coding overhead measurement | ✅ Exists |
-| D.12 | **Chaos testing: node kill during replication** | Resilience | Kill nodes during writes, inject partitions during Raft elections. Verify data integrity post-recovery | [ ] |
-| D.13 | **Memory profiling: large multipart uploads** | Performance | Profile heap during >1GB uploads. Eliminate unnecessary buffer copies | [ ] |
+| D.12 | **Chaos testing: node kill during replication** | Resilience | Kill nodes during writes, inject partitions during Raft elections. Verify data integrity post-recovery | ✅ Exists |
+| D.13 | **Memory profiling: large multipart uploads** | Performance | Profile heap during >1GB uploads. Eliminate unnecessary buffer copies | ✅ Exists |
 | D.14 | **Quota enforcement under concurrent writes** | Correctness | Race condition testing on bucket quota accounting | ✅ Exists |
 
 ### ServGate (API Gateway)
@@ -253,7 +253,7 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 
 | # | Item | Category | Description | Status |
 |---|------|----------|-------------|--------|
-| D.21 | **FIFO ordering proof** | Correctness | Numbered sequence with concurrent publishers. Verify order within partition | [ ] |
+| D.21 | **FIFO ordering proof** | Correctness | Numbered sequence with concurrent publishers. Verify order within partition | ✅ Exists |
 | D.22 | **WAL corruption recovery** | Resilience | Truncate WAL mid-write, restart. Verify recovery without data loss beyond last flush | [ ] |
 | D.23 | **Consumer group rebalancing** | Correctness | Add/remove consumers during flow. Verify no duplicates, no lost messages | [ ] |
 | D.24 | **Backpressure memory bound** | Performance | Slow consumer: verify memory stays bounded, publisher gets 429 at threshold | [ ] |
