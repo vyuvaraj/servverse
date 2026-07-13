@@ -28,6 +28,9 @@ Here is what makes ServGate different:
 - **Cost-Aware LLM Routing**: Primary vs fallback model selection (e.g. GPT-4o-mini to GPT-4) based on response confidence.
 - **Developer Portal (Playground)**: Interactive Swagger UI console with auth-token injection and OpenAPI auto-discovery at `/api/docs`.
 - **AI Prompt Guard & PII Redaction**: Built-in safety vector jailbreak detection and automatic credit card/SSN masking.
+- **Resilient Circuit Breaking**: Built-in circuit breakers that transition closed→open→half-open under precise failure thresholds to protect backend services.
+- **Sliding-Window Rate Limiting**: High-accuracy sliding window rate limiters tracking traffic at 10K+ RPS with under 1% over-admission.
+- **WebSocket Streaming Proxy**: Native connection upgrade handling with stable downstream-to-upstream multi-client websocket frame proxying.
 - **Distributed Config Sync**: Connects to ServStore to sync configuration buckets across multiple gateway nodes with secure OIDC token sync validation.
 
 ---
