@@ -203,8 +203,8 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 
 | # | Item | Component | Description | Status |
 |---|------|-----------|-------------|--------|
-| SA.21 | **Multi-Backend State Storage** | ServFlow | Support SQLite/PostgreSQL/MySQL state persistence in standalone mode instead of raw `.state/` directories | [ ] |
-| SA.22 | **S3 & OCI Package Registry Backend** | ServRegistry | Add S3/MinIO and OCI registry storage adapters for package tarball uploads in standalone mode | [ ] |
+| SA.21 | **Multi-Backend State Storage** | ServFlow | Support SQLite/PostgreSQL/MySQL state persistence in standalone mode instead of raw `.state/` directories | ✅ Exists |
+| SA.22 | **S3 & OCI Package Registry Backend** | ServRegistry | Add S3/MinIO and OCI registry storage adapters for package tarball uploads in standalone mode | ✅ Exists |
 | SA.23 | **Consul, etcd, & DNS-SD Adapters** | ServMesh | Support etcd, Consul, and SRV record lookups for standalone service discovery | [ ] |
 | SA.24 | **Generic Process & Container Support** | ServCloud | Support managing arbitrary binaries (PM2 replacement) and Docker containers natively | [ ] |
 
