@@ -218,10 +218,10 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 
 | # | Item | Category | Description | Status |
 |---|------|----------|-------------|--------|
-| D.1 | **Error recovery in parser** | Robustness | Implement panic-mode recovery to report multiple errors per file (currently stops at first) | [ ] |
-| D.2 | **Incremental compilation** | Performance | Only re-codegen changed functions via dependency graph tracking | [ ] |
-| D.3 | **Source maps for debugging** | DX | Map generated Go lines back to .srv source for meaningful stack traces | [ ] |
-| D.4 | **Type checker completeness** | Correctness | Verify all struct field access, method calls, generic instantiation at compile time | [ ] |
+| D.1 | **Error recovery in parser** | Robustness | Implement panic-mode recovery to report multiple errors per file (currently stops at first) | ✅ Exists |
+| D.2 | **Incremental compilation** | Performance | Only re-codegen changed functions via dependency graph tracking | ✅ Exists |
+| D.3 | **Source maps for debugging** | DX | Map generated Go lines back to .srv source for meaningful stack traces | ✅ Exists |
+| D.4 | **Type checker completeness** | Correctness | Verify all struct field access, method calls, generic instantiation at compile time | ✅ Exists |
 | D.5 | **Fuzzing harness** | Quality | `go test -fuzz` for lexer (malformed input), parser (random tokens), codegen (type edges) | [ ] |
 | D.6 | **LSP: cross-file go-to-definition** | DX | Add import resolution and cross-module symbol lookup | [ ] |
 | D.7 | **LSP: rename symbol** | DX | Rename across all importing files | [ ] |
