@@ -34,8 +34,8 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 | **Phase 23: Developer Adoption & Growth** | 14 | 6 | 8 | **43%** | ████████░░░░░░░░░░░░ |
 | **Phase 24: Standalone Component Independence** | 20 | 16 | 4 | **80%** | ████████████████░░░░ |
 | **Phase 25: Component Depth & Production Hardening** | 60 | 0 | 60 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
-| **Phase 26: Competitive Differentiation** | 75 | 66 | 9 | **88%** | █████████████████░░░ |
-| **TOTAL ECOSYSTEM WORK** | **393** | **318** | **75** | **81%** | ████████████████░░░░ |
+| **Phase 26: Competitive Differentiation** | 107 | 66 | 41 | **62%** | ████████████░░░░░░░░ |
+| **TOTAL ECOSYSTEM WORK** | **425** | **318** | **107** | **75%** | ███████████████░░░░░ |
 
 ---
 
@@ -584,6 +584,89 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 | CD.73 | **SERVVERSE_DISCOVERY protocol** — Single JSON manifest tells all services where to find each other. Change one file, all services update | No competitor has a unified service discovery manifest format | ✅ Exists |
 | CD.74 | **Shared JWT across all services** — One `SERV_JWT_SECRET` env var enables authentication across all 17 services. No per-service auth configuration | Every other platform needs per-service auth setup | ✅ Exists |
 | CD.75 | **Consistent error format ecosystem-wide** — Every service returns `{"error":"msg","code":"ERR_X","trace_id":"..."}`. One error handler for any Serv service | No platform enforces error format consistency across all components | ✅ Exists |
+
+---
+
+### To Build: Defensive Moat Features (What Competitors Will Eventually Copy)
+
+> These are features competitors WILL build in 1-2 years. Servverse needs them first to establish mindshare and lock-in.
+
+#### Compiler-Level (No competitor can easily replicate)
+
+| # | Feature | Component | Why Urgent | Status |
+|---|---------|-----------|-----------|--------|
+| CD.76 | **Type-safe inter-service contracts** — When Service A calls `serv://B/users`, compiler verifies A's expected response type matches B's declared return type. Compile error on mismatch | Serv-lang | gRPC has this. REST doesn't. First REST language to do this wins | [ ] |
+| CD.77 | **Compile-time infrastructure reachability** — `serv build` pings declared broker/store/cache and fails if unreachable during development (skippable with `--offline`) | Serv-lang | Docker Compose validates services exist. No compiler does this | [ ] |
+| CD.78 | **Dead code detection across service boundaries** — Compiler queries ServMesh registry: "which routes are never called by any registered service?" Warns on unused endpoints | Serv-lang + ServMesh | Static analysis tools work within one repo. This works across repos | [ ] |
+| CD.79 | **`serv create --fix`** — AI generates code, tests fail, compiler feeds errors back to AI, AI fixes. Automated repair loop until tests pass or max retries | Serv-lang | Cursor/Copilot suggest code. None auto-repair compile errors in a loop | [ ] |
+| CD.80 | **`cached fn` keyword** — `cached fn getUser(id) ttl 5m { return db.query(...) }` — compiler generates cache get/set/invalidation. No manual cache code | Serv-lang + ServCache | No language has cache-as-syntax. This is Serv's unique position | [ ] |
+| CD.81 | **Migration dry-run with colored diff** — `serv migrate --dry-run` shows exact SQL (CREATE/ALTER/DROP) with green/red diff against live schema. No execution | Serv-lang | Rails has `rake db:migrate:status`. No compiled language has built-in diff preview | [ ] |
+| CD.82 | **Auto-generated typed HTTP clients** — `serv generate client --lang typescript` produces a fully typed client from route declarations. No OpenAPI intermediate step | Serv-lang | tRPC does this for TypeScript. Serv does it for any target language from .srv source | [ ] |
+
+#### Gateway & Networking (Kong/Envoy will copy these)
+
+| # | Feature | Component | Why Urgent | Status |
+|---|---------|-----------|-----------|--------|
+| CD.83 | **Auto-generated API changelog** — Track route additions/removals/breaking changes over time. Serve at `/api/changelog`. Consumer teams subscribe to diffs | ServGate | Bump.sh does this as SaaS. No self-hosted gateway has it built-in | [ ] |
+| CD.84 | **Request cost estimation header** — Return `X-Estimated-Cost: $0.003` on AI-proxied requests before execution. Client can abort expensive calls | ServGate | No gateway previews cost before forwarding. Essential for AI budget control | [ ] |
+| CD.85 | **Automatic circuit breaker from SLO breach** — If a backend's p99 exceeds SLO threshold, circuit opens automatically. No manual configuration per route | ServGate + ServTrace | Envoy needs explicit circuit config. ServGate derives it from observed SLOs | [ ] |
+
+#### Storage & Data (MinIO/S3 will copy semantic search)
+
+| # | Feature | Component | Why Urgent | Status |
+|---|---------|-----------|-----------|--------|
+| CD.86 | **Conversational object query** — `GET /bucket?ask=What documents discuss authentication?` — synthesizes an answer from stored documents (RAG in storage layer) | ServStore | AWS Q&A on S3 is separate service. ServStore has it built-in. First mover advantage | [ ] |
+| CD.87 | **Auto-summarize on upload** — Every uploaded document gets a 2-sentence summary stored as metadata. Enables "browse by summary" without downloading | ServStore | No storage engine generates summaries. Google Drive does this for Workspace. ServStore does for S3 | [ ] |
+| CD.88 | **Object similarity deduplication** — On upload, check if semantically similar document exists (cosine > 0.95). Warn or reject near-duplicates | ServStore | Google Drive detects exact duplicates. ServStore detects SEMANTIC duplicates | [ ] |
+
+#### Message Broker (Kafka/Pulsar will eventually add WASM)
+
+| # | Feature | Component | Why Urgent | Status |
+|---|---------|-----------|-----------|--------|
+| CD.89 | **Stream processing DSL** — `stream "orders" |> filter(o => o.total > 100) |> window(5m) |> count() |> publish("high-value")` — in .srv syntax | Serv-lang + ServQueue | Kafka Streams is Java. Flink is complex. Serv makes streaming a one-liner | [ ] |
+| CD.90 | **AI-powered message routing** — `subscribe "tickets" where ai.classify(msg) == "urgent"` — broker evaluates embedding model per message for routing | ServQueue | No broker has ML-based routing. When this ships, it's a category-defining feature | [ ] |
+| CD.91 | **Visual message flow in ServConsole** — Track a single message from publish → transform → DLQ → retry → consumer ack as an interactive timeline | ServQueue + ServConsole | Kafka has no message-level visibility. This makes debugging trivial | [ ] |
+
+#### Observability (Datadog will copy AI correlation)
+
+| # | Feature | Component | Why Urgent | Status |
+|---|---------|-----------|-----------|--------|
+| CD.92 | **Compiler-linked source mapping in traces** — Trace spans show `.srv` file + line number, not generated Go code. Click span → opens source in IDE | ServTrace + Serv-lang | No APM maps traces to DSL source. Only possible because Serv controls compiler + tracer | [ ] |
+| CD.93 | **Predictive capacity alerts** — "At current growth rate, ServStore disk will be full in 14 days" — based on trend analysis, not threshold | ServTrace + ServConsole | Datadog has forecasting. No self-hosted tool does. First OSS to ship this wins | [ ] |
+| CD.94 | **Auto-generated incident postmortem** — After an alert resolves, auto-generate a structured postmortem: timeline, root cause, impact, remediation taken | ServConsole | PagerDuty has postmortems. No observability dashboard auto-generates them from trace data | [ ] |
+
+#### Workflows & Scheduling (Temporal will eventually simplify)
+
+| # | Feature | Component | Why Urgent | Status |
+|---|---------|-----------|-----------|--------|
+| CD.95 | **AI decision steps** — `step "classify" { ai.classify(input, ["approve", "review", "reject"]) }` — AI-powered branching without external service | ServFlow + Serv-lang | Temporal has no AI primitives. Step Functions needs Lambda. ServFlow has it inline | [ ] |
+| CD.96 | **Workflow generation from natural language** — "Create a workflow: validate order → charge payment → ship → send confirmation" → generates DAG definition | ServFlow + Serv-lang | No workflow engine generates workflow from description. This is the AI-era killer feature | [ ] |
+| CD.97 | **Cron job smart scheduling** — Analyze historical execution: duration, resource usage, conflicts. Auto-suggest non-overlapping windows | ServCron | Airflow has SLA. No scheduler auto-optimizes schedule based on observed patterns | [ ] |
+
+#### Identity & Security (Auth0 will copy progressive auth)
+
+| # | Feature | Component | Why Urgent | Status |
+|---|---------|-----------|-----------|--------|
+| CD.98 | **Passwordless magic link + passkey** — One-click login via email magic link or WebAuthn passkey. No password stored | ServAuth | Auth0/Clerk have this. ServAuth needs it to compete in the modern auth space | [ ] |
+| CD.99 | **Adaptive risk scoring per login** — Score: new device(+3) + unusual time(+2) + different country(+5) = high risk → step-up to MFA automatically | ServAuth | Auth0 has "Attack Protection". Self-hosted auth systems don't. ServAuth should | [ ] |
+| CD.100 | **SCIM 2.0 provisioning** — Enterprise user/group sync from Okta, Azure AD, Google Workspace. Auto-create/disable accounts | ServAuth | Required for enterprise sales. Keycloak has it. Single-binary auth systems don't | [ ] |
+
+#### Developer Experience (Vercel will copy one-command deploy)
+
+| # | Feature | Component | Why Urgent | Status |
+|---|---------|-----------|-----------|--------|
+| CD.101 | **Web Playground** — Write Serv code in browser → compile via WASM → run → see output. Zero install | Serv-lang | Go, Rust, Zig all have playgrounds. Serv needs one for adoption | [ ] |
+| CD.102 | **`serv bench <file.srv>`** — Auto-generates load tests from route declarations, runs them, reports p99/throughput | Serv-lang | No compiler auto-generates performance tests from source code | [ ] |
+| CD.103 | **Branch-based preview deployments** — Push a branch → ServCloud auto-deploys to unique URL → share with team for review | ServCloud | Vercel/Netlify pioneered this. Backend frameworks don't have it. ServCloud should | [ ] |
+| CD.104 | **`serv doctor --integration`** — Boots full ecosystem via docker-compose, runs cross-service smoke tests, reports health matrix | servverse-repo | No platform has a "test everything works together" command | [ ] |
+
+#### Cache & Lock (Redis will remain dominant — need clear differentiation)
+
+| # | Feature | Component | Why Urgent | Status |
+|---|---------|-----------|-----------|--------|
+| CD.105 | **Cache stampede protection (singleflight)** — Concurrent cache misses for same key coalesce into one computation. No thundering herd | ServCache | Redis doesn't prevent stampede. Application code must. ServCache does it at server level | [ ] |
+| CD.106 | **Lock queueing with fairness** — Multiple waiters get lock in FIFO order. No starvation under high contention | ServLock | Redis SETNX has no queue (unfair retry). etcd leases have ordering. ServLock should too | [ ] |
+| CD.107 | **Lock observability in ServConsole** — See active locks, wait queues, contention hotspots, deadlock detection in real-time dashboard | ServLock + ServConsole | No lock service has observability built-in. Debug distributed locks visually | [ ] |
 
 ---
 
