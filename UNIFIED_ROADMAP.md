@@ -276,21 +276,21 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 | D.31 | **TTL eviction timing accuracy** | Correctness | Verify expiry is accurate to ±100ms under load | ✅ Exists |
 | D.32 | **Redis failover fallback** | Resilience | Kill Redis mid-operation. Verify fallback to in-memory without crash | ✅ Exists |
 | D.33 | **100-goroutine stress test** | Correctness | Concurrent get/set/delete on overlapping keys. No panics, no stale reads | ✅ Exists |
-| D.34 | **Namespace isolation proof** | Security | Verify Tenant A cannot read Tenant B's keys via direct API | [ ] |
+| D.34 | **Namespace isolation proof** | Security | Verify Tenant A cannot read Tenant B's keys via direct API | ✅ Exists |
 
 ### ServCron (Scheduler)
 
 | # | Item | Category | Description | Status |
 |---|------|----------|-------------|--------|
-| D.35 | **Missed execution catch-up** | Reliability | Stop leader 10 min. Resume. Verify catch-up fires missed intervals correctly | [ ] |
-| D.36 | **Split-brain leader election** | Correctness | Two nodes believe they're leader. Verify only one executes (Redis SETNX) | [ ] |
-| D.37 | **Cron edge cases** | Correctness | Feb 29, DST transitions, "last day of month", "nearest weekday". Compare with cron.guru | [ ] |
+| D.35 | **Missed execution catch-up** | Reliability | Stop leader 10 min. Resume. Verify catch-up fires missed intervals correctly | ✅ Exists |
+| D.36 | **Split-brain leader election** | Correctness | Two nodes believe they're leader. Verify only one executes (Redis SETNX) | ✅ Exists |
+| D.37 | **Cron edge cases** | Correctness | Feb 29, DST transitions, "last day of month", "nearest weekday". Compare with cron.guru | ✅ Exists |
 
 ### ServAuth (Identity)
 
 | # | Item | Category | Description | Status |
 |---|------|----------|-------------|--------|
-| D.38 | **Brute force resistance** | Security | Verify lockout at exact threshold. Test timing attack resistance on login | [ ] |
+| D.38 | **Brute force resistance** | Security | Verify lockout at exact threshold. Test timing attack resistance on login | ✅ Exists |
 | D.39 | **Token refresh race condition** | Correctness | Two concurrent refresh with same token. Only one succeeds | [ ] |
 | D.40 | **Session revocation propagation** | Correctness | Revoke → next request fails immediately (not cached for TTL) | [ ] |
 | D.41 | **TOTP time-drift tolerance** | Correctness | Accept t-1, t, t+1. Reject t-2, t+2 | [ ] |
