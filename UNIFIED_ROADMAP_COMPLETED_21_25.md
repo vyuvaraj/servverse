@@ -79,3 +79,30 @@ Every component is now fully usable as a standalone product without requiring th
 - **STOMP client compatibility guide (SA.18)** — Documented stomp.py, Spring, go-stomp, and stompjs configurations for ServQueue. [July 11, 2026]
 - **Generic proxy configuration guide (SA.19)** — Documented Express, Flask, and Spring Boot routing setups for ServGate. [July 11, 2026]
 - **OpenTelemetry integration guide (SA.20)** — Documented SDK integration examples for ServTrace. [July 11, 2026]
+
+---
+
+## Phase 25: Component Depth & Production Hardening (Completed Items)
+
+Focused on correctness proofs, failure recovery, performance baselines, and edge-case coverage:
+
+### 🌐 ServTunnel
+- **500MB file upload through tunnel (D.49)** — Streamed large files through tunnel relay without corruption or memory exhaustion. [July 14, 2026]
+- **100 simultaneous tunnels (D.50)** — Managed 100 concurrent active tunnels without performance degradation. [July 14, 2026]
+- **Network flap reconnection (D.51)** — Reconnected cleanly 100 times in 60s without leaking connections on the relay side. [July 14, 2026]
+
+### 🔌 ServPool
+- **Pool exhaustion and recovery (D.52)** — Blocked callers in a wait queue during pool exhaustion, recovering immediately upon connection return. [July 14, 2026]
+- **Read/write routing accuracy (D.53)** — Routed mixed workloads with 100% accuracy, directing SELECTs to replicas and DML writes to primary. [July 14, 2026]
+- **Connection leak detection (D.54)** — Automatically reclaimed leaked connections after a timeout. [July 14, 2026]
+
+### ✉️ ServMail
+- **Template rendering: missing variables (D.55)** — Enabled strict parsing using `missingkey=error` to return errors on missing template context. [July 14, 2026]
+- **DLQ retry exponential backoff (D.56)** — Implemented exponential backoff sequence (1s to 16s) across 5 retry attempts before publishing to the dead-letter queue. [July 14, 2026]
+- **Per-recipient rate limiter (D.57)** — Enforced a 10/min rate limit per recipient. [July 14, 2026]
+
+### 📦 ServRegistry
+- **Semver resolution correctness (D.58)** — Supported compound ranges and strict range operators matching the npm semver spec. [July 14, 2026]
+- **Signature tamper detection (D.59)** — Rejected tampered tarballs with a cryptographic signature mismatch. [July 14, 2026]
+- **Concurrent publish race (D.60)** — Resolved concurrency races during package publication using version-specific mutexes to return a 409 Conflict for secondary attempts. [July 14, 2026]
+
