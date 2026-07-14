@@ -291,16 +291,16 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 | # | Item | Category | Description | Status |
 |---|------|----------|-------------|--------|
 | D.38 | **Brute force resistance** | Security | Verify lockout at exact threshold. Test timing attack resistance on login | ✅ Exists |
-| D.39 | **Token refresh race condition** | Correctness | Two concurrent refresh with same token. Only one succeeds | [ ] |
-| D.40 | **Session revocation propagation** | Correctness | Revoke → next request fails immediately (not cached for TTL) | [ ] |
-| D.41 | **TOTP time-drift tolerance** | Correctness | Accept t-1, t, t+1. Reject t-2, t+2 | [ ] |
+| D.39 | **Token refresh race condition** | Correctness | Two concurrent refresh with same token. Only one succeeds | ✅ Exists |
+| D.40 | **Session revocation propagation** | Correctness | Revoke → next request fails immediately (not cached for TTL) | ✅ Exists |
+| D.41 | **TOTP time-drift tolerance** | Correctness | Accept t-1, t, t+1. Reject t-2, t+2 | ✅ Exists |
 
 ### ServFlow (Workflows)
 
 | # | Item | Category | Description | Status |
 |---|------|----------|-------------|--------|
-| D.42 | **Checkpoint recovery accuracy** | Resilience | Kill mid-workflow. Restart resumes from exact last checkpoint | [ ] |
-| D.43 | **Saga compensation ordering** | Correctness | Fail at step 5/7. Compensations fire 5→4→3→2→1 | [ ] |
+| D.42 | **Checkpoint recovery accuracy** | Resilience | Kill mid-workflow. Restart resumes from exact last checkpoint | ✅ Exists |
+| D.43 | **Saga compensation ordering** | Correctness | Fail at step 5/7. Compensations fire 5→4→3→2→1 | ✅ Exists |
 | D.44 | **DAG cycle detection** | Correctness | Circular dependency → immediate rejection with clear error | [ ] |
 | D.45 | **Approval + timeout race** | Correctness | Approve at exactly timeout boundary. Deterministic outcome | [ ] |
 
