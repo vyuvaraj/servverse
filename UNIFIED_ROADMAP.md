@@ -352,7 +352,7 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 |---|------|----------|-------------|--------|
 | D.58 | **Semver resolution correctness** | Correctness | Complex constraints vs npm semver output. 100% match | [x] |
 | D.59 | **Signature tamper detection** | Security | Modified tarball => install rejects with "signature mismatch" | [x] |
-| D.60 | **Concurrent publish race** | Correctness | Two clients, same version. Exactly one wins, other gets 409 | [ ] |
+| D.60 | **Concurrent publish race** | Correctness | Two clients, same version. Exactly one wins, other gets 409 | [x] |
 
 ---
 
@@ -719,6 +719,7 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 
 All commercial enterprise features (**EE**) must have their core logic and implementations located exclusively inside the private `servverse-ee` repository. 
 The open-source core repositories (such as `ServGate`, `ServStore`, etc.) must only expose clean interfaces, hooks, or config fields. The implementation of these hooks in the open-source code must use build-tagged placeholders (`//go:build !enterprise`), while the actual commercial code resides under the corresponding directories in `servverse-ee` and is built with `//go:build enterprise`.
+
 
 
 
