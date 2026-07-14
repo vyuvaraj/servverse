@@ -85,30 +85,39 @@ graph TD
 
 ## Appendix B: Component Maturity Matrix
 
-> Updated July 10, 2026 — based on actual code metrics (line counts, test coverage, pkg structure, standalone viability).
+> Updated July 14, 2026 — based on actual code metrics (test counts, pkg structure, standalone flags, EE gating, main.go line counts).
 
-| Component | API Contract | Persistence | Security | Observability | Tests | Code Structure | Standalone | Overall |
-|-----------|--------------|-------------|----------|---------------|-------|----------------|-----------|---------|
-| **Serv-lang** | 🟢 Stable | ⚪ N/A | 🟢 Stable | 🟢 OTel | 🟢 87 funcs, 7 compiler test files | 🟢 Split: compiler/, runtime/, lsp/, stdlib/ | ⚪ N/A | **Production** |
-| **ServStore** | 🟢 S3-compat | 🟢 Pebble+Raft | 🟢 SigV4+TLS+OIDC | 🟢 OTel | 🟢 78 funcs / 47 files | 🟢 cmd/ + pkg/ (8 packages) | 🟢 A+ Fully independent | **Production** |
-| **ServGate** | 🟢 REST+WASM | ⚪ Config file | 🟢 JWT+mTLS+ACME | 🟢 OTel | 🟢 46 funcs / 6 files | 🟢 pkg/proxy, pkg/wasm, pkg/otel | 🟢 A- needs config.json | **Production** |
-| **ServQueue** | 🟢 STOMP+REST | 🟢 WAL+S3 tier | 🟢 TLS+token auth | 🟢 OTel | 🟢 28 funcs / 6 files | 🟢 pkg/broker, pkg/stomp, pkg/web | 🟢 A Zero-config | **Production** |
-| **ServMesh** | 🟢 REST | ⚪ In-memory | 🟢 mTLS+JWT | 🟢 OTel | 🟢 34 funcs / 3 files | 🟢 pkg/registry, pkg/client | 🟡 B+ needs multiple services | **Production** |
-| **ServConsole** | 🟢 REST+WS | 🟡 SQLite | 🟢 OIDC+RBAC | 🟢 OTel | 🟡 34 funcs (needs 70+) | 🟢 12 packages extracted | ⚪ Aggregator by design | **Stable** |
-| **ServTrace** | 🟢 OTLP/HTTP | 🟢 ServStore tier | 🟡 Basic auth | 🟢 Self-traces | 🟡 13 funcs / 4 files | 🟡 pkg/server, pkg/store | 🟢 A- OTLP collector | **Stable** |
-| **ServCache** | 🟢 REST | 🟢 Redis/memory | 🟡 Token auth | 🟢 OTel | 🔴 8 funcs / 1 file | 🟡 pkg/ exists but thin | 🟡 B+ standalone cache | **Stable** |
-| **ServCron** | 🟢 REST | 🟢 ServStore+Redis | 🟡 JWT | 🟢 OTel | 🟡 10 funcs / 2 files | 🟡 pkg/ thin | 🟡 B needs --standalone | **Stable** |
-| **ServCloud** | 🟢 REST | 🟡 In-memory | 🟡 JWT | 🟢 OTel | 🔴 7 funcs / 1 file | 🟡 Flat | 🟡 B Serv-specific | **Stable** |
-| **ServTunnel** | 🟢 WS+REST | ⚪ In-memory | 🟢 TLS+token+rate | 🟢 OTel | 🟢 34 funcs / 4 files | 🟢 Clean structure | 🟢 A- generic tunnel | **Production** |
-| **ServAuth** | 🟢 OAuth2/OIDC | 🟢 ServStore | 🟢 bcrypt+AES+MFA | 🟢 OTel | 🟡 11 funcs / 1 file | 🔴 1,381 line main.go | 🟡 B needs --standalone | **Stable** |
-| **ServPool** | 🟢 REST | 🟡 Proxied | 🟡 JWT | 🟢 OTel | 🟡 10 funcs / 1 file | 🔴 No pkg/ structure | 🟡 B thin docs | **Beta** |
-| **ServMail** | 🟢 REST | 🟢 ServStore | 🟡 JWT | 🟢 OTel | 🟡 10 funcs / 1 file | 🟡 pkg/ exists | 🟡 B- needs --standalone | **Stable** |
-| **ServFlow** | 🟢 REST | 🟢 ServStore+local | 🟡 JWT | 🟢 OTel | 🟡 11 funcs / 1 file | 🟢 pkg/engine, pkg/handlers, pkg/storage | 🔴 C+ Coupled to ServStore | **Stable** |
-| **ServRegistry** | 🟢 REST | 🟢 ServStore | 🟡 JWT+signing | 🟢 OTel | 🟡 11 funcs / 2 files | 🔴 1,363 line main.go | 🔴 C+ Coupled to ServStore | **Stable** |
-| **ServDocs** | 🟡 REST | ⚪ N/A | ⚪ None | ⚪ None | 🔴 5 funcs / 1 file | 🔴 No pkg/ structure | 🟡 B+ .srv-specific | **Beta** |
-| **ServShared** | 🟢 Go library | ⚪ N/A | 🟢 JWT+mTLS | 🟢 OTel init | 🟢 30 funcs / 9 files | 🟢 Clean module | ⚪ Library | **Production** |
+| Component | Tests | Code Structure | Security | Observability | Standalone | EE Gated | Overall |
+|-----------|-------|----------------|----------|---------------|-----------|----------|---------|
+| **Serv-lang** | 🟢 112 funcs | 🟢 compiler/, runtime/, lsp/, stdlib/ | 🟢 Null safety, type checking | 🟢 OTel codegen | ⚪ N/A | ⚪ N/A | **Production** |
+| **ServStore** | 🟢 93 funcs | 🟢 cmd/ + 11 packages | 🟢 SigV4 + TLS + OIDC + LDAP | 🟢 OTel + slog | 🟢 A+ Zero-config | ✅ Federation + cold tier | **Production** |
+| **ServGate** | 🟢 50 funcs | 🟢 3 packages (proxy, wasm, otel) | 🟢 JWT + mTLS + ACME + policy | 🟢 OTel + access logs | 🟢 A- config.json | ✅ AI cache + LLM routing | **Production** |
+| **ServConsole** | 🟢 56 funcs | 🟢 12 packages | 🟢 OIDC + RBAC + JWT | 🟢 OTel | ⚪ Aggregator | ✅ SLO, cost, runbooks, exec | **Production** |
+| **ServCache** | 🟢 46 funcs | 🟢 3 packages | 🟡 Token auth | 🟢 OTel | 🟢 A Standalone flag | ✅ Namespace isolation | **Production** |
+| **ServFlow** | 🟢 43 funcs | 🟢 3 packages (engine, handlers, storage) | 🟡 JWT | 🟢 OTel | 🟢 A Standalone flag | ✅ Saga hooks | **Production** |
+| **ServPool** | 🟢 40 funcs | 🟢 4 packages | 🟡 JWT | 🟢 OTel | 🟡 B+ docs only | ⚪ N/A | **Production** |
+| **ServMesh** | 🟢 37 funcs | 🟢 7 packages | 🟢 mTLS + JWT + auto-rotate | 🟢 OTel | 🟡 B+ needs services | ⚪ N/A | **Production** |
+| **ServTunnel** | 🟢 37 funcs | 🟢 6 packages | 🟢 TLS + token + rate limit | 🟢 OTel | 🟢 A- generic tunnel | ✅ Federation | **Production** |
+| **ServQueue** | 🟢 36 funcs | 🟢 5 packages | 🟢 TLS + STOMP auth | 🟢 OTel + spans | 🟢 A Zero-config | ✅ Federation + semantic route | **Production** |
+| **ServMail** | 🟢 34 funcs | 🟢 5 packages | 🟡 JWT | 🟢 OTel | 🟢 A Standalone flag | ⚪ N/A | **Production** |
+| **ServDocs** | 🟢 34 funcs | 🟢 3 packages (generator, openapi, parser) | ⚪ N/A | ⚪ N/A | 🟡 B+ .srv-specific | ⚪ N/A | **Stable** |
+| **ServCloud** | 🟢 31 funcs | 🟢 3 packages | 🟡 JWT | 🟢 OTel | 🟡 B Serv-specific | ✅ Autoscale | **Stable** |
+| **ServShared** | 🟢 30 funcs | 🟢 4 packages (datafabric, middleware, outbox, policy) | 🟢 JWT + mTLS + tenant | 🟢 OTel init | ⚪ Library | ✅ Tenant isolation | **Production** |
+| **ServTrace** | 🟡 17 funcs | 🟡 2 packages | 🟡 Basic auth | 🟢 Self-traces | 🟢 A- OTLP collector | ✅ Cold tier, NL, anomaly | **Stable** |
+| **ServAuth** | 🟡 16 funcs | 🟢 6 packages | 🟢 bcrypt + AES + MFA + OIDC | 🟢 OTel | 🟡 B No standalone flag | ✅ Stuffing detection | **Stable** |
+| **ServCron** | 🟡 13 funcs | 🟡 3 packages | 🟡 JWT + Redis lease | 🟢 OTel | 🟢 A Standalone flag | ⚪ N/A | **Stable** |
+| **ServRegistry** | 🟡 12 funcs | 🟢 4 packages (registry, resolution, signing, web) | 🟢 JWT + crypto signing | 🟢 OTel | 🟡 B+ Standalone flag | ⚪ N/A | **Stable** |
+| **ServLock** | 🔴 2 funcs | 🟡 2 packages (handlers, storage) | 🟡 JWT | 🟡 Basic | 🟡 B+ Embedded | ⚪ N/A | **Beta** |
 
-**Legend:** 🟢 Good | 🟡 Adequate | 🔴 Needs work | ⚪ Not applicable
+### Summary
+
+| Rating | Count | Components |
+|--------|-------|-----------|
+| **Production** | 13 | Serv-lang, ServStore, ServGate, ServConsole, ServCache, ServFlow, ServPool, ServMesh, ServTunnel, ServQueue, ServMail, ServShared |
+| **Stable** | 6 | ServDocs, ServCloud, ServTrace, ServAuth, ServCron, ServRegistry |
+| **Beta** | 1 | ServLock |
+
+**Legend:** 🟢 Strong | 🟡 Adequate | 🔴 Needs work | ⚪ Not applicable | ✅ EE features gated
 
 ---
 
