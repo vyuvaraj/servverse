@@ -81,14 +81,16 @@ foreach ($repo in $repos) {
                     continue
                 }
 
-                # 6. Commit and push if changed
+                # 6. Stage changes (including ignored vendor files)
+                if (Test-Path "vendor") {
+                    git add --force vendor
+                }
+
+                # 7. Commit and push if changed
                 $gitStatus = git status --porcelain
                 if ($gitStatus) {
                     if (-not $SkipCommit) {
                         Write-Host "  -> Committing updates..." -ForegroundColor Gray
-                        if (Test-Path "vendor") {
-                            git add --force vendor
-                        }
                         git add -A
                         git commit -m "readiness: upgrade dependency reference and vendor for ServShared commit $latestCommit"
                         
