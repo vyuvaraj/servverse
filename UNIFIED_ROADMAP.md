@@ -266,16 +266,16 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 |---|------|----------|-------------|--------|
 | D.27 | **Package-level unit tests (all 12 packages)** | Quality | Each package needs 5+ tests: alerts, auth, topology, dashboards, provision, tabs, ws | ✅ Exists |
 | D.28 | **WebSocket reconnection handling** | Reliability | Client disconnect + server restart → auto-reconnect without data loss | ✅ Exists |
-| D.29 | **50 concurrent dashboard users** | Correctness | Verify no state corruption in shared alert/log buffers | [ ] |
-| D.30 | **Memory profiling: 100K traces ingested** | Performance | Verify ring buffer eviction actually works, memory stays bounded | [ ] |
+| D.29 | **50 concurrent dashboard users** | Correctness | Verify no state corruption in shared alert/log buffers | ✅ Exists |
+| D.30 | **Memory profiling: 100K traces ingested** | Performance | Verify ring buffer eviction actually works, memory stays bounded | ✅ Exists |
 
 ### ServCache (Cache)
 
 | # | Item | Category | Description | Status |
 |---|------|----------|-------------|--------|
-| D.31 | **TTL eviction timing accuracy** | Correctness | Verify expiry is accurate to ±100ms under load | [ ] |
-| D.32 | **Redis failover fallback** | Resilience | Kill Redis mid-operation. Verify fallback to in-memory without crash | [ ] |
-| D.33 | **100-goroutine stress test** | Correctness | Concurrent get/set/delete on overlapping keys. No panics, no stale reads | [ ] |
+| D.31 | **TTL eviction timing accuracy** | Correctness | Verify expiry is accurate to ±100ms under load | ✅ Exists |
+| D.32 | **Redis failover fallback** | Resilience | Kill Redis mid-operation. Verify fallback to in-memory without crash | ✅ Exists |
+| D.33 | **100-goroutine stress test** | Correctness | Concurrent get/set/delete on overlapping keys. No panics, no stale reads | ✅ Exists |
 | D.34 | **Namespace isolation proof** | Security | Verify Tenant A cannot read Tenant B's keys via direct API | [ ] |
 
 ### ServCron (Scheduler)
