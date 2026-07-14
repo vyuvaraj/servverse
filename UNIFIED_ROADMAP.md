@@ -564,17 +564,17 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 |---|------|-------------------|-------------|--------|
 | V1.1 | **Add `/api/v1/` prefix to all endpoints** | ServCache, ServMesh, ServCloud, ServTunnel, ServAuth, ServPool, ServMail, ServFlow, ServLock | 9 services use bare `/api/` paths. Add versioned prefix for clean future evolution | [ ] |
 | V1.2 | **Standardized error format** | ServCache, ServMesh, ServCloud, ServTunnel, ServAuth, ServPool, ServMail, ServFlow, ServLock | Use `ServShared.WriteJSONError` returning `{"error":"msg","code":"ERR_X","trace_id":"..."}` on all error paths | [/] |
-| V1.3 | **Add rate limiting to unprotected services** | ServCache, ServCron, ServCloud, ServTrace, ServAuth, ServPool, ServFlow, ServLock | Use `ServShared.MaxBytesMiddleware` + sliding window rate limiter. Prevents API abuse | [ ] |
-| V1.4 | **Request body size limits** | ServQueue, ServConsole, ServCache, ServMesh, ServCron, ServCloud, ServTrace, ServTunnel, ServAuth, ServPool, ServMail, ServFlow | Add `http.MaxBytesReader` (default 10MB). Prevents memory exhaustion | [ ] |
-| V1.5 | **CORS headers on all services** | All except ServStore | Add `Access-Control-Allow-Origin` for browser-based clients (configurable via env var) | [ ] |
+| V1.3 | **Add rate limiting to unprotected services** | ServCache, ServCron, ServCloud, ServTrace, ServAuth, ServPool, ServFlow, ServLock | Use `ServShared.MaxBytesMiddleware` + sliding window rate limiter. Prevents API abuse | [/] |
+| V1.4 | **Request body size limits** | ServQueue, ServConsole, ServCache, ServMesh, ServCron, ServCloud, ServTrace, ServTunnel, ServAuth, ServPool, ServMail, ServFlow | Add `http.MaxBytesReader` (default 10MB). Prevents memory exhaustion | [/] |
+| V1.5 | **CORS headers on all services** | All except ServStore | Add `Access-Control-Allow-Origin` for browser-based clients (configurable via env var) | [/] |
 | V1.6 | **`/api/version` on ServConsole** | ServConsole | Only service missing the version endpoint | [x] |
 
 ### Stability Documentation
 
 | # | Item | Description | Status |
 |---|------|-------------|--------|
-| V1.7 | **STABILITY.md** | Document what's guaranteed stable (S3 API, STOMP, OAuth endpoints, CLI flags) vs experimental (internal service APIs) | [ ] |
-| V1.8 | **UPGRADING.md** | Migration guide template: how to upgrade between major versions, what might break, deprecation timeline | [ ] |
+| V1.7 | **STABILITY.md** | Document what's guaranteed stable (S3 API, STOMP, OAuth endpoints, CLI flags) vs experimental (internal service APIs) | [x] |
+| V1.8 | **UPGRADING.md** | Migration guide template: how to upgrade between major versions, what might break, deprecation timeline | [x] |
 | V1.9 | **API freeze period** | 4 weeks with zero breaking changes after all V1.1-V1.6 are done. Monitor for issues | [ ] |
 | V1.10 | **CHANGELOG.md standardization** | Every component gets a Keep-a-Changelog format CHANGELOG. Required for v1.0 credibility | [ ] |
 
@@ -593,6 +593,7 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 
 All commercial enterprise features (**EE**) must have their core logic and implementations located exclusively inside the private `servverse-ee` repository. 
 The open-source core repositories (such as `ServGate`, `ServStore`, etc.) must only expose clean interfaces, hooks, or config fields. The implementation of these hooks in the open-source code must use build-tagged placeholders (`//go:build !enterprise`), while the actual commercial code resides under the corresponding directories in `servverse-ee` and is built with `//go:build enterprise`.
+
 
 
 
