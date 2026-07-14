@@ -301,16 +301,16 @@ Optimize remaining standalone components to completely eliminate ecosystem coupl
 |---|------|----------|-------------|--------|
 | D.42 | **Checkpoint recovery accuracy** | Resilience | Kill mid-workflow. Restart resumes from exact last checkpoint | ✅ Exists |
 | D.43 | **Saga compensation ordering** | Correctness | Fail at step 5/7. Compensations fire 5→4→3→2→1 | ✅ Exists |
-| D.44 | **DAG cycle detection** | Correctness | Circular dependency → immediate rejection with clear error | [ ] |
-| D.45 | **Approval + timeout race** | Correctness | Approve at exactly timeout boundary. Deterministic outcome | [ ] |
+| D.44 | **DAG cycle detection** | Correctness | Circular dependency → immediate rejection with clear error | ✅ Exists |
+| D.45 | **Approval + timeout race** | Correctness | Approve at exactly timeout boundary. Deterministic outcome | ✅ Exists |
 
 ### ServTrace (Tracing)
 
 | # | Item | Category | Description | Status |
 |---|------|----------|-------------|--------|
-| D.46 | **Span ingestion throughput** | Performance | Max spans/sec before drop. Target: 10K/sec single node | [ ] |
-| D.47 | **Out-of-order trace reconstruction** | Correctness | 20 spans arriving out of order → correct tree | [ ] |
-| D.48 | **Cold tier retrieval latency** | Performance | Archive → query. Target: <500ms | [ ] |
+| D.46 | **Span ingestion throughput** | Performance | Max spans/sec before drop. Target: 10K/sec single node | ✅ Exists |
+| D.47 | **Out-of-order trace reconstruction** | Correctness | 20 spans arriving out of order → correct tree | ✅ Exists |
+| D.48 | **Cold tier retrieval latency** | Performance | Archive → query. Target: <500ms | ✅ Exists |
 
 ### ServTunnel (Dev Tunneling)
 
