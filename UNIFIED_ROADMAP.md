@@ -1,4 +1,4 @@
-﻿# Serv Unified Ecosystem Roadmap & Architect Analysis
+# Serv Unified Ecosystem Roadmap & Architect Analysis
 
 > Single source of truth for the **Serv** ecosystem: Serv-lang, ServGate, ServStore, ServQueue, ServConsole, ServCache, ServMesh, ServCron, ServCloud, ServTrace, ServTunnel, ServAuth, ServPool, ServMail, ServFlow, and the Servverse vision.  
 > Last updated: July 9, 2026
@@ -452,18 +452,80 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 | CD.67 | **Progressive auth complexity** � Start with password-only (5 min setup), add MFA later, add OAuth later, add SCIM later. No upfront complexity | Keycloak forces full OIDC complexity on day 1. ServAuth grows with you | ? Exists |
 | CD.68 | **Account lockout with automatic unlock** � 5 attempts ? locked 5 min ? auto-unlocks. No admin intervention needed | Auth0 requires manual unlock or custom rules. ServAuth is automatic | ? Exists |
 
-#### ServLock � Beyond Simple Locks
+#### Serv-lang  Compiler-Level Moat
 
 | # | Feature | Why It Differentiates | Status |
 |---|---------|---------------------|--------|
-| CD.69 | **Compiler-guaranteed unlock** � `lock("x") { ... }` syntax ensures the lock is released on ALL exit paths (return, panic, early exit). Impossible to forget | Redis locks require explicit defer/finally. ServLock is structural | ? Exists |
-| CD.70 | **Lock queueing with fairness** � Multiple waiters get the lock in FIFO order. No starvation | Redis SETNX has no queue. Whoever retries fastest wins (unfair) | [ ] |
+| CD.46 | **Dead code elimination across service boundaries**  Compiler traces which routes are actually called by other services (via ServMesh registry) and warns on unused endpoints | No language eliminates dead code across microservice boundaries | [ ] |
+| CD.47 | **Compile-time dependency health check**  `serv build` checks that all declared infrastructure (broker, store, cache) is reachable during compilation. Fail fast, not at runtime | No compiler validates infrastructure availability at build time | [ ] |
+| CD.48 | **Type-safe inter-service contracts**  When Service A calls Service B via `serv://`, compiler verifies A's expected response type matches B's declared return type | gRPC has this via proto. REST has nothing. Serv does it for REST | [ ] |
+| CD.49 | **Built-in migration diffing**  `serv migrate --dry-run` shows exact SQL that will execute (CREATE/ALTER/DROP) with colored diff against current schema | Rails has this. No compiled language has built-in migration preview | [ ] |
+
+#### ServGate  AI-Era Gateway
+
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.50 | **Request/response WASM A/B testing**  Run two WASM versions simultaneously with weighted traffic split, compare response quality metrics | No gateway supports A/B testing of middleware logic | ? Exists |
+| CD.51 | **Prompt injection firewall**  Deep content inspection using embedding similarity to detect adversarial prompts before they reach LLM backends | WAFs check SQL injection. ServGate checks prompt injection | ? Exists (EE) |
+| CD.52 | **Auto-generated API changelog**  Track route additions/removals/changes over time. Serve changelog at `/api/changelog` for consumer teams | No gateway auto-generates API evolution history | [ ] |
+
+#### ServStore  Intelligence Inside Storage
+
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.53 | **Object-level access audit trail**  Who read/wrote/deleted every object, when, from which IP. Immutable append-only log per bucket | S3 server access logging is bucket-level, not object-level with identity | ? Exists |
+| CD.54 | **WASM trigger on object events**  Declare functions that auto-execute on PutObject/DeleteObject. Lambda@S3 but inside the engine with zero cold start | AWS needs Lambda + event bridge. ServStore runs triggers in-process | ? Exists |
+| CD.55 | **Content-type aware compression**  Auto-compress text/JSON/logs with zstd on write, decompress transparently on read. Zero client changes | No S3-compatible engine does transparent per-content-type compression | ? Exists |
+
+#### ServQueue  Stream Processing Inside the Broker
+
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.56 | **Transform pipeline chaining**  Chain multiple WASM transforms: `raw ? validate.wasm ? enrich.wasm ? route.wasm ? processed`. Declarative pipeline | No broker supports composable multi-stage transform chains | ? Exists |
+| CD.57 | **Message-level end-to-end tracing**  Track a message from publish ? through every transform ? DLQ redirect ? consumer ack. Single distributed trace | Most brokers lose trace context between producer and consumer | ? Exists |
+| CD.58 | **Consumer-side backpressure with automatic DLQ overflow**  When consumer is slow, buffer to disk ? if still slow, auto-route to DLQ with metadata | Kafka drops, RabbitMQ requeues infinitely. ServQueue has intelligent overflow | ? Exists |
+
+#### ServConsole  Operations Platform (Not Just Dashboard)
+
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.59 | **Cross-service request replay**  Select a trace in waterfall ? click "Replay" ? re-issues the exact request through ServGate. Instant reproduction | No dashboard can replay production requests through the actual gateway | ? Exists (EE) |
+| CD.60 | **Embedded SQL workbench**  Run queries against any connected database directly from the console. No separate DB client needed | Grafana can visualize queries. ServConsole can WRITE them | ? Exists |
+| CD.61 | **One-click infrastructure provisioning**  Create ServStore buckets, ServQueue topics, ServCache namespaces from the UI. The dashboard IS the control plane | Portainer manages containers. ServConsole manages application infrastructure | ? Exists (EE) |
+
+#### ServMesh  Developer-First Service Mesh
+
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.62 | **Automatic mTLS without certificate management**  ServMesh auto-provisions and rotates certificates. Zero PKI infrastructure. Zero config | Istio needs cert-manager or Vault integration. ServMesh is self-contained | ? Exists |
+| CD.63 | **Circuit breaker state visible in ServConsole**  See which circuits are open/closed/half-open in real-time dashboard. Click to force-reset | Istio circuit state is invisible without custom metrics + Grafana | ? Exists |
+
+#### ServFlow  Intelligent Workflows
+
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.64 | **Saga compensation with automatic rollback ordering**  Fail at step N ? compensations fire in reverse (N?N-1?...?1) automatically | Temporal requires manual compensation ordering. ServFlow derives it from DAG | ? Exists |
+| CD.65 | **Human approval gates with timeout escalation**  Workflow pauses for human approval. If no response in X time, auto-escalates or auto-approves | Step Functions has approval but no escalation. ServFlow has both | ? Exists |
+| CD.66 | **Workflow visualization as Mermaid DAG**  `GET /api/workflows/visualize` returns a Mermaid diagram of the workflow graph | No competitor generates visual DAG from workflow definition via API | ? Exists |
+
+#### ServAuth  Lightweight Identity
+
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.67 | **Progressive auth complexity**  Start with password-only (5 min setup), add MFA later, add OAuth later, add SCIM later. No upfront complexity | Keycloak forces full OIDC complexity on day 1. ServAuth grows with you | ? Exists |
+| CD.68 | **Account lockout with automatic unlock**  5 attempts ? locked 5 min ? auto-unlocks. No admin intervention needed | Auth0 requires manual unlock or custom rules. ServAuth is automatic | ? Exists |
+
+#### ServLock  Beyond Simple Locks
+
+| # | Feature | Why It Differentiates | Status |
+|---|---------|---------------------|--------|
+| CD.69 | **Compiler-guaranteed unlock**  `lock("x") { ... }` syntax ensures the lock is released on ALL exit paths (return, panic, early exit). Impossible to forget | Redis locks require explicit defer/finally. ServLock is structural | ? Exists |
+| CD.70 | **Lock queueing with fairness**  Multiple waiters get the lock in FIFO order. No starvation | Redis SETNX has no queue. Whoever retries fastest wins (unfair) | [x] |
 
 #### Ecosystem-Wide (Cross-Cutting)
 
 | # | Feature | Why It Differentiates | Status |
 |---|---------|---------------------|--------|
-| CD.71 | **`servverse up` � entire platform in one command** � Single binary starts all 17 services with correct ports, env vars, and health verification | No platform ships a unified launcher. K8s needs Helm charts. Docker needs compose files | ? Exists |
 | CD.72 | **Unified install script** � One curl/irm command installs every component. Cross-platform (Windows, macOS, Linux) | Competitors install one tool at a time. Servverse installs the entire ecosystem | ? Exists |
 | CD.73 | **SERVVERSE_DISCOVERY protocol** � Single JSON manifest tells all services where to find each other. Change one file, all services update | No competitor has a unified service discovery manifest format | ? Exists |
 | CD.74 | **Shared JWT across all services** � One `SERV_JWT_SECRET` env var enables authentication across all 17 services. No per-service auth configuration | Every other platform needs per-service auth setup | ? Exists |
@@ -544,13 +606,18 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 | CD.103 | **Branch-based preview deployments** � Push a branch ? ServCloud auto-deploys to unique URL ? share with team for review | ServCloud | Vercel/Netlify pioneered this. Backend frameworks don't have it. ServCloud should | [ ] |
 | CD.104 | **`serv doctor --integration`** � Boots full ecosystem via docker-compose, runs cross-service smoke tests, reports health matrix | servverse-repo | No platform has a "test everything works together" command | ? Exists |
 
-#### Cache & Lock (Redis will remain dominant � need clear differentiation)
+| CD.101 | **Web Playground**  Write Serv code in browser ? compile via WASM ? run ? see output. Zero install | Serv-lang | Go, Rust, Zig all have playgrounds. Serv needs one for adoption | [ ] |
+| CD.102 | **`serv bench <file.srv>`**  Auto-generates load tests from route declarations, runs them, reports p99/throughput | Serv-lang | No compiler auto-generates performance tests from source code | [ ] |
+| CD.103 | **Branch-based preview deployments**  Push a branch ? ServCloud auto-deploys to unique URL ? share with team for review | ServCloud | Vercel/Netlify pioneered this. Backend frameworks don't have it. ServCloud should | [ ] |
+| CD.104 | **`serv doctor --integration`**  Boots full ecosystem via docker-compose, runs cross-service smoke tests, reports health matrix | servverse-repo | No platform has a "test everything works together" command | ? Exists |
+
+#### Cache & Lock (Redis will remain dominant  need clear differentiation)
 
 | # | Feature | Component | Why Urgent | Status |
 |---|---------|-----------|-----------|--------|
-| CD.105 | **Cache stampede protection (singleflight)** � Concurrent cache misses for same key coalesce into one computation. No thundering herd | ServCache | Redis doesn't prevent stampede. Application code must. ServCache does it at server level | [ ] |
-| CD.106 | **Lock queueing with fairness** � Multiple waiters get lock in FIFO order. No starvation under high contention | ServLock | Redis SETNX has no queue (unfair retry). etcd leases have ordering. ServLock should too | [ ] |
-| CD.107 | **Lock observability in ServConsole** � See active locks, wait queues, contention hotspots, deadlock detection in real-time dashboard | ServLock + ServConsole | No lock service has observability built-in. Debug distributed locks visually | [ ] |
+| CD.105 | **Cache stampede protection (singleflight)**  Concurrent cache misses for same key coalesce into one computation. No thundering herd | ServCache | Redis doesn't prevent stampede. Application code must. ServCache does it at server level | [ ] |
+| CD.106 | **Lock queueing with fairness**  Multiple waiters get lock in FIFO order. No starvation under high contention | ServLock | Redis SETNX has no queue (unfair retry). etcd leases have ordering. ServLock should too | [x] |
+| CD.107 | **Lock observability in ServConsole**  See active locks, wait queues, contention hotspots, deadlock detection in real-time dashboard | ServLock + ServConsole | No lock service has observability built-in. Debug distributed locks visually | [ ] |
 
 ---
 
@@ -562,11 +629,11 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 
 | # | Item | Affected Services | Description | Status |
 |---|------|-------------------|-------------|--------|
-| V1.1 | **Add `/api/v1/` prefix to all endpoints** | ServCache, ServMesh, ServCloud, ServTunnel, ServAuth, ServPool, ServMail, ServFlow, ServLock | 9 services use bare `/api/` paths. Add versioned prefix for clean future evolution | [ ] |
-| V1.2 | **Standardized error format** | ServCache, ServMesh, ServCloud, ServTunnel, ServAuth, ServPool, ServMail, ServFlow, ServLock | Use `ServShared.WriteJSONError` returning `{"error":"msg","code":"ERR_X","trace_id":"..."}` on all error paths | [/] |
-| V1.3 | **Add rate limiting to unprotected services** | ServCache, ServCron, ServCloud, ServTrace, ServAuth, ServPool, ServFlow, ServLock | Use `ServShared.MaxBytesMiddleware` + sliding window rate limiter. Prevents API abuse | [/] |
-| V1.4 | **Request body size limits** | ServQueue, ServConsole, ServCache, ServMesh, ServCron, ServCloud, ServTrace, ServTunnel, ServAuth, ServPool, ServMail, ServFlow | Add `http.MaxBytesReader` (default 10MB). Prevents memory exhaustion | [/] |
-| V1.5 | **CORS headers on all services** | All except ServStore | Add `Access-Control-Allow-Origin` for browser-based clients (configurable via env var) | [/] |
+| V1.1 | **Add `/api/v1/` prefix to all endpoints** | ServCache, ServMesh, ServCloud, ServTunnel, ServAuth, ServPool, ServMail, ServFlow, ServLock | 9 services use bare `/api/` paths. Add versioned prefix for clean future evolution | [x] |
+| V1.2 | **Standardized error format** | ServCache, ServMesh, ServCloud, ServTunnel, ServAuth, ServPool, ServMail, ServFlow, ServLock | Use `ServShared.WriteJSONError` returning `{"error":"msg","code":"ERR_X","trace_id":"..."}` on all error paths | [x] |
+| V1.3 | **Add rate limiting to unprotected services** | ServCache, ServCron, ServCloud, ServTrace, ServAuth, ServPool, ServFlow, ServLock | Use `ServShared.MaxBytesMiddleware` + sliding window rate limiter. Prevents API abuse | [x] |
+| V1.4 | **Request body size limits** | ServQueue, ServConsole, ServCache, ServMesh, ServCron, ServCloud, ServTrace, ServTunnel, ServAuth, ServPool, ServMail, ServFlow | Add `http.MaxBytesReader` (default 10MB). Prevents memory exhaustion | [x] |
+| V1.5 | **CORS headers on all services** | All except ServStore | Add `Access-Control-Allow-Origin` for browser-based clients (configurable via env var) | [x] |
 | V1.6 | **`/api/version` on ServConsole** | ServConsole | Only service missing the version endpoint | [x] |
 
 ### Stability Documentation
@@ -575,17 +642,17 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 |---|------|-------------|--------|
 | V1.7 | **STABILITY.md** | Document what's guaranteed stable (S3 API, STOMP, OAuth endpoints, CLI flags) vs experimental (internal service APIs) | [x] |
 | V1.8 | **UPGRADING.md** | Migration guide template: how to upgrade between major versions, what might break, deprecation timeline | [x] |
-| V1.9 | **API freeze period** | 4 weeks with zero breaking changes after all V1.1-V1.6 are done. Monitor for issues | [ ] |
-| V1.10 | **CHANGELOG.md standardization** | Every component gets a Keep-a-Changelog format CHANGELOG. Required for v1.0 credibility | [ ] |
+| V1.9 | **API freeze period** | 4 weeks with zero breaking changes after all V1.1-V1.6 are done. Monitor for issues | [/] |
+| V1.10 | **CHANGELOG.md standardization** | Every component gets a Keep-a-Changelog format CHANGELOG. Required for v1.0 credibility | [x] |
 
 ### Release Artifacts
 
 | # | Item | Description | Status |
 |---|------|-------------|--------|
-| V1.11 | **v1.0.0 release notes draft** | Comprehensive release announcement covering all 19 components, key features, migration notes | [ ] |
-| V1.12 | **Docker Hub / GHCR images** | Publish official container images for all services (`ghcr.io/vyuvaraj/servstore:1.0.0`) | [ ] |
-| V1.13 | **Homebrew/Scoop formulas updated** | Update package manifests for the bundled v1.0 release | [ ] |
-| V1.14 | **VS Code extension published** | Publish LSP extension to marketplace before v1.0 tag. Signals production readiness | [ ] |
+| V1.11 | **v1.0.0 release notes draft** | Comprehensive release announcement covering all 19 components, key features, migration notes | [x] |
+| V1.12 | **Docker Hub / GHCR images** | Publish official container images for all services (`ghcr.io/vyuvaraj/servstore:1.0.0`) | [x] |
+| V1.13 | **Homebrew/Scoop formulas updated** | Update package manifests for the bundled v1.0 release | [x] |
+| V1.14 | **VS Code extension published** | Publish LSP extension to marketplace before v1.0 tag. Signals production readiness | [x] |
 
 ---
 
