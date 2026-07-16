@@ -627,9 +627,25 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 | CD.109 | **ServQueue Broker Explorer**  Sidebar explorer to view topics, consumer groups, message traces, and deploy WASM transforms | ServQueue + VS Code | Browse message broker queues and deploy streaming transform triggers visually | [x] |
 | CD.110 | **ServStore Bucket & Trigger manager**  IDE explorer to manage object storage buckets, upload triggers, and browse metadata | ServStore + VS Code | Manage S3 bucket metadata, file trees, and WASM object trigger code | [x] |
 | CD.111 | **ServLock Contention Dashboard**  Debug distributed locks, deadlocks, and FIFO waiter queues live inside the editor | ServLock + VS Code | Real-time observability of waiter queue and contention hotspots directly in the workspace | [x] |
-| CD.112 | **ServGate Route Simulator**  Mock gateway configurations and simulate route/cost routing rules from the IDE | ServGate + VS Code | Simulate API request routing and prompt injection rules locally without sandbox deployment | [x] |
+| CD.112 | **ServGate Route Simulator** — Mock gateway configurations and simulate route/cost routing rules from the IDE | ServGate + VS Code | Simulate API request routing and prompt injection rules locally without sandbox deployment | [x] |
+
+#### VS Code Extension — Future Enhancements (Phase 28+)
+
+| # | Feature | Component | Why Useful | Status |
+|---|---------|-----------|-----------|--------|
+| CD.113 | **Inlay type hints** — Show inferred return types and parameter types inline next to `fn` signatures without hover | Serv-lang + VS Code | Reduces cognitive load for large codebases. JetBrains and Rust Analyzer pioneered this | [ ] |
+| CD.114 | **Rename symbol refactor** — Rename any function, struct, or variable across all `.srv` files in the workspace | Serv-lang LSP | Essential refactoring tool. No language without this feels production-grade | [ ] |
+| CD.115 | **Test gutter decorations** — Show green/red pass/fail icons in the editor gutter per `test "..."` block after running | Serv-lang + VS Code | Go and Rust have this. Turns the editor into a live test dashboard | [ ] |
+| CD.116 | **Import auto-organization** — Detect and auto-suggest stdlib imports when user types `db.`, `cache.`, `http.` | Serv-lang LSP | TypeScript and Go have this. Saves repeated lookup of import paths | [ ] |
+| CD.117 | **`serv.initProject` scaffolding** — Scaffold a new Serv project from a template picker in the command palette | Serv-lang | First-run DX. Reduces barrier to getting started with Serv | [ ] |
+| CD.118 | **`serv.deploy` one-click deploy** — Deploy the current service to ServCloud directly from the editor | ServCloud + VS Code | Removes context switching to terminal for cloud deployments | [ ] |
+| CD.119 | **Services sidebar panel** — Dedicated activity bar icon showing all 16 services with live 🟢/🔴 health icons | ServRegistry + VS Code | Always-visible ecosystem health beyond the status bar | [ ] |
+| CD.120 | **ServTunnel session viewer** (`serv.viewTunnels`) — Active tunnel sessions with bandwidth and client IPs | ServTunnel + VS Code | Complete the service dashboard coverage across all 16 microservices | [ ] |
+| CD.121 | **`serv.openPlayground`** — Embedded WASM web playground inside a VS Code Webview | Serv-lang | Allows zero-install experimentation without leaving the editor | [ ] |
+| CD.122 | **Coverage line highlights** — Shade uncovered lines in red after `serv test --coverage` | Serv-lang + VS Code | Standard in Go and Python IDEs. Makes coverage actionable in-editor | [ ] |
 
 ---
+
 
 ## Phase 27: v1.0 Release Readiness (Pending)
 
