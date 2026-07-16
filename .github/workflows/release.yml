@@ -111,6 +111,7 @@ jobs:
           build_component "servmail" "../ServMail"
           build_component "servflow" "../ServFlow"
           build_component "servregistry" "../ServRegistry"
+          build_component "servlock" "../ServLock"
 
           # Build the launcher
           echo "Building servverse launcher..."
