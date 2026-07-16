@@ -586,7 +586,7 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 | # | Feature | Component | Why Urgent | Status |
 |---|---------|-----------|-----------|--------|
 | CD.95 | **AI decision steps** � `step "classify" { ai.classify(input, ["approve", "review", "reject"]) }` � AI-powered branching without external service | ServFlow + Serv-lang | Temporal has no AI primitives. Step Functions needs Lambda. ServFlow has it inline | [x] |
-| CD.96 | **Workflow generation from natural language** � "Create a workflow: validate order ? charge payment ? ship ? send confirmation" ? generates DAG definition | ServFlow + Serv-lang | No workflow engine generates workflow from description. This is the AI-era killer feature | [ ] |
+| CD.96 | **Workflow generation from natural language** � "Create a workflow: validate order ? charge payment ? ship ? send confirmation" ? generates DAG definition | ServFlow + Serv-lang | No workflow engine generates workflow from description. This is the AI-era killer feature | [x] |
 | CD.97 | **Cron job smart scheduling** � Analyze historical execution: duration, resource usage, conflicts. Auto-suggest non-overlapping windows | ServCron | Airflow has SLA. No scheduler auto-optimizes schedule based on observed patterns | [ ] |
 
 #### Identity & Security (Auth0 will copy progressive auth)
@@ -602,12 +602,12 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 | # | Feature | Component | Why Urgent | Status |
 |---|---------|-----------|-----------|--------|
 | CD.101 | **Web Playground** � Write Serv code in browser ? compile via WASM ? run ? see output. Zero install | Serv-lang | Go, Rust, Zig all have playgrounds. Serv needs one for adoption | [ ] |
-| CD.102 | **`serv bench <file.srv>`** � Auto-generates load tests from route declarations, runs them, reports p99/throughput | Serv-lang | No compiler auto-generates performance tests from source code | [ ] |
+| CD.102 | **`serv bench <file.srv>`** � Auto-generates load tests from route declarations, runs them, reports p99/throughput | Serv-lang | No compiler auto-generates performance tests from source code | [x] |
 | CD.103 | **Branch-based preview deployments** � Push a branch ? ServCloud auto-deploys to unique URL ? share with team for review | ServCloud | Vercel/Netlify pioneered this. Backend frameworks don't have it. ServCloud should | [ ] |
 | CD.104 | **`serv doctor --integration`** � Boots full ecosystem via docker-compose, runs cross-service smoke tests, reports health matrix | servverse-repo | No platform has a "test everything works together" command | ? Exists |
 
 | CD.101 | **Web Playground**  Write Serv code in browser ? compile via WASM ? run ? see output. Zero install | Serv-lang | Go, Rust, Zig all have playgrounds. Serv needs one for adoption | [ ] |
-| CD.102 | **`serv bench <file.srv>`**  Auto-generates load tests from route declarations, runs them, reports p99/throughput | Serv-lang | No compiler auto-generates performance tests from source code | [ ] |
+| CD.102 | **`serv bench <file.srv>`**  Auto-generates load tests from route declarations, runs them, reports p99/throughput | Serv-lang | No compiler auto-generates performance tests from source code | [x] |
 | CD.103 | **Branch-based preview deployments**  Push a branch ? ServCloud auto-deploys to unique URL ? share with team for review | ServCloud | Vercel/Netlify pioneered this. Backend frameworks don't have it. ServCloud should | [ ] |
 | CD.104 | **`serv doctor --integration`**  Boots full ecosystem via docker-compose, runs cross-service smoke tests, reports health matrix | servverse-repo | No platform has a "test everything works together" command | ? Exists |
 
@@ -623,11 +623,11 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 
 | # | Feature | Component | Why Urgent | Status |
 |---|---------|-----------|-----------|--------|
-| CD.108 | **ServFlow visual DAG designer**  Render live workflow graphs using Webviews and Mermaid inside the IDE | ServFlow + VS Code | Render live DAG flowcharts of steps and compensating tasks directly in the editor | [ ] |
-| CD.109 | **ServQueue Broker Explorer**  Sidebar explorer to view topics, consumer groups, message traces, and deploy WASM transforms | ServQueue + VS Code | Browse message broker queues and deploy streaming transform triggers visually | [ ] |
-| CD.110 | **ServStore Bucket & Trigger manager**  IDE explorer to manage object storage buckets, upload triggers, and browse metadata | ServStore + VS Code | Manage S3 bucket metadata, file trees, and WASM object trigger code | [ ] |
-| CD.111 | **ServLock Contention Dashboard**  Debug distributed locks, deadlocks, and FIFO waiter queues live inside the editor | ServLock + VS Code | Real-time observability of waiter queue and contention hotspots directly in the workspace | [ ] |
-| CD.112 | **ServGate Route Simulator**  Mock gateway configurations and simulate route/cost routing rules from the IDE | ServGate + VS Code | Simulate API request routing and prompt injection rules locally without sandbox deployment | [ ] |
+| CD.108 | **ServFlow visual DAG designer**  Render live workflow graphs using Webviews and Mermaid inside the IDE | ServFlow + VS Code | Render live DAG flowcharts of steps and compensating tasks directly in the editor | [x] |
+| CD.109 | **ServQueue Broker Explorer**  Sidebar explorer to view topics, consumer groups, message traces, and deploy WASM transforms | ServQueue + VS Code | Browse message broker queues and deploy streaming transform triggers visually | [x] |
+| CD.110 | **ServStore Bucket & Trigger manager**  IDE explorer to manage object storage buckets, upload triggers, and browse metadata | ServStore + VS Code | Manage S3 bucket metadata, file trees, and WASM object trigger code | [x] |
+| CD.111 | **ServLock Contention Dashboard**  Debug distributed locks, deadlocks, and FIFO waiter queues live inside the editor | ServLock + VS Code | Real-time observability of waiter queue and contention hotspots directly in the workspace | [x] |
+| CD.112 | **ServGate Route Simulator**  Mock gateway configurations and simulate route/cost routing rules from the IDE | ServGate + VS Code | Simulate API request routing and prompt injection rules locally without sandbox deployment | [x] |
 
 ---
 
