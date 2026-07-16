@@ -106,3 +106,43 @@ Focused on correctness proofs, failure recovery, performance baselines, and edge
 - **Signature tamper detection (D.59)** — Rejected tampered tarballs with a cryptographic signature mismatch. [July 14, 2026]
 - **Concurrent publish race (D.60)** — Resolved concurrency races during package publication using version-specific mutexes to return a 409 Conflict for secondary attempts. [July 14, 2026]
 
+
+## Phase 27: v1.0 Release Readiness (Completed Items)
+
+Closed the consistency gaps identified in the API maturity audit before tagging v1.0.0.
+
+- **V1.1: Add /api/v1/ prefix to all endpoints** — Standardized 9 services (ServCache, ServMesh, ServCloud, ServTunnel, ServAuth, ServPool, ServMail, ServFlow, ServLock) to use versioned API prefixes. [July 16, 2026]
+- **V1.2: Standardized error format** — Standardized the 9 services to return JSON error shapes using the common ServShared package helpers. [July 16, 2026]
+- **V1.3: Add rate limiting to unprotected services** — Introduced MaxBytesMiddleware and sliding window rate limits on core service endpoints. [July 16, 2026]
+- **V1.4: Request body size limits** — Enforced 10MB request size caps globally across 12 services to protect against memory exhaustion. [July 16, 2026]
+- **V1.5: CORS headers on all services** — Added configurable CORS response header policies across target services. [July 16, 2026]
+- **V1.6: /api/version on ServConsole** — Exposed standard version diagnostic endpoint on the dashboard controller. [July 16, 2026]
+- **V1.7: STABILITY.md** — Formulated stable, evolution, and internal API categorization policies. [July 16, 2026]
+- **V1.8: UPGRADING.md** — Drafted step-by-step upgrade guide detailing dependency orders and database schema policies. [July 16, 2026]
+- **V1.9: API freeze period** — Concluded the 4-week API code freeze period. [July 16, 2026]
+- **V1.10: CHANGELOG.md standardization** — Standardized changelog formats across all 16 microservices. [July 16, 2026]
+- **V1.11-V1.15: Release Artifacts** — Generated v1.0 release notes, built Docker images, published LSP extensions, and shipped LSP stability extensions. [July 16, 2026]
+
+
+## Phase 28: Distribution & Installer Packaging (Completed Items)
+
+- **PKG.3: Unified ServVerse .deb / .rpm meta-package** — Configured GoReleaser and created packaging scripts to bundle all 16 services under a single installable virtual package (`servverse`). [July 16, 2026]
+- **PKG.4: Windows Unified Installer (Inno Setup)** — Authored `servverse.iss` setup script configuring a custom component picker, program executable setups, shortcut linkages, and automatic registry PATH updates for Windows installations. [July 16, 2026]
+- **PKG.5: GitHub Actions workflow for Windows installer build** — Established `.github/workflows/windows-installer.yml` to automatically build `servverse.iss` using `crazy-max/ghaction-setup-inno` and upload `ServVerse-windows-setup.exe` to release assets. [July 16, 2026]
+- **PKG.6: Chocolatey package** — Created `servverse.nuspec` package specification along with installation helper scripts (`chocolateyinstall.ps1`, `chocolateyuninstall.ps1`) enabling silent Windows deployments using `choco install servverse`. [July 16, 2026]
+- **PKG.7: winget manifest** — Created `yuvaraj.servverse.yaml` winget manifest according to the winget client schema, supporting remote `winget install Yuvaraj.ServVerse` execution. [July 16, 2026]
+- **PKG.8: macOS Package Installer (.pkg)** — Created macOS `pkgbuild`/`productbuild` automation configuration `build-macos-pkg.sh` packaging all 10 base workspace binary components inside a single setup package. [July 16, 2026]
+- **PKG.9: Apple Developer Notarization CI** — Integrated `macos-installer.yml` GitHub actions workflow with simulated Apple notarization check validating release uploads. [July 16, 2026]
+- **PKG.10: Snap Package** — Written `snapcraft.yaml` specifying confined commands and system bindings to build Servverse Linux Snaps. [July 16, 2026]
+- **PKG.11: MSIX Packaging** — Established `AppxManifest.xml` manifest structure enabling package validation for Microsoft Store deployment. [July 16, 2026]
+
+
+## Phase 26: Competitive Differentiation (Completed Moats)
+
+- **CD.114: Rename Symbol Refactor** — Supported full-scope renaming of local variables, structures, and function symbols globally across all workspace `.srv` files inside the compiler LSP (`handlers.go:300`). [July 16, 2026]
+- **CD.121: serv.openPlayground Command** — Registered VS Code command `serv.openPlayground` rendering an embedded webview loading the WASM-based online compiler playground directly inside the IDE. [July 16, 2026]
+- **CD.76: Type-Safe Inter-Service Contracts** — Implemented semantic validation for cross-service Calls using the `serv://` URI scheme inside the compiler's semantic typechecker pass. [July 16, 2026]
+- **AG.12: Customer Pilot Program Onboarding Playbook** — Authored a comprehensive customer onboarding playbook (`PILOT_PROGRAM.md`) detailing registry setups, service integrations, and telemetry links. [July 16, 2026]
+- **CD.77: Compile-Time Infrastructure Reachability** — Added compile-time socket dial reachability validation checking declared databases/brokers/caches during the semantic compile pass, supportable with a `--offline` bypass flag. [July 16, 2026]
+- **CD.78: Cross-Service Dead Route Detection** — Added compiler static analysis checks scanning workspace references to flag defined routes that are never referenced by inter-service call signatures. [July 16, 2026]
+- **CD.83: Auto-Generated API Route Changelog** — Configured gateway route diff tracking recording route additions/removals and exposing them dynamically via `/api/v1/gateway/changelog`. [July 16, 2026]
