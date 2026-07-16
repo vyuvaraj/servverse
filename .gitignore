@@ -1,0 +1,7 @@
+# Build output - never commit compiled binaries or installers
+dist/
+
+# Local OS / editor artifacts
+.DS_Store
+Thumbs.db
+*.swp

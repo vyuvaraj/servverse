@@ -161,10 +161,11 @@ jobs:
           $tag = "${{ github.ref_name }}"
           gh release download $tag -p "servverse-${tag}-windows-amd64.zip" --dir dist
           Expand-Archive -Path "dist/servverse-${tag}-windows-amd64.zip" -DestinationPath "dist/extracted" -Force
-          $binaries = Get-ChildItem "dist/extracted/servverse-${tag}-windows-amd64/*"
+          New-Item -ItemType Directory -Path "dist/bin" -Force | Out-Null
+          $binaries = Get-ChildItem "dist/extracted/servverse-${tag}-windows-amd64/*.exe"
           foreach ($file in $binaries) {
-            $dest = Join-Path ".." $file.Name
-            Copy-Item -Path $file.FullName -Destination $dest -Force
+            Copy-Item -Path $file.FullName -Destination "dist/bin/$($file.Name)" -Force
+            Write-Host "  Staged: $($file.Name)"
           }
 
       - name: Install Inno Setup

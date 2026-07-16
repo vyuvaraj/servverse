@@ -46,28 +46,28 @@ Name: "{app}\conf\servconsole"
 Name: "{app}\logs"
 
 [Files]
-; Binaries
-Source: "..\serv.exe"; DestDir: "{app}\bin"; Components: compiler; Flags: ignoreversion
-Source: "..\servgate.exe"; DestDir: "{app}\bin"; Components: gateway; Flags: ignoreversion
-Source: "..\servstore.exe"; DestDir: "{app}\bin"; Components: store; Flags: ignoreversion
-Source: "..\servqueue.exe"; DestDir: "{app}\bin"; Components: queue; Flags: ignoreversion
-Source: "..\servconsole.exe"; DestDir: "{app}\bin"; Components: console; Flags: ignoreversion
-Source: "..\servmesh.exe"; DestDir: "{app}\bin"; Components: mesh; Flags: ignoreversion
-Source: "..\servauth.exe"; DestDir: "{app}\bin"; Components: auth; Flags: ignoreversion
-Source: "..\servcloud.exe"; DestDir: "{app}\bin"; Components: cloud; Flags: ignoreversion
-Source: "..\servtrace.exe"; DestDir: "{app}\bin"; Components: trace; Flags: ignoreversion
-Source: "..\servtunnel.exe"; DestDir: "{app}\bin"; Components: tunnel; Flags: ignoreversion
-Source: "..\servflow.exe"; DestDir: "{app}\bin"; Components: flow; Flags: ignoreversion
-Source: "..\servdb.exe"; DestDir: "{app}\bin"; Components: pool; Flags: ignoreversion
-Source: "..\servmail.exe"; DestDir: "{app}\bin"; Components: mail; Flags: ignoreversion
-Source: "..\servcache.exe"; DestDir: "{app}\bin"; Components: cache; Flags: ignoreversion
-Source: "..\servcron.exe"; DestDir: "{app}\bin"; Components: cron; Flags: ignoreversion
-Source: "..\servregistry.exe"; DestDir: "{app}\bin"; Components: registry; Flags: ignoreversion
-Source: "..\servlock.exe"; DestDir: "{app}\bin"; Components: lock; Flags: ignoreversion
+; Binaries - sourced from dist/bin/ folder populated by workflow
+Source: "dist\bin\serv.exe"; DestDir: "{app}\bin"; Components: compiler; Flags: ignoreversion
+Source: "dist\bin\servgate.exe"; DestDir: "{app}\bin"; Components: gateway; Flags: ignoreversion
+Source: "dist\bin\servstore.exe"; DestDir: "{app}\bin"; Components: store; Flags: ignoreversion
+Source: "dist\bin\servqueue.exe"; DestDir: "{app}\bin"; Components: queue; Flags: ignoreversion
+Source: "dist\bin\servconsole.exe"; DestDir: "{app}\bin"; Components: console; Flags: ignoreversion
+Source: "dist\bin\servmesh.exe"; DestDir: "{app}\bin"; Components: mesh; Flags: ignoreversion
+Source: "dist\bin\servauth.exe"; DestDir: "{app}\bin"; Components: auth; Flags: ignoreversion
+Source: "dist\bin\servcloud.exe"; DestDir: "{app}\bin"; Components: cloud; Flags: ignoreversion
+Source: "dist\bin\servtrace.exe"; DestDir: "{app}\bin"; Components: trace; Flags: ignoreversion
+Source: "dist\bin\servtunnel.exe"; DestDir: "{app}\bin"; Components: tunnel; Flags: ignoreversion
+Source: "dist\bin\servflow.exe"; DestDir: "{app}\bin"; Components: flow; Flags: ignoreversion
+Source: "dist\bin\servdb.exe"; DestDir: "{app}\bin"; Components: pool; Flags: ignoreversion
+Source: "dist\bin\servmail.exe"; DestDir: "{app}\bin"; Components: mail; Flags: ignoreversion
+Source: "dist\bin\servcache.exe"; DestDir: "{app}\bin"; Components: cache; Flags: ignoreversion
+Source: "dist\bin\servcron.exe"; DestDir: "{app}\bin"; Components: cron; Flags: ignoreversion
+Source: "dist\bin\servregistry.exe"; DestDir: "{app}\bin"; Components: registry; Flags: ignoreversion
+Source: "dist\bin\servlock.exe"; DestDir: "{app}\bin"; Components: lock; Flags: ignoreversion
 
-; Configuration Templates
-Source: "..\ServGate\config.json"; DestDir: "{app}\conf\servgate"; Flags: onlyifdoesntexist
-Source: "..\ServConsole\services.example.json"; DestName: "services.json"; DestDir: "{app}\conf\servconsole"; Flags: onlyifdoesntexist
+; Configuration Templates - bundled inside the repo under configs/
+Source: "configs\servgate\config.json"; DestDir: "{app}\conf\servgate"; Flags: onlyifdoesntexist
+Source: "configs\servconsole\services.json"; DestDir: "{app}\conf\servconsole"; Flags: onlyifdoesntexist
 
 [Registry]
 Root: HKCU; Subkey: "Environment"; ValueType: string; ValueName: "Path"; ValueData: "{olddata};{app}\bin"; Flags: preservestringtype
