@@ -619,6 +619,16 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 | CD.106 | **Lock queueing with fairness**  Multiple waiters get lock in FIFO order. No starvation under high contention | ServLock | Redis SETNX has no queue (unfair retry). etcd leases have ordering. ServLock should too | [x] |
 | CD.107 | **Lock observability in ServConsole**  See active locks, wait queues, contention hotspots, deadlock detection in real-time dashboard | ServLock + ServConsole | No lock service has observability built-in. Debug distributed locks visually | [ ] |
 
+#### VS Code Extension Ecosystem Integrations (Developer Experience)
+
+| # | Feature | Component | Why Urgent | Status |
+|---|---------|-----------|-----------|--------|
+| CD.108 | **ServFlow visual DAG designer**  Render live workflow graphs using Webviews and Mermaid inside the IDE | ServFlow + VS Code | Render live DAG flowcharts of steps and compensating tasks directly in the editor | [ ] |
+| CD.109 | **ServQueue Broker Explorer**  Sidebar explorer to view topics, consumer groups, message traces, and deploy WASM transforms | ServQueue + VS Code | Browse message broker queues and deploy streaming transform triggers visually | [ ] |
+| CD.110 | **ServStore Bucket & Trigger manager**  IDE explorer to manage object storage buckets, upload triggers, and browse metadata | ServStore + VS Code | Manage S3 bucket metadata, file trees, and WASM object trigger code | [ ] |
+| CD.111 | **ServLock Contention Dashboard**  Debug distributed locks, deadlocks, and FIFO waiter queues live inside the editor | ServLock + VS Code | Real-time observability of waiter queue and contention hotspots directly in the workspace | [ ] |
+| CD.112 | **ServGate Route Simulator**  Mock gateway configurations and simulate route/cost routing rules from the IDE | ServGate + VS Code | Simulate API request routing and prompt injection rules locally without sandbox deployment | [ ] |
+
 ---
 
 ## Phase 27: v1.0 Release Readiness (Pending)
