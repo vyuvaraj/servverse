@@ -51,7 +51,7 @@ Source: "..\servdb.exe"; DestDir: "{app}"; Components: pool; Flags: ignoreversio
 Source: "..\servmail.exe"; DestDir: "{app}"; Components: mail; Flags: ignoreversion
 Source: "..\servcache.exe"; DestDir: "{app}"; Components: cache; Flags: ignoreversion
 Source: "..\servcron.exe"; DestDir: "{app}"; Components: cron; Flags: ignoreversion
-Source: "..\servdocs.exe"; DestDir: "{app}"; Components: registry; Flags: ignoreversion
+Source: "..\servregistry.exe"; DestDir: "{app}"; Components: registry; Flags: ignoreversion
 Source: "..\servlock.exe"; DestDir: "{app}"; Components: lock; Flags: ignoreversion
 
 [Registry]
