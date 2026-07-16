@@ -10,21 +10,28 @@ permissions:
 
 jobs:
   build-installer:
+    # Do not run concurrently; wait until main release build finishes compiling the actual binaries
     runs-on: windows-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # In a real environment, binaries are downloaded from release artifacts or compiled.
-      # We create dummy placeholders if binaries are missing in order to test the Inno Setup script build.
-      - name: Prepare Mock Binaries for Installer Build
+      - name: Download Windows Build Artifacts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          $binaries = @("serv.exe", "servgate.exe", "servstore.exe", "servqueue.exe", "servconsole.exe", "servmesh.exe", "servauth.exe", "servflow.exe", "servdb.exe", "servmail.exe", "servcache.exe", "servcron.exe", "servdocs.exe", "servlock.exe")
-          foreach ($bin in $binaries) {
-            $path = Join-Path ".." $bin
-            if (-not (Test-Path $path)) {
-              New-Item -ItemType File -Path $path -Force -Value "mock binary content"
-            }
+          # Fetch tag version
+          $tag = "${{ github.ref_name }}"
+          
+          # Fetch the official zip containing compiled production binaries
+          gh release download $tag -p "servverse-${tag}-windows-amd64.zip" --dir dist
+          
+          # Extract production binaries into target parent directories to feed ISS source directories
+          Expand-Archive -Path "dist/servverse-${tag}-windows-amd64.zip" -DestinationPath "dist/extracted" -Force
+          $binaries = Get-ChildItem "dist/extracted/servverse-${tag}-windows-amd64/*"
+          foreach ($file in $binaries) {
+            $dest = Join-Path ".." $file.Name
+            Copy-Item -Path $file.FullName -Destination $dest -Force
           }
 
       - name: Install Inno Setup

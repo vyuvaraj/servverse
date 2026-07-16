@@ -16,6 +16,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Installer Package
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           chmod +x scripts/build-macos-pkg.sh
           ./scripts/build-macos-pkg.sh

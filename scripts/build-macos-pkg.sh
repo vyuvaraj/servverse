@@ -10,17 +10,15 @@ BIN_DIR="${PKG_DIR}/usr/local/bin"
 echo "Preparing package workspace..."
 mkdir -p "${BIN_DIR}"
 
-# List of workspace binaries to copy into packaging layout
-BINARIES=("serv" "servgate" "servstore" "servqueue" "servconsole" "servmesh" "servauth" "servflow" "servdb" "servmail" "servcache" "servcron" "servdocs" "servlock")
-for bin in "${BINARIES[@]}"; do
-  # Copy binary if it exists, otherwise write placeholder for release build validation
-  if [ -f "../${bin}" ]; then
-    cp "../${bin}" "${BIN_DIR}/"
-  else
-    echo "Placeholder binary for release compilation check" > "${BIN_DIR}/${bin}"
-    chmod +x "${BIN_DIR}/${bin}"
-  fi
-done
+# Download and extract macOS production binaries from the tag release
+tag="${GITHUB_REF_NAME}"
+echo "Downloading servverse-${tag}-darwin-amd64.tar.gz..."
+gh release download "${tag}" -p "servverse-${tag}-darwin-amd64.tar.gz" --dir dist
+tar -xzf "dist/servverse-${tag}-darwin-amd64.tar.gz" -C dist/
+
+# Copy binaries into package layout
+echo "Copying production binaries..."
+cp -r dist/servverse-${tag}-darwin-amd64/* "${BIN_DIR}/"
 
 echo "Building raw package..."
 pkgbuild --root "${PKG_DIR}" \
