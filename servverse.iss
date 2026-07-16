@@ -31,7 +31,6 @@ Name: "trace"; Description: "ServTrace OpenTelemetry trace collector"; Types: fu
 Name: "auth"; Description: "ServAuth Identity & Security service"; Types: full custom
 Name: "cron"; Description: "ServCron Distributed Scheduler"; Types: full custom
 Name: "cloud"; Description: "ServCloud Cluster Orchestrator"; Types: full custom
-Name: "trace"; Description: "ServTrace OpenTelemetry trace collector"; Types: full custom
 Name: "flow"; Description: "ServFlow Saga Workflow engine"; Types: full custom
 Name: "pool"; Description: "ServPool Connection Pooler proxy"; Types: full custom
 Name: "mail"; Description: "ServMail Notification API Gateway"; Types: full custom
