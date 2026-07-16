@@ -32,7 +32,8 @@ $components = @(
     @("servdb",       "../ServPool",      "."),
     @("servmail",     "../ServMail",      "."),
     @("servflow",     "../ServFlow",      "."),
-    @("servregistry", "../ServRegistry",  ".")
+    @("servregistry", "../ServRegistry",  "."),
+    @("servlock",     "../ServLock",      ".")
 )
 
 # Prepare output directory
