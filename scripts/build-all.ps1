@@ -61,9 +61,8 @@ foreach ($comp in $components) {
 
     Write-Host "  Building $name..." -NoNewline
     try {
-        $buildArgs = @("build", "-ldflags", "-s -w -X main.version=$Version", "-o", "${archiveDir}/${name}${ext}", $module)
-        # On Windows, Start-Process needs the double quotes preserved to pass the spaced ldflags string as a single argument.
-        $argList = "build -ldflags `"-s -w -X main.version=$Version`" -o `"$archiveDir/${name}${ext}`" $module"
+        $absArchiveDir = Resolve-Path $archiveDir
+        $argList = "build -ldflags `"-s -w -X main.version=$Version`" -o `"$absArchiveDir/${name}${ext}`" $module"
         $proc = Start-Process -FilePath "go" -ArgumentList $argList -WorkingDirectory $srcDir -NoNewWindow -Wait -PassThru -RedirectStandardError "$env:TEMP\go-err.txt"
         if ($proc.ExitCode -eq 0) {
             Write-Host " OK" -ForegroundColor Green
