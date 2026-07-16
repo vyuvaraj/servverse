@@ -585,7 +585,7 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 
 | # | Feature | Component | Why Urgent | Status |
 |---|---------|-----------|-----------|--------|
-| CD.95 | **AI decision steps** � `step "classify" { ai.classify(input, ["approve", "review", "reject"]) }` � AI-powered branching without external service | ServFlow + Serv-lang | Temporal has no AI primitives. Step Functions needs Lambda. ServFlow has it inline | [ ] |
+| CD.95 | **AI decision steps** � `step "classify" { ai.classify(input, ["approve", "review", "reject"]) }` � AI-powered branching without external service | ServFlow + Serv-lang | Temporal has no AI primitives. Step Functions needs Lambda. ServFlow has it inline | [x] |
 | CD.96 | **Workflow generation from natural language** � "Create a workflow: validate order ? charge payment ? ship ? send confirmation" ? generates DAG definition | ServFlow + Serv-lang | No workflow engine generates workflow from description. This is the AI-era killer feature | [ ] |
 | CD.97 | **Cron job smart scheduling** � Analyze historical execution: duration, resource usage, conflicts. Auto-suggest non-overlapping windows | ServCron | Airflow has SLA. No scheduler auto-optimizes schedule based on observed patterns | [ ] |
 
@@ -594,7 +594,7 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 | # | Feature | Component | Why Urgent | Status |
 |---|---------|-----------|-----------|--------|
 | CD.98 | **Passwordless magic link + passkey** � One-click login via email magic link or WebAuthn passkey. No password stored | ServAuth | Auth0/Clerk have this. ServAuth needs it to compete in the modern auth space | [x] |
-| CD.99 | **Adaptive risk scoring per login** � Score: new device(+3) + unusual time(+2) + different country(+5) = high risk ? step-up to MFA automatically | ServAuth | Auth0 has "Attack Protection". Self-hosted auth systems don't. ServAuth should | [ ] |
+| CD.99 | **Adaptive risk scoring per login** � Score: new device(+3) + unusual time(+2) + different country(+5) = high risk ? step-up to MFA automatically | ServAuth | Auth0 has "Attack Protection". Self-hosted auth systems don't. ServAuth should | [x] |
 | CD.100 | **SCIM 2.0 provisioning** � Enterprise user/group sync from Okta, Azure AD, Google Workspace. Auto-create/disable accounts | ServAuth | Required for enterprise sales. Keycloak has it. Single-binary auth systems don't | [x] |
 
 #### Developer Experience (Vercel will copy one-command deploy)
@@ -617,7 +617,7 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 |---|---------|-----------|-----------|--------|
 | CD.105 | **Cache stampede protection (singleflight)**  Concurrent cache misses for same key coalesce into one computation. No thundering herd | ServCache | Redis doesn't prevent stampede. Application code must. ServCache does it at server level | [x] |
 | CD.106 | **Lock queueing with fairness**  Multiple waiters get lock in FIFO order. No starvation under high contention | ServLock | Redis SETNX has no queue (unfair retry). etcd leases have ordering. ServLock should too | [x] |
-| CD.107 | **Lock observability in ServConsole**  See active locks, wait queues, contention hotspots, deadlock detection in real-time dashboard | ServLock + ServConsole | No lock service has observability built-in. Debug distributed locks visually | [ ] |
+| CD.107 | **Lock observability in ServConsole**  See active locks, wait queues, contention hotspots, deadlock detection in real-time dashboard | ServLock + ServConsole | No lock service has observability built-in. Debug distributed locks visually | [x] |
 
 #### VS Code Extension Ecosystem Integrations (Developer Experience)
 
