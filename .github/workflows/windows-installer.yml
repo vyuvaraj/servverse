@@ -19,7 +19,7 @@ jobs:
       # We create dummy placeholders if binaries are missing in order to test the Inno Setup script build.
       - name: Prepare Mock Binaries for Installer Build
         run: |
-          $binaries = @("serv.exe", "servgate.exe", "servstore.exe", "servqueue.exe", "servconsole.exe", "servmesh.exe", "servauth.exe", "servflow.exe", "servdb.exe", "servmail.exe")
+          $binaries = @("serv.exe", "servgate.exe", "servstore.exe", "servqueue.exe", "servconsole.exe", "servmesh.exe", "servauth.exe", "servflow.exe", "servdb.exe", "servmail.exe", "servcache.exe", "servcron.exe", "servdocs.exe", "servlock.exe")
           foreach ($bin in $binaries) {
             $path = Join-Path ".." $bin
             if (-not (Test-Path $path)) {
@@ -27,10 +27,8 @@ jobs:
             }
           }
 
-      - name: Compile Inno Setup Script
-        uses: crazy-max/ghaction-setup-inno@v3
-        with:
-          inno-version: '6.2.2'
+      - name: Install Inno Setup
+        run: choco install innosetup -y
 
       - name: Build Installer Package
         run: |
