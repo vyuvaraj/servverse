@@ -38,6 +38,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: servverse-repo/dist/ServVerse-windows-setup.exe
+          files: dist/ServVerse-windows-setup.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
