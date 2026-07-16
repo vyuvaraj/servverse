@@ -587,7 +587,7 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 |---|---------|-----------|-----------|--------|
 | CD.95 | **AI decision steps** � `step "classify" { ai.classify(input, ["approve", "review", "reject"]) }` � AI-powered branching without external service | ServFlow + Serv-lang | Temporal has no AI primitives. Step Functions needs Lambda. ServFlow has it inline | [x] |
 | CD.96 | **Workflow generation from natural language** � "Create a workflow: validate order ? charge payment ? ship ? send confirmation" ? generates DAG definition | ServFlow + Serv-lang | No workflow engine generates workflow from description. This is the AI-era killer feature | [x] |
-| CD.97 | **Cron job smart scheduling** � Analyze historical execution: duration, resource usage, conflicts. Auto-suggest non-overlapping windows | ServCron | Airflow has SLA. No scheduler auto-optimizes schedule based on observed patterns | [ ] |
+| CD.97 | **Cron job smart scheduling** � Analyze historical execution: duration, resource usage, conflicts. Auto-suggest non-overlapping windows | ServCron | Airflow has SLA. No scheduler auto-optimizes schedule based on observed patterns | [x] |
 
 #### Identity & Security (Auth0 will copy progressive auth)
 
@@ -601,14 +601,14 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 
 | # | Feature | Component | Why Urgent | Status |
 |---|---------|-----------|-----------|--------|
-| CD.101 | **Web Playground** � Write Serv code in browser ? compile via WASM ? run ? see output. Zero install | Serv-lang | Go, Rust, Zig all have playgrounds. Serv needs one for adoption | [ ] |
+| CD.101 | **Web Playground** � Write Serv code in browser ? compile via WASM ? run ? see output. Zero install | Serv-lang | Go, Rust, Zig all have playgrounds. Serv needs one for adoption | [x] |
 | CD.102 | **`serv bench <file.srv>`** � Auto-generates load tests from route declarations, runs them, reports p99/throughput | Serv-lang | No compiler auto-generates performance tests from source code | [x] |
-| CD.103 | **Branch-based preview deployments** � Push a branch ? ServCloud auto-deploys to unique URL ? share with team for review | ServCloud | Vercel/Netlify pioneered this. Backend frameworks don't have it. ServCloud should | [ ] |
+| CD.103 | **Branch-based preview deployments** � Push a branch ? ServCloud auto-deploys to unique URL ? share with team for review | ServCloud | Vercel/Netlify pioneered this. Backend frameworks don't have it. ServCloud should | [x] |
 | CD.104 | **`serv doctor --integration`** � Boots full ecosystem via docker-compose, runs cross-service smoke tests, reports health matrix | servverse-repo | No platform has a "test everything works together" command | ? Exists |
 
-| CD.101 | **Web Playground**  Write Serv code in browser ? compile via WASM ? run ? see output. Zero install | Serv-lang | Go, Rust, Zig all have playgrounds. Serv needs one for adoption | [ ] |
+| CD.101 | **Web Playground**  Write Serv code in browser ? compile via WASM ? run ? see output. Zero install | Serv-lang | Go, Rust, Zig all have playgrounds. Serv needs one for adoption | [x] |
 | CD.102 | **`serv bench <file.srv>`**  Auto-generates load tests from route declarations, runs them, reports p99/throughput | Serv-lang | No compiler auto-generates performance tests from source code | [x] |
-| CD.103 | **Branch-based preview deployments**  Push a branch ? ServCloud auto-deploys to unique URL ? share with team for review | ServCloud | Vercel/Netlify pioneered this. Backend frameworks don't have it. ServCloud should | [ ] |
+| CD.103 | **Branch-based preview deployments**  Push a branch ? ServCloud auto-deploys to unique URL ? share with team for review | ServCloud | Vercel/Netlify pioneered this. Backend frameworks don't have it. ServCloud should | [x] |
 | CD.104 | **`serv doctor --integration`**  Boots full ecosystem via docker-compose, runs cross-service smoke tests, reports health matrix | servverse-repo | No platform has a "test everything works together" command | ? Exists |
 
 #### Cache & Lock (Redis will remain dominant  need clear differentiation)
