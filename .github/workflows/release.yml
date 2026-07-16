@@ -107,7 +107,7 @@ jobs:
           build_component "servtrace" "../ServTrace"
           build_component "servtunnel" "../ServTunnel"
           build_component "servauth" "../ServAuth"
-          build_component "ServPool" "../ServPool"
+          build_component "servdb" "../ServPool"
           build_component "servmail" "../ServMail"
           build_component "servflow" "../ServFlow"
           build_component "servregistry" "../ServRegistry"
