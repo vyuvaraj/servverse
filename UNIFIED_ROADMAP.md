@@ -652,7 +652,7 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 | V1.11 | **v1.0.0 release notes draft** | Comprehensive release announcement covering all 19 components, key features, migration notes | [x] |
 | V1.12 | **Docker Hub / GHCR images** | Publish official container images for all services (`ghcr.io/vyuvaraj/servstore:1.0.0`) | [x] |
 | V1.14 | **VS Code extension published** | Publish LSP extension to marketplace before v1.0 tag. Signals production readiness | [x] |
-| V1.15 | **VS Code extension enhancements** | Implement robust cross-platform shell terminal escaping, regex-based CodeLens detection, diagnostics cleanup on file close, and colocated LSP path autodetect | [ ] |
+| V1.15 | **VS Code extension enhancements** | Implement robust cross-platform shell terminal escaping, regex-based CodeLens detection, diagnostics cleanup on file close, and colocated LSP path autodetect | [x] |
 
 ---
 
