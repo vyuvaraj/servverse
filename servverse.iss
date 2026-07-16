@@ -4,6 +4,8 @@
 [Setup]
 AppName=ServVerse
 AppVersion=1.7.0
+ArchitecturesAllowed=x64
+ArchitecturesInstallIn64BitMode=x64
 DefaultDirName={autopf}\ServVerse
 DefaultGroupName=ServVerse
 UninstallDisplayIcon={app}\serv.exe
