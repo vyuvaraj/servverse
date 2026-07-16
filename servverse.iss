@@ -31,6 +31,7 @@ Name: "trace"; Description: "ServTrace OpenTelemetry trace collector"; Types: fu
 Name: "auth"; Description: "ServAuth Identity & Security service"; Types: full custom
 Name: "cron"; Description: "ServCron Distributed Scheduler"; Types: full custom
 Name: "cloud"; Description: "ServCloud Cluster Orchestrator"; Types: full custom
+Name: "trace"; Description: "ServTrace OpenTelemetry trace collector"; Types: full custom
 Name: "flow"; Description: "ServFlow Saga Workflow engine"; Types: full custom
 Name: "pool"; Description: "ServPool Connection Pooler proxy"; Types: full custom
 Name: "mail"; Description: "ServMail Notification API Gateway"; Types: full custom
@@ -54,6 +55,9 @@ Source: "..\servqueue.exe"; DestDir: "{app}\bin"; Components: queue; Flags: igno
 Source: "..\servconsole.exe"; DestDir: "{app}\bin"; Components: console; Flags: ignoreversion
 Source: "..\servmesh.exe"; DestDir: "{app}\bin"; Components: mesh; Flags: ignoreversion
 Source: "..\servauth.exe"; DestDir: "{app}\bin"; Components: auth; Flags: ignoreversion
+Source: "..\servcloud.exe"; DestDir: "{app}\bin"; Components: cloud; Flags: ignoreversion
+Source: "..\servtrace.exe"; DestDir: "{app}\bin"; Components: trace; Flags: ignoreversion
+Source: "..\servtunnel.exe"; DestDir: "{app}\bin"; Components: tunnel; Flags: ignoreversion
 Source: "..\servflow.exe"; DestDir: "{app}\bin"; Components: flow; Flags: ignoreversion
 Source: "..\servdb.exe"; DestDir: "{app}\bin"; Components: pool; Flags: ignoreversion
 Source: "..\servmail.exe"; DestDir: "{app}\bin"; Components: mail; Flags: ignoreversion
