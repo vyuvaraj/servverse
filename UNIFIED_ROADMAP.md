@@ -682,7 +682,58 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 
 ---
 
+## Phase 28: Distribution & Installer Packaging
+
+> **Goal:** Move beyond GitHub zip downloads to proper OS-native installers across Windows, macOS, and Linux. Deliver a frictionless install experience for new users while maintaining existing Homebrew/Scoop flows.
+
+### Current Baseline
+
+| Channel | Status | Notes |
+|---|---|---|
+| GitHub Release zips | ✅ Live | All 16 services, via GoReleaser |
+| Homebrew tap | ✅ Live | `brew install vyuvaraj/serv/<service>` |
+| Scoop bucket | ✅ Live | `scoop install <service>` |
+| Docker / GHCR | ✅ Live | `ghcr.io/vyuvaraj/<service>:latest` |
+| `.deb` / `.rpm` packages | ⬜ Not yet | **Phase 1 pick** |
+| Windows setup `.exe` | ⬜ Not yet | Phase 2 |
+| macOS `.pkg` installer | ⬜ Not yet | Phase 3 |
+| Snap / Microsoft Store | ⬜ Not yet | Phase 4 |
+
+### Phase 1 — Linux Packages via nfpm (Picked for implementation)
+
+| # | Item | Description | Status |
+|---|------|-------------|--------|
+| PKG.1 | **Add `nfpms` block to all 17 GoReleaser configs** | Generates `.deb` (Ubuntu/Debian/Mint) and `.rpm` (RHEL/Fedora/Rocky) packages in every GitHub Release automatically. Handles `/usr/local/bin` placement, package metadata, and checksums. Zero CI change required. | [x] |
+| PKG.2 | **Per-service postinstall scripts** | `postinstall.sh` prints quick-start instructions; `preremove.sh` stops any running service instance before uninstall. | [x] |
+| PKG.3 | **Unified ServVerse `.deb` / `.rpm` meta-package** | A single `servverse` meta-package that declares all 16 services as dependencies, so `apt install servverse` installs the full stack. | [ ] |
+
+### Phase 2 — Windows Unified Installer (Inno Setup)
+
+| # | Item | Description | Status |
+|---|------|-------------|--------|
+| PKG.4 | **Inno Setup script for `ServVerse-x.x.x-windows-setup.exe`** | Single installer with component picker. User selects which services to install. Handles PATH addition, Start Menu shortcuts, and Add/Remove Programs uninstall entry. | [ ] |
+| PKG.5 | **GitHub Actions workflow for Windows installer build** | Automates Inno Setup build on each release tag using `crazy-max/ghaction-setup-inno`. Uploads the `.exe` as a release asset. | [ ] |
+| PKG.6 | **Chocolatey package** | Submit `servverse.nuspec` to Chocolatey Community Repository for `choco install servverse`. | [ ] |
+| PKG.7 | **winget manifest** | Submit manifest to `microsoft/winget-pkgs` for `winget install Yuvaraj.ServVerse`. | [ ] |
+
+### Phase 3 — macOS Package Installer
+
+| # | Item | Description | Status |
+|---|------|-------------|--------|
+| PKG.8 | **macOS `.pkg` via `pkgbuild` + `productbuild`** | Installs all selected binaries to `/usr/local/bin`. Signed and notarized for macOS 10.15+ Gatekeeper compatibility. | [ ] |
+| PKG.9 | **Apple Developer notarization in CI** | Automate `xcrun notarytool submit` in GitHub Actions after `pkgbuild`. Requires Apple Developer account secrets in repo settings. | [ ] |
+
+### Phase 4 — Store Distribution
+
+| # | Item | Description | Status |
+|---|------|-------------|--------|
+| PKG.10 | **Snap package (`snapcraft.yaml`)** | Works across all Linux distros without `.deb`/`.rpm`. Published to Snap Store. | [ ] |
+| PKG.11 | **MSIX for Microsoft Store** | Modern Windows packaging format. Required for Microsoft Store listing and enterprise GPO deployment. Requires EV code-signing certificate. | [ ] |
+
+---
+
 ## Appendix C: Architectural Policy for OSS/EE Boundaries
+
 
 All commercial enterprise features (**EE**) must have their core logic and implementations located exclusively inside the private `servverse-ee` repository. 
 The open-source core repositories (such as `ServGate`, `ServStore`, etc.) must only expose clean interfaces, hooks, or config fields. The implementation of these hooks in the open-source code must use build-tagged placeholders (`//go:build !enterprise`), while the actual commercial code resides under the corresponding directories in `servverse-ee` and is built with `//go:build enterprise`.
