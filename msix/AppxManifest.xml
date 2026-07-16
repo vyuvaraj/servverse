@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+         xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+         xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities">
+  <Identity Name="Yuvaraj.ServVerse"
+            ProcessorArchitecture="x64"
+            Publisher="CN=Yuvaraj"
+            Version="1.7.0.0" />
+  <Properties>
+    <DisplayName>ServVerse</DisplayName>
+    <PublisherDisplayName>Yuvaraj</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Resources>
+    <Resource Language="en-US" />
+  </Resources>
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.22000.0" />
+  </Dependencies>
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
+  <Applications>
+    <Application Id="ServVerseConsole" Executable="servconsole.exe" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements DisplayName="ServVerse Dashboard"
+                          Description="Ecosystem Operations Panel"
+                          BackgroundColor="#222222"
+                          Square150x150Logo="Assets\Logo.png"
+                          Square44x44Logo="Assets\SmallLogo.png">
+        <uap:DefaultTile Wide310x150Logo="Assets\WideLogo.png" />
+      </uap:VisualElements>
+    </Application>
+  </Applications>
+</Package>

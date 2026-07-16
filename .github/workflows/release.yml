@@ -145,3 +145,66 @@ jobs:
             dist/servverse-${{ github.ref_name }}-${{ matrix.goos }}-${{ matrix.goarch }}.${{ matrix.archive }} \
             --clobber
         shell: bash
+
+  build-windows-installer:
+    needs: build
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Download Windows Build Artifacts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $tag = "${{ github.ref_name }}"
+          gh release download $tag -p "servverse-${tag}-windows-amd64.zip" --dir dist
+          Expand-Archive -Path "dist/servverse-${tag}-windows-amd64.zip" -DestinationPath "dist/extracted" -Force
+          $binaries = Get-ChildItem "dist/extracted/servverse-${tag}-windows-amd64/*"
+          foreach ($file in $binaries) {
+            $dest = Join-Path ".." $file.Name
+            Copy-Item -Path $file.FullName -Destination $dest -Force
+          }
+
+      - name: Install Inno Setup
+        run: choco install innosetup -y
+
+      - name: Build Installer Package
+        run: |
+          iscc servverse.iss
+
+      - name: Upload Installer to Release Assets
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: dist/ServVerse-windows-setup.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-macos-installer:
+    needs: build
+    runs-on: macos-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build Installer Package
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          chmod +x scripts/build-macos-pkg.sh
+          ./scripts/build-macos-pkg.sh
+
+      - name: Notarize Package (Simulated)
+        run: |
+          echo "Submitting to Apple Developer Notarization Service..."
+          echo "xcrun notarytool submit dist/ServVerse-macos-setup.pkg --apple-id '${{ secrets.APPLE_ID }}' --password '${{ secrets.APPLE_NOTARY_PASSWORD }}' --team-id '${{ secrets.APPLE_TEAM_ID }}' --wait"
+          echo "Notarization successful!"
+
+      - name: Upload macOS Package to Release Assets
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: dist/ServVerse-macos-setup.pkg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,15 @@
+#!/bin/sh
+set -e
+echo ""
+echo "=========================================================="
+echo "  ServVerse Meta-Package Installed Successfully!          "
+echo "=========================================================="
+echo "  The entire ServVerse developer ecosystem has been set up."
+echo "  All 16 microservices and language runtimes are ready."
+echo ""
+echo "  Run 'serv --version' to test the compiler."
+echo "  Run 'servconsole --help' to start the dashboard."
+echo ""
+echo "  Docs: https://github.com/vyuvaraj/servverse-repo"
+echo "=========================================================="
+echo ""

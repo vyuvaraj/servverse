@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.singleton.1.6.0.schema.json
+
+PackageIdentifier: Yuvaraj.ServVerse
+PackageVersion: 1.7.0
+PackageName: ServVerse
+Publisher: Yuvaraj
+License: Apache-2.0
+ShortDescription: Unified installer for the ServVerse microservice development platform.
+Description: Installs the complete ServVerse developer platform including the Serv-lang compiler, ServGate API Gateway, ServStore S3 Engine, and more.
+Moniker: servverse
+Tags:
+  - microservices
+  - api-gateway
+  - development
+  - s3
+  - stomp
+InstallerType: inno
+Installers:
+  - Architecture: x64
+    InstallerUrl: https://github.com/vyuvaraj/servverse-repo/releases/download/v1.7.0/ServVerse-windows-setup.exe
+    InstallerSha256: 0000000000000000000000000000000000000000000000000000000000000000 # Placeholder - calculated upon build release
+ManifestType: singleton
+ManifestVersion: 1.6.0

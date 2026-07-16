@@ -1,0 +1,82 @@
+# Servverse Meta-Package GoReleaser Config
+#
+# Generates a virtual `servverse` .deb/.rpm meta-package that declares all
+# 16 Serv services as dependencies. Users can run:
+#   apt install servverse
+#   dnf install servverse
+# and get the full stack installed.
+#
+# This config has NO build section (no binary to compile). It only produces
+# nfpm packages via the `nfpms` block.
+#
+# Usage:
+#   goreleaser release --config .goreleaser-meta.yml --snapshot --clean
+#   goreleaser release --config .goreleaser-meta.yml
+
+version: 2
+
+project_name: servverse
+
+# No builds — this is a pure meta-package (virtual package with dependencies only)
+builds:
+  - skip: true
+    id: skip-build
+
+nfpms:
+  - id: servverse-meta
+    package_name: servverse
+    # No binary to install — this is a dependency-only meta-package
+    builds: []
+    vendor: Yuvaraj
+    homepage: https://github.com/vyuvaraj/servverse-repo
+    maintainer: Yuvaraj <vyuvaraj@github.com>
+    description: |
+      Servverse ecosystem meta-package.
+      Installing this package will install the complete Servverse platform:
+      Serv-lang compiler, ServGate, ServStore, ServQueue, ServCache, ServMesh,
+      ServConsole, ServTrace, ServAuth, ServCron, ServCloud, ServFlow,
+      ServPool, ServMail, ServTunnel, ServRegistry, and ServLock.
+    license: Apache-2.0
+    formats:
+      - deb
+      - rpm
+
+    # Virtual package — declares all 16 service packages as dependencies.
+    # Each service publishes its own .deb/.rpm via its own GoReleaser config.
+    dependencies:
+      - serv-lang
+      - servgate
+      - servstore
+      - servqueue
+      - servcache
+      - servmesh
+      - servconsole
+      - servtrace
+      - servauth
+      - servcron
+      - servcloud
+      - servflow
+      - servpool
+      - servmail
+      - servtunnel
+      - servregistry
+      - servlock
+
+    contents:
+      - src: scripts/postinstall-meta.sh
+        dst: /usr/share/doc/servverse/postinstall.sh
+        type: doc
+
+    scripts:
+      postinstall: scripts/postinstall-meta.sh
+      preremove: scripts/preremove-meta.sh
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^ci:"
+      - Merge pull request
+      - Merge branch
