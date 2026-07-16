@@ -24,21 +24,17 @@ $repos = @(
     "servverse-repo"
 )
 
-$tag = "v0.2.0"
-$message = "Release v0.2.0"
+$tag = "v1.0.0-rc1"
+$message = "Release v1.0.0-rc1"
 
 Write-Host "==================================================" -ForegroundColor Cyan
 Write-Host "Tagging and pushing release $tag to all origins..." -ForegroundColor Cyan
 Write-Host "==================================================" -ForegroundColor Cyan
 
 foreach ($repo in $repos) {
-    # Check if folder exists
-    $repoPath = Join-Path ".." $repo
-    if (-not (Test-Path $repoPath)) {
-        $repoPath = Join-Path "." $repo
-        if (-not (Test-Path $repoPath)) {
-            continue
-        }
+    $repoPath = Resolve-Path (Join-Path $PSScriptRoot "../../$repo") -ErrorAction SilentlyContinue
+    if (-not $repoPath) {
+        continue
     }
 
     $gitPath = Join-Path $repoPath ".git"
