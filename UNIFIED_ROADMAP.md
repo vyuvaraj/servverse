@@ -593,9 +593,9 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 
 | # | Feature | Component | Why Urgent | Status |
 |---|---------|-----------|-----------|--------|
-| CD.98 | **Passwordless magic link + passkey** � One-click login via email magic link or WebAuthn passkey. No password stored | ServAuth | Auth0/Clerk have this. ServAuth needs it to compete in the modern auth space | [ ] |
+| CD.98 | **Passwordless magic link + passkey** � One-click login via email magic link or WebAuthn passkey. No password stored | ServAuth | Auth0/Clerk have this. ServAuth needs it to compete in the modern auth space | [x] |
 | CD.99 | **Adaptive risk scoring per login** � Score: new device(+3) + unusual time(+2) + different country(+5) = high risk ? step-up to MFA automatically | ServAuth | Auth0 has "Attack Protection". Self-hosted auth systems don't. ServAuth should | [ ] |
-| CD.100 | **SCIM 2.0 provisioning** � Enterprise user/group sync from Okta, Azure AD, Google Workspace. Auto-create/disable accounts | ServAuth | Required for enterprise sales. Keycloak has it. Single-binary auth systems don't | [ ] |
+| CD.100 | **SCIM 2.0 provisioning** � Enterprise user/group sync from Okta, Azure AD, Google Workspace. Auto-create/disable accounts | ServAuth | Required for enterprise sales. Keycloak has it. Single-binary auth systems don't | [x] |
 
 #### Developer Experience (Vercel will copy one-command deploy)
 
@@ -615,7 +615,7 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 
 | # | Feature | Component | Why Urgent | Status |
 |---|---------|-----------|-----------|--------|
-| CD.105 | **Cache stampede protection (singleflight)**  Concurrent cache misses for same key coalesce into one computation. No thundering herd | ServCache | Redis doesn't prevent stampede. Application code must. ServCache does it at server level | [ ] |
+| CD.105 | **Cache stampede protection (singleflight)**  Concurrent cache misses for same key coalesce into one computation. No thundering herd | ServCache | Redis doesn't prevent stampede. Application code must. ServCache does it at server level | [x] |
 | CD.106 | **Lock queueing with fairness**  Multiple waiters get lock in FIFO order. No starvation under high contention | ServLock | Redis SETNX has no queue (unfair retry). etcd leases have ordering. ServLock should too | [x] |
 | CD.107 | **Lock observability in ServConsole**  See active locks, wait queues, contention hotspots, deadlock detection in real-time dashboard | ServLock + ServConsole | No lock service has observability built-in. Debug distributed locks visually | [ ] |
 
