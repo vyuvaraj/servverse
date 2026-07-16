@@ -19,7 +19,7 @@ Write-Host "Building Servverse $Version for ${OS}/${Arch}..." -ForegroundColor C
 $components = @(
     @("serv",         "../Serv-lang",     "."),
     @("servgate",     "../ServGate",      "."),
-    @("servstore",    "../ServStore",     "."),
+    @("servstore",    "../ServStore",     "./cmd/servstore/"),
     @("servqueue",    "../ServQueue",     "."),
     @("servconsole",  "../ServConsole",   "."),
     @("servcache",    "../ServCache",     "."),
@@ -29,7 +29,7 @@ $components = @(
     @("servtrace",    "../ServTrace",     "."),
     @("servtunnel",   "../ServTunnel",    "."),
     @("servauth",     "../ServAuth",      "."),
-    @("ServPool",       "../ServPool",        "."),
+    @("servdb",       "../ServPool",      "."),
     @("servmail",     "../ServMail",      "."),
     @("servflow",     "../ServFlow",      "."),
     @("servregistry", "../ServRegistry",  ".")
