@@ -36,7 +36,8 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 | **Phase 25: Component Depth & Production Hardening** | 60 | 60 | 0 | **100%** | ████████████████████ |
 | **Phase 26: Competitive Differentiation** | 107 | 74 | 33 | **69%** | ██████████████░░░░░░ |
 | **Phase 27: v1.0 Release Readiness** | 14 | 0 | 14 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
-| **TOTAL ECOSYSTEM WORK** | **439** | **386** | **53** | **88%** | ██████████████████░░ |
+| **Phase 29: LSP IntelliSense & Developer Tooling** | 16 | 5 | 11 | **31%** | �������������������� |
+| **TOTAL ECOSYSTEM WORK** | **455** | **386** | **69** | **85%** | █████████████████░░░ |
 
 ---
 
@@ -541,8 +542,8 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 
 | # | Feature | Component | Why Urgent | Status |
 |---|---------|-----------|-----------|--------|
-| CD.76 | **Type-safe inter-service contracts**  When Service A calls `serv://B/users`, compiler verifies A's expected response type matches B's declared return type. Compile error on mismatch | Serv-lang | gRPC has this. REST doesn't. First REST language to do this wins | [ ] |
-| CD.77 | **Compile-time infrastructure reachability**  `serv build` pings declared broker/store/cache and fails if unreachable during development (skippable with `--offline`) | Serv-lang | Docker Compose validates services exist. No compiler does this | [ ] |
+| CD.76 | **Type-safe inter-service contracts**  When Service A calls `serv://B/users`, compiler verifies A's expected response type matches B's declared return type. Compile error on mismatch | Serv-lang | gRPC has this. REST doesn't. First REST language to do this wins | [x] |
+| CD.77 | **Compile-time infrastructure reachability**  `serv build` pings declared broker/store/cache and fails if unreachable during development (skippable with `--offline`) | Serv-lang | Docker Compose validates services exist. No compiler does this | [x] |
 | CD.78 | **Dead code detection across service boundaries**  Compiler queries ServMesh registry: "which routes are never called by any registered service?" Warns on unused endpoints | Serv-lang + ServMesh | Static analysis tools work within one repo. This works across repos | [ ] |
 | CD.79 | **`serv create --fix`**  AI generates code, tests fail, compiler feeds errors back to AI, AI fixes. Automated repair loop until tests pass or max retries | Serv-lang | Cursor/Copilot suggest code. None auto-repair compile errors in a loop | [x] |
 | CD.80 | **`cached fn` keyword**  `cached fn getUser(id) ttl 5m { return db.query(...) }`  compiler generates cache get/set/invalidation. No manual cache code | Serv-lang + ServCache | No language has cache-as-syntax. This is Serv's unique position | ? Exists |
@@ -555,15 +556,15 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 |---|---------|-----------|-----------|--------|
 | CD.83 | **Auto-generated API changelog**  Track route additions/removals/breaking changes over time. Serve at `/api/changelog`. Consumer teams subscribe to diffs | ServGate | Bump.sh does this as SaaS. No self-hosted gateway has it built-in | [ ] |
 | CD.84 | **Request cost estimation header**  Return `X-Estimated-Cost: $0.003` on AI-proxied requests before execution. Client can abort expensive calls | ServGate | No gateway previews cost before forwarding. Essential for AI budget control | [x] |
-| CD.85 | **Automatic circuit breaker from SLO breach**  If a backend's p99 exceeds SLO threshold, circuit opens automatically. No manual configuration per route | ServGate + ServTrace | Envoy needs explicit circuit config. ServGate derives it from observed SLOs | [ ] |
+| CD.85 | **Automatic circuit breaker from SLO breach**  If a backend's p99 exceeds SLO threshold, circuit opens automatically. No manual configuration per route | ServGate + ServTrace | Envoy needs explicit circuit config. ServGate derives it from observed SLOs | [x] |
 
 #### Storage & Data (MinIO/S3 will copy semantic search)
 
 | # | Feature | Component | Why Urgent | Status |
 |---|---------|-----------|-----------|--------|
-| CD.86 | **Conversational object query** � `GET /bucket?ask=What documents discuss authentication?` � synthesizes an answer from stored documents (RAG in storage layer) | ServStore | AWS Q&A on S3 is separate service. ServStore has it built-in. First mover advantage | [ ] |
-| CD.87 | **Auto-summarize on upload** � Every uploaded document gets a 2-sentence summary stored as metadata. Enables "browse by summary" without downloading | ServStore | No storage engine generates summaries. Google Drive does this for Workspace. ServStore does for S3 | ? Exists |
-| CD.88 | **Object similarity deduplication** � On upload, check if semantically similar document exists (cosine > 0.95). Warn or reject near-duplicates | ServStore | Google Drive detects exact duplicates. ServStore detects SEMANTIC duplicates | ? Exists |
+| CD.86 | **Conversational object query**  `GET /bucket?ask=What documents discuss authentication?`  synthesizes an answer from stored documents (RAG in storage layer) | ServStore | AWS Q&A on S3 is separate service. ServStore has it built-in. First mover advantage | [x] |
+| CD.87 | **Auto-summarize on upload**  Every uploaded document gets a 2-sentence summary stored as metadata. Enables "browse by summary" without downloading | ServStore | No storage engine generates summaries. Google Drive does this for Workspace. ServStore does for S3 | ? Exists |
+| CD.88 | **Object similarity deduplication**  On upload, check if semantically similar document exists (cosine > 0.95). Warn or reject near-duplicates | ServStore | Google Drive detects exact duplicates. ServStore detects SEMANTIC duplicates | ? Exists |
 
 #### Message Broker (Kafka/Pulsar will eventually add WASM)
 
@@ -729,6 +730,48 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 |---|------|-------------|--------|
 | PKG.10 | **Snap package (`snapcraft.yaml`)** | Works across all Linux distros without `.deb`/`.rpm`. Published to Snap Store. | [ ] |
 | PKG.11 | **MSIX for Microsoft Store** | Modern Windows packaging format. Required for Microsoft Store listing and enterprise GPO deployment. Requires EV code-signing certificate. | [ ] |
+
+---
+
+## Phase 29: LSP IntelliSense & Developer Tooling
+
+> **Goal:** Make the Serv-lang VS Code extension feel truly first-class — on par with TypeScript/Rust Analyzer. Each item directly reduces friction for developers writing `.srv` files daily.
+
+### 🔴 High Impact — Core IntelliSense
+
+| # | Feature | Component | Notes | Status |
+|---|---------|-----------|-------|--------|
+| DX.1 | **`insertTextFormat: 2` on all completion items** — Enable tab-stop placeholders (`$1`, `$2`) in all built-in and namespace completions so pressing Tab cycles through arguments | Serv-lang LSP | One-liner change; all `InsertText` strings already use `$1`/`$2` syntax but the format field is missing | [x] |
+| DX.2 | **Signature help for built-in namespace calls** — Typing `log.info(` or `db.query(` shows the parameter signature tooltip just like user-defined functions | Serv-lang LSP | Extend `handleSignatureHelp` to look up qualified `ns.method` names in `namespaceMembers` | [x] |
+| DX.3 | **Snippet completions for block keywords** — Typing `route`, `fn`, `test`, `struct`, `every`, `cron`, `subscribe` expands to a full multi-line snippet with correct body scaffold | Serv-lang LSP | Huge time-saver; currently only the bare keyword is inserted with no body | [x] |
+| DX.4 | **Import path auto-complete** — Inside `import "..."`, suggest relative `.srv` files from the workspace by scanning the file tree | Serv-lang LSP | Essential as projects grow beyond a single file | [x] |
+| DX.5 | **Struct field member completions** — If `let u = User { ... }` is parsed, typing `u.` suggests the struct's declared fields from the symbol table | Serv-lang LSP | Extend dot-trigger logic to also match user-defined struct variable types | [x] |
+
+### 🟡 Medium Impact — Hover & Signature Polish
+
+| # | Feature | Component | Notes | Status |
+|---|---------|-----------|-------|--------|
+| DX.6 | **Hover docs for namespace members** — Hovering on `.info` in `log.info(...)` shows member-level documentation, not just the parent namespace object | Serv-lang LSP | Extend `handleHover` to match `ns.member` tokens | [x] |
+| DX.7 | **`match` arm completions for enums** — Inside a `match` block on a known enum variable, suggest all variant arms automatically | Serv-lang LSP | Requires tracking variable types through `let` declarations | [ ] |
+| DX.8 | **Completion sort order** — Local document symbols first, built-in namespaces second, keywords last using `sortText` field | Serv-lang LSP | Quick change; makes lists much cleaner and more predictable | [x] |
+| DX.9 | **`documentation` field on completions** — Add markdown usage examples to built-in completion items so the detail pane in VS Code shows a mini-doc | Serv-lang LSP | Purely cosmetic but makes the extension feel professional | [x] |
+
+### 🟢 Quick Wins
+
+| # | Feature | Component | Notes | Status |
+|---|---------|-----------|-------|--------|
+| DX.10 | **Inlay type hints** (`textDocument/inlayHint`) — Ghost text showing inferred variable types next to `let` declarations without hover | Serv-lang LSP | Requires new LSP capability; Rust Analyzer and clangd popularised this | [ ] |
+| DX.11 | **Code lens for test blocks** (`textDocument/codeLens`) — Show `▶ Run test` clickable lens above every `test "..."` block | Serv-lang LSP | Turns editor into a live test dashboard; Go extension does this | [x] |
+| DX.12 | **Code lens for route blocks** — Show `▶ Send request` lens above every `route` declaration that opens a request panel | Serv-lang LSP | Similar to REST Client / HTTPie integration | [ ] |
+| DX.13 | **`textDocument/selectionRange`** — Smart expand/shrink selection to nearest statement or block boundary | Serv-lang LSP | Standard in TypeScript/Go extensions | [ ] |
+
+### 🔵 Advanced
+
+| # | Feature | Component | Notes | Status |
+|---|---------|-----------|-------|--------|
+| DX.14 | **AI-powered completion** — POST last N lines to `ai.complete` endpoint for context-aware suggestions beyond static built-ins | Serv-lang LSP | Ties directly into existing `ai` namespace runtime | [ ] |
+| DX.15 | **Live route linting** — Warn on `route` blocks with no `return` on all code paths (extends diagnostics pass) | Serv-lang LSP | Reduces silent bugs from missing returns in handlers | [ ] |
+| DX.16 | **`serv://` link navigation** — Clicking a `serv://service/path` string in any `.srv` file triggers Go-to-Definition to the remote service's `main.srv` | Serv-lang LSP | Extends existing `handleDefinition` import resolver | [ ] |
 
 ---
 
