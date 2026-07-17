@@ -34,9 +34,10 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 | **Phase 23: Developer Adoption & Growth** | 14 | 6 | 8 | **43%** | ████████░░░░░░░░░░░░ |
 | **Phase 24: Standalone Component Independence** | 20 | 16 | 4 | **80%** | ████████████████░░░░ |
 | **Phase 25: Component Depth & Production Hardening** | 60 | 60 | 0 | **100%** | ████████████████████ |
-| **Phase 26: Competitive Differentiation** | 107 | 74 | 33 | **69%** | ██████████████░░░░░░ |
-| **Phase 27: v1.0 Release Readiness** | 14 | 0 | 14 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
-| **Phase 29: LSP IntelliSense & Developer Tooling** | 16 | 5 | 11 | **31%** | �������������������� |
+| **Phase 26: Competitive Differentiation** | 107 | 77 | 30 | **72%** |
+| **Phase 27: v1.0 Release Readiness** | 14 | 0 | 14 | **0%** |
+| **Phase 28: Distribution & Installer Packaging** | 11 | 11 | 0 | **100%** |
+| **Phase 29: LSP IntelliSense & Developer Tooling** | 16 | 16 | 0 | **100%** |
 | **TOTAL ECOSYSTEM WORK** | **455** | **386** | **69** | **85%** | █████████████████░░░ |
 
 ---
@@ -683,97 +684,15 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 
 ---
 
-## Phase 28: Distribution & Installer Packaging
+## Phase 28: Distribution & Installer Packaging (Completed)
 
-> **Goal:** Move beyond GitHub zip downloads to proper OS-native installers across Windows, macOS, and Linux. Deliver a frictionless install experience for new users while maintaining existing Homebrew/Scoop flows.
+All backlog tasks for Phase 28 have been fully completed, verified, and archived.
+- For completed details of Phase 28: See [UNIFIED_ROADMAP_COMPLETED_26_30.md](file:///F:/Don/servverse/servverse/UNIFIED_ROADMAP_COMPLETED_26_30.md).
 
-### Current Baseline
+## Phase 29: LSP IntelliSense & Developer Tooling (Completed)
 
-| Channel | Status | Notes |
-|---|---|---|
-| GitHub Release zips | ✅ Live | All 16 services, via GoReleaser |
-| Homebrew tap | ✅ Live | `brew install vyuvaraj/serv/<service>` |
-| Scoop bucket | ✅ Live | `scoop install <service>` |
-| Docker / GHCR | ✅ Live | `ghcr.io/vyuvaraj/<service>:latest` |
-| `.deb` / `.rpm` packages | ✅ Live | Generated via GoReleaser + nfpm |
-| Windows setup `.exe` | ✅ Live | Created via Inno Setup (`servverse.iss`) |
-| macOS `.pkg` installer | ✅ Live | Built via `build-macos-pkg.sh` |
-| Snap / Microsoft Store | ✅ Live | Created snapcraft.yaml & AppxManifest.xml |
-
-### Phase 1 - Linux Packages via nfpm (Picked for implementation)
-
-| # | Item | Description | Status |
-|---|------|-------------|--------|
-| PKG.1 | **Add `nfpms` block to all 17 GoReleaser configs** | Generates `.deb` (Ubuntu/Debian/Mint) and `.rpm` (RHEL/Fedora/Rocky) packages in every GitHub Release automatically. Handles `/usr/local/bin` placement, package metadata, and checksums. Zero CI change required. | [x] Done |
-| PKG.2 | **Per-service postinstall scripts** | `postinstall.sh` prints quick-start instructions; `preremove.sh` stops any running service instance before uninstall. | [x] Done |
-| PKG.3 | **Unified ServVerse `.deb` / `.rpm` meta-package** | A single `servverse` meta-package that declares all 16 services as dependencies, so `apt install servverse` installs the full stack. | [x] Done |
-
-### Phase 2 - Windows Unified Installer (Inno Setup)
-
-| # | Item | Description | Status |
-|---|------|-------------|--------|
-| PKG.4 | **Inno Setup script for `ServVerse-x.x.x-windows-setup.exe`** | Single installer with component picker. User selects which services to install. Handles PATH addition, Start Menu shortcuts, and Add/Remove Programs uninstall entry. | [x] Done |
-| PKG.5 | **GitHub Actions workflow for Windows installer build** | Automates Inno Setup build on each release tag using `crazy-max/ghaction-setup-inno`. Uploads the `.exe` as a release asset. | [x] Done |
-| PKG.6 | **Chocolatey package** | Submit `servverse.nuspec` to Chocolatey Community Repository for `choco install servverse`. | [x] Done |
-| PKG.7 | **winget manifest** | Submit manifest to `microsoft/winget-pkgs` for `winget install Yuvaraj.ServVerse`. | [x] Done |
-
-### Phase 3 - macOS Packaging (Signed & Notarized)
-
-| # | Item | Description | Status |
-|---|------|-------------|--------|
-| PKG.8 | **macOS `.pkg` via `pkgbuild` + `productbuild`** | Installs all selected binaries to `/usr/local/bin`. Signed and notarized for macOS 10.15+ Gatekeeper compatibility. | [x] Done |
-| PKG.9 | **Apple Developer notarization in CI** | Automate `xcrun notarytool submit` in GitHub Actions after `pkgbuild`. Requires Apple Developer account secrets in repo settings. | [x] Done |
-
-### Phase 4 - Store Distribution
-
-| # | Item | Description | Status |
-|---|------|-------------|--------|
-| PKG.10 | **Snap package (`snapcraft.yaml`)** | Works across all Linux distros without `.deb`/`.rpm`. Published to Snap Store. | [x] Done |
-| PKG.11 | **MSIX for Microsoft Store** | Modern Windows packaging format. Required for Microsoft Store listing and enterprise GPO deployment. Requires EV code-signing certificate. | [x] Done |
----
-
-## Phase 29: LSP IntelliSense & Developer Tooling
-
-> **Goal:** Make the Serv-lang VS Code extension feel truly first-class — on par with TypeScript/Rust Analyzer. Each item directly reduces friction for developers writing `.srv` files daily.
-
-### 🔴 High Impact — Core IntelliSense
-
-| # | Feature | Component | Notes | Status |
-|---|---------|-----------|-------|--------|
-| DX.1 | **`insertTextFormat: 2` on all completion items** — Enable tab-stop placeholders (`$1`, `$2`) in all built-in and namespace completions so pressing Tab cycles through arguments | Serv-lang LSP | One-liner change; all `InsertText` strings already use `$1`/`$2` syntax but the format field is missing | [x] |
-| DX.2 | **Signature help for built-in namespace calls** — Typing `log.info(` or `db.query(` shows the parameter signature tooltip just like user-defined functions | Serv-lang LSP | Extend `handleSignatureHelp` to look up qualified `ns.method` names in `namespaceMembers` | [x] |
-| DX.3 | **Snippet completions for block keywords** — Typing `route`, `fn`, `test`, `struct`, `every`, `cron`, `subscribe` expands to a full multi-line snippet with correct body scaffold | Serv-lang LSP | Huge time-saver; currently only the bare keyword is inserted with no body | [x] |
-| DX.4 | **Import path auto-complete** — Inside `import "..."`, suggest relative `.srv` files from the workspace by scanning the file tree | Serv-lang LSP | Essential as projects grow beyond a single file | [x] |
-| DX.5 | **Struct field member completions** — If `let u = User { ... }` is parsed, typing `u.` suggests the struct's declared fields from the symbol table | Serv-lang LSP | Extend dot-trigger logic to also match user-defined struct variable types | [x] |
-
-### 🟡 Medium Impact — Hover & Signature Polish
-
-| # | Feature | Component | Notes | Status |
-|---|---------|-----------|-------|--------|
-| DX.6 | **Hover docs for namespace members** — Hovering on `.info` in `log.info(...)` shows member-level documentation, not just the parent namespace object | Serv-lang LSP | Extend `handleHover` to match `ns.member` tokens | [x] |
-| DX.7 | **`match` arm completions for enums** — Inside a `match` block on a known enum variable, suggest all variant arms automatically | Serv-lang LSP | Requires tracking variable types through `let` declarations | [x] |
-| DX.8 | **Completion sort order** — Local document symbols first, built-in namespaces second, keywords last using `sortText` field | Serv-lang LSP | Quick change; makes lists much cleaner and more predictable | [x] |
-| DX.9 | **`documentation` field on completions** — Add markdown usage examples to built-in completion items so the detail pane in VS Code shows a mini-doc | Serv-lang LSP | Purely cosmetic but makes the extension feel professional | [x] |
-
-### 🟢 Quick Wins
-
-| # | Feature | Component | Notes | Status |
-|---|---------|-----------|-------|--------|
-| DX.10 | **Inlay type hints** (`textDocument/inlayHint`) — Ghost text showing inferred variable types next to `let` declarations without hover | Serv-lang LSP | Requires new LSP capability; Rust Analyzer and clangd popularised this | [x] |
-| DX.11 | **Code lens for test blocks** (`textDocument/codeLens`) — Show `▶ Run test` clickable lens above every `test "..."` block | Serv-lang LSP | Turns editor into a live test dashboard; Go extension does this | [x] |
-| DX.12 | **Code lens for route blocks** — Show `▶ Send request` lens above every `route` declaration that opens a request panel | Serv-lang LSP | Similar to REST Client / HTTPie integration | [x] |
-| DX.13 | **`textDocument/selectionRange`** — Smart expand/shrink selection to nearest statement or block boundary | Serv-lang LSP | Standard in TypeScript/Go extensions | [x] |
-
-### 🔵 Advanced
-
-| # | Feature | Component | Notes | Status |
-|---|---------|-----------|-------|--------|
-| DX.14 | **AI-powered completion** — POST last N lines to `ai.complete` endpoint for context-aware suggestions beyond static built-ins | Serv-lang LSP | Ties directly into existing `ai` namespace runtime | [x] |
-| DX.15 | **Live route linting** — Warn on `route` blocks with no `return` on all code paths (extends diagnostics pass) | Serv-lang LSP | Reduces silent bugs from missing returns in handlers | [x] |
-| DX.16 | **`serv://` link navigation** — Clicking a `serv://service/path` string in any `.srv` file triggers Go-to-Definition to the remote service's `main.srv` | Serv-lang LSP | Extends existing `handleDefinition` import resolver | [x] |
-
----
-
+All backlog tasks for Phase 29 have been fully completed, verified, and archived.
+- For completed details of Phase 29: See [UNIFIED_ROADMAP_COMPLETED_26_30.md](file:///F:/Don/servverse/servverse/UNIFIED_ROADMAP_COMPLETED_26_30.md).
 ## Appendix C: Architectural Policy for OSS/EE Boundaries
 
 
