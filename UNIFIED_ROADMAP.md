@@ -530,7 +530,7 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 |---|---------|---------------------|--------|
 | CD.72 | **Unified install script** � One curl/irm command installs every component. Cross-platform (Windows, macOS, Linux) | Competitors install one tool at a time. Servverse installs the entire ecosystem | ? Exists |
 | CD.73 | **SERVVERSE_DISCOVERY protocol** � Single JSON manifest tells all services where to find each other. Change one file, all services update | No competitor has a unified service discovery manifest format | ? Exists |
-| CD.74 | **Shared JWT across all services** � One `SERV_JWT_SECRET` env var enables authentication across all 17 services. No per-service auth configuration | Every other platform needs per-service auth setup | ? Exists |
+| CD.75 | **Consistent error format ecosystem-wide** ? Every service returns `{"error":"msg","code":"ERR_X","trace_id":"..."}`. One error handler for any Serv service | No platform enforces error format consistency across all components | [x] Done |
 | CD.75 | **Consistent error format ecosystem-wide** � Every service returns `{"error":"msg","code":"ERR_X","trace_id":"..."}`. One error handler for any Serv service | No platform enforces error format consistency across all components | ? Exists |
 
 ---
@@ -547,7 +547,7 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 | CD.78 | **Dead code detection across service boundaries**  Compiler queries ServMesh registry: "which routes are never called by any registered service?" Warns on unused endpoints | Serv-lang + ServMesh | Static analysis tools work within one repo. This works across repos | [x] Done |
 | CD.78 | **Dead code detection across service boundaries**  Compiler queries ServMesh registry: "which routes are never called by any registered service?" Warns on unused endpoints | Serv-lang + ServMesh | Static analysis tools work within one repo. This works across repos | [x] Done |
 | CD.79 | **`serv create --fix`**  AI generates code, tests fail, compiler feeds errors back to AI, AI fixes. Automated repair loop until tests pass or max retries | Serv-lang | Cursor/Copilot suggest code. None auto-repair compile errors in a loop | [x] |
-| CD.80 | **`cached fn` keyword**  `cached fn getUser(id) ttl 5m { return db.query(...) }`  compiler generates cache get/set/invalidation. No manual cache code | Serv-lang + ServCache | No language has cache-as-syntax. This is Serv's unique position | ? Exists |
+| CD.80 | **`cached fn` keyword**  `cached fn getUser(id) ttl 5m { return db.query(...) }`  compiler generates cache get/set/invalidation. No manual cache code | Serv-lang + ServCache | No language has cache-as-syntax. This is Serv's unique position | [x] Done |
 | CD.81 | **Migration dry-run with colored diff**  `serv migrate --dry-run` shows exact SQL (CREATE/ALTER/DROP) with green/red diff against live schema. No execution | Serv-lang | Rails has `rake db:migrate:status`. No compiled language has built-in diff preview | [x] |
 | CD.82 | **Auto-generated typed HTTP clients**  `serv generate client --lang typescript` produces a fully typed client from route declarations. No OpenAPI intermediate step | Serv-lang | tRPC does this for TypeScript. Serv does it for any target language from .srv source | ? Exists |
 
@@ -606,12 +606,12 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 | CD.101 | **Web Playground** � Write Serv code in browser ? compile via WASM ? run ? see output. Zero install | Serv-lang | Go, Rust, Zig all have playgrounds. Serv needs one for adoption | [x] |
 | CD.102 | **`serv bench <file.srv>`** � Auto-generates load tests from route declarations, runs them, reports p99/throughput | Serv-lang | No compiler auto-generates performance tests from source code | [x] |
 | CD.103 | **Branch-based preview deployments** � Push a branch ? ServCloud auto-deploys to unique URL ? share with team for review | ServCloud | Vercel/Netlify pioneered this. Backend frameworks don't have it. ServCloud should | [x] |
-| CD.104 | **`serv doctor --integration`** � Boots full ecosystem via docker-compose, runs cross-service smoke tests, reports health matrix | servverse-repo | No platform has a "test everything works together" command | ? Exists |
+| CD.104 | **`serv doctor --integration`** ? Boots full ecosystem via docker-compose, runs cross-service smoke tests, reports health matrix | servverse-repo | No platform has a "test everything works together" command | [x] Done |
 
 | CD.101 | **Web Playground**  Write Serv code in browser ? compile via WASM ? run ? see output. Zero install | Serv-lang | Go, Rust, Zig all have playgrounds. Serv needs one for adoption | [x] |
 | CD.102 | **`serv bench <file.srv>`**  Auto-generates load tests from route declarations, runs them, reports p99/throughput | Serv-lang | No compiler auto-generates performance tests from source code | [x] |
 | CD.103 | **Branch-based preview deployments**  Push a branch ? ServCloud auto-deploys to unique URL ? share with team for review | ServCloud | Vercel/Netlify pioneered this. Backend frameworks don't have it. ServCloud should | [x] |
-| CD.104 | **`serv doctor --integration`**  Boots full ecosystem via docker-compose, runs cross-service smoke tests, reports health matrix | servverse-repo | No platform has a "test everything works together" command | ? Exists |
+| CD.104 | **`serv doctor --integration`**  Boots full ecosystem via docker-compose, runs cross-service smoke tests, reports health matrix | servverse-repo | No platform has a "test everything works together" command | [x] Done |
 
 #### Cache & Lock (Redis will remain dominant  need clear differentiation)
 
