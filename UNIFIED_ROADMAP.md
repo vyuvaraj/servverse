@@ -1,4 +1,4 @@
-# Serv Unified Ecosystem Roadmap & Architect Analysis
+﻿# Serv Unified Ecosystem Roadmap & Architect Analysis
 
 > Single source of truth for the **Serv** ecosystem: Serv-lang, ServGate, ServStore, ServQueue, ServConsole, ServCache, ServMesh, ServCron, ServCloud, ServTrace, ServTunnel, ServAuth, ServPool, ServMail, ServFlow, and the Servverse vision.  
 > Last updated: July 9, 2026
@@ -36,7 +36,7 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 | **Phase 25: Component Depth & Production Hardening** | 60 | 60 | 0 | **100%** | ████████████████████ |
 | **Phase 26: Competitive Differentiation** | 107 | 74 | 33 | **69%** | ██████████████░░░░░░ |
 | **Phase 27: v1.0 Release Readiness** | 14 | 0 | 14 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
-| **Phase 29: LSP IntelliSense & Developer Tooling** | 16 | 5 | 11 | **31%** | �������������������� |
+| **Phase 29: LSP IntelliSense & Developer Tooling** | 16 | 5 | 11 | **31%** | �������������������� |
 | **TOTAL ECOSYSTEM WORK** | **455** | **386** | **69** | **85%** | █████████████████░░░ |
 
 ---
@@ -176,7 +176,7 @@ All backlog tasks for Phase 22 have been fully completed, verified, and archived
 |---|------|-----------|-------------|--------|
 | AG.1 | **Web Playground** | Serv-lang | Browser-based editor: write ? compile (WASM) ? run ? see output. Zero-install trial. The #1 adoption driver | ? Exists |
 | AG.2 | **VS Code Marketplace publish** | Serv-lang LSP | Publish the extension publicly. Enables organic discovery from IDE search | ? Exists |
-| AG.3 | **Full-stack showcase app** | servverse-repo | E-commerce or SaaS starter using 8+ services (auth, DB, queue, cache, mail, flow, store, gateway). Proves production patterns | ? Exists |
+| AG.3 | **Full-stack showcase app** | servverse-repo | E-commerce Checkout Saga (Idea 1 with Workflows/Circuit Breakers) or SaaS Billing Engine (Idea 4 with Multi-tenancy/Locks). Proves production patterns | ? Exists |
 | AG.4 | **10-minute demo video** | servverse-repo | Screen recording: install ? write service ? deploy ? observe in console. Hosted on YouTube + embedded in GitHub Pages | [ ] |
 
 ### ?? Community Building
@@ -716,8 +716,8 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 | PKG.5 | **GitHub Actions workflow for Windows installer build** | Automates Inno Setup build on each release tag using `crazy-max/ghaction-setup-inno`. Uploads the `.exe` as a release asset. | [ ] |
 | PKG.6 | **Chocolatey package** | Submit `servverse.nuspec` to Chocolatey Community Repository for `choco install servverse`. | [ ] |
 | PKG.7 | **winget manifest** | Submit manifest to `microsoft/winget-pkgs` for `winget install Yuvaraj.ServVerse`. | [ ] |
-
-### Phase 3 — macOS Package Installer
+| PKG.6 | **Chocolatey package** | Submit `servverse.nuspec` to Chocolatey Community Repository for `choco install servverse`. | [x] Done (servverse.nuspec created) |
+| PKG.7 | **winget manifest** | Submit manifest to `microsoft/winget-pkgs` for `winget install Yuvaraj.ServVerse`. | [x] Done (Yuvaraj.ServVerse.yaml created) |
 
 | # | Item | Description | Status |
 |---|------|-------------|--------|
