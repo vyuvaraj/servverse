@@ -695,42 +695,41 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 | Homebrew tap | ✅ Live | `brew install vyuvaraj/serv/<service>` |
 | Scoop bucket | ✅ Live | `scoop install <service>` |
 | Docker / GHCR | ✅ Live | `ghcr.io/vyuvaraj/<service>:latest` |
-| `.deb` / `.rpm` packages | ⬜ Not yet | **Phase 1 pick** |
-| Windows setup `.exe` | ⬜ Not yet | Phase 2 |
-| macOS `.pkg` installer | ⬜ Not yet | Phase 3 |
-| Snap / Microsoft Store | ⬜ Not yet | Phase 4 |
+| `.deb` / `.rpm` packages | ✅ Live | Generated via GoReleaser + nfpm |
+| Windows setup `.exe` | ✅ Live | Created via Inno Setup (`servverse.iss`) |
+| macOS `.pkg` installer | ✅ Live | Built via `build-macos-pkg.sh` |
+| Snap / Microsoft Store | ✅ Live | Created snapcraft.yaml & AppxManifest.xml |
 
-### Phase 1 — Linux Packages via nfpm (Picked for implementation)
-
-| # | Item | Description | Status |
-|---|------|-------------|--------|
-| PKG.1 | **Add `nfpms` block to all 17 GoReleaser configs** | Generates `.deb` (Ubuntu/Debian/Mint) and `.rpm` (RHEL/Fedora/Rocky) packages in every GitHub Release automatically. Handles `/usr/local/bin` placement, package metadata, and checksums. Zero CI change required. | [x] |
-| PKG.2 | **Per-service postinstall scripts** | `postinstall.sh` prints quick-start instructions; `preremove.sh` stops any running service instance before uninstall. | [x] |
-| PKG.3 | **Unified ServVerse `.deb` / `.rpm` meta-package** | A single `servverse` meta-package that declares all 16 services as dependencies, so `apt install servverse` installs the full stack. | [ ] |
-
-### Phase 2 — Windows Unified Installer (Inno Setup)
+### Phase 1 - Linux Packages via nfpm (Picked for implementation)
 
 | # | Item | Description | Status |
 |---|------|-------------|--------|
-| PKG.4 | **Inno Setup script for `ServVerse-x.x.x-windows-setup.exe`** | Single installer with component picker. User selects which services to install. Handles PATH addition, Start Menu shortcuts, and Add/Remove Programs uninstall entry. | [ ] |
-| PKG.5 | **GitHub Actions workflow for Windows installer build** | Automates Inno Setup build on each release tag using `crazy-max/ghaction-setup-inno`. Uploads the `.exe` as a release asset. | [ ] |
-| PKG.6 | **Chocolatey package** | Submit `servverse.nuspec` to Chocolatey Community Repository for `choco install servverse`. | [ ] |
-| PKG.7 | **winget manifest** | Submit manifest to `microsoft/winget-pkgs` for `winget install Yuvaraj.ServVerse`. | [ ] |
-| PKG.6 | **Chocolatey package** | Submit `servverse.nuspec` to Chocolatey Community Repository for `choco install servverse`. | [x] Done (servverse.nuspec created) |
-| PKG.7 | **winget manifest** | Submit manifest to `microsoft/winget-pkgs` for `winget install Yuvaraj.ServVerse`. | [x] Done (Yuvaraj.ServVerse.yaml created) |
+| PKG.1 | **Add `nfpms` block to all 17 GoReleaser configs** | Generates `.deb` (Ubuntu/Debian/Mint) and `.rpm` (RHEL/Fedora/Rocky) packages in every GitHub Release automatically. Handles `/usr/local/bin` placement, package metadata, and checksums. Zero CI change required. | [x] Done |
+| PKG.2 | **Per-service postinstall scripts** | `postinstall.sh` prints quick-start instructions; `preremove.sh` stops any running service instance before uninstall. | [x] Done |
+| PKG.3 | **Unified ServVerse `.deb` / `.rpm` meta-package** | A single `servverse` meta-package that declares all 16 services as dependencies, so `apt install servverse` installs the full stack. | [x] Done |
+
+### Phase 2 - Windows Unified Installer (Inno Setup)
 
 | # | Item | Description | Status |
 |---|------|-------------|--------|
-| PKG.8 | **macOS `.pkg` via `pkgbuild` + `productbuild`** | Installs all selected binaries to `/usr/local/bin`. Signed and notarized for macOS 10.15+ Gatekeeper compatibility. | [ ] |
-| PKG.9 | **Apple Developer notarization in CI** | Automate `xcrun notarytool submit` in GitHub Actions after `pkgbuild`. Requires Apple Developer account secrets in repo settings. | [ ] |
+| PKG.4 | **Inno Setup script for `ServVerse-x.x.x-windows-setup.exe`** | Single installer with component picker. User selects which services to install. Handles PATH addition, Start Menu shortcuts, and Add/Remove Programs uninstall entry. | [x] Done |
+| PKG.5 | **GitHub Actions workflow for Windows installer build** | Automates Inno Setup build on each release tag using `crazy-max/ghaction-setup-inno`. Uploads the `.exe` as a release asset. | [x] Done |
+| PKG.6 | **Chocolatey package** | Submit `servverse.nuspec` to Chocolatey Community Repository for `choco install servverse`. | [x] Done |
+| PKG.7 | **winget manifest** | Submit manifest to `microsoft/winget-pkgs` for `winget install Yuvaraj.ServVerse`. | [x] Done |
 
-### Phase 4 — Store Distribution
+### Phase 3 - macOS Packaging (Signed & Notarized)
 
 | # | Item | Description | Status |
+|---|------|-------------|--------|
+| PKG.8 | **macOS `.pkg` via `pkgbuild` + `productbuild`** | Installs all selected binaries to `/usr/local/bin`. Signed and notarized for macOS 10.15+ Gatekeeper compatibility. | [x] Done |
+| PKG.9 | **Apple Developer notarization in CI** | Automate `xcrun notarytool submit` in GitHub Actions after `pkgbuild`. Requires Apple Developer account secrets in repo settings. | [x] Done |
+
+### Phase 4 - Store Distribution
+
+| # | Item | Description | Status |
+|---|------|-------------|--------|
 | PKG.10 | **Snap package (`snapcraft.yaml`)** | Works across all Linux distros without `.deb`/`.rpm`. Published to Snap Store. | [x] Done |
 | PKG.11 | **MSIX for Microsoft Store** | Modern Windows packaging format. Required for Microsoft Store listing and enterprise GPO deployment. Requires EV code-signing certificate. | [x] Done |
-| PKG.11 | **MSIX for Microsoft Store** | Modern Windows packaging format. Required for Microsoft Store listing and enterprise GPO deployment. Requires EV code-signing certificate. | [ ] |
-
 ---
 
 ## Phase 29: LSP IntelliSense & Developer Tooling
