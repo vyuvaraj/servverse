@@ -146,3 +146,24 @@ Closed the consistency gaps identified in the API maturity audit before tagging 
 - **CD.77: Compile-Time Infrastructure Reachability** — Added compile-time socket dial reachability validation checking declared databases/brokers/caches during the semantic compile pass, supportable with a `--offline` bypass flag. [July 16, 2026]
 - **CD.78: Cross-Service Dead Route Detection** — Added compiler static analysis checks scanning workspace references to flag defined routes that are never referenced by inter-service call signatures. [July 16, 2026]
 - **CD.83: Auto-Generated API Route Changelog** — Configured gateway route diff tracking recording route additions/removals and exposing them dynamically via `/api/v1/gateway/changelog`. [July 16, 2026]
+
+## Phase 23: Developer Adoption & Growth (Completed Items)
+
+- **AG.1: Web Playground** (Serv-lang) — Browser-based editor: write ? compile (WASM) ? run ? see output. Zero-install trial. The #1 adoption driver. [July 17, 2026]
+- **AG.2: VS Code Marketplace publish** (Serv-lang LSP) — Publish the extension publicly. Enables organic discovery from IDE search. [July 17, 2026]
+- **AG.3: Full-stack showcase app** (servverse-repo) — E-commerce Checkout Saga (Idea 1 with Workflows/Circuit Breakers) or SaaS Billing Engine (Idea 4 with Multi-tenancy/Locks). Proves production patterns. [July 17, 2026]
+- **AG.6: Contributing guide (CONTRIBUTING.md)** (All repos) — Code style, PR process, how to add a stdlib module, how to write a WASM plugin. [July 17, 2026]
+- **AG.7: Good-first-issue labels** (All repos) — Tag 20+ approachable issues for new contributors. [July 17, 2026]
+- **AG.8: Monthly release cadence** (servverse-repo) — Predictable versioning: v0.2.0, v0.3.0 with changelogs. Builds trust. [July 17, 2026]
+- **AG.9: Blog post series** (servverse-repo) — "Building X with Serv" tutorials: REST API, scheduled worker, event pipeline, AI agent. [July 17, 2026]
+- **AG.10: SOC2 compliance documentation** (servverse-repo) — Document existing controls: encryption-at-rest, audit logs, access control, data retention. [July 17, 2026]
+- **AG.11: Multi-region deployment guide** (servverse-repo) — End-to-end guide: ServStore replication + ServQueue mirroring + ServMesh geo-routing. [July 17, 2026]
+- **AG.13: SLA guarantees with evidence** (servverse-repo) — Load test results establishing: max RPS per service, p99 latency, failure recovery time. [July 17, 2026]
+- **AG.14: CODEOWNERS + branch protection** (All repos) — Enforce review process. Required for enterprise governance. [July 17, 2026]
+
+## Phase 24.1: Standalone Hardening to A+ (Completed Items)
+
+- **SA.21: Multi-Backend State Storage** (ServFlow) — Support SQLite/PostgreSQL/MySQL state persistence in standalone mode instead of raw `.state/` directories. [July 17, 2026]
+- **SA.22: S3 & OCI Package Registry Backend** (ServRegistry) — Add S3/MinIO and OCI registry storage adapters for package tarball uploads in standalone mode. [July 17, 2026]
+- **SA.23: Consul, etcd, & DNS-SD Adapters** (ServMesh) — Support etcd, Consul, and SRV record lookups for standalone service discovery. [July 17, 2026]
+- **SA.24: Generic Process & Container Support** (ServCloud) — Support managing arbitrary binaries (PM2 replacement) and Docker containers natively. [July 17, 2026]
