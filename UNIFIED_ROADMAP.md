@@ -395,8 +395,8 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 | # | Feature | Why It Differentiates | Status |
 |---|---------|---------------------|--------|
 | CD.46 | **Dead code elimination across service boundaries** � Compiler traces which routes are actually called by other services (via ServMesh registry) and warns on unused endpoints | No language eliminates dead code across microservice boundaries | [ ] |
-| CD.47 | **Compile-time dependency health check** � `serv build` checks that all declared infrastructure (broker, store, cache) is reachable during compilation. Fail fast, not at runtime | No compiler validates infrastructure availability at build time | [ ] |
-| CD.48 | **Type-safe inter-service contracts** � When Service A calls Service B via `serv://`, compiler verifies A's expected response type matches B's declared return type | gRPC has this via proto. REST has nothing. Serv does it for REST | [ ] |
+| CD.48 | **Type-safe inter-service contracts** ? When Service A calls Service B via `serv://`, compiler verifies A's expected response type matches B's declared return type | gRPC has this via proto. REST has nothing. Serv does it for REST | [x] Done |
+| CD.49 | **Built-in migration diffing** ? `serv migrate --dry-run` shows exact SQL that will execute (CREATE/ALTER/DROP) with colored diff against current schema | Rails has this. No compiled language has built-in migration preview | [x] Done |
 | CD.49 | **Built-in migration diffing** � `serv migrate --dry-run` shows exact SQL that will execute (CREATE/ALTER/DROP) with colored diff against current schema | Rails has this. No compiled language has built-in migration preview | [ ] |
 
 #### ServGate � AI-Era Gateway
@@ -543,7 +543,7 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 | # | Feature | Component | Why Urgent | Status |
 |---|---------|-----------|-----------|--------|
 | CD.76 | **Type-safe inter-service contracts**  When Service A calls `serv://B/users`, compiler verifies A's expected response type matches B's declared return type. Compile error on mismatch | Serv-lang | gRPC has this. REST doesn't. First REST language to do this wins | [x] |
-| CD.77 | **Compile-time infrastructure reachability**  `serv build` pings declared broker/store/cache and fails if unreachable during development (skippable with `--offline`) | Serv-lang | Docker Compose validates services exist. No compiler does this | [x] |
+| CD.78 | **Dead code detection across service boundaries**  Compiler queries ServMesh registry: "which routes are never called by any registered service?" Warns on unused endpoints | Serv-lang + ServMesh | Static analysis tools work within one repo. This works across repos | [x] Done |
 | CD.78 | **Dead code detection across service boundaries**  Compiler queries ServMesh registry: "which routes are never called by any registered service?" Warns on unused endpoints | Serv-lang + ServMesh | Static analysis tools work within one repo. This works across repos | [ ] |
 | CD.79 | **`serv create --fix`**  AI generates code, tests fail, compiler feeds errors back to AI, AI fixes. Automated repair loop until tests pass or max retries | Serv-lang | Cursor/Copilot suggest code. None auto-repair compile errors in a loop | [x] |
 | CD.80 | **`cached fn` keyword**  `cached fn getUser(id) ttl 5m { return db.query(...) }`  compiler generates cache get/set/invalidation. No manual cache code | Serv-lang + ServCache | No language has cache-as-syntax. This is Serv's unique position | ? Exists |
@@ -727,8 +727,8 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 ### Phase 4 — Store Distribution
 
 | # | Item | Description | Status |
-|---|------|-------------|--------|
-| PKG.10 | **Snap package (`snapcraft.yaml`)** | Works across all Linux distros without `.deb`/`.rpm`. Published to Snap Store. | [ ] |
+| PKG.10 | **Snap package (`snapcraft.yaml`)** | Works across all Linux distros without `.deb`/`.rpm`. Published to Snap Store. | [x] Done |
+| PKG.11 | **MSIX for Microsoft Store** | Modern Windows packaging format. Required for Microsoft Store listing and enterprise GPO deployment. Requires EV code-signing certificate. | [x] Done |
 | PKG.11 | **MSIX for Microsoft Store** | Modern Windows packaging format. Required for Microsoft Store listing and enterprise GPO deployment. Requires EV code-signing certificate. | [ ] |
 
 ---
