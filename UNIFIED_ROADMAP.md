@@ -398,7 +398,7 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 | CD.46 | **Dead code elimination across service boundaries** ? Compiler traces which routes are actually called by other services (via ServMesh registry) and warns on unused endpoints | No language eliminates dead code across microservice boundaries | [x] Done |
 | CD.48 | **Type-safe inter-service contracts** ? When Service A calls Service B via `serv://`, compiler verifies A's expected response type matches B's declared return type | gRPC has this via proto. REST has nothing. Serv does it for REST | [x] Done |
 | CD.49 | **Built-in migration diffing** ? `serv migrate --dry-run` shows exact SQL that will execute (CREATE/ALTER/DROP) with colored diff against current schema | Rails has this. No compiled language has built-in migration preview | [x] Done |
-| CD.49 | **Built-in migration diffing** � `serv migrate --dry-run` shows exact SQL that will execute (CREATE/ALTER/DROP) with colored diff against current schema | Rails has this. No compiled language has built-in migration preview | [ ] |
+| CD.49 | **Built-in migration diffing** ? `serv migrate --dry-run` shows exact SQL that will execute (CREATE/ALTER/DROP) with colored diff against current schema | Rails has this. No compiled language has built-in migration preview | [x] Done |
 
 #### ServGate � AI-Era Gateway
 
@@ -545,7 +545,7 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 |---|---------|-----------|-----------|--------|
 | CD.76 | **Type-safe inter-service contracts**  When Service A calls `serv://B/users`, compiler verifies A's expected response type matches B's declared return type. Compile error on mismatch | Serv-lang | gRPC has this. REST doesn't. First REST language to do this wins | [x] |
 | CD.78 | **Dead code detection across service boundaries**  Compiler queries ServMesh registry: "which routes are never called by any registered service?" Warns on unused endpoints | Serv-lang + ServMesh | Static analysis tools work within one repo. This works across repos | [x] Done |
-| CD.78 | **Dead code detection across service boundaries**  Compiler queries ServMesh registry: "which routes are never called by any registered service?" Warns on unused endpoints | Serv-lang + ServMesh | Static analysis tools work within one repo. This works across repos | [ ] |
+| CD.78 | **Dead code detection across service boundaries**  Compiler queries ServMesh registry: "which routes are never called by any registered service?" Warns on unused endpoints | Serv-lang + ServMesh | Static analysis tools work within one repo. This works across repos | [x] Done |
 | CD.79 | **`serv create --fix`**  AI generates code, tests fail, compiler feeds errors back to AI, AI fixes. Automated repair loop until tests pass or max retries | Serv-lang | Cursor/Copilot suggest code. None auto-repair compile errors in a loop | [x] |
 | CD.80 | **`cached fn` keyword**  `cached fn getUser(id) ttl 5m { return db.query(...) }`  compiler generates cache get/set/invalidation. No manual cache code | Serv-lang + ServCache | No language has cache-as-syntax. This is Serv's unique position | ? Exists |
 | CD.81 | **Migration dry-run with colored diff**  `serv migrate --dry-run` shows exact SQL (CREATE/ALTER/DROP) with green/red diff against live schema. No execution | Serv-lang | Rails has `rake db:migrate:status`. No compiled language has built-in diff preview | [x] |
