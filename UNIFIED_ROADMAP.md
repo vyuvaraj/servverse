@@ -541,21 +541,21 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 
 | # | Feature | Component | Why Urgent | Status |
 |---|---------|-----------|-----------|--------|
-| CD.76 | **Type-safe inter-service contracts** � When Service A calls `serv://B/users`, compiler verifies A's expected response type matches B's declared return type. Compile error on mismatch | Serv-lang | gRPC has this. REST doesn't. First REST language to do this wins | [ ] |
-| CD.77 | **Compile-time infrastructure reachability** � `serv build` pings declared broker/store/cache and fails if unreachable during development (skippable with `--offline`) | Serv-lang | Docker Compose validates services exist. No compiler does this | [ ] |
-| CD.78 | **Dead code detection across service boundaries** � Compiler queries ServMesh registry: "which routes are never called by any registered service?" Warns on unused endpoints | Serv-lang + ServMesh | Static analysis tools work within one repo. This works across repos | [ ] |
-| CD.79 | **`serv create --fix`** � AI generates code, tests fail, compiler feeds errors back to AI, AI fixes. Automated repair loop until tests pass or max retries | Serv-lang | Cursor/Copilot suggest code. None auto-repair compile errors in a loop | [ ] |
-| CD.80 | **`cached fn` keyword** � `cached fn getUser(id) ttl 5m { return db.query(...) }` � compiler generates cache get/set/invalidation. No manual cache code | Serv-lang + ServCache | No language has cache-as-syntax. This is Serv's unique position | ? Exists |
-| CD.81 | **Migration dry-run with colored diff** � `serv migrate --dry-run` shows exact SQL (CREATE/ALTER/DROP) with green/red diff against live schema. No execution | Serv-lang | Rails has `rake db:migrate:status`. No compiled language has built-in diff preview | [ ] |
-| CD.82 | **Auto-generated typed HTTP clients** � `serv generate client --lang typescript` produces a fully typed client from route declarations. No OpenAPI intermediate step | Serv-lang | tRPC does this for TypeScript. Serv does it for any target language from .srv source | ? Exists |
+| CD.76 | **Type-safe inter-service contracts**  When Service A calls `serv://B/users`, compiler verifies A's expected response type matches B's declared return type. Compile error on mismatch | Serv-lang | gRPC has this. REST doesn't. First REST language to do this wins | [ ] |
+| CD.77 | **Compile-time infrastructure reachability**  `serv build` pings declared broker/store/cache and fails if unreachable during development (skippable with `--offline`) | Serv-lang | Docker Compose validates services exist. No compiler does this | [ ] |
+| CD.78 | **Dead code detection across service boundaries**  Compiler queries ServMesh registry: "which routes are never called by any registered service?" Warns on unused endpoints | Serv-lang + ServMesh | Static analysis tools work within one repo. This works across repos | [ ] |
+| CD.79 | **`serv create --fix`**  AI generates code, tests fail, compiler feeds errors back to AI, AI fixes. Automated repair loop until tests pass or max retries | Serv-lang | Cursor/Copilot suggest code. None auto-repair compile errors in a loop | [x] |
+| CD.80 | **`cached fn` keyword**  `cached fn getUser(id) ttl 5m { return db.query(...) }`  compiler generates cache get/set/invalidation. No manual cache code | Serv-lang + ServCache | No language has cache-as-syntax. This is Serv's unique position | ? Exists |
+| CD.81 | **Migration dry-run with colored diff**  `serv migrate --dry-run` shows exact SQL (CREATE/ALTER/DROP) with green/red diff against live schema. No execution | Serv-lang | Rails has `rake db:migrate:status`. No compiled language has built-in diff preview | [x] |
+| CD.82 | **Auto-generated typed HTTP clients**  `serv generate client --lang typescript` produces a fully typed client from route declarations. No OpenAPI intermediate step | Serv-lang | tRPC does this for TypeScript. Serv does it for any target language from .srv source | ? Exists |
 
 #### Gateway & Networking (Kong/Envoy will copy these)
 
 | # | Feature | Component | Why Urgent | Status |
 |---|---------|-----------|-----------|--------|
-| CD.83 | **Auto-generated API changelog** � Track route additions/removals/breaking changes over time. Serve at `/api/changelog`. Consumer teams subscribe to diffs | ServGate | Bump.sh does this as SaaS. No self-hosted gateway has it built-in | [ ] |
-| CD.84 | **Request cost estimation header** � Return `X-Estimated-Cost: $0.003` on AI-proxied requests before execution. Client can abort expensive calls | ServGate | No gateway previews cost before forwarding. Essential for AI budget control | [ ] |
-| CD.85 | **Automatic circuit breaker from SLO breach** � If a backend's p99 exceeds SLO threshold, circuit opens automatically. No manual configuration per route | ServGate + ServTrace | Envoy needs explicit circuit config. ServGate derives it from observed SLOs | [ ] |
+| CD.83 | **Auto-generated API changelog**  Track route additions/removals/breaking changes over time. Serve at `/api/changelog`. Consumer teams subscribe to diffs | ServGate | Bump.sh does this as SaaS. No self-hosted gateway has it built-in | [ ] |
+| CD.84 | **Request cost estimation header**  Return `X-Estimated-Cost: $0.003` on AI-proxied requests before execution. Client can abort expensive calls | ServGate | No gateway previews cost before forwarding. Essential for AI budget control | [x] |
+| CD.85 | **Automatic circuit breaker from SLO breach**  If a backend's p99 exceeds SLO threshold, circuit opens automatically. No manual configuration per route | ServGate + ServTrace | Envoy needs explicit circuit config. ServGate derives it from observed SLOs | [ ] |
 
 #### Storage & Data (MinIO/S3 will copy semantic search)
 
