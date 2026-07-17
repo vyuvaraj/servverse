@@ -72,7 +72,7 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 | **Phase 29: LSP IntelliSense & Developer Tooling** | 16 | 16 | 0 | **100%** |
 | **Phase 30: ServLock & ServSecret Hardening** | 10 | 10 | 0 | **100%** | ████████████████████ |
 | **Phase 31: ServLock & ServSecret Ecosystem Integration** | 5 | 0 | 5 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
-| **Phase 32: ServLock & ServSecret Standalone & Hardening** | 8 | 4 | 4 | **50%** | ██████████░░░░░░░░░░ |
+| **Phase 32: ServLock & ServSecret Standalone & Hardening** | 8 | 8 | 0 | **100%** | ████████████████████ |
 
 | **TOTAL ECOSYSTEM WORK** | **465** | **459** | **6** | **99%** | ███████████████████░ |
 
@@ -410,7 +410,7 @@ All backlog tasks for Phase 29 have been fully completed, verified, and archived
 | EI.4 | **Serv-lang Built-in Lock/Secret Operators** | Serv-lang | Introduce native runtime standard library operators (e.g., `secret("db.pass")` or `lock("resource") { ... }`) | [ ] |
 | EI.5 | **ServCron Scheduler Lock Gating** | ServCron | Use `ServLock` in the job execution cycle to prevent scheduler drift and duplicate scheduler execution | [ ] |
 
-## Phase 32: ServLock & ServSecret Standalone & Hardening (Pending)
+## Phase 32: ServLock & ServSecret Standalone & Hardening (Completed)
 
 > **Goal:** Support zero-dependency standalone execution modes for both components and implement enterprise-grade security and transport hardening.
 
@@ -420,17 +420,17 @@ All backlog tasks for Phase 29 have been fully completed, verified, and archived
 |---|------|-------------|--------|
 | SL.6 | **Zero-Dependency Standalone Mode** | Support loading standalone server configuration from `servlock.yaml` (ports, backends) without requiring mesh/shared auth | [x] |
 | SL.7 | **API Key Authentication** | Implement API Key token header authorization for standalone clients to access the locking APIs securely | [x] |
-| SL.8 | **Lease Event Pub/Sub** | Implement SSE (Server-Sent Events) or WebSocket channels for lock release notifications to eliminate polling | [ ] |
-| SL.9 | **TLS & mTLS Transport Hardening** | Support native TLS and mutual TLS server configs inside the binary for secure client connection tunnels | [ ] |
+| SL.8 | **Lease Event Pub/Sub** | Implement SSE (Server-Sent Events) or WebSocket channels for lock release notifications to eliminate polling | [x] |
+| SL.9 | **TLS & mTLS Transport Hardening** | Support native TLS and mutual TLS server configs inside the binary for secure client connection tunnels | [x] |
 
 ### ServSecret Standalone & Hardening
 
 | # | Item | Description | Status |
 |---|------|-------------|--------|
 | SS.6 | **Zero-Dependency Standalone Mode** | Support loading config from `servsecret.yaml` (storage path, encryption schemes, cache rules, auth keys) | [x] |
-| SS.7 | **Automated Backup & Recovery** | Configure automated scheduled encrypted backups of the secrets database to local storage or S3/MinIO objects | [ ] |
+| SS.7 | **Automated Backup & Recovery** | Configure automated scheduled encrypted backups of the secrets database to local storage or S3/MinIO objects | [x] |
 | SS.8 | **Dynamic Environment Injector** | Create helper command `servsecret env run --cmd "app"` to fetch secrets and inject them directly to child processes | [x] |
-| SS.9 | **Key Rotation Schedules** | Support background rotation of the master key on a configurable period (e.g. 90 days) with backup keys retention | [ ] |
+| SS.9 | **Key Rotation Schedules** | Support background rotation of the master key on a configurable period (e.g. 90 days) with backup keys retention | [x] |
 
 ## Appendix C: Architectural Policy for OSS/EE Boundaries
 
