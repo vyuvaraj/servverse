@@ -573,7 +573,7 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 |---|---------|-----------|-----------|--------|
 | CD.89 | **Stream processing DSL** � `stream "orders" |> filter(o => o.total > 100) |> window(5m) |> count() |> publish("high-value")` � in .srv syntax | Serv-lang + ServQueue | Kafka Streams is Java. Flink is complex. Serv makes streaming a one-liner | ? Exists |
 | CD.90 | **AI-powered message routing** � `subscribe "tickets" where ai.classify(msg) == "urgent"` � broker evaluates embedding model per message for routing | ServQueue | No broker has ML-based routing. When this ships, it's a category-defining feature | ? Exists (EE) |
-| CD.91 | **Visual message flow in ServConsole** � Track a single message from publish ? transform ? DLQ ? retry ? consumer ack as an interactive timeline | ServQueue + ServConsole | Kafka has no message-level visibility. This makes debugging trivial | [ ] |
+| CD.91 | **Visual message flow in ServConsole** ? Track a single message from publish ? transform ? DLQ ? retry ? consumer ack as an interactive timeline | ServQueue + ServConsole | Kafka has no message-level visibility. This makes debugging trivial | [x] Done |
 
 #### Observability (Datadog will copy AI correlation)
 
@@ -581,7 +581,7 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 |---|---------|-----------|-----------|--------|
 | CD.92 | **Compiler-linked source mapping in traces** � Trace spans show `.srv` file + line number, not generated Go code. Click span ? opens source in IDE | ServTrace + Serv-lang | No APM maps traces to DSL source. Only possible because Serv controls compiler + tracer | ? Exists |
 | CD.93 | **Predictive capacity alerts** � "At current growth rate, ServStore disk will be full in 14 days" � based on trend analysis, not threshold | ServTrace + ServConsole | Datadog has forecasting. No self-hosted tool does. First OSS to ship this wins | ? Exists |
-| CD.94 | **Auto-generated incident postmortem** � After an alert resolves, auto-generate a structured postmortem: timeline, root cause, impact, remediation taken | ServConsole | PagerDuty has postmortems. No observability dashboard auto-generates them from trace data | [ ] |
+| CD.94 | **Auto-generated incident postmortem** ? After an alert resolves, auto-generate a structured postmortem: timeline, root cause, impact, remediation taken | ServConsole | PagerDuty has postmortems. No observability dashboard auto-generates them from trace data | [x] Done |
 
 #### Workflows & Scheduling (Temporal will eventually simplify)
 
@@ -636,7 +636,7 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 | # | Feature | Component | Why Useful | Status |
 |---|---------|-----------|-----------|--------|
 | CD.113 | **Inlay type hints** — Show inferred return types and parameter types inline next to `fn` signatures without hover | Serv-lang + VS Code | Reduces cognitive load for large codebases. JetBrains and Rust Analyzer pioneered this | [x] |
-| CD.114 | **Rename symbol refactor** — Rename any function, struct, or variable across all `.srv` files in the workspace | Serv-lang LSP | Essential refactoring tool. No language without this feels production-grade | [ ] |
+| CD.114 | **Rename symbol refactor** - Rename any function, struct, or variable across all `.srv` files in the workspace | Serv-lang LSP | Essential refactoring tool. No language without this feels production-grade | [x] Done |
 | CD.115 | **Test gutter decorations** — Show green/red pass/fail icons in the editor gutter per `test "..."` block after running | Serv-lang + VS Code | Go and Rust have this. Turns the editor into a live test dashboard | [x] |
 | CD.116 | **Import auto-organization** — Detect and auto-suggest stdlib imports when user types `db.`, `cache.`, `http.` | Serv-lang LSP | TypeScript and Go have this. Saves repeated lookup of import paths | [x] |
 | CD.117 | **`serv.initProject` scaffolding** — Scaffold a new Serv project from a template picker in the command palette | Serv-lang | First-run DX. Reduces barrier to getting started with Serv | [x] |
