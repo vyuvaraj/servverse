@@ -395,7 +395,7 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 
 | # | Feature | Why It Differentiates | Status |
 |---|---------|---------------------|--------|
-| CD.46 | **Dead code elimination across service boundaries** � Compiler traces which routes are actually called by other services (via ServMesh registry) and warns on unused endpoints | No language eliminates dead code across microservice boundaries | [ ] |
+| CD.46 | **Dead code elimination across service boundaries** ? Compiler traces which routes are actually called by other services (via ServMesh registry) and warns on unused endpoints | No language eliminates dead code across microservice boundaries | [x] Done |
 | CD.48 | **Type-safe inter-service contracts** ? When Service A calls Service B via `serv://`, compiler verifies A's expected response type matches B's declared return type | gRPC has this via proto. REST has nothing. Serv does it for REST | [x] Done |
 | CD.49 | **Built-in migration diffing** ? `serv migrate --dry-run` shows exact SQL that will execute (CREATE/ALTER/DROP) with colored diff against current schema | Rails has this. No compiled language has built-in migration preview | [x] Done |
 | CD.49 | **Built-in migration diffing** � `serv migrate --dry-run` shows exact SQL that will execute (CREATE/ALTER/DROP) with colored diff against current schema | Rails has this. No compiled language has built-in migration preview | [ ] |
@@ -406,7 +406,7 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 |---|---------|---------------------|--------|
 | CD.50 | **Request/response WASM A/B testing** � Run two WASM versions simultaneously with weighted traffic split, compare response quality metrics | No gateway supports A/B testing of middleware logic | ? Exists |
 | CD.51 | **Prompt injection firewall** � Deep content inspection using embedding similarity to detect adversarial prompts before they reach LLM backends | WAFs check SQL injection. ServGate checks prompt injection | ? Exists (EE) |
-| CD.52 | **Auto-generated API changelog** � Track route additions/removals/changes over time. Serve changelog at `/api/changelog` for consumer teams | No gateway auto-generates API evolution history | [ ] |
+| CD.52 | **Auto-generated API changelog** ? Track route additions/removals/changes over time. Serve changelog at `/api/changelog` for consumer teams | No gateway auto-generates API evolution history | [x] Done |
 
 #### ServStore � Intelligence Inside Storage
 
@@ -458,10 +458,10 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 
 | # | Feature | Why It Differentiates | Status |
 |---|---------|---------------------|--------|
-| CD.46 | **Dead code elimination across service boundaries**  Compiler traces which routes are actually called by other services (via ServMesh registry) and warns on unused endpoints | No language eliminates dead code across microservice boundaries | [ ] |
-| CD.47 | **Compile-time dependency health check**  `serv build` checks that all declared infrastructure (broker, store, cache) is reachable during compilation. Fail fast, not at runtime | No compiler validates infrastructure availability at build time | [ ] |
-| CD.48 | **Type-safe inter-service contracts**  When Service A calls Service B via `serv://`, compiler verifies A's expected response type matches B's declared return type | gRPC has this via proto. REST has nothing. Serv does it for REST | [ ] |
-| CD.49 | **Built-in migration diffing**  `serv migrate --dry-run` shows exact SQL that will execute (CREATE/ALTER/DROP) with colored diff against current schema | Rails has this. No compiled language has built-in migration preview | [ ] |
+| CD.46 | **Dead code elimination across service boundaries**  Compiler traces which routes are actually called by other services (via ServMesh registry) and warns on unused endpoints | No language eliminates dead code across microservice boundaries | [x] Done |
+| CD.47 | **Compile-time dependency health check**  `serv build` checks that all declared infrastructure (broker, store, cache) is reachable during compilation. Fail fast, not at runtime | No compiler validates infrastructure availability at build time | [x] Done |
+| CD.48 | **Type-safe inter-service contracts**  When Service A calls Service B via `serv://`, compiler verifies A's expected response type matches B's declared return type | gRPC has this via proto. REST has nothing. Serv does it for REST | [x] Done |
+| CD.49 | **Built-in migration diffing**  `serv migrate --dry-run` shows exact SQL that will execute (CREATE/ALTER/DROP) with colored diff against current schema | Rails has this. No compiled language has built-in migration preview | [x] Done |
 
 #### ServGate  AI-Era Gateway
 
@@ -469,7 +469,7 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 |---|---------|---------------------|--------|
 | CD.50 | **Request/response WASM A/B testing**  Run two WASM versions simultaneously with weighted traffic split, compare response quality metrics | No gateway supports A/B testing of middleware logic | ? Exists |
 | CD.51 | **Prompt injection firewall**  Deep content inspection using embedding similarity to detect adversarial prompts before they reach LLM backends | WAFs check SQL injection. ServGate checks prompt injection | ? Exists (EE) |
-| CD.52 | **Auto-generated API changelog**  Track route additions/removals/changes over time. Serve changelog at `/api/changelog` for consumer teams | No gateway auto-generates API evolution history | [ ] |
+| CD.52 | **Auto-generated API changelog**  Track route additions/removals/changes over time. Serve changelog at `/api/changelog` for consumer teams | No gateway auto-generates API evolution history | [x] Done |
 
 #### ServStore  Intelligence Inside Storage
 
@@ -555,7 +555,7 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 
 | # | Feature | Component | Why Urgent | Status |
 |---|---------|-----------|-----------|--------|
-| CD.83 | **Auto-generated API changelog**  Track route additions/removals/breaking changes over time. Serve at `/api/changelog`. Consumer teams subscribe to diffs | ServGate | Bump.sh does this as SaaS. No self-hosted gateway has it built-in | [ ] |
+| CD.83 | **Auto-generated API changelog**  Track route additions/removals/breaking changes over time. Serve at `/api/changelog`. Consumer teams subscribe to diffs | ServGate | Bump.sh does this as SaaS. No self-hosted gateway has it built-in | [x] Done |
 | CD.84 | **Request cost estimation header**  Return `X-Estimated-Cost: $0.003` on AI-proxied requests before execution. Client can abort expensive calls | ServGate | No gateway previews cost before forwarding. Essential for AI budget control | [x] |
 | CD.85 | **Automatic circuit breaker from SLO breach**  If a backend's p99 exceeds SLO threshold, circuit opens automatically. No manual configuration per route | ServGate + ServTrace | Envoy needs explicit circuit config. ServGate derives it from observed SLOs | [x] |
 
@@ -643,7 +643,7 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 | CD.118 | **`serv.deploy` one-click deploy** — Deploy the current service to ServCloud directly from the editor | ServCloud + VS Code | Removes context switching to terminal for cloud deployments | [x] |
 | CD.119 | **Services sidebar panel** — Dedicated activity bar icon showing all 16 services with live 🟢/🔴 health icons | ServRegistry + VS Code | Always-visible ecosystem health beyond the status bar | [x] |
 | CD.120 | **ServTunnel session viewer** (`serv.viewTunnels`) — Active tunnel sessions with bandwidth and client IPs | ServTunnel + VS Code | Complete the service dashboard coverage across all 16 microservices | [x] |
-| CD.121 | **`serv.openPlayground`** — Embedded WASM web playground inside a VS Code Webview | Serv-lang | Allows zero-install experimentation without leaving the editor | [ ] |
+| CD.121 | **`serv.openPlayground`** - Embedded WASM web playground inside a VS Code Webview | Serv-lang | Allows zero-install experimentation without leaving the editor | [x] Done |
 | CD.122 | **Coverage line highlights** — Shade uncovered lines in red after `serv test --coverage` | Serv-lang + VS Code | Standard in Go and Python IDEs. Makes coverage actionable in-editor | [x] |
 
 ---
