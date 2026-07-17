@@ -73,7 +73,7 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 
 | **Phase 29: LSP IntelliSense & Developer Tooling** | 16 | 16 | 0 | **100%** |
 | **Phase 30: ServLock & ServSecret Hardening** | 10 | 10 | 0 | **100%** | ████████████████████ |
-| **Phase 31: ServLock & ServSecret Ecosystem Integration** | 5 | 1 | 4 | **20%** | ████░░░░░░░░░░░░░░░░ |
+| **Phase 31: ServLock & ServSecret Ecosystem Integration** | 5 | 2 | 3 | **40%** | ████████░░░░░░░░░░░░ |
 | **Phase 32: ServLock & ServSecret Standalone & Hardening** | 8 | 8 | 0 | **100%** | ████████████████████ |
 | **Phase 33: ServLock & ServSecret Advanced Capabilities** | 10 | 10 | 0 | **100%** | ████████████████████ |
 | **Phase 34: ServLock & ServSecret Enterprise & UI** | 6 | 0 | 6 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
@@ -408,7 +408,7 @@ All backlog tasks for Phase 29 have been fully completed, verified, and archived
 
 | # | Item | Target Component | Description | Status |
 |---|------|------------------|-------------|--------|
-| EI.1 | **ServGate Secret Integration** | ServGate | Fetch SSL/TLS certificates and JWT verification keys dynamically from `ServSecret` instead of static local files | [ ] |
+| EI.1 | **ServGate Secret Integration** | ServGate | Fetch SSL/TLS certificates and JWT verification keys dynamically from `ServSecret` instead of static local files | [x] |
 | EI.2 | **ServFlow Distributed Locking** | ServFlow | Integrate `ServLock` into the task execution engine to prevent duplicate transaction runs in multi-instance clusters | [ ] |
 | EI.3 | **ServConsole Management Dashboard** | ServConsole | Add UI views to list active locks (via `ServLock` observability) and manage keys/secret rotations (via `ServSecret` APIs) | [ ] |
 | EI.4 | **Serv-lang Built-in Lock/Secret Operators** | Serv-lang | Introduce native runtime standard library operators (e.g., `secret("db.pass")` or `lock("resource") { ... }`) | [x] |
