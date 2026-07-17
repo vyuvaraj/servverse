@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.8.0] - 2026-07-17
+
+### Added
+* **CLI.1**: Implemented `serv changelog` command with version and service filters to display the ecosystem evolution history.
+* **CLI.2**: Added `--attach` context verification capability to the interactive REPL.
+* **LINT.1**: Implemented cross-service dead route static checks querying the ServMesh registry.
+* **OPS.16**: Added visual message flow timeline tracing and auto-postmortem incident report generation endpoints to `ServConsole`.
+* **PKG.12**: Verified and finalized installer package configurations (Inno Setup, macOS PKG, Snap, MSIX, Chocolatey, and Winget).
+
 ## [1.7.0] - 2026-07-02
 
 ### Added
