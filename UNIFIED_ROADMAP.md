@@ -752,7 +752,7 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 | # | Feature | Component | Notes | Status |
 |---|---------|-----------|-------|--------|
 | DX.6 | **Hover docs for namespace members** — Hovering on `.info` in `log.info(...)` shows member-level documentation, not just the parent namespace object | Serv-lang LSP | Extend `handleHover` to match `ns.member` tokens | [x] |
-| DX.7 | **`match` arm completions for enums** — Inside a `match` block on a known enum variable, suggest all variant arms automatically | Serv-lang LSP | Requires tracking variable types through `let` declarations | [ ] |
+| DX.7 | **`match` arm completions for enums** — Inside a `match` block on a known enum variable, suggest all variant arms automatically | Serv-lang LSP | Requires tracking variable types through `let` declarations | [x] |
 | DX.8 | **Completion sort order** — Local document symbols first, built-in namespaces second, keywords last using `sortText` field | Serv-lang LSP | Quick change; makes lists much cleaner and more predictable | [x] |
 | DX.9 | **`documentation` field on completions** — Add markdown usage examples to built-in completion items so the detail pane in VS Code shows a mini-doc | Serv-lang LSP | Purely cosmetic but makes the extension feel professional | [x] |
 
@@ -760,18 +760,18 @@ All backlog tasks for Phase 25 (D.1 - D.60) have been fully completed, verified,
 
 | # | Feature | Component | Notes | Status |
 |---|---------|-----------|-------|--------|
-| DX.10 | **Inlay type hints** (`textDocument/inlayHint`) — Ghost text showing inferred variable types next to `let` declarations without hover | Serv-lang LSP | Requires new LSP capability; Rust Analyzer and clangd popularised this | [ ] |
+| DX.10 | **Inlay type hints** (`textDocument/inlayHint`) — Ghost text showing inferred variable types next to `let` declarations without hover | Serv-lang LSP | Requires new LSP capability; Rust Analyzer and clangd popularised this | [x] |
 | DX.11 | **Code lens for test blocks** (`textDocument/codeLens`) — Show `▶ Run test` clickable lens above every `test "..."` block | Serv-lang LSP | Turns editor into a live test dashboard; Go extension does this | [x] |
-| DX.12 | **Code lens for route blocks** — Show `▶ Send request` lens above every `route` declaration that opens a request panel | Serv-lang LSP | Similar to REST Client / HTTPie integration | [ ] |
-| DX.13 | **`textDocument/selectionRange`** — Smart expand/shrink selection to nearest statement or block boundary | Serv-lang LSP | Standard in TypeScript/Go extensions | [ ] |
+| DX.12 | **Code lens for route blocks** — Show `▶ Send request` lens above every `route` declaration that opens a request panel | Serv-lang LSP | Similar to REST Client / HTTPie integration | [x] |
+| DX.13 | **`textDocument/selectionRange`** — Smart expand/shrink selection to nearest statement or block boundary | Serv-lang LSP | Standard in TypeScript/Go extensions | [x] |
 
 ### 🔵 Advanced
 
 | # | Feature | Component | Notes | Status |
 |---|---------|-----------|-------|--------|
-| DX.14 | **AI-powered completion** — POST last N lines to `ai.complete` endpoint for context-aware suggestions beyond static built-ins | Serv-lang LSP | Ties directly into existing `ai` namespace runtime | [ ] |
-| DX.15 | **Live route linting** — Warn on `route` blocks with no `return` on all code paths (extends diagnostics pass) | Serv-lang LSP | Reduces silent bugs from missing returns in handlers | [ ] |
-| DX.16 | **`serv://` link navigation** — Clicking a `serv://service/path` string in any `.srv` file triggers Go-to-Definition to the remote service's `main.srv` | Serv-lang LSP | Extends existing `handleDefinition` import resolver | [ ] |
+| DX.14 | **AI-powered completion** — POST last N lines to `ai.complete` endpoint for context-aware suggestions beyond static built-ins | Serv-lang LSP | Ties directly into existing `ai` namespace runtime | [x] |
+| DX.15 | **Live route linting** — Warn on `route` blocks with no `return` on all code paths (extends diagnostics pass) | Serv-lang LSP | Reduces silent bugs from missing returns in handlers | [x] |
+| DX.16 | **`serv://` link navigation** — Clicking a `serv://service/path` string in any `.srv` file triggers Go-to-Definition to the remote service's `main.srv` | Serv-lang LSP | Extends existing `handleDefinition` import resolver | [x] |
 
 ---
 
