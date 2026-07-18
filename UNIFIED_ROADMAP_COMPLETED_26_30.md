@@ -237,3 +237,30 @@ Make the Serv-lang VS Code extension feel truly first-class - on par with TypeSc
 - **DX.14: AI-powered completion** — POST last N lines to `ai.complete` endpoint for context-aware suggestions. [July 17, 2026]
 - **DX.15: Live route linting** — Warn on `route` blocks with no `return` on all code paths. [July 17, 2026]
 - **DX.16: `serv://` link navigation** — Clicking a `serv://service/path` string in any `.srv` file triggers Go-to-Definition. [July 17, 2026]
+
+---
+
+## Phase 30: ServLock & ServSecret Hardening (Completed)
+
+> **Goal:** Elevate both `ServLock` (Distributed Locking) and `ServSecret` (Secret & Credential Management) to full production readiness.
+
+### ServLock Production Readiness
+
+| # | Item | Description | Status |
+|---|------|-------------|--------|
+| SL.1 | **Multi-Backend Lease Storage** | Support etcd and Redis as backends for distributed lock state persistence instead of just memory | [x] |
+| SL.2 | **Reentrant Lock Support** | Support nested lock acquisition by the same client session using lease identifiers | [x] |
+| SL.3 | **Deadlock Detection Engine** | Implement graph-based cycle detection on lock wait queues to preemptively break deadlocks | [x] |
+| SL.4 | **Fencing Token Verification** | Enforce fencing token checks on lock renewals and releases to avoid split-brain stale modifications | [x] |
+| SL.5 | **Observability Metrics** | Export lock contention duration, active leases, and waiter queue sizes to Prometheus/OTel | [x] |
+
+### ServSecret Production Readiness
+
+| # | Item | Description | Status |
+|---|------|-------------|--------|
+| SS.1 | **Automatic Key Rotation** | Add support for periodically rotating the master encryption key and re-encrypting all secrets dynamically | [x] |
+| SS.2 | **Secret Value Caching** | Implement in-memory cache for decrypted secrets with configurable TTL and eviction on change | [x] |
+| SS.3 | **Audit Trail Log** | Keep a tamper-evident audit trail log recording who (which token/tenant) read, wrote, or deleted each secret | [x] |
+| SS.4 | **Cloud Provider Adapters** | Support HashiCorp Vault, AWS Secrets Manager, and Doppler as backend providers for secret retrieval | [x] |
+| SS.5 | **CLI Tooling Integration** | Extend `serv secret` CLI to handle listing, setting, and deleting secrets remotely from the command line | [x] |
+
