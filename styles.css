@@ -54,6 +54,7 @@ body {
   font-family: var(--font-sans);
   overflow-x: hidden;
   line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* ========= Aurora + Particles ========= */
@@ -150,7 +151,7 @@ body {
 .light-theme .btn-secondary { background: rgba(0,0,0,0.03); }
 
 /* Glass Card */
-.glass-card { background: rgba(25,28,45,0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--border-glass); border-radius: 20px; padding: 2rem; box-shadow: 0 20px 40px rgba(0,0,0,0.4); transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s; }
+.glass-card { background: rgba(25,28,45,0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--border-glass); border-radius: 20px; padding: 2rem; box-shadow: 0 20px 40px rgba(0,0,0,0.4); transition: background-color 0.3s ease, box-shadow 0.3s, border-color 0.3s, transform 0.3s; }
 .glass-card:hover { box-shadow: 0 28px 56px rgba(0,0,0,0.45); }
 .light-theme .glass-card { background: rgba(255,255,255,0.65); box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
 .light-theme .glass-card:hover { box-shadow: 0 20px 45px rgba(0,0,0,0.08); }
