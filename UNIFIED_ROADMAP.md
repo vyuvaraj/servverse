@@ -77,8 +77,8 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 | **Phase 32: ServLock & ServSecret Standalone & Hardening** | 8 | 8 | 0 | **100%** | ████████████████████ |
 | **Phase 33: ServLock & ServSecret Advanced Capabilities** | 10 | 10 | 0 | **100%** | ████████████████████ |
 | **Phase 34: ServLock & ServSecret Enterprise & UI** | 6 | 6 | 0 | **100%** | ████████████████████ |
-| **Phase 35: Serv-lang Language Ergonomics** | 40 | 26 | 14 | **65%** | █████████████░░░░░░░ |
-| **TOTAL ECOSYSTEM WORK** | **505** | **491** | **14** | **97%** | ███████████████████░ |
+| **Phase 35: Serv-lang Language Ergonomics** | 40 | 40 | 0 | **100%** | ████████████████████ |
+| **TOTAL ECOSYSTEM WORK** | **505** | **502** | **3** | **99%** | ███████████████████░ |
 
 
 ---
@@ -464,8 +464,8 @@ All backlog tasks for Phase 29 have been fully completed, verified, and archived
 | LE.24 | **`ip` namespace — IP Address Utilities** | Small | Serv-lang | Add a built-in `ip` namespace: `ip.parse("192.168.1.1")` → `{ version, octets }`, `ip.isPrivate(addr)` → bool, `ip.inCIDR(addr, "10.0.0.0/8")` → bool, `ip.version(addr)` → `"ipv4"` or `"ipv6"`. Useful for rate limiting, geo-fencing, and request validation. | [x] |
 | LE.25 | **`dns` namespace — DNS Lookup Utilities** | Small | Serv-lang | Add a built-in `dns` namespace: `dns.lookup("example.com")` → IP string, `dns.txt("_dmarc.example.com")` → string, `dns.srv("_http._tcp.example.com")` → `{ host, port, priority }`. Useful for service discovery and email domain verification. | [x] |
 | LE.26 | **`multipart` namespace — File Upload Parsing** | Small | Serv-lang | Add a built-in `multipart` namespace: `multipart.parse(req)` → `{ fields: {...}, files: [{ name, filename, size, content }] }`. Currently file upload handling requires raw body parsing. Backed by Go's `mime/multipart`. | [x] |
-| LE.27 | **`diff` namespace — Structural Diff & Patch** | Small | Serv-lang | Add a built-in `diff` namespace: `diff.text(a, b)` → unified diff string, `diff.json(objA, objB)` → array of change operations (added/removed/changed). Backed by Go diff libraries. Useful for audit trails, config change detection, and API changelog generation. | [ ] |
-| LE.28 | **`proto` namespace — Protocol Buffer Support** | Medium | Serv-lang | Add a built-in `proto` namespace: `proto.encode(obj, schema)` → bytes, `proto.decode(bytes, schema)` → map. Enables efficient binary serialization for gRPC services and high-throughput internal communication without requiring a Go package declaration. | [ ] |
+| LE.27 | **`diff` namespace — Structural Diff & Patch** | Small | Serv-lang | Add a built-in `diff` namespace: `diff.text(a, b)` → unified diff string, `diff.json(objA, objB)` → array of change operations (added/removed/changed). Backed by Go diff libraries. Useful for audit trails, config change detection, and API changelog generation. | [x] |
+| LE.28 | **`proto` namespace — Protocol Buffer Support** | Medium | Serv-lang | Add a built-in `proto` namespace: `proto.encode(obj, schema)` → bytes, `proto.decode(bytes, schema)` → map. Enables efficient binary serialization for gRPC services and high-throughput internal communication without requiring a Go package declaration. | [x] |
 
 ### `time` Namespace Full Breakdown (LE.17 detail)
 
@@ -487,7 +487,7 @@ All backlog tasks for Phase 29 have been fully completed, verified, and archived
 | # | Item | Effort | Component | Description | Status |
 |---|------|--------|-----------|-------------|--------|
 | LE.39 | **`@inline go` blocks — Raw Go Code Embedding** | Medium | Serv-lang | Add an `@inline go fn` declaration that embeds raw Go code directly inside a `.srv` file. The block is passed through as-is to the generated Go file, with the compiler only validating that it has a valid function signature. Enables one-off Go snippets without creating a full Go package: `@inline go fn sha256sum(input string) string { h := sha256.New(); ... return hex.EncodeToString(h.Sum(nil)) }`. The compiler auto-imports any `import` declarations declared at the top of the block. This is the maximum-flexibility escape hatch for cases the stdlib doesn't cover yet. | [x] |
-| LE.40 | **`extern fn` → `go:` binding improvements** | Small | Serv-lang | Extend the existing `extern fn name() from "go:pkg:Func"` syntax to support: (1) multiple function bindings from the same package in one declaration block, (2) method receivers (`go:pkg:Type.Method`), (3) auto-inference of the package alias to avoid collisions. Currently each extern declaration requires a separate statement and the package alias is always the basename of the import path. | [ ] |
+| LE.40 | **`extern fn` → `go:` binding improvements** | Small | Serv-lang | Extend the existing `extern fn name() from "go:pkg:Func"` syntax to support: (1) multiple function bindings from the same package in one declaration block, (2) method receivers (`go:pkg:Type.Method`), (3) auto-inference of the package alias to avoid collisions. Currently each extern declaration requires a separate statement and the package alias is always the basename of the import path. | [x] |
 
 
 
