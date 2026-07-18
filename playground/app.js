@@ -169,7 +169,11 @@ document.getElementById('btn-run').addEventListener('click', async () => {
     }
 
     try {
-        const response = await fetch('/api/run', {
+        let apiEndpoint = '/api/run';
+        if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+            apiEndpoint = 'http://127.0.0.1:8095/api/run';
+        }
+        const response = await fetch(apiEndpoint, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
