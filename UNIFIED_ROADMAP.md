@@ -429,8 +429,8 @@ All backlog tasks for Phase 29 have been fully completed, verified, and archived
 | EE.2 | **Shamir's Secret Sharing Bootstrapping** | OSS/EE | Require multiple operator key shards to unseal the master key on startup | [x] |
 | EE.3 | **ServConsole Locks Dashboard** | UI | Real-time monitoring UI in ServConsole for active locks, priority waiter lists, and SSE events | [x] |
 | EE.4 | **ServConsole Vault Explorer** | UI | Field-masked secrets manager GUI for secret CRUD operations and rollback actions | [x] |
-| EE.5 | **Automatic Dynamic Credential Rotation** | EE | Out-of-the-box cron rotation connectors for dynamic SQL/NoSQL logins | [ ] |
-| EE.6 | **Standalone CLI Administration Client** | OSS | Unified CLI `servlockctl` / `servsecretctl` for administration from terminals | [ ] |
+| EE.5 | **Automatic Dynamic Credential Rotation** | EE | Out-of-the-box cron rotation connectors for dynamic SQL/NoSQL logins | [x] |
+| EE.6 | **Standalone CLI Administration Client** | OSS | Unified CLI `servlockctl` / `servsecretctl` for administration from terminals | [x] |
 
 ## Phase 35: Serv-lang Language Ergonomics (Proposed — Q4 2026)
 
@@ -438,11 +438,11 @@ All backlog tasks for Phase 29 have been fully completed, verified, and archived
 
 | # | Item | Effort | Component | Description | Status |
 |---|------|--------|-----------|-------------|--------|
-| LE.1 | **`exec` namespace — Native Shell/Script Execution** | Small | Serv-lang | Add a built-in `exec` namespace analogous to `http`/`json`/`log`: `exec.run("powershell -File ./deploy.ps1")`. Returns `{ stdout, stderr, exitCode }`. Eliminates Python daemon wrappers for script invocations. Compiler registers `exec` in `isBuiltinNamespace` and emits `runtime.ExecRun(...)`. | [ ] |
+| LE.1 | **`exec` namespace — Native Shell/Script Execution** | Small | Serv-lang | Add a built-in `exec` namespace analogous to `http`/`json`/`log`: `exec.run("powershell -File ./deploy.ps1")`. Returns `{ stdout, stderr, exitCode }`. Eliminates Python daemon wrappers for script invocations. Compiler registers `exec` in `isBuiltinNamespace` and emits `runtime.ExecRun(...)`. | [x] |
 | LE.2 | **`csv` built-in namespace** | Small | Serv-lang | Promote `stdlib/csv.srv` to a first-class compiler built-in: `csv.parse(content)` and `csv.stringify(rows, headers)`. Eliminates the need to `import` the standard library file and makes CSV handling as natural as `json.parse()`. | [ ] |
 | LE.3 | **`xml` namespace — Native XML Parsing** | Small | Serv-lang | Add a built-in `xml` namespace: `xml.parse(content)` returns a nested map; `xml.stringify(obj)` emits XML. Backed by Go's `encoding/xml`. Allows processing SOAP APIs, config files, and RSS feeds natively. | [ ] |
 | LE.4 | **`yaml` namespace — YAML Parsing & Emit** | Small | Serv-lang | Add a built-in `yaml` namespace: `yaml.parse(content)` and `yaml.stringify(obj)`. Enables reading Kubernetes manifests, serv.toml overrides, and CI configs without external tools. | [ ] |
-| LE.5 | **`file` namespace — Direct File I/O** | Small | Serv-lang | Add a built-in `file` namespace for local file system access without requiring a `store` declaration: `file.read("./config.json")`, `file.write("./output.csv", content)`, `file.exists("./cert.pem")`, `file.list("./uploads/")`. Backed by `os` and `os/exec`. | [ ] |
+| LE.5 | **`file` namespace — Direct File I/O** | Small | Serv-lang | Add a built-in `file` namespace for local file system access without requiring a `store` declaration: `file.read("./config.json")`, `file.write("./output.csv", content)`, `file.exists("./cert.pem")`, `file.list("./uploads/")`. Backed by `os` and `os/exec`. | [x] |
 | LE.6 | **`path` namespace — File Path Utilities** | Small | Serv-lang | Add a built-in `path` namespace wrapping `path/filepath`: `path.join("a", "b")`, `path.dirname("/tmp/foo.txt")`, `path.basename(...)`, `path.ext(...)`, `path.abs("./relative")`. Essential for script-like programs. | [ ] |
 | LE.7 | **`regex` namespace — Regular Expression Support** | Small | Serv-lang | Add a built-in `regex` namespace: `regex.match("^\\d+$", value)` → bool, `regex.find(pattern, str)` → string, `regex.replace(pattern, str, replacement)` → string. Backed by Go's `regexp` package. | [ ] |
 | LE.8 | **`math` namespace — Mathematical Functions** | Small | Serv-lang | Add a built-in `math` namespace: `math.floor(x)`, `math.ceil(x)`, `math.round(x)`, `math.abs(x)`, `math.pow(base, exp)`, `math.sqrt(x)`, `math.min(a, b)`, `math.max(a, b)`. Currently these require workarounds or Go package declarations. | [ ] |
@@ -486,7 +486,7 @@ All backlog tasks for Phase 29 have been fully completed, verified, and archived
 
 | # | Item | Effort | Component | Description | Status |
 |---|------|--------|-----------|-------------|--------|
-| LE.39 | **`@inline go` blocks — Raw Go Code Embedding** | Medium | Serv-lang | Add an `@inline go fn` declaration that embeds raw Go code directly inside a `.srv` file. The block is passed through as-is to the generated Go file, with the compiler only validating that it has a valid function signature. Enables one-off Go snippets without creating a full Go package: `@inline go fn sha256sum(input string) string { h := sha256.New(); ... return hex.EncodeToString(h.Sum(nil)) }`. The compiler auto-imports any `import` declarations declared at the top of the block. This is the maximum-flexibility escape hatch for cases the stdlib doesn't cover yet. | [ ] |
+| LE.39 | **`@inline go` blocks — Raw Go Code Embedding** | Medium | Serv-lang | Add an `@inline go fn` declaration that embeds raw Go code directly inside a `.srv` file. The block is passed through as-is to the generated Go file, with the compiler only validating that it has a valid function signature. Enables one-off Go snippets without creating a full Go package: `@inline go fn sha256sum(input string) string { h := sha256.New(); ... return hex.EncodeToString(h.Sum(nil)) }`. The compiler auto-imports any `import` declarations declared at the top of the block. This is the maximum-flexibility escape hatch for cases the stdlib doesn't cover yet. | [x] |
 | LE.40 | **`extern fn` → `go:` binding improvements** | Small | Serv-lang | Extend the existing `extern fn name() from "go:pkg:Func"` syntax to support: (1) multiple function bindings from the same package in one declaration block, (2) method receivers (`go:pkg:Type.Method`), (3) auto-inference of the package alias to avoid collisions. Currently each extern declaration requires a separate statement and the package alias is always the basename of the import path. | [ ] |
 
 
