@@ -77,7 +77,8 @@ All items in Phases 1 through 14 have been fully implemented, verified, and push
 | **Phase 32: ServLock & ServSecret Standalone & Hardening** | 8 | 8 | 0 | **100%** | ████████████████████ |
 | **Phase 33: ServLock & ServSecret Advanced Capabilities** | 10 | 10 | 0 | **100%** | ████████████████████ |
 | **Phase 34: ServLock & ServSecret Enterprise & UI** | 6 | 4 | 2 | **66%** | ████████████░░░░░░░ |
-| **TOTAL ECOSYSTEM WORK** | **465** | **463** | **2** | **99%** | ███████████████████░ |
+| **Phase 35: Serv-lang Language Ergonomics** | 40 | 0 | 40 | **0%** | ░░░░░░░░░░░░░░░░░░░░ |
+| **TOTAL ECOSYSTEM WORK** | **505** | **463** | **42** | **92%** | ██████████████████░░ |
 
 
 ---
@@ -430,6 +431,65 @@ All backlog tasks for Phase 29 have been fully completed, verified, and archived
 | EE.4 | **ServConsole Vault Explorer** | UI | Field-masked secrets manager GUI for secret CRUD operations and rollback actions | [x] |
 | EE.5 | **Automatic Dynamic Credential Rotation** | EE | Out-of-the-box cron rotation connectors for dynamic SQL/NoSQL logins | [ ] |
 | EE.6 | **Standalone CLI Administration Client** | OSS | Unified CLI `servlockctl` / `servsecretctl` for administration from terminals | [ ] |
+
+## Phase 35: Serv-lang Language Ergonomics (Proposed — Q4 2026)
+
+> **Goal:** Reduce reliance on Python daemon wrappers and external utilities by introducing native built-in namespaces and language sugar that make common day-to-day operations ergonomic and expressive.
+
+| # | Item | Effort | Component | Description | Status |
+|---|------|--------|-----------|-------------|--------|
+| LE.1 | **`exec` namespace — Native Shell/Script Execution** | Small | Serv-lang | Add a built-in `exec` namespace analogous to `http`/`json`/`log`: `exec.run("powershell -File ./deploy.ps1")`. Returns `{ stdout, stderr, exitCode }`. Eliminates Python daemon wrappers for script invocations. Compiler registers `exec` in `isBuiltinNamespace` and emits `runtime.ExecRun(...)`. | [ ] |
+| LE.2 | **`csv` built-in namespace** | Small | Serv-lang | Promote `stdlib/csv.srv` to a first-class compiler built-in: `csv.parse(content)` and `csv.stringify(rows, headers)`. Eliminates the need to `import` the standard library file and makes CSV handling as natural as `json.parse()`. | [ ] |
+| LE.3 | **`xml` namespace — Native XML Parsing** | Small | Serv-lang | Add a built-in `xml` namespace: `xml.parse(content)` returns a nested map; `xml.stringify(obj)` emits XML. Backed by Go's `encoding/xml`. Allows processing SOAP APIs, config files, and RSS feeds natively. | [ ] |
+| LE.4 | **`yaml` namespace — YAML Parsing & Emit** | Small | Serv-lang | Add a built-in `yaml` namespace: `yaml.parse(content)` and `yaml.stringify(obj)`. Enables reading Kubernetes manifests, serv.toml overrides, and CI configs without external tools. | [ ] |
+| LE.5 | **`file` namespace — Direct File I/O** | Small | Serv-lang | Add a built-in `file` namespace for local file system access without requiring a `store` declaration: `file.read("./config.json")`, `file.write("./output.csv", content)`, `file.exists("./cert.pem")`, `file.list("./uploads/")`. Backed by `os` and `os/exec`. | [ ] |
+| LE.6 | **`path` namespace — File Path Utilities** | Small | Serv-lang | Add a built-in `path` namespace wrapping `path/filepath`: `path.join("a", "b")`, `path.dirname("/tmp/foo.txt")`, `path.basename(...)`, `path.ext(...)`, `path.abs("./relative")`. Essential for script-like programs. | [ ] |
+| LE.7 | **`regex` namespace — Regular Expression Support** | Small | Serv-lang | Add a built-in `regex` namespace: `regex.match("^\\d+$", value)` → bool, `regex.find(pattern, str)` → string, `regex.replace(pattern, str, replacement)` → string. Backed by Go's `regexp` package. | [ ] |
+| LE.8 | **`math` namespace — Mathematical Functions** | Small | Serv-lang | Add a built-in `math` namespace: `math.floor(x)`, `math.ceil(x)`, `math.round(x)`, `math.abs(x)`, `math.pow(base, exp)`, `math.sqrt(x)`, `math.min(a, b)`, `math.max(a, b)`. Currently these require workarounds or Go package declarations. | [ ] |
+| LE.9 | **`encoding` namespace — Base64 & Hex** | Small | Serv-lang | Add a built-in `encoding` namespace: `encoding.base64.encode(str)`, `encoding.base64.decode(str)`, `encoding.hex.encode(bytes)`. Covers webhook signatures, token encoding, and binary-to-text use cases. | [ ] |
+| LE.10 | **`hash` namespace — Cryptographic Hashing** | Small | Serv-lang | Add a built-in `hash` namespace: `hash.md5(str)`, `hash.sha256(str)`, `hash.sha512(str)`, `hash.hmac(key, data, algo)`. Backed by Go's `crypto/*` packages. Useful for API signature validation and integrity checks. | [ ] |
+| LE.11 | **`uuid` namespace — Unique ID Generation** | Small | Serv-lang | Add a built-in `uuid` namespace: `uuid.v4()` → string, `uuid.v7()` → string (time-ordered). Eliminates the need to depend on external packages for common ID generation. | [ ] |
+| LE.12 | **`rand` namespace — Random Value Generation** | Small | Serv-lang | Add a built-in `rand` namespace: `rand.int(min, max)`, `rand.float()`, `rand.string(n)`, `rand.bool()`. Backed by `crypto/rand` for security-safe randomness. | [ ] |
+| LE.13 | **`url` namespace — URL Parsing & Encoding** | Small | Serv-lang | Add a built-in `url` namespace: `url.parse("https://example.com/path?q=1")` → `{ scheme, host, path, query }`, `url.encode(str)`, `url.decode(str)`. Backed by Go's `net/url`. | [ ] |
+| LE.14 | **`env` namespace — Typed Environment Variables** | Small | Serv-lang | Extend the current `env("VAR")` function to a full namespace: `env.get("KEY")`, `env.require("KEY")` (panics if missing), `env.int("PORT", 8080)`, `env.bool("DEBUG", false)`. Eliminates boilerplate nil checks on env lookups. | [ ] |
+| LE.15 | **Optional chaining (`?.`)** | Medium | Serv-lang | Add null-safe member access: `user?.address?.city`. If any intermediate value is `nil`, the whole expression short-circuits to `nil` instead of panicking. Compiler emits safe nil checks at each `?.` access point. | [ ] |
+| LE.16 | **Spread operator (`...`) for arrays and maps** | Medium | Serv-lang | Add spread syntax: `[...arr1, newItem, ...arr2]` for array merging and `{...baseConfig, timeout: 30}` for map merging. Emits `append()` and map copy loops in Go. | [ ] |
+| LE.17 | **`time` namespace — Full Date/Time Support** | Medium | Serv-lang | Overhaul the `time` built-in from its current 3-method stub (`now`, `unix`, `sleep`) into a comprehensive date/time namespace. Currently `time.now()` returns RFC3339, `time.unix()` returns epoch seconds, and there is **no** parsing, formatting, timezone, arithmetic, or component access. See LE.29–LE.38 for the full breakdown. | [ ] |
+| LE.18 | **Multiline string dedentation** | Small | Serv-lang | Strip common leading whitespace from indented raw string literals (backtick strings), similar to Python's `textwrap.dedent()`. Enables clean inline SQL and HTML templates without ugly formatting. | [ ] |
+| LE.19 | **`jwt` namespace — User-Accessible Token Signing** | Small | Serv-lang | Expose a first-class `jwt` namespace: `jwt.sign(payload, secret)` → token string, `jwt.verify(token, secret)` → payload map, `jwt.decode(token)` → payload (no verify). Currently JWT logic is buried inside the auth runtime and not accessible to user code. | [ ] |
+| LE.20 | **`compress` namespace — Gzip & Deflate** | Small | Serv-lang | Add a built-in `compress` namespace: `compress.gzip(data)` → bytes, `compress.ungzip(bytes)` → string, `compress.deflate(data)`, `compress.inflate(bytes)`. Backed by Go's `compress/gzip`. Useful for log archiving, API payload compression, and asset bundling. | [ ] |
+| LE.21 | **`semver` namespace — Semantic Version Parsing** | Small | Serv-lang | Add a built-in `semver` namespace: `semver.parse("1.2.3")` → `{ major, minor, patch }`, `semver.compare(v1, v2)` → int (-1, 0, 1), `semver.satisfies("^1.0.0", version)` → bool. Essential for dependency management and `serv.toml` compatibility checks. | [ ] |
+| LE.22 | **`duration` namespace — Human-Readable Time Spans** | Small | Serv-lang | Add a built-in `duration` namespace: `duration.parse("2h30m15s")` → seconds (int), `duration.format(9015)` → `"2h30m15s"`, `duration.since(timestamp)` → seconds elapsed. Complements the existing `every` and `timeout` duration literals in the language. | [ ] |
+| LE.23 | **`format` namespace — Human-Readable Value Formatting** | Small | Serv-lang | Add a built-in `format` namespace: `format.bytes(1048576)` → `"1 MB"`, `format.number(1_500_000)` → `"1.5M"`, `format.percent(0.856)` → `"85.6%"`, `format.plural(count, "item", "items")` → `"3 items"`. Eliminates manual formatting logic in dashboard and report code. | [ ] |
+| LE.24 | **`ip` namespace — IP Address Utilities** | Small | Serv-lang | Add a built-in `ip` namespace: `ip.parse("192.168.1.1")` → `{ version, octets }`, `ip.isPrivate(addr)` → bool, `ip.inCIDR(addr, "10.0.0.0/8")` → bool, `ip.version(addr)` → `"ipv4"` or `"ipv6"`. Useful for rate limiting, geo-fencing, and request validation. | [ ] |
+| LE.25 | **`dns` namespace — DNS Lookup Utilities** | Small | Serv-lang | Add a built-in `dns` namespace: `dns.lookup("example.com")` → IP string, `dns.txt("_dmarc.example.com")` → string, `dns.srv("_http._tcp.example.com")` → `{ host, port, priority }`. Useful for service discovery and email domain verification. | [ ] |
+| LE.26 | **`multipart` namespace — File Upload Parsing** | Small | Serv-lang | Add a built-in `multipart` namespace: `multipart.parse(req)` → `{ fields: {...}, files: [{ name, filename, size, content }] }`. Currently file upload handling requires raw body parsing. Backed by Go's `mime/multipart`. | [ ] |
+| LE.27 | **`diff` namespace — Structural Diff & Patch** | Small | Serv-lang | Add a built-in `diff` namespace: `diff.text(a, b)` → unified diff string, `diff.json(objA, objB)` → array of change operations (added/removed/changed). Backed by Go diff libraries. Useful for audit trails, config change detection, and API changelog generation. | [ ] |
+| LE.28 | **`proto` namespace — Protocol Buffer Support** | Medium | Serv-lang | Add a built-in `proto` namespace: `proto.encode(obj, schema)` → bytes, `proto.decode(bytes, schema)` → map. Enables efficient binary serialization for gRPC services and high-throughput internal communication without requiring a Go package declaration. | [ ] |
+
+### `time` Namespace Full Breakdown (LE.17 detail)
+
+| # | Item | Effort | Component | Description | Status |
+|---|------|--------|-----------|-------------|--------|
+| LE.29 | **`time.parse(str, layout)`** | Small | Serv-lang | Parse a date/time string into an opaque time value: `time.parse("2026-07-17", "2006-01-02")` → time value, `time.parse("2026-07-17T22:00:00+05:30", time.RFC3339)`. Backed by Go's `time.Parse()`. Without this, comparing or manipulating stored timestamps is impossible. | [ ] |
+| LE.30 | **`time.format(t, layout)`** | Small | Serv-lang | Format a time value into a custom string: `time.format(t, "2006-01-02")` → `"2026-07-17"`, `time.format(t, "Jan 2, 2006 15:04")` → `"Jul 17, 2026 22:00"`. Currently `time.now()` is hardcoded to RFC3339 with no way to change the output format. | [ ] |
+| LE.31 | **`time.inZone(t, tz)` — Timezone Conversion** | Small | Serv-lang | Convert a time value to a named timezone: `time.inZone(t, "Asia/Kolkata")`, `time.inZone(t, "America/New_York")`, `time.inZone(t, "UTC")`. Backed by Go's `time.LoadLocation()` and IANA timezone database. Essential for any multi-region application. | [ ] |
+| LE.32 | **`time.utc(t)` and `time.local(t)`** | Small | Serv-lang | Convenience shorthands: `time.utc(t)` converts to UTC, `time.local(t)` converts to the server's local timezone. Complements `time.inZone()` for the common case. | [ ] |
+| LE.33 | **`time.add(t, duration)` — Time Arithmetic** | Small | Serv-lang | Add a duration to a time value: `time.add(t, "24h")` → tomorrow, `time.add(t, "-7d")` → 7 days ago, `time.add(t, "30m")` → 30 minutes later. Backed by Go's `time.Add()` and `time.ParseDuration()`. | [ ] |
+| LE.34 | **`time.sub(t1, t2)` — Time Difference** | Small | Serv-lang | Compute the difference between two time values in seconds: `time.sub(t2, t1)` → float64 seconds. Enables age calculations, expiry checks, and SLA monitoring without manual Unix arithmetic. | [ ] |
+| LE.35 | **`time.before(t1, t2)` and `time.after(t1, t2)`** | Small | Serv-lang | Boolean time comparison: `time.before(t1, t2)` → bool, `time.after(t1, t2)` → bool. Currently there is no way to compare two time strings without converting to Unix integers manually. | [ ] |
+| LE.36 | **`time.fromUnix(seconds)` — Unix to Time** | Small | Serv-lang | Convert a Unix epoch integer back to a formatted string: `time.fromUnix(1753000000)` → RFC3339 string, `time.fromUnix(ts, "2006-01-02")` → custom format. Inverse of `time.unix()`. | [ ] |
+| LE.37 | **`time.components(t)` — Date Part Extraction** | Small | Serv-lang | Destructure a time value into its parts: `time.components(t)` → `{ year, month, day, hour, minute, second, weekday, tz }`. Enables building date-aware logic (e.g., "is it a weekend?", "what month?") without string slicing. | [ ] |
+| LE.38 | **Predefined layout constants** | Small | Serv-lang | Expose common format constants in the compiler: `time.RFC3339`, `time.DATE` (`"2006-01-02"`), `time.DATETIME` (`"2006-01-02 15:04:05"`), `time.TIME` (`"15:04:05"`), `time.HTTP` (RFC1123Z for HTTP headers). Eliminates magic string layouts in user code. | [ ] |
+
+### Go Interop Escape Hatches
+
+| # | Item | Effort | Component | Description | Status |
+|---|------|--------|-----------|-------------|--------|
+| LE.39 | **`@inline go` blocks — Raw Go Code Embedding** | Medium | Serv-lang | Add an `@inline go fn` declaration that embeds raw Go code directly inside a `.srv` file. The block is passed through as-is to the generated Go file, with the compiler only validating that it has a valid function signature. Enables one-off Go snippets without creating a full Go package: `@inline go fn sha256sum(input string) string { h := sha256.New(); ... return hex.EncodeToString(h.Sum(nil)) }`. The compiler auto-imports any `import` declarations declared at the top of the block. This is the maximum-flexibility escape hatch for cases the stdlib doesn't cover yet. | [ ] |
+| LE.40 | **`extern fn` → `go:` binding improvements** | Small | Serv-lang | Extend the existing `extern fn name() from "go:pkg:Func"` syntax to support: (1) multiple function bindings from the same package in one declaration block, (2) method receivers (`go:pkg:Type.Method`), (3) auto-inference of the package alias to avoid collisions. Currently each extern declaration requires a separate statement and the package alias is always the basename of the import path. | [ ] |
+
+
 
 ## Appendix C: Architectural Policy for OSS/EE Boundaries
 
