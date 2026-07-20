@@ -433,8 +433,9 @@ This phase addresses critical architecture gaps identified during external revie
 
 ### 2. ServQueue (Message Queue)
 *   **OSS (Open Source):**
-    *   **Safe WASM Execution:** Eliminate `unsafe.Pointer` usage in the WASM processing runner, replacing it with safe slicing and copying bounds checks.
+    *   **Safe WASM Execution:** Eliminate `unsafe.Pointer` usage in the WASM processing runner, replacing it with safe slicing and copying bounds checks to prevent broker segfaults.
     *   **WASM Resource Sandboxing & Throttling:** Add strict execution timeouts (e.g., terminate filter if it takes longer than 50ms) to Wazero to prevent faulty scripts from draining host CPU/memory.
+    *   **Unbounded Memory Queues & Backpressure:** Implement strict memory buffers and backpressure limits to throttle producers when consumer queues fall behind.
     *   **Dead Letter Queue (DLQ) Eviction Policies:** Auto-offload failed or repeatedly unacknowledged messages to a DLQ with contextual failure metadata headers.
 *   **EE (Enterprise):**
     *   **Distributed Consensus:** Implement Raft-based distributed consensus for multi-node message replication.
@@ -447,10 +448,15 @@ This phase addresses critical architecture gaps identified during external revie
     *   **Audited Raft Integration:** Integrate an audited, industry-standard Raft consensus layer (using `hashicorp/raft`) to prevent state database corruption during server restarts.
     *   **TLS Interconnect & RBAC:** Enforce mutual TLS handshakes and RBAC permissions per cluster access token.
 
+### 4. Ecosystem & Shared Middleware (ServShared)
+*   **OSS (Open Source):**
+    *   **Resilient Retry Adaptors:** Introduce exponential-backoff retries for database query and network socket handshakes in core middleware, avoiding naive process crashes on transient timeouts.
+
 ### Architecture Verification Checklist
 - [ ] **State Resiliency:** Can I pull the power cord on 1 out of 3 running ServStore nodes without corrupting active configurations?
 - [ ] **Edge Protection:** Does ServGate reject traffic smoothly with an HTTP 429 error when hit by a simulated DDoS attack?
 - [ ] **WASM Isolation:** Does ServQueue terminate a WASM data filter if it takes longer than 50ms to run?
+- [ ] **Ecosystem Resilience:** Does a momentary network split or database connection timeout trigger an automatic retry (with backoff) rather than a hard crash/panic?
 
 ## Phase 37: Serv-lang Niche Positioning & DX Evolution (Proposed)
 
