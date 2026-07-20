@@ -418,10 +418,35 @@ All backlog tasks for Phase 34 have been fully completed, verified, and archived
 
 All backlog tasks for Phase 35 have been fully completed, verified, and archived.
 
-- For completed details of Phase 35: See [UNIFIED_ROADMAP_COMPLETED_31_35.md](file:///F:/Don/servverse/servverse/UNIFIED_ROADMAP_COMPLETED_31_35.md).
+## Phase 36: Component Maturity & Ecosystem Security (In Progress)
 
+This phase addresses critical architecture gaps identified during external review across the core gateway, queue, and state store components. The roadmap distinguishes between standard features (OSS) and enterprise-scale features (EE):
+
+### 1. ServGate (API Gateway)
+*   **OSS (Open Source):**
+    *   **Automated Rate Limiting:** Introduce standard token-bucket and sliding-window rate limiters for local request throttling.
+    *   **Circuit Breaking:** Build basic circuit-breaker state machines (Closed, Open, Half-Open) with configurable error thresholds.
+*   **EE (Enterprise):**
+    *   **Dynamic Clustering:** Implement peer discovery (via Consul/etcd) to enable dynamic clustering of ServGate nodes.
+    *   **Advanced mTLS:** Introduce multi-tenant mutual TLS certificate authority integration.
+
+### 2. ServQueue (Message Queue)
+*   **OSS (Open Source):**
+    *   **Safe WASM Execution:** Eliminate `unsafe.Pointer` usage in the WASM processing runner, replacing it with safe slicing and copying bounds checks.
+    *   **Storage Compaction:** Implement basic segment-based data retention policies and log compaction.
+*   **EE (Enterprise):**
+    *   **Distributed Consensus:** Implement Raft-based distributed consensus for multi-node message replication.
+    *   **Partition Resilience:** Add split-brain detection and automated broker failover logic.
+
+### 3. ServStore (State Store)
+*   **OSS (Open Source):**
+    *   **Local Backend Stability:** Standardize database/lock storage APIs for single-instance consistency.
+*   **EE (Enterprise):**
+    *   **Audited Raft Integration:** Integrate a production-grade, meticulously audited Raft consensus layer (e.g., hashicorp/raft) to prevent data corruption.
+    *   **Peer Synchronization:** Auto-healing cluster synchronization for dynamic replica nodes.
 
 ---
+
 
 
 ## Appendix C: Architectural Policy for OSS/EE Boundaries
