@@ -425,25 +425,32 @@ This phase addresses critical architecture gaps identified during external revie
 ### 1. ServGate (API Gateway)
 *   **OSS (Open Source):**
     *   **Automated Rate Limiting:** Introduce standard token-bucket and sliding-window rate limiters for local request throttling.
-    *   **Circuit Breaking:** Build basic circuit-breaker state machines (Closed, Open, Half-Open) with configurable error thresholds.
+    *   **Circuit Breaking & Outage Isolation:** Build circuit-breaker state-machines (Closed, Open, Half-Open) to prevent gateway file-descriptor exhaustion during downstream outages.
 *   **EE (Enterprise):**
-    *   **Dynamic Clustering:** Implement peer discovery (via Consul/etcd) to enable dynamic clustering of ServGate nodes.
+    *   **Dynamic Upstream Discovery:** Integrate with Consul and Kubernetes CoreDNS for dynamic upstream registration (replacing hardcoded JSON route maps).
+    *   **Distributed Rate Limiting:** Integrate a shared back-end state adapter (such as a Redis Sentinel cluster) using a sliding-window token-bucket algorithm to enforce global API thresholds behind load balancers.
     *   **Advanced mTLS:** Introduce multi-tenant mutual TLS certificate authority integration.
 
 ### 2. ServQueue (Message Queue)
 *   **OSS (Open Source):**
     *   **Safe WASM Execution:** Eliminate `unsafe.Pointer` usage in the WASM processing runner, replacing it with safe slicing and copying bounds checks.
-    *   **Storage Compaction:** Implement basic segment-based data retention policies and log compaction.
+    *   **WASM Resource Sandboxing & Throttling:** Add strict execution timeouts (e.g., terminate filter if it takes longer than 50ms) to Wazero to prevent faulty scripts from draining host CPU/memory.
+    *   **Dead Letter Queue (DLQ) Eviction Policies:** Auto-offload failed or repeatedly unacknowledged messages to a DLQ with contextual failure metadata headers.
 *   **EE (Enterprise):**
     *   **Distributed Consensus:** Implement Raft-based distributed consensus for multi-node message replication.
-    *   **Partition Resilience:** Add split-brain detection and automated broker failover logic.
+    *   **Split-Brain Prevention & Partition Resilience:** Add partition failover protocols and split-brain resolution rules to prevent duplicate offset commits during multi-AZ splits.
 
 ### 3. ServStore (State Store)
 *   **OSS (Open Source):**
     *   **Local Backend Stability:** Standardize database/lock storage APIs for single-instance consistency.
 *   **EE (Enterprise):**
-    *   **Audited Raft Integration:** Integrate a production-grade, meticulously audited Raft consensus layer (e.g., hashicorp/raft) to prevent data corruption.
-    *   **Peer Synchronization:** Auto-healing cluster synchronization for dynamic replica nodes.
+    *   **Audited Raft Integration:** Integrate an audited, industry-standard Raft consensus layer (using `hashicorp/raft`) to prevent state database corruption during server restarts.
+    *   **TLS Interconnect & RBAC:** Enforce mutual TLS handshakes and RBAC permissions per cluster access token.
+
+### Architecture Verification Checklist
+- [ ] **State Resiliency:** Can I pull the power cord on 1 out of 3 running ServStore nodes without corrupting active configurations?
+- [ ] **Edge Protection:** Does ServGate reject traffic smoothly with an HTTP 429 error when hit by a simulated DDoS attack?
+- [ ] **WASM Isolation:** Does ServQueue terminate a WASM data filter if it takes longer than 50ms to run?
 
 ---
 
