@@ -454,18 +454,20 @@ This phase addresses critical architecture gaps identified during external revie
 
 ## Phase 37: Serv-lang Niche Positioning & DX Evolution (Proposed)
 
-To transform Serv-lang from a personal project into a mature, widely-adopted system language, the roadmap pivots from general-purpose service development to a highly differentiated niche: **Embedded WebAssembly (WASM) Logic**.
+To transform Serv-lang from a personal project into a mature, widely-adopted system language, the roadmap pivots to the **"TypeScript of Go"** paradigm: an expressive, type-safe transpiler layer that outputs readable Go or compiles straight to WebAssembly bytecode with zero runtime overhead.
 
 ### 1. Interoperability & FFI (Phase 1)
 *   **Zero-Friction Go Bridge:** Build a direct Foreign Function Interface (FFI) allowing Serv-lang files to import and call external Go modules directly (`import "github.com/..."`), solving the "empty shelf" standard library issue overnight.
 
-### 2. Stream DSL & WASM Sandboxing (Phase 2)
+### 2. Stream DSL & Concurrency Safety (Phase 2)
 *   **The "Rails" Moment:** Develop native language primitives and compiler-level syntax to write WASM stream transformations in under 5 lines of code, replacing hundreds of lines of Go/Rust boilerplate.
+*   **Safety Guardrails:** Implement compiler checks to statically catch Go-specific concurrency panics (e.g. race conditions, nil channel writes) at compile-time.
 
 ### 3. Logic Configuration Engine (Phase 3)
 *   **Configuration Logic "Trojan Horse":** Market and adapt Serv-lang as a Turing-complete, high-performance configuration and routing policy logic language (similar to CUE/Jsonnet but tailored for proxy pipelines like Envoy/Nginx filters).
 
-### 4. Governance & Trust (Phase 4)
+### 4. Governance, Trust & Codegen Quality (Phase 4)
+*   **Readable Target Output:** Enforce strict codegen readability guidelines to guarantee transpiled Go matches clean, human-auditable production standards.
 *   **Open Governance:** Transition the repositories from the personal github.com/vyuvaraj namespace to a dedicated github.com/serv-lang organization to increase security trust and improve the project's bus factor.
 
 ---
