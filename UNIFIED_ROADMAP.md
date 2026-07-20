@@ -451,6 +451,7 @@ This phase addresses critical architecture gaps identified during external revie
 ### 4. Ecosystem & Shared Middleware (ServShared)
 *   **OSS (Open Source):**
     *   **Resilient Retry Adaptors:** Introduce exponential-backoff retries for database query and network socket handshakes in core middleware, avoiding naive process crashes on transient timeouts.
+    *   **Dependency Resolution Standardization:** Remove all legacy `vendor/` directories from core packages and transition fully to standard Go module resolution (`go.mod`/`go.sum` with workspace coordination), optimizing build integrity and preventing overlay errors.
 
 ### Architecture Verification Checklist
 - [ ] **State Resiliency:** Can I pull the power cord on 1 out of 3 running ServStore nodes without corrupting active configurations?
