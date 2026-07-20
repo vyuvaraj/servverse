@@ -6,53 +6,67 @@ This document analyzes the external feedback regarding the maturity of **ServGat
 
 ## 1. ServGate (API Gateway)
 
-### Gaps Identified
-*   **Dynamic Clustering:** Nodes run independently without active state coordination or topology awareness.
-*   **Automated Rate Limiting:** Lacks distributed rate limiting (e.g., Token Bucket/Sliding Window algorithms).
-*   **Resiliency & Proxies:** Lacks circuit-breaker proxies to shield upstream services from cascading failures.
-*   **Security:** Lacks enterprise mutual TLS (mTLS) with dynamic peer validation.
+### Gaps Identified & Detailed Feedback
+*   **Dynamic Upstream Discovery:** Currently relies on hardcoded JSON route maps. Production gateways require dynamic integration with service discovery registries (Consul, Kubernetes CoreDNS) to automatically detect when downstream services scale or crash.
+*   **Distributed Rate Limiting:** The current localized rate limiter fails behind a round-robin load balancer. It needs a shared back-end state adapter (such as a Redis Sentinel cluster) using a sliding-window token bucket algorithm to enforce global API thresholds.
+*   **Circuit Breaking & Outage Isolation:** Lacks automatic circuit breaking when a downstream service or queue stalls. Without this, pending connections back up, exhausting file descriptors and triggering cascading cluster failure.
+*   **Security & Interconnect:** Needs robust mutual TLS (mTLS) with dynamic validation and multi-tenant certificate authority integration.
 
 ### Production Risk
-*   Under high concurrent request storms, single-node configurations are susceptible to CPU/Memory exhaustion.
-*   The absence of upstream circuit breaking means backend failures will cascade, exhausting connection pools.
+*   Concurrent request storms will trigger memory/CPU spikes, and localized limiters will fail under load-balanced topologies.
+*   A downstream failure or stall will cascade back to the gateway, causing file descriptor starvation and crashing the edge.
 
 ### Mitigation Plan
 *   **[OSS] Rate Limiting:** Implement sliding-window rate limiting using local memory or Redis backend.
 *   **[OSS] Circuit Breaker:** Add a basic circuit-breaker proxy state-machine (Closed, Open, Half-Open).
-*   **[EE] Dynamic Clustering:** Build cluster node discovery (via Consul/etcd) to automatically sync routing states.
-*   **[EE] Advanced mTLS:** Implement dynamic certificate exchange and verification via an integrated Enterprise CA.
+*   **[EE] Dynamic Discovery:** Integrate with Consul and Kubernetes CoreDNS for dynamic upstream registration.
+*   **[EE] Distributed Rate Limiting:** Implement Redis Sentinel integration for shared token-bucket rate limiting.
+*   **[EE] Advanced mTLS:** Dynamic certificate handshake and exchange with tenant-based validations.
 
 ---
 
 ## 2. ServQueue (Message Queue)
 
-### Gaps Identified
-*   **Distributed Consensus:** Lacks Raft or Paxos-based replication and distributed partition handling.
-*   **Memory Safety:** The WASM filter engine uses raw `unsafe.Pointer` mappings, making it vulnerable to system crashes.
-*   **Data Lifecycle:** Lacks stable, compacted Write-Ahead Logs (WAL) and configurable data retention policies.
+### Gaps Identified & Detailed Feedback
+*   **WASM Resource Sandboxing & Throttling:** Running WebAssembly via Wazero is fast, but a faulty user script with an infinite loop or high memory allocation will drain CPU cores and crash the host broker process. Needs strict runtime limiters to terminate slow WASM execution cycles.
+*   **Split-Brain Prevention:** For multi-AZ clusters, the broker requires a replication coordinator. A network split will cause partition drift and duplicate message offset consumption without strict consensus.
+*   **Dead Letter Queue (DLQ) Eviction Policies:** If a WASM data filter throws an exception or a consumer fails to acknowledge payloads repeatedly, messages must automatically offload to a DLQ with contextual metadata headers describing the failure.
+*   **Memory Safety:** The WASM engine relies on raw `unsafe.Pointer` mappings, creating high vulnerability to crashes during out-of-bounds allocation or uncaught panics.
 
 ### Production Risk
-*   Unchecked memory allocations or runtime panic in custom WASM filters can crash the entire broker process due to the use of `unsafe.Pointer`.
-*   A network split can lead to data loss or message duplication without a robust split-brain resolution protocol.
+*   A single faulty WASM filter script can consume host CPU/memory resources and crash the primary broker process.
+*   Network partition events will corrupt message logs or cause duplicate offset commits without a partition coordinator.
 
 ### Mitigation Plan
 *   **[OSS] Safe WASM Runner:** Replace `unsafe.Pointer` memory mappings in the WASM runner with safe, bounds-checked slices and explicit memory copies.
-*   **[OSS] Log Retention & Compaction:** Build segment-based file storage and basic log compaction.
+*   **[OSS] WASM Execution Limits:** Add configurable execution timeouts (e.g., terminate filter if it takes longer than 50ms) to Wazero configuration.
+*   **[OSS] Dead Letter Queue:** Implement a secondary DLQ eviction system with failure context headers.
 *   **[EE] Distributed Consensus:** Implement Raft-based message replication across broker node clusters.
-*   **[EE] Partition Resilience:** Add partition failover protocols and split-brain resolution rules.
+*   **[EE] Partition Resilience:** Add split-brain prevention and automated broker failover logic.
 
 ---
 
 ## 3. ServStore (State Store)
 
-### Gaps Identified
-*   **Consensus Integrity:** Entrusted with cluster state metadata but lacks a highly-tested Raft implementation like etcd.
-*   **Peer Sync:** Node synchronization under high write throughput can drift.
+### Gaps Identified & Detailed Feedback
+*   **Formal Raft Consensus Verification:** Managing configuration tables requires linearizable consistency. ServStore needs a verified consensus library (such as `hashicorp/raft`) to manage state mutations safely and prevent silent database corruption during server restarts.
+*   **RBAC & TLS Interconnect:** To run securely in shared environments, all service-to-service communication paths must enforce mandatory mutual TLS (mTLS) certificate handshakes, paired with distinct write/read permissions for separate network keys.
 
 ### Production Risk
 *   State synchronization bugs can silently corrupt metadata records, leading to systemic failures across downstream applications.
+*   Lacking TLS interconnect and RBAC exposes sensitive configuration metadata to unauthorized internal nodes.
 
 ### Mitigation Plan
 *   **[OSS] Lock Backend Stability:** Standardize interface abstraction layer for SQL/key-value storage backends.
 *   **[EE] Audited Raft Integration:** Integrate an audited, industry-standard Raft implementation (`hashicorp/raft`) for state replication.
-*   **[EE] Auto-Healing Peer Sync:** Build automated reconciliation loops to repair out-of-sync cluster replicas.
+*   **[EE] TLS Interconnect & RBAC:** Enforce mutual TLS handshakes and RBAC permissions per cluster access token.
+
+---
+
+## Architecture Verification Checklist
+
+To gauge if the infrastructure is production-ready, verify the following capabilities:
+
+- [ ] **State Resiliency:** Can I pull the power cord on 1 out of 3 running ServStore nodes without corrupting active configurations?
+- [ ] **Edge Protection:** Does ServGate reject traffic smoothly with an HTTP 429 error when hit by a simulated DDoS attack?
+- [ ] **WASM Isolation:** Does ServQueue terminate a WASM data filter if it takes longer than 50ms to run?
