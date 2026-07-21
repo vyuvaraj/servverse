@@ -332,25 +332,34 @@
       <p>Select a component to inspect its features and rationale.</p>
     </div>
     <div class="tab-system reveal">
-      <div class="tab-buttons" role="tablist" aria-label="Component details">
-        <button class="tab-btn active" data-target="serv-lang">Serv-lang</button>
-        <button class="tab-btn" data-target="servgate">ServGate</button>
-        <button class="tab-btn" data-target="servmesh">ServMesh</button>
-        <button class="tab-btn" data-target="servqueue">ServQueue</button>
-        <button class="tab-btn" data-target="servstore">ServStore</button>
-        <button class="tab-btn" data-target="servcache">ServCache</button>
-        <button class="tab-btn" data-target="servconsole">ServConsole</button>
-        <button class="tab-btn" data-target="servregistry">ServRegistry</button>
-        <button class="tab-btn" data-target="servtunnel">ServTunnel</button>
-        <button class="tab-btn" data-target="servcloud">ServCloud</button>
-        <button class="tab-btn" data-target="servcron">ServCron</button>
-        <button class="tab-btn" data-target="servtrace">ServTrace</button>
-        <button class="tab-btn" data-target="servauth">ServAuth</button>
-        <button class="tab-btn" data-target="servdb">ServDB</button>
-        <button class="tab-btn" data-target="servmail">ServMail</button>
-        <button class="tab-btn" data-target="servflow">ServFlow</button>
-        <button class="tab-btn" data-target="servlock">ServLock</button>
-        <button class="tab-btn" data-target="servsecret">ServSecret</button>
+      <!-- Category selector to narrow down the 18 components -->
+      <div style="display:flex; justify-content:center; gap:0.5rem; margin-bottom:1.5rem; flex-wrap:wrap;">
+        <button class="visual-tab-btn active" id="cat-btn-all" onclick="filterCompCategory('all')">All Layers</button>
+        <button class="visual-tab-btn" id="cat-btn-dev" onclick="filterCompCategory('dev')">Developer Layer</button>
+        <button class="visual-tab-btn" id="cat-btn-net" onclick="filterCompCategory('net')">Platform & Net</button>
+        <button class="visual-tab-btn" id="cat-btn-infra" onclick="filterCompCategory('infra')">Infrastructure</button>
+        <button class="visual-tab-btn" id="cat-btn-obs" onclick="filterCompCategory('obs')">Observability</button>
+      </div>
+
+      <div class="tab-buttons" id="comp-tab-buttons" role="tablist" aria-label="Component details">
+        <button class="tab-btn active" data-category="dev" data-target="serv-lang">Serv-lang</button>
+        <button class="tab-btn" data-category="net" data-target="servgate">ServGate</button>
+        <button class="tab-btn" data-category="net" data-target="servmesh">ServMesh</button>
+        <button class="tab-btn" data-category="infra" data-target="servqueue">ServQueue</button>
+        <button class="tab-btn" data-category="infra" data-target="servstore">ServStore</button>
+        <button class="tab-btn" data-category="infra" data-target="servcache">ServCache</button>
+        <button class="tab-btn" data-category="obs" data-target="servconsole">ServConsole</button>
+        <button class="tab-btn" data-category="dev" data-target="servregistry">ServRegistry</button>
+        <button class="tab-btn" data-category="net" data-target="servtunnel">ServTunnel</button>
+        <button class="tab-btn" data-category="net" data-target="servcloud">ServCloud</button>
+        <button class="tab-btn" data-category="infra" data-target="servcron">ServCron</button>
+        <button class="tab-btn" data-category="obs" data-target="servtrace">ServTrace</button>
+        <button class="tab-btn" data-category="infra" data-target="servauth">ServAuth</button>
+        <button class="tab-btn" data-category="infra" data-target="servdb">ServDB</button>
+        <button class="tab-btn" data-category="infra" data-target="servmail">ServMail</button>
+        <button class="tab-btn" data-category="infra" data-target="servflow">ServFlow</button>
+        <button class="tab-btn" data-category="infra" data-target="servlock">ServLock</button>
+        <button class="tab-btn" data-category="infra" data-target="servsecret">ServSecret</button>
       </div>
       <div class="tab-content glass-card" id="tab-panels">
         <div class="tab-panel active" id="panel-serv-lang">
@@ -813,37 +822,44 @@ s3Client := s3.NewFromConfig(cfg, func(o *s3.Options) {
       </div>
     </div>
 
-    <div class="arch-grid reveal" style="margin-bottom: 3.5rem;">
+    <div class="reveal" style="display:flex; justify-content:center; gap:0.5rem; margin-bottom:2rem; flex-wrap:wrap;">
+      <button class="visual-tab-btn active" id="wasm-btn-all" onclick="filterWasm('all')">All Plugins</button>
+      <button class="visual-tab-btn" id="wasm-btn-gate" onclick="filterWasm('gate')">ServGate (Gateway)</button>
+      <button class="visual-tab-btn" id="wasm-btn-queue" onclick="filterWasm('queue')">ServQueue (Broker)</button>
+      <button class="visual-tab-btn" id="wasm-btn-store" onclick="filterWasm('store')">ServStore (Storage)</button>
+    </div>
+
+    <div class="arch-grid reveal" id="wasm-grid" style="margin-bottom: 3.5rem;">
       <!-- ServGate Plugins -->
-      <div class="arch-card glass-card">
+      <div class="arch-card glass-card" data-category="gate">
         <div class="card-icon">🛡️</div>
         <div class="pill-row"><div class="component-pill purple">ServGate API Gateway</div></div>
         <h4>jwt-auth.wasm</h4>
         <p class="panel-desc">Validates asymmetric HS256/RS256 JWT tokens, verifies expiration, and injects user claims into headers.</p>
         <a href="https://github.com/vyuvaraj/serv-wasm-plugins/releases/download/v0.3.0/jwt-auth.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
       </div>
-      <div class="arch-card glass-card">
+      <div class="arch-card glass-card" data-category="gate">
         <div class="card-icon">🧹</div>
         <div class="pill-row"><div class="component-pill purple">ServGate API Gateway</div></div>
         <h4>pii-scrubber.wasm</h4>
         <p class="panel-desc">Scans request/response bodies and automatically redacts Social Security Numbers, phone numbers, and emails.</p>
         <a href="https://github.com/vyuvaraj/serv-wasm-plugins/releases/download/v0.3.0/pii-scrubber.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
       </div>
-      <div class="arch-card glass-card">
+      <div class="arch-card glass-card" data-category="gate">
         <div class="card-icon">🤖</div>
         <div class="pill-row"><div class="component-pill purple">ServGate API Gateway</div></div>
         <h4>llm-semantic-router.wasm</h4>
         <p class="panel-desc">Intercepts user prompts, checks vector cache for instant duplicates, and routes dynamically to cost-efficient LLMs.</p>
         <a href="https://github.com/vyuvaraj/serv-wasm-plugins/releases/download/v0.3.0/llm-semantic-router.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
       </div>
-      <div class="arch-card glass-card">
+      <div class="arch-card glass-card" data-category="gate">
         <div class="card-icon">🌐</div>
         <div class="pill-row"><div class="component-pill purple">ServGate API Gateway</div></div>
         <h4>header-enrichment.wasm</h4>
         <p class="panel-desc">Enriches headers by injecting geo-IP metadata, processing timestamp headers, and instance operational IDs.</p>
         <a href="https://github.com/vyuvaraj/serv-wasm-plugins/releases/download/v0.3.0/header-enrichment.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
       </div>
-      <div class="arch-card glass-card">
+      <div class="arch-card glass-card" data-category="gate">
         <div class="card-icon">🔑</div>
         <div class="pill-row"><div class="component-pill purple">ServGate API Gateway</div></div>
         <h4>api-key-auth.wasm</h4>
@@ -852,21 +868,21 @@ s3Client := s3.NewFromConfig(cfg, func(o *s3.Options) {
       </div>
 
       <!-- ServQueue Plugins -->
-      <div class="arch-card glass-card">
+      <div class="arch-card glass-card" data-category="queue">
         <div class="card-icon">⚙️</div>
         <div class="pill-row"><div class="component-pill green">ServQueue Broker</div></div>
         <h4>json-to-proto.wasm</h4>
         <p class="panel-desc">Transcodes JSON message payloads to Protobuf binary streams inline to minimize broker network footprint.</p>
         <a href="https://github.com/vyuvaraj/serv-wasm-plugins/releases/download/v0.3.0/json-to-proto.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
       </div>
-      <div class="arch-card glass-card">
+      <div class="arch-card glass-card" data-category="queue">
         <div class="card-icon">🔀</div>
         <div class="pill-row"><div class="component-pill green">ServQueue Broker</div></div>
         <h4>xml-to-json.wasm</h4>
         <p class="panel-desc">Converts legacy XML message payloads into JSON dynamically in queue streams before delivery.</p>
         <a href="https://github.com/vyuvaraj/serv-wasm-plugins/releases/download/v0.3.0/xml-to-json.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
       </div>
-      <div class="arch-card glass-card">
+      <div class="arch-card glass-card" data-category="queue">
         <div class="card-icon">🚨</div>
         <div class="pill-row"><div class="component-pill green">ServQueue Broker</div></div>
         <h4>anomaly-detector.wasm</h4>
@@ -875,7 +891,7 @@ s3Client := s3.NewFromConfig(cfg, func(o *s3.Options) {
       </div>
 
       <!-- ServStore Plugins -->
-      <div class="arch-card glass-card">
+      <div class="arch-card glass-card" data-category="store">
         <div class="card-icon">📊</div>
         <div class="pill-row"><div class="component-pill orange">ServStore S3</div></div>
         <h4>csv-to-parquet.wasm</h4>
@@ -1149,6 +1165,52 @@ s3Client := s3.NewFromConfig(cfg, func(o *s3.Options) {
         codeUnified.classList.remove('hidden');
         heroFilename.textContent = 'service.srv';
         tabs[1].classList.add('active');
+      }
+    }
+
+    // WASM Plugin Filtering
+    function filterWasm(category) {
+      // Toggle active states on filter buttons
+      const buttons = document.querySelectorAll('[id^="wasm-btn-"]');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById(`wasm-btn-${category}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      // Filter plugin cards
+      const cards = document.querySelectorAll('#wasm-grid .arch-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Component Deep Dive Layer Filtering
+    function filterCompCategory(category) {
+      // Toggle active states on layer buttons
+      const buttons = document.querySelectorAll('[id^="cat-btn-"]');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById(`cat-btn-${category}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      // Filter sub tab buttons
+      const tabBtns = document.querySelectorAll('#comp-tab-buttons .tab-btn');
+      let firstVisibleBtn = null;
+
+      tabBtns.forEach(btn => {
+        if (category === 'all' || btn.dataset.category === category) {
+          btn.style.display = 'inline-block';
+          if (!firstVisibleBtn) firstVisibleBtn = btn;
+        } else {
+          btn.style.display = 'none';
+        }
+      });
+
+      // Automatically trigger the first visible tab to display its panel
+      if (firstVisibleBtn) {
+        firstVisibleBtn.click();
       }
     }
   </script>
