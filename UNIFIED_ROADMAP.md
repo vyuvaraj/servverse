@@ -466,7 +466,24 @@ All backlog tasks for Phase 37 have been fully completed, verified, and archived
 - [x] **Stream DSL WASM Transforms:** Native `transform "topic" (msg) { ... }` compiler syntax and codegen.
 - [x] **Static Concurrency Safety Guardrails:** Static analysis pass catching unsynchronized outer variable mutations in `spawn` blocks.
 - [x] **Logic Configuration Policy Engine:** `policy "name" (ctx) { ... }` engine for dynamic proxy routing rules.
-- [x] **Human-Auditable Codegen Quality:** 100% `gofmt` compliance via `go/format.Source()` post-processing.
+## Phase 38: WASM Plugin Ecosystem & Community Repository (Proposed)
+
+To accelerate developer onboarding and remove the friction of configuring local Go/Rust WASM toolchains, establish an off-the-shelf library of pre-compiled, production-ready WASM filter/transform plugins in a standalone community repository (`vyuvaraj/serv-wasm-plugins`).
+
+### 1. Standalone Community Repository (`serv-wasm-plugins`)
+*   **Forkable Open Source Repo:** Create `github.com/vyuvaraj/serv-wasm-plugins` containing clear, un-monorepoed Go and Rust source templates for writing ServGate/ServQueue WASM filters. Anyone can fork, customize, or submit pull requests.
+*   **CI/CD Automated WASM Artifact Building:** GitHub Actions workflow in `serv-wasm-plugins` automatically compiles Go (`GOOS=wasip1 GOARCH=wasm`) and Rust (`wasm32-wasip1`) source files into standalone `.wasm` binaries upon release tag creation.
+
+### 2. Pre-Built Plugin Standard Library
+*   **`jwt-auth.wasm`:** Asymmetric RS256/HS256 JWT validator, signature verification, and HTTP header claim injection for ServGate.
+*   **`pii-scrubber.wasm`:** Zero-alloc regex body scanner redacting Credit Cards (Luhn algorithm), SSNs, and emails in real-time.
+*   **`sliding-rate-limit.wasm`:** Dynamic sliding-window token bucket filter with configurable client IP / API-key thresholds.
+*   **`json-to-proto.wasm`:** Streaming payload transcoder converting incoming JSON payloads into binary Protobuf format before delivering to ServQueue subscribers.
+*   **`header-enrichment.wasm`:** Contextual header injection adding geo-IP location, trace IDs, and request timestamps.
+
+### 3. Registry & Distribution Integration
+*   **Direct Release Downloads & CDN:** Publish compiled `.wasm` artifacts to GitHub Releases and serve them via CDN for single-command `curl` / `docker-compose` downloads.
+*   **ServRegistry CLI Pull Command:** Extend `serv` CLI to support pulling pre-built plugins directly: `serv plugin pull jwt-auth`.
 
 ---
 
