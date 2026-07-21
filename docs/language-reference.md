@@ -634,3 +634,40 @@ tool "lookup_order" "Look up an order by ID" (args) {
 | `system` | System prompt / instruction |
 | `model` | Model URI |
 | `tools` | List of `tool` block names available to the agent |
+
+## Foreign Function Interface (FFI)
+
+Import and call external Go packages or receiver methods directly:
+
+```serv
+# Import Go packages
+extern fn newUUID() -> string from "go:github.com/google/uuid:NewString"
+
+# Bind receiver methods
+extern fn decimalToString(d) from "go:github.com/shopspring/decimal:Decimal.String"
+```
+
+## Stream DSL WASM Transforms (`transform`)
+
+Declare inline WASM stream transforms in under 5 lines:
+
+```serv
+transform "orders.raw" (msg) {
+    let clean = msg
+    return clean
+}
+```
+
+## Logic Configuration Policy Engine (`policy`)
+
+Define dynamic routing and authorization policies evaluated at proxy speed:
+
+```serv
+policy rate_limit_policy (ctx) {
+    let path = ctx["path"]
+    if path == "/api/admin" {
+        return false
+    }
+    return true
+}
+```

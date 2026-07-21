@@ -34,9 +34,11 @@
 26. [Concurrency](#25-concurrency)
 27. [Testing](#26-testing)
 28. [External Functions (FFI)](#27-external-functions-ffi)
-29. [Observability (OTel)](#28-observability-otel)
-30. [Environment & Config](#29-environment--config)
-31. [CLI Reference](#30-cli-reference)
+29. [Stream DSL WASM Transforms](#stream-dsl-wasm-transforms)
+30. [Logic Configuration Policy Engine](#logic-configuration-policy-engine)
+31. [Observability (OTel)](#28-observability-otel)
+32. [Environment & Config](#29-environment--config)
+33. [CLI Reference](#30-cli-reference)
 
 ---
 
@@ -956,7 +958,39 @@ validate {
 
 ---
 
-## 30. CLI Reference
+## Stream DSL WASM Transforms
+
+Serv-lang provides native stream processing primitives to declare inline WASM message transforms in under 5 lines of code:
+
+```python
+# Declare a message transformation for a topic
+transform "orders.raw" (msg) {
+    let clean = msg
+    # Return value is automatically re-routed or published
+    return clean
+}
+```
+
+---
+
+## Logic Configuration Policy Engine
+
+You can use Serv-lang as a high-performance configuration and routing policy engine:
+
+```python
+# Declare a policy routing rule evaluated at gateway speed
+policy rate_limit_policy (ctx) {
+    let path = ctx["path"]
+    if path == "/api/admin" {
+        return false
+    }
+    return true
+}
+```
+
+---
+
+## 33. CLI Reference
 
 | Command | Description |
 |---|---|
