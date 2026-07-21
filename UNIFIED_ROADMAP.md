@@ -480,6 +480,8 @@ To accelerate developer onboarding and remove the friction of configuring local 
 *   **`sliding-rate-limit.wasm`:** Dynamic sliding-window token bucket filter with configurable client IP / API-key thresholds.
 *   **`json-to-proto.wasm`:** Streaming payload transcoder converting incoming JSON payloads into binary Protobuf format before delivering to ServQueue subscribers.
 *   **`header-enrichment.wasm`:** Contextual header injection adding geo-IP location, trace IDs, and request timestamps.
+*   **`llm-semantic-router.wasm`:** Routes prompt requests dynamically to optimal LLM endpoints based on cost, checks semantic vector cache (`ServStore`) to intercept and return cached duplicate completions, and runs semantic safety checks.
+*   **`graphql-federation-merger.wasm`:** High-performance GraphQL query execution planner and schema merger that resolves nested federation queries across multiple backend microservices.
 
 ### 3. Registry & Distribution Integration
 *   **Direct Release Downloads & CDN:** Publish compiled `.wasm` artifacts to GitHub Releases and serve them via CDN for single-command `curl` / `docker-compose` downloads.
