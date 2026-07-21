@@ -1,6 +1,6 @@
 # ServPool — Database Connection Pooler & Query Router
 
-> **Status:** 🟡 Stable | **Port:** 8097 | **Repository:** [ServPool](https://github.com/vyuvaraj/ServPool)
+> **Status:** 🟡 Stable | **Port:** 8097 | **Repository:** [ServPool](https://github.com/vyuvaraj/serv/tree/main/packages/ServPool)
 
 ## Overview
 

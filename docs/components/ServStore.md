@@ -1,6 +1,6 @@
 # ServStore — AI-Native Object Storage
 
-> **Status:** ✅ Production | **Port:** 8081 | **Repository:** [ServStore](https://github.com/vyuvaraj/ServStore)
+> **Status:** ✅ Production | **Port:** 8081 | **Repository:** [ServStore](https://github.com/vyuvaraj/serv/tree/main/packages/ServStore)
 
 ## Overview
 

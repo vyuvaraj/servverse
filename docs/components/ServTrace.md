@@ -1,6 +1,6 @@
 # ServTrace — Distributed Tracing Backend
 
-> **Status:** ✅ Production | **Port:** 8090 | **Repository:** [ServTrace](https://github.com/vyuvaraj/ServTrace)
+> **Status:** ✅ Production | **Port:** 8090 | **Repository:** [ServTrace](https://github.com/vyuvaraj/serv/tree/main/packages/ServTrace)
 
 ## Overview
 

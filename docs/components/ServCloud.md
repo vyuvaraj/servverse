@@ -1,6 +1,6 @@
 # ServCloud — Multi-Target Deployment Orchestrator
 
-> **Status:** ✅ Production | **Port:** 8086 | **Repository:** [ServCloud](https://github.com/vyuvaraj/ServCloud)
+> **Status:** ✅ Production | **Port:** 8086 | **Repository:** [ServCloud](https://github.com/vyuvaraj/serv/tree/main/packages/ServCloud)
 
 ## Overview
 

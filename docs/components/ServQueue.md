@@ -1,6 +1,6 @@
 # ServQueue — WASM-Enabled Message Broker
 
-> **Status:** ✅ Production | **Port:** 8082 (HTTP) / 61613 (STOMP) | **Repository:** [ServQueue](https://github.com/vyuvaraj/ServQueue)
+> **Status:** ✅ Production | **Port:** 8082 (HTTP) / 61613 (STOMP) | **Repository:** [ServQueue](https://github.com/vyuvaraj/serv/tree/main/packages/ServQueue)
 
 ## Overview
 

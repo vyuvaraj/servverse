@@ -1,6 +1,6 @@
 # ServCache — Distributed Caching Layer
 
-> **Status:** ✅ Production | **Port:** 8084 | **Repository:** [ServCache](https://github.com/vyuvaraj/ServCache)
+> **Status:** ✅ Production | **Port:** 8084 | **Repository:** [ServCache](https://github.com/vyuvaraj/serv/tree/main/packages/ServCache)
 
 ## Overview
 

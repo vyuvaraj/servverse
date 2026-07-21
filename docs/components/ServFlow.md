@@ -1,6 +1,6 @@
 # ServFlow — Workflow Orchestrator
 
-> **Status:** 🟡 Stable | **Port:** 8096 | **Repository:** [ServFlow](https://github.com/vyuvaraj/ServFlow)
+> **Status:** 🟡 Stable | **Port:** 8096 | **Repository:** [ServFlow](https://github.com/vyuvaraj/serv/tree/main/packages/ServFlow)
 
 ## Overview
 

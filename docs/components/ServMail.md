@@ -1,6 +1,6 @@
 # ServMail — Multi-Channel Notification Provider
 
-> **Status:** 🟡 Stable | **Port:** 8094 | **Repository:** [ServMail](https://github.com/vyuvaraj/ServMail)
+> **Status:** 🟡 Stable | **Port:** 8094 | **Repository:** [ServMail](https://github.com/vyuvaraj/serv/tree/main/packages/ServMail)
 
 ## Overview
 

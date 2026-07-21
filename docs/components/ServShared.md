@@ -1,6 +1,6 @@
 # ServShared — Common Service Library
 
-> **Status:** ✅ Production | **Used by:** All Servverse services | **Repository:** [ServShared](https://github.com/vyuvaraj/ServShared)
+> **Status:** ✅ Production | **Used by:** All Servverse services | **Repository:** [ServShared](https://github.com/vyuvaraj/serv/tree/main/packages/ServShared)
 
 ## Overview
 

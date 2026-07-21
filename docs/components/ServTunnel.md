@@ -1,6 +1,6 @@
 # ServTunnel — Secure Dev Tunneling
 
-> **Status:** ✅ Production | **Port:** 8443 | **Repository:** [ServTunnel](https://github.com/vyuvaraj/ServTunnel)
+> **Status:** ✅ Production | **Port:** 8443 | **Repository:** [ServTunnel](https://github.com/vyuvaraj/serv/tree/main/packages/ServTunnel)
 
 ## Overview
 

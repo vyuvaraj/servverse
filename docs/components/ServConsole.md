@@ -1,6 +1,6 @@
 # ServConsole — Unified Observability Dashboard
 
-> **Status:** ✅ Production | **Port:** 8083 | **Repository:** [ServConsole](https://github.com/vyuvaraj/ServConsole)
+> **Status:** ✅ Production | **Port:** 8083 | **Repository:** [ServConsole](https://github.com/vyuvaraj/serv/tree/main/packages/ServConsole)
 
 ## Overview
 

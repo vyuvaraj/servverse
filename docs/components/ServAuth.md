@@ -1,6 +1,6 @@
 # ServAuth — Identity & Access Provider
 
-> **Status:** 🟡 Stable | **Port:** 8098 | **Repository:** [ServAuth](https://github.com/vyuvaraj/ServAuth)
+> **Status:** 🟡 Stable | **Port:** 8098 | **Repository:** [ServAuth](https://github.com/vyuvaraj/serv/tree/main/packages/ServAuth)
 
 ## Overview
 

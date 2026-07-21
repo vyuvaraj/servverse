@@ -1,6 +1,6 @@
 # ServMesh — Library-Level Service Mesh
 
-> **Status:** ✅ Production | **Port:** 8087 | **Repository:** [ServMesh](https://github.com/vyuvaraj/ServMesh)
+> **Status:** ✅ Production | **Port:** 8087 | **Repository:** [ServMesh](https://github.com/vyuvaraj/serv/tree/main/packages/ServMesh)
 
 ## Overview
 

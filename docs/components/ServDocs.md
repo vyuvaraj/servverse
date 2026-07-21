@@ -1,6 +1,6 @@
 # ServDocs — Documentation Generator
 
-> **Status:** 🟢 Stable | **Port:** 8089 | **Repository:** [ServDocs](https://github.com/vyuvaraj/ServDocs)
+> **Status:** 🟢 Stable | **Port:** 8089 | **Repository:** [ServDocs](https://github.com/vyuvaraj/serv/tree/main/packages/ServDocs)
 
 ## Overview
 

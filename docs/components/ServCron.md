@@ -1,6 +1,6 @@
 # ServCron — Distributed Job Scheduler
 
-> **Status:** ✅ Production | **Port:** 8085 | **Repository:** [ServCron](https://github.com/vyuvaraj/ServCron)
+> **Status:** ✅ Production | **Port:** 8085 | **Repository:** [ServCron](https://github.com/vyuvaraj/serv/tree/main/packages/ServCron)
 
 ## Overview
 

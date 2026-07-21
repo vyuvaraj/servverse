@@ -1,6 +1,6 @@
 # ServRegistry — Package Registry Hub
 
-> **Status:** ✅ Production | **Port:** 8088 | **Repository:** [ServRegistry](https://github.com/vyuvaraj/ServRegistry)
+> **Status:** ✅ Production | **Port:** 8088 | **Repository:** [ServRegistry](https://github.com/vyuvaraj/serv/tree/main/packages/ServRegistry)
 
 ## Overview
 

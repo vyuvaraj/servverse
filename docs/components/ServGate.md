@@ -1,6 +1,6 @@
 # ServGate — Programmable API Gateway
 
-> **Status:** ✅ Production | **Port:** 8080 | **Repository:** [ServGate](https://github.com/vyuvaraj/ServGate)
+> **Status:** ✅ Production | **Port:** 8080 | **Repository:** [ServGate](https://github.com/vyuvaraj/serv/tree/main/packages/ServGate)
 
 ## Overview
 
