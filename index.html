@@ -332,34 +332,39 @@
       <p>Select a component to inspect its features and rationale.</p>
     </div>
     <div class="tab-system reveal">
-      <!-- Category selector to narrow down the 18 components -->
-      <div style="display:flex; justify-content:center; gap:0.5rem; margin-bottom:1.5rem; flex-wrap:wrap;">
-        <button class="visual-tab-btn active" id="cat-btn-all" onclick="filterCompCategory('all')">All Layers</button>
-        <button class="visual-tab-btn" id="cat-btn-dev" onclick="filterCompCategory('dev')">Developer Layer</button>
-        <button class="visual-tab-btn" id="cat-btn-net" onclick="filterCompCategory('net')">Platform & Net</button>
-        <button class="visual-tab-btn" id="cat-btn-infra" onclick="filterCompCategory('infra')">Infrastructure</button>
-        <button class="visual-tab-btn" id="cat-btn-obs" onclick="filterCompCategory('obs')">Observability</button>
-      </div>
+      <div class="tab-sidebar-menu">
+        <!-- Category selector to narrow down the 18 components -->
+        <div style="display:flex; flex-direction:column; gap:0.5rem; border-bottom:1px solid var(--border-glass); padding-bottom:1rem;">
+          <span style="font-size:0.72rem; font-weight:700; text-transform:uppercase; color:var(--text-secondary); margin-bottom:0.25rem;">Filter by Layer</span>
+          <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+            <button class="visual-tab-btn active" id="cat-btn-all" onclick="filterCompCategory('all')" style="font-size:0.75rem; padding:0.3rem 0.6rem;">All</button>
+            <button class="visual-tab-btn" id="cat-btn-dev" onclick="filterCompCategory('dev')" style="font-size:0.75rem; padding:0.3rem 0.6rem;">Dev</button>
+            <button class="visual-tab-btn" id="cat-btn-net" onclick="filterCompCategory('net')" style="font-size:0.75rem; padding:0.3rem 0.6rem;">Net</button>
+            <button class="visual-tab-btn" id="cat-btn-infra" onclick="filterCompCategory('infra')" style="font-size:0.75rem; padding:0.3rem 0.6rem;">Infra</button>
+            <button class="visual-tab-btn" id="cat-btn-obs" onclick="filterCompCategory('obs')" style="font-size:0.75rem; padding:0.3rem 0.6rem;">Obs</button>
+          </div>
+        </div>
 
-      <div class="tab-buttons" id="comp-tab-buttons" role="tablist" aria-label="Component details">
-        <button class="tab-btn active" data-category="dev" data-target="serv-lang">Serv-lang</button>
-        <button class="tab-btn" data-category="net" data-target="servgate">ServGate</button>
-        <button class="tab-btn" data-category="net" data-target="servmesh">ServMesh</button>
-        <button class="tab-btn" data-category="infra" data-target="servqueue">ServQueue</button>
-        <button class="tab-btn" data-category="infra" data-target="servstore">ServStore</button>
-        <button class="tab-btn" data-category="infra" data-target="servcache">ServCache</button>
-        <button class="tab-btn" data-category="obs" data-target="servconsole">ServConsole</button>
-        <button class="tab-btn" data-category="dev" data-target="servregistry">ServRegistry</button>
-        <button class="tab-btn" data-category="net" data-target="servtunnel">ServTunnel</button>
-        <button class="tab-btn" data-category="net" data-target="servcloud">ServCloud</button>
-        <button class="tab-btn" data-category="infra" data-target="servcron">ServCron</button>
-        <button class="tab-btn" data-category="obs" data-target="servtrace">ServTrace</button>
-        <button class="tab-btn" data-category="infra" data-target="servauth">ServAuth</button>
-        <button class="tab-btn" data-category="infra" data-target="servdb">ServDB</button>
-        <button class="tab-btn" data-category="infra" data-target="servmail">ServMail</button>
-        <button class="tab-btn" data-category="infra" data-target="servflow">ServFlow</button>
-        <button class="tab-btn" data-category="infra" data-target="servlock">ServLock</button>
-        <button class="tab-btn" data-category="infra" data-target="servsecret">ServSecret</button>
+        <div class="tab-buttons" id="comp-tab-buttons" role="tablist" aria-label="Component details">
+          <button class="tab-btn active" data-category="dev" data-target="serv-lang">Serv-lang</button>
+          <button class="tab-btn" data-category="net" data-target="servgate">ServGate</button>
+          <button class="tab-btn" data-category="net" data-target="servmesh">ServMesh</button>
+          <button class="tab-btn" data-category="infra" data-target="servqueue">ServQueue</button>
+          <button class="tab-btn" data-category="infra" data-target="servstore">ServStore</button>
+          <button class="tab-btn" data-category="infra" data-target="servcache">ServCache</button>
+          <button class="tab-btn" data-category="obs" data-target="servconsole">ServConsole</button>
+          <button class="tab-btn" data-category="dev" data-target="servregistry">ServRegistry</button>
+          <button class="tab-btn" data-category="net" data-target="servtunnel">ServTunnel</button>
+          <button class="tab-btn" data-category="net" data-target="servcloud">ServCloud</button>
+          <button class="tab-btn" data-category="infra" data-target="servcron">ServCron</button>
+          <button class="tab-btn" data-category="obs" data-target="servtrace">ServTrace</button>
+          <button class="tab-btn" data-category="infra" data-target="servauth">ServAuth</button>
+          <button class="tab-btn" data-category="infra" data-target="servdb">ServDB</button>
+          <button class="tab-btn" data-category="infra" data-target="servmail">ServMail</button>
+          <button class="tab-btn" data-category="infra" data-target="servflow">ServFlow</button>
+          <button class="tab-btn" data-category="infra" data-target="servlock">ServLock</button>
+          <button class="tab-btn" data-category="infra" data-target="servsecret">ServSecret</button>
+        </div>
       </div>
       <div class="tab-content glass-card" id="tab-panels">
         <div class="tab-panel active" id="panel-serv-lang">
