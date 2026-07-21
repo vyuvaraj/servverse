@@ -79,10 +79,10 @@
     <div class="hero-content reveal">
       <div class="badge-pill">✦ Open Source Backend Platform</div>
       <h1>Build Backend Services <span class="gradient-text">Without the Glue Code</span></h1>
-      <p>Servverse is a complete backend toolkit — a programming language, API gateway, message queue, object storage, cache, scheduler, and dashboard — all designed to work together out of the box. Write your service in one file, deploy as a single binary.</p>
+      <p>Servverse is a complete backend toolkit — a programming language, API gateway, message queue, object storage, cache, scheduler, and dashboard — designed to work together or run independently. Deploy the entire unified platform or run any component standalone in your existing stack.</p>
       <div class="stats-row">
         <div class="stat-pill">19 Packages & CLIs</div>
-        <div class="stat-pill">Unified Monorepo</div>
+        <div class="stat-pill">Unified or Standalone</div>
         <div class="stat-pill">Single Binaries</div>
         <div class="stat-pill">S3 Storage</div>
         <div class="stat-pill">Built-in Queue</div>
@@ -149,6 +149,20 @@
           <tr><td>Dev Environment</td><td>Docker Compose + .env + docs</td><td class="hl-col"><code>serv dev main.srv</code> — one command</td></tr>
         </tbody>
       </table>
+    </div>
+    <div class="arch-grid reveal" style="margin-top: 2rem;">
+      <div class="arch-card glass-card">
+        <div class="card-glow purple"></div>
+        <div class="card-icon">🧩</div>
+        <h3>Deploy Standalone Components</h3>
+        <p>Adopt components incrementally in your existing stack. Run <code>ServStore</code> as an independent S3 storage engine, <code>ServGate</code> as an edge API gateway for Node/Python/Go/Java microservices, or <code>ServQueue</code> as a standalone STOMP broker. Zero mandatory dependencies on Serv-lang.</p>
+      </div>
+      <div class="arch-card glass-card">
+        <div class="card-glow green"></div>
+        <div class="card-icon">⚡</div>
+        <h3>Deploy as a Unified Platform</h3>
+        <p>Combine all 19 packages into a single zero-glue backend platform. Write service code in Serv-lang, auto-register routes with ServGate, stream events through ServQueue, and monitor traces in ServConsole.</p>
+      </div>
     </div>
   </section>
 
