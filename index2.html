@@ -926,35 +926,35 @@ s3Client := s3.NewFromConfig(cfg, func(o *s3.Options) {
         <div class="card-icon">🛡️</div>
         <div class="pill-row"><div class="component-pill purple">ServGate API Gateway</div></div>
         <h4>jwt-auth.wasm</h4>
-        <p class="panel-desc">Validates asymmetric HS256/RS256 JWT tokens, verifies expiration, and injects user claims into headers.</p>
+        <p class="wasm-desc">Validates asymmetric HS256/RS256 JWT tokens, verifies expiration, and injects user claims into headers.</p>
         <a href="https://github.com/vyuvaraj/serv-wasm-plugins/releases/download/v0.3.0/jwt-auth.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
       </div>
       <div class="arch-card glass-card" data-category="gate">
         <div class="card-icon">🧹</div>
         <div class="pill-row"><div class="component-pill purple">ServGate API Gateway</div></div>
         <h4>pii-scrubber.wasm</h4>
-        <p class="panel-desc">Scans request/response bodies and automatically redacts Social Security Numbers, phone numbers, and emails.</p>
+        <p class="wasm-desc">Scans request/response bodies and automatically redacts Social Security Numbers, phone numbers, and emails.</p>
         <a href="https://github.com/vyuvaraj/serv-wasm-plugins/releases/download/v0.3.0/pii-scrubber.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
       </div>
       <div class="arch-card glass-card" data-category="gate">
         <div class="card-icon">🤖</div>
         <div class="pill-row"><div class="component-pill purple">ServGate API Gateway</div></div>
         <h4>llm-semantic-router.wasm</h4>
-        <p class="panel-desc">Intercepts user prompts, checks vector cache for instant duplicates, and routes dynamically to cost-efficient LLMs.</p>
+        <p class="wasm-desc">Intercepts user prompts, checks vector cache for instant duplicates, and routes dynamically to cost-efficient LLMs.</p>
         <a href="https://github.com/vyuvaraj/serv-wasm-plugins/releases/download/v0.3.0/llm-semantic-router.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
       </div>
       <div class="arch-card glass-card" data-category="gate">
         <div class="card-icon">🌐</div>
         <div class="pill-row"><div class="component-pill purple">ServGate API Gateway</div></div>
         <h4>header-enrichment.wasm</h4>
-        <p class="panel-desc">Enriches headers by injecting geo-IP metadata, processing timestamp headers, and instance operational IDs.</p>
+        <p class="wasm-desc">Enriches headers by injecting geo-IP metadata, processing timestamp headers, and instance operational IDs.</p>
         <a href="https://github.com/vyuvaraj/serv-wasm-plugins/releases/download/v0.3.0/header-enrichment.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
       </div>
       <div class="arch-card glass-card" data-category="gate">
         <div class="card-icon">🔑</div>
         <div class="pill-row"><div class="component-pill purple">ServGate API Gateway</div></div>
         <h4>api-key-auth.wasm</h4>
-        <p class="panel-desc">Lightweight API key validation filter to secure gateway endpoints with static header checks.</p>
+        <p class="wasm-desc">Lightweight API key validation filter to secure gateway endpoints with static header checks.</p>
         <a href="https://github.com/vyuvaraj/serv-wasm-plugins/releases/download/v0.3.0/api-key-auth.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
       </div>
 
@@ -963,21 +963,21 @@ s3Client := s3.NewFromConfig(cfg, func(o *s3.Options) {
         <div class="card-icon">⚙️</div>
         <div class="pill-row"><div class="component-pill green">ServQueue Broker</div></div>
         <h4>json-to-proto.wasm</h4>
-        <p class="panel-desc">Transcodes JSON message payloads to Protobuf binary streams inline to minimize broker network footprint.</p>
+        <p class="wasm-desc">Transcodes JSON message payloads to Protobuf binary streams inline to minimize broker network footprint.</p>
         <a href="https://github.com/vyuvaraj/serv-wasm-plugins/releases/download/v0.3.0/json-to-proto.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
       </div>
       <div class="arch-card glass-card" data-category="queue">
         <div class="card-icon">🔀</div>
         <div class="pill-row"><div class="component-pill green">ServQueue Broker</div></div>
         <h4>xml-to-json.wasm</h4>
-        <p class="panel-desc">Converts legacy XML message payloads into JSON dynamically in queue streams before delivery.</p>
+        <p class="wasm-desc">Converts legacy XML message payloads into JSON dynamically in queue streams before delivery.</p>
         <a href="https://github.com/vyuvaraj/serv-wasm-plugins/releases/download/v0.3.0/xml-to-json.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
       </div>
       <div class="arch-card glass-card" data-category="queue">
         <div class="card-icon">🚨</div>
         <div class="pill-row"><div class="component-pill green">ServQueue Broker</div></div>
         <h4>anomaly-detector.wasm</h4>
-        <p class="panel-desc">Monitors telemetry metrics in real-time, sending data violating safety bounds to the DLQ.</p>
+        <p class="wasm-desc">Monitors telemetry metrics in real-time, sending data violating safety bounds to the DLQ.</p>
         <a href="https://github.com/vyuvaraj/serv-wasm-plugins/releases/download/v0.3.0/anomaly-detector.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
       </div>
 
@@ -986,7 +986,7 @@ s3Client := s3.NewFromConfig(cfg, func(o *s3.Options) {
         <div class="card-icon">📊</div>
         <div class="pill-row"><div class="component-pill orange">ServStore S3</div></div>
         <h4>csv-to-parquet.wasm</h4>
-        <p class="panel-desc">Transforms raw CSV object uploads into optimized columnar JSON-schema formats near the S3 boundary.</p>
+        <p class="wasm-desc">Transforms raw CSV object uploads into optimized columnar JSON-schema formats near the S3 boundary.</p>
         <a href="https://github.com/vyuvaraj/serv-wasm-plugins/releases/download/v0.3.0/csv-to-parquet.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
       </div>
     </div>

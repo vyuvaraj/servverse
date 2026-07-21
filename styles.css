@@ -428,6 +428,14 @@ footer { text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--bor
   border-color: rgba(251, 146, 60, 0.2);
 }
 
+.wasm-desc {
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+  margin-top: 0.4rem;
+  margin-bottom: 1rem;
+}
+
 /* ========= Left-Hand Navigation Sidebar Layout (index2.html) ========= */
 .sidebar {
   display: none;
