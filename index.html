@@ -799,25 +799,25 @@ s3Client := s3.NewFromConfig(cfg, func(o *s3.Options) {
         <div class="card-icon">🛡️</div>
         <h4>jwt_validator.wasm</h4>
         <p class="panel-desc">Validates asymmetric HS256/RS256 JWT tokens, verifies expiration, and injects user claims into headers.</p>
-        <a href="https://github.com/vyuvaraj/serv/raw/main/packages/ServGate/pkg/wasm/jwt_validator.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
+        <a href="https://github.com/vyuvaraj/serv-wasm-plugins/releases/download/v0.1.0/jwt-auth.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
       </div>
       <div class="arch-card glass-card">
         <div class="card-icon">🧹</div>
         <h4>pii_scrubber.wasm</h4>
         <p class="panel-desc">Scans request/response bodies and automatically redacts Social Security Numbers, phone numbers, and emails.</p>
-        <a href="https://github.com/vyuvaraj/serv/raw/main/packages/ServGate/pkg/wasm/pii_scrubber.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
+        <a href="https://github.com/vyuvaraj/serv-wasm-plugins/releases/download/v0.1.0/pii-scrubber.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
       </div>
       <div class="arch-card glass-card">
         <div class="card-icon">⚙️</div>
         <h4>json_to_proto.wasm</h4>
         <p class="panel-desc">Transcodes JSON message payloads to Protobuf binary streams inline to minimize broker network footprint.</p>
-        <a href="https://github.com/vyuvaraj/serv/raw/main/packages/ServQueue/pkg/broker/json_to_proto.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
+        <a href="https://github.com/vyuvaraj/serv-wasm-plugins/releases/download/v0.1.0/json-to-proto.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
       </div>
       <div class="arch-card glass-card">
         <div class="card-icon">🤖</div>
         <h4>llm_semantic_router.wasm</h4>
         <p class="panel-desc">Intercepts user prompts, checks vector cache for instant duplicates, and routes dynamically to cost-efficient LLMs.</p>
-        <a href="https://github.com/vyuvaraj/serv/raw/main/packages/ServGate/pkg/wasm/llm_semantic_router.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
+        <a href="https://github.com/vyuvaraj/serv-wasm-plugins/releases/download/v0.1.0/llm-semantic-router.wasm" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.4rem 0.8rem; margin-top: 1rem;">Download WASM</a>
       </div>
     </div>
 
