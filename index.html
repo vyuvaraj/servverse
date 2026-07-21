@@ -839,6 +839,9 @@ s3Client := s3.NewFromConfig(cfg, func(o *s3.Options) {
           <tr><td>Resource Footprint</td><td>150 MB RAM</td><td class="hl-col">42 MB RAM (per Go single-binary node)</td></tr>
         </tbody>
       </table>
+      <p style="text-align: center; color: var(--text-muted); font-size: 0.78rem; margin-top: 1rem;" class="reveal">
+        * <strong>Benchmark Methodology:</strong> Measured on 8-core CPU server (16GB RAM, Linux kernel 6.x). HTTP/1.1 keep-alive with 1KB payload via <code>wrk -c 100 -t 8</code>. ServGate running Wazero JIT WASM execution engine.
+      </p>
     </div>
   </section>
   <!-- Blog Section -->
