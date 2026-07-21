@@ -428,3 +428,111 @@ footer { text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--bor
   border-color: rgba(251, 146, 60, 0.2);
 }
 
+/* ========= Left-Hand Navigation Sidebar Layout (index2.html) ========= */
+.sidebar {
+  display: none;
+}
+.mobile-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: rgba(13, 16, 27, 0.4);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-glass);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s;
+}
+.mobile-navbar.scrolled {
+  background: rgba(13, 16, 27, 0.9);
+  padding: 0.8rem 1.5rem;
+}
+.main-content-layout {
+  padding-top: 80px;
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    height: 100vh;
+    background: rgba(13, 16, 27, 0.4);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid var(--border-glass);
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 2rem 1.5rem;
+    z-index: 1000;
+  }
+  .mobile-navbar {
+    display: none;
+  }
+  .main-content-layout {
+    margin-left: 280px;
+    padding-top: 0;
+  }
+  .sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    height: 100%;
+  }
+  .sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .sidebar-link:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .sidebar-link.active {
+    color: var(--primary);
+    background: rgba(138, 92, 246, 0.1);
+    font-weight: 600;
+  }
+}
+
+/* Mobile Sidebar Drawer */
+@media (max-width: 1023px) {
+  .sidebar.open {
+    display: flex;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background: rgba(13, 16, 27, 0.95);
+    backdrop-filter: blur(20px);
+    z-index: 999;
+    padding: 2rem;
+    flex-direction: column;
+  }
+  .sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .sidebar-link {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+  .sidebar-link.active {
+    color: var(--primary);
+  }
+}
+
+
