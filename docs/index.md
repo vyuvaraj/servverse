@@ -47,6 +47,8 @@
 | [ServRegistry](components/ServRegistry.md) | Packages — semver resolution, signing, ServStore backend |
 | [ServDocs](components/ServDocs.md) | Documentation — auto-generated from `.srv` source |
 | [ServShared](components/ServShared.md) | Common Library — health probes, OTel, JWT middleware |
+| [servlockctl](https://github.com/vyuvaraj/serv/tree/main/packages/servlockctl) | Lock CLI — distributed lock acquisition, renewal, and deadlock inspection |
+| [servsecretctl](https://github.com/vyuvaraj/serv/tree/main/packages/servsecretctl) | Secrets CLI — key rotation, secret injection, and Shamir unseal operations |
 
 ---
 
