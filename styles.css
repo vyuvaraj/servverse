@@ -278,7 +278,14 @@ body {
 .light-theme .showcase-run { background: rgba(0,0,0,0.04); }
 
 /* ========= Quickstart ========= */
-.quickstart-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 1.5rem; }
+.quickstart-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+@media (min-width: 1024px) {
+  .quickstart-grid {
+    grid-template-columns: 1fr 1.3fr;
+    gap: 2rem;
+    align-items: stretch;
+  }
+}
 .terminal { padding: 0; background: hsl(230, 25%, 4%); overflow: hidden; }
 .light-theme .terminal { background: hsl(220, 30%, 94%); }
 .terminal-body { padding: 1.5rem 2rem; font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.9; }

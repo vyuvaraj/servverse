@@ -653,6 +653,20 @@
     </div>
 
     <div class="quickstart-grid">
+      <!-- Left Column: Guide Information -->
+      <div class="glass-card reveal" style="padding: 1.8rem; border-radius: 12px; border: 1px solid var(--border-glass); background: rgba(255,255,255,0.01); display: flex; flex-direction: column; gap: 1rem;">
+        <h3 style="font-size: 1.15rem; font-weight: 700; margin: 0;">Installation Guide</h3>
+        <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">Choose your installation mechanism. All standalone binaries are natively compiled in Go for maximum speed and compatibility.</p>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.8rem; color: var(--text-secondary);">
+          <li style="position: relative; padding-left: 1.25rem;"><span style="position: absolute; left: 0; color: var(--success);">✓</span> <strong>Single Binary:</strong> Zero runtime environment overhead.</li>
+          <li style="position: relative; padding-left: 1.25rem;"><span style="position: absolute; left: 0; color: var(--success);">✓</span> <strong>Self-Contained:</strong> Direct Scoop and Homebrew integration.</li>
+          <li style="position: relative; padding-left: 1.25rem;"><span style="position: absolute; left: 0; color: var(--success);">✓</span> <strong>Container Friendly:</strong> Official Compose setups and Helm Charts.</li>
+        </ul>
+        <div style="border-top: 1px solid var(--border-glass); padding-top: 0.75rem; font-size: 0.75rem; color: var(--text-muted);">
+          Prerequisites: Active internet connection to download binaries. Admin privileges may be required.
+        </div>
+      </div>
+
       <!-- Tab 1: CLI -->
       <div class="terminal glass-card reveal" id="qs-panel-cli">
         <div class="visual-header">
@@ -700,10 +714,10 @@
       </div>
 
       <!-- Tab 3: Docker & K8s -->
-      <div class="terminal glass-card reveal hidden" id="qs-panel-docker" style="grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+      <div class="terminal glass-card reveal hidden" id="qs-panel-docker" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
         <div>
           <div class="visual-header" style="border-bottom: 1px solid var(--border-glass); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
-            <span class="window-title">docker-compose.yml (Instant Stack)</span>
+            <span class="window-title">docker-compose.yml</span>
           </div>
           <pre style="background:transparent; padding:0; margin:0;"><code style="font-size:0.75rem;"><span class="kw">version:</span> <span class="str">"3.8"</span>
 <span class="kw">services:</span>
@@ -718,16 +732,16 @@
         </div>
         <div style="border-left: 1px solid var(--border-glass); padding-left: 1rem;">
           <div class="visual-header" style="border-bottom: 1px solid var(--border-glass); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
-            <span class="window-title">Kubernetes Helm Installation</span>
+            <span class="window-title">Helm Installation</span>
           </div>
           <div class="terminal-body" style="padding:0; font-size:0.75rem;">
             <p class="cmd-line"><span class="prompt"># Add official repo</span></p>
-            <p class="cmd-line"><span class="prompt">$</span> helm repo add servverse https://charts.servverse.dev</p>
+            <p class="cmd-line"><span class="prompt">$</span> helm repo add servverse ...</p>
             <p class="cmd-line">&nbsp;</p>
             <p class="cmd-line"><span class="prompt"># Install ServGate proxy</span></p>
-            <p class="cmd-line"><span class="prompt">$</span> helm install edge servverse/servgate --set upstream=http://node-service</p>
+            <p class="cmd-line"><span class="prompt">$</span> helm install edge servverse/servgate</p>
             <p class="cmd-line">&nbsp;</p>
-            <p class="cmd-line"><span class="prompt"># Deploy ServQueue broker</span></p>
+            <p class="cmd-line"><span class="prompt"># Deploy ServQueue</span></p>
             <p class="cmd-line"><span class="prompt">$</span> helm install broker servverse/servqueue</p>
           </div>
         </div>
