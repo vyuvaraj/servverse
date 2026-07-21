@@ -52,11 +52,14 @@
       </div>
     </a>
     <nav class="nav-links" id="nav-links" role="navigation" aria-label="Main navigation">
+      <a href="#quickstart">Quickstart</a>
+      <a href="#wasm-plugins">WASM Plugins</a>
+      <a href="#recipes">Recipes</a>
+      <a href="#benchmarks">Benchmarks</a>
       <a href="#editions">Editions</a>
       <a href="#architecture">Architecture</a>
       <a href="#components">Components</a>
       <a href="#showcase">Showcase</a>
-      <a href="#quickstart">Quickstart</a>
       <a href="https://github.com/vyuvaraj/servverse/blob/main/docs/index.md" target="_blank" rel="noopener">Docs</a>
       <a href="https://vyuvaraj.github.io/servverse/playground/" target="_blank" rel="noopener">Playground</a>
       <a href="#blog">Blog</a>
@@ -784,7 +787,7 @@
   </section>
 
   <!-- Production Cookbooks & Benchmarks -->
-  <section class="section">
+  <section class="section" id="recipes">
     <div class="section-header reveal">
       <h2>Production-Ready Recipes</h2>
       <p>Integrate our modular Go/WASM binaries into your current stack in minutes. Zero .srv code required.</p>
@@ -838,8 +841,10 @@ s3Client := s3.NewFromConfig(cfg, func(o *s3.Options) {
     </div>
 
     <!-- 3. Pre-Compiled WASM Module Library -->
-    <h3 style="margin-bottom: 1.5rem; font-size: 1.6rem; font-weight: 700; text-align: center;" class="reveal">Off-the-Shelf WASM Plugins</h3>
-    <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;" class="reveal">Test the power of edge execution immediately. Pre-built with zero-downtime hot-swapping.</p>
+    <div id="wasm-plugins" class="reveal" style="scroll-margin-top: 100px;">
+      <h3 style="margin-bottom: 1.5rem; font-size: 1.6rem; font-weight: 700; text-align: center;">Off-the-Shelf WASM Plugins</h3>
+      <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Test the power of edge execution immediately. Pre-built with zero-downtime hot-swapping.</p>
+    </div>
     
     <div class="reveal" style="max-width: 900px; margin: 0 auto 2.5rem auto; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; text-align: left; padding: 0 1rem;">
       <div class="glass-card" style="padding: 1.2rem; border-radius: 12px; border: 1px solid var(--border-glass); background: rgba(255,255,255,0.02);">
@@ -935,7 +940,9 @@ s3Client := s3.NewFromConfig(cfg, func(o *s3.Options) {
     </div>
 
     <!-- 4. Transparent Load Benchmarks -->
-    <h3 style="margin-bottom: 1.5rem; font-size: 1.6rem; font-weight: 700; text-align: center;" class="reveal">Transparent Performance & Limits</h3>
+    <div id="benchmarks" class="reveal" style="scroll-margin-top: 100px;">
+      <h3 style="margin-bottom: 1.5rem; font-size: 1.6rem; font-weight: 700; text-align: center;">Transparent Performance & Limits</h3>
+    </div>
     <div class="comparison-table reveal">
       <table>
         <thead>
