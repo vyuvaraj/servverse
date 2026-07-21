@@ -18,6 +18,8 @@
   --font-mono: 'JetBrains Mono', SFMono-Regular, Consolas, monospace;
 }
 
+.hidden { display: none !important; }
+
 .light-theme {
   --bg-primary: hsl(220, 35%, 97%);
   --bg-secondary: hsl(220, 30%, 93%);
@@ -165,6 +167,10 @@ body {
 .window-dot.yellow { background: var(--warning); }
 .window-dot.green { background: var(--success); }
 .window-title { margin-left: 0.5rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); }
+.visual-tabs { display: flex; gap: 0.25rem; margin-left: auto; background: rgba(0,0,0,0.15); border-radius: 8px; padding: 2px; }
+.visual-tab-btn { background: transparent; border: none; padding: 4px 10px; font-size: 0.72rem; font-family: var(--font-outfit); font-weight: 500; color: var(--text-muted); cursor: pointer; border-radius: 6px; transition: background 0.2s, color 0.2s; }
+.visual-tab-btn.active { background: rgba(255,255,255,0.08); color: var(--text-primary); }
+.light-theme .visual-tab-btn.active { background: rgba(0,0,0,0.05); }
 .hero-visual pre, .showcase-code pre { padding: 1.5rem 2rem; font-family: var(--font-mono); font-size: 0.82rem; overflow-x: auto; line-height: 1.75; color: hsl(220, 30%, 90%); }
 .hero-visual pre, .showcase-code pre { background: hsl(230, 25%, 6%); }
 .light-theme .hero-visual pre, .light-theme .showcase-code pre { background: hsl(230, 20%, 14%); color: hsl(220, 30%, 90%); }

@@ -77,20 +77,20 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content reveal">
-      <div class="badge-pill">✦ Open Source Backend Platform</div>
-      <h1>Build Backend Services <span class="gradient-text">Without the Glue Code</span></h1>
-      <p>Servverse is a complete backend toolkit — a programming language, API gateway, message queue, object storage, cache, scheduler, and dashboard — designed to work together or run independently. Deploy the entire unified platform or run any component standalone in your existing stack.</p>
+      <div class="badge-pill">✦ Zero Lock-In — Standalone Go Tools or Unified DSL Platform</div>
+      <h1>Build Backend Services <span class="gradient-text">On Your Terms</span></h1>
+      <p>Servverse gives you production-ready Go tools that drop directly into your existing <strong>Node.js, Python, Java, or Go</strong> stack. Drop <strong>ServGate</strong> (AI gateway) or <strong>ServQueue</strong> (STOMP broker) into your current stack with zero code changes. Or, compile whole microservices using our unified <code>.srv</code> DSL platform.</p>
       <div class="stats-row">
-        <div class="stat-pill">19 Packages & CLIs</div>
-        <div class="stat-pill">Unified or Standalone</div>
-        <div class="stat-pill">Single Binaries</div>
-        <div class="stat-pill">S3 Storage</div>
-        <div class="stat-pill">Built-in Queue</div>
-        <div class="stat-pill">Web Dashboard</div>
+        <div class="stat-pill">19 Standalone Packages</div>
+        <div class="stat-pill">Zero Lock-In</div>
+        <div class="stat-pill">Single Go Binaries</div>
+        <div class="stat-pill">S3 Storage API</div>
+        <div class="stat-pill">STOMP/HTTP Standards</div>
+        <div class="stat-pill">No .srv Required</div>
       </div>
       <div class="hero-actions">
         <a href="#quickstart" class="btn btn-primary">Get Started</a>
-        <a href="#architecture" class="btn btn-secondary">See How It Works</a>
+        <a href="#architecture" class="btn btn-secondary">See Standalone Tools</a>
       </div>
     </div>
     <div class="hero-visual glass-card reveal">
@@ -98,9 +98,33 @@
         <div class="window-dot red"></div>
         <div class="window-dot yellow"></div>
         <div class="window-dot green"></div>
-        <span class="window-title">service.srv</span>
+        <span class="window-title" id="hero-filename">docker-compose.yml</span>
+        <div class="visual-tabs">
+          <button class="visual-tab-btn active" onclick="switchHeroTab('standalone')">Standalone Go Tools</button>
+          <button class="visual-tab-btn" onclick="switchHeroTab('unified')">Unified DSL (.srv)</button>
+        </div>
       </div>
-      <pre><code><span class="kw">server</span> <span class="str">"8080"</span>
+      
+      <!-- Standalone Code Visual -->
+      <pre id="code-standalone"><code><span class="cmt"># Drop ServGate & ServQueue into your existing Node/Python stack</span>
+<span class="kw">services:</span>
+  <span class="kw">gateway:</span>
+    <span class="kw">image:</span> vyuvaraj/servgate:latest
+    <span class="kw">ports:</span> [<span class="str">"8080:8080"</span>]
+    <span class="kw">environment:</span>
+      <span class="kw">UPSTREAM:</span> <span class="str">"http://node-api:3000"</span>
+      <span class="kw">AI_FIREWALL:</span> <span class="str">"true"</span>
+
+  <span class="kw">broker:</span>
+    <span class="kw">image:</span> vyuvaraj/servqueue:latest
+    <span class="kw">ports:</span> [<span class="str">"61613:61613"</span>] <span class="cmt"># Standard STOMP port</span>
+
+  <span class="kw">node-api:</span>
+    <span class="kw">image:</span> node:20
+    <span class="cmt"># Connect via standard stompjs & axios/fetch</span></code></pre>
+
+      <!-- Unified Code Visual -->
+      <pre id="code-unified" class="hidden"><code><span class="kw">server</span> <span class="str">"8080"</span>
 <span class="kw">broker</span> <span class="str">"servqueue://localhost:61613"</span>
 <span class="kw">database</span> <span class="str">"sqlite://app.db"</span>
 
@@ -900,6 +924,27 @@
       }
     }
     window.addEventListener('DOMContentLoaded', loadBlogPosts);
+
+    function switchHeroTab(tab) {
+      const codeStandalone = document.getElementById('code-standalone');
+      const codeUnified = document.getElementById('code-unified');
+      const heroFilename = document.getElementById('hero-filename');
+      const tabs = document.querySelectorAll('.visual-tabs .visual-tab-btn');
+
+      tabs.forEach(btn => btn.classList.remove('active'));
+
+      if (tab === 'standalone') {
+        codeStandalone.classList.remove('hidden');
+        codeUnified.classList.add('hidden');
+        heroFilename.textContent = 'docker-compose.yml';
+        tabs[0].classList.add('active');
+      } else {
+        codeStandalone.classList.add('hidden');
+        codeUnified.classList.remove('hidden');
+        heroFilename.textContent = 'service.srv';
+        tabs[1].classList.add('active');
+      }
+    }
   </script>
 </body>
 </html>
