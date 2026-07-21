@@ -136,3 +136,19 @@ If message delivery consistently fails and fills up the DLQ:
      -H "Authorization: Bearer admin-token"
    ```
 
+## Production & Operational Guidelines
+
+### WASM Safety & Resource Limits
+ServQueue runs isolated WebAssembly stream transform filters inside message streams using the wazero JIT compiler engine. Ceilings are strictly enforced:
+* **Execution Timeout:** Each inline transform is bounded by a strict `50ms` timeout context. Runaway loop scripts are halted and message is auto-routed to the Dead Letter Queue (DLQ) with `X-DLQ-Failure-Reason: WASM_TIMEOUT` header.
+* **Memory Capping:** Each execution context is sandboxed with a `16MB` memory allocation ceiling. Any violation traps immediately without crashing the broker threads.
+
+### Persistence & Crash Recovery
+ServQueue supports write-ahead logging (WAL) for message persistence:
+* **Durability:** Every message is appended to the Write-Ahead Log on disk before sending the STOMP `RECEIPT` frame back to the publisher.
+* **Crash Recovery:** If the broker process is terminated abruptly (e.g., power loss, `kill -9`), the log replay engine validates checksums on startup and recovers the broker state to the last clean record.
+
+### Standard Observability & Telemetry
+* **Prometheus Metrics:** ServQueue exposes standard Prometheus metrics at `GET /metrics` covering message publish rate, delivery latency, consumer lag per queue, and WASM JIT compiler metrics.
+* **OpenTelemetry Compatibility:** Propagates W3C Trace Context headers inside the STOMP message frame properties, allowing tracing flows to continue across different services via standard OTel collectors.
+

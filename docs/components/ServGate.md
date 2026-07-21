@@ -69,3 +69,15 @@ ServGate is a WASM-programmable reverse proxy and API gateway with AI-native cap
 server "8080"
 // Routes auto-register with ServGate on startup via /api/v1/routes/register
 ```
+
+## Production & Operational Guidelines
+
+### WASM Safety & Resource Limits
+ServGate runs isolated WebAssembly middleware filters via the wazero JIT compiler engine. The following safety ceilings are strictly enforced:
+* **Execution Timeout:** Each WASM middleware execution context is bounded by a strict `50ms` timeout. Runaway loops or hung filters are automatically halted with a `504 Gateway Timeout` response returned to the client.
+* **Memory Isolation:** Each WASM instance is sandbox-capped at a `16MB` memory ceiling. Any out-of-bounds allocation immediately traps, shielding the host Go gateway process from memory exhaustion or segmentation faults.
+
+### Standard Observability & Telemetry
+ServGate integrates seamlessly with standard DevOps monitoring stacks:
+* **Prometheus Metrics:** Native Prometheus metrics are exposed at `GET /metrics` covering request counts, latencies (p50/p90/p99), active circuit breaker statuses, and rate-limiting blocks.
+* **OpenTelemetry Compatibility:** Complete W3C context propagation is supported. Pass `SERV_OTLP_ENDPOINT` to export traces directly to standard collectors (e.g. Datadog, Jaeger, Grafana Tempo).

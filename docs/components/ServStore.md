@@ -134,3 +134,20 @@ When drive corruption or sector loss is detected:
    curl -X GET http://localhost:8081/my-bucket/document.txt?verify-integrity=true
    ```
 
+## Production & Operational Guidelines
+
+### WASM Safety & Resource Limits
+ServStore allows executing user-defined WASM transformations near the storage boundary. To prevent resource exhaustion, the following rules apply:
+* **Execution Timeout:** All WASM transforms are enforced with a strict `100ms` execution deadline context. Any transform exceeding this is aborted, and a `500 Internal Server Error` is logged.
+* **Sandbox Memory Limits:** Instances run in isolated wazero sandboxes with a strict memory limit of `32MB` to safeguard cluster nodes against memory leak crashes.
+
+### Persistence & Data Integrity Guarantees
+ServStore ensures high-durability persistence across failures:
+* **Sync-to-Disk:** Object write operations (PUT) write payload shards to disk and issue `fsync()` system calls to guarantee block persistence before returning `201 Created`.
+* **Metadata Consensus:** Cluster configurations and storage keys are recorded via Raft consensus into disk-backed log stores. Single-instance nodes run transactionally on SQLite databases.
+* **Erasure Coding Parity:** Employs Reed-Solomon (data/parity) block distribution, guaranteeing zero data loss even if up to half of the physical storage nodes or block partitions fail.
+
+### Standard Observability & Telemetry
+* **Prometheus Metrics:** Exposes standard Prometheus-compatible telemetry at `GET /metrics`, reporting storage usage (bytes), active connection pools, read/write ops per second, and vector query response times.
+* **OTel Integration:** Supports OpenTelemetry metrics and distributed tracing context propagation natively. Set `SERV_OTLP_ENDPOINT` to export traces to external monitoring infrastructure.
+
